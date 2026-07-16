@@ -5,6 +5,9 @@ Beginner-friendly premium gaming website scaffold with:
 - Real registration count from backend data
 - Search UI and game content cards
 - Subscriber flow stored in Supabase
+- 3-day free trial and Pro guide gating (basic users see only 50%)
+- Donation methods (Apple Pay, PayPal, Cash App, Zelle, secure card checkout links)
+- Missing-info report form with private notifier function hook
 - Cloudflare Pages static deployment compatibility
 
 ## 1. Recommended stack and why
@@ -52,8 +55,11 @@ python3 -m http.server 4173
 
 This creates:
 - public.profiles linked to auth.users
+- trial_ends_at field for 3-day free trial
+- public.subscriptions for Pro access status
 - trigger to auto-create profile on registration
 - public.subscribers for newsletter signups
+- public.missing_reports for guide correction submissions
 - public.registration_metrics view for safe public count
 
 ### 4.3 Configure frontend keys
@@ -100,6 +106,40 @@ Recommended next provider:
 Beginner next step:
 1. Create Supabase Edge Function to call Resend
 2. Trigger that function for updates/news drops
+
+## 5.1 Missing guide reports -> private email
+
+Current status:
+- Working: missing report form writes to public.missing_reports
+- Optional scaffold: invokes Supabase Edge Function named in site-config.js
+
+To privately notify your email (not visible on frontend):
+1. Create Edge Function `send-missing-report-email`
+2. Add secret env var in Supabase function settings, for example `NOTIFY_EMAIL`
+3. Use provider SDK (Resend/Postmark) in the function to send email to the secret recipient
+
+Because the email lives in function secrets, it is not exposed in site source code.
+
+## 5.2 Payments and fraud safety
+
+For safest card handling:
+1. Use Stripe-hosted Checkout or Payment Links
+2. Never collect raw card numbers directly in your own form fields
+3. Use Stripe webhooks to update public.subscriptions status
+
+The donations page is configured to consume URLs from `assets/js/site-config.js`:
+- Apple Pay link (usually Stripe checkout with Apple Pay)
+- PayPal link
+- Cash App link
+- Zelle instructions
+- Secure card checkout link
+
+## 5.3 Pro subscription model
+
+- Price target: $1.99/month
+- New users: 3-day trial (via trial_ends_at)
+- Basic users: guide content locked at 50%
+- Trial and Pro users: full guide content
 
 ## 6. Cloudflare Pages deploy
 
@@ -176,14 +216,19 @@ gaming-hub/
 - Google and Apple OAuth button flows in frontend
 - Real registration count from backend view
 - Subscriber storage in Supabase table
+- Guide gating logic (50% for basic, full for trial/pro)
+- Missing-info submission storage
+- Donation/payment method UI wired to config-based links
 - Mobile nav, footer, terms/privacy placeholders
 
 ### Requires your manual dashboard setup
 - Supabase project values in site-config.js
+- Payment links and Zelle instructions in site-config.js
 - Google provider credentials and callback settings
 - Apple provider credentials and callback settings
+- Stripe subscription checkout + webhook flow for subscription status sync
 - Email sending provider integration (Resend/MailerLite)
-- Real donation links (Stripe/Ko-fi/BMC)
+- Real donation links (Apple Pay, PayPal, Cash App, card checkout)
 - Approved gameplay image URLs in image manifest
 
 ## 10. Notes about gameplay images

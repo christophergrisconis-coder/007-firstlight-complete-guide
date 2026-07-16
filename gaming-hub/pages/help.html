@@ -38,8 +38,23 @@
           <li>Subscriber form connected to Supabase table for future email automation.</li>
         </ul>
       </section>
+
+      <section class="panel" id="missing-info">
+        <h2>Report Missing Guide Information</h2>
+        <p>Submit missing details here and they will be stored privately for review.</p>
+        <form id="missing-report-form" class="stack-form">
+          <label>Optional contact email <input id="missing-report-email" type="email" /></label>
+          <label>Guide/page URL <input id="missing-report-page" type="text" placeholder="Paste the page URL" /></label>
+          <label>Missing information details
+            <textarea id="missing-report-details" rows="6" required></textarea>
+          </label>
+          <button class="btn btn-accent" type="submit">Submit Missing Info</button>
+        </form>
+        <p id="missing-report-status" class="form-note" aria-live="polite"></p>
+      </section>
     </main>
     <div id="site-footer"></div>
     <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/report-missing.js"></script>
   </body>
 </html>

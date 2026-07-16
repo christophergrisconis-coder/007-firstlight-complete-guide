@@ -7,4 +7,15 @@ export const SITE_CONFIG = {
   supabaseAnonKey: "",
   siteUrl: "https://questandguides.com",
   localUrl: "http://127.0.0.1:4173",
+  paymentLinks: {
+    monthlyProCheckoutUrl: "",
+    oneTimeApplePayUrl: "",
+    oneTimePayPalUrl: "",
+    oneTimeCashAppUrl: "",
+    oneTimeCardCheckoutUrl: "",
+    zelleInstructions: "",
+  },
+  edgeFunctions: {
+    missingReportNotifier: "send-missing-report-email",
+  },
 };

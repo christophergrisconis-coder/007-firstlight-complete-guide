@@ -123,11 +123,11 @@ const wireSignUp = () => {
     }
 
     if (data.user && !data.session) {
-      setText("#signup-status", "Check your email to confirm your account.");
+      setText("#signup-status", "Check your email to confirm your account. Your 3-day trial starts after activation.");
       return;
     }
 
-    setText("#signup-status", "Account created. Redirecting...");
+    setText("#signup-status", "Account created. Your 3-day trial is active. Redirecting...");
     setTimeout(() => {
       location.href = "../index.html";
     }, 700);

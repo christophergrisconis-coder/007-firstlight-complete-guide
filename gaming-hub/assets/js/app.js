@@ -57,6 +57,11 @@ const renderFooter = () => {
           <p>Admin and owner details intentionally kept lightweight for a content-first gaming platform.</p>
         </section>
       </div>
+      <div class="container footer-note">
+        <small>
+          All guides are works in progress. Missing information is reviewed and added as quickly as possible.
+        </small>
+      </div>
     </footer>
   `;
 };

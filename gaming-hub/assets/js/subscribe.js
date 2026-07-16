@@ -1,7 +1,21 @@
+import { SITE_CONFIG } from "./site-config.js";
 import { assertSupabase } from "./supabase-client.js";
 
 const form = document.querySelector("#subscribe-form");
 const statusText = document.querySelector("#subscribe-status");
+const proCheckout = document.querySelector("#pro-checkout-link");
+
+if (proCheckout) {
+  const url = SITE_CONFIG.paymentLinks.monthlyProCheckoutUrl;
+  if (url) {
+    proCheckout.href = url;
+    proCheckout.target = "_blank";
+    proCheckout.rel = "noopener noreferrer";
+  } else {
+    proCheckout.setAttribute("aria-disabled", "true");
+    proCheckout.classList.add("btn-disabled");
+  }
+}
 
 if (form && statusText) {
   form.addEventListener("submit", async (event) => {

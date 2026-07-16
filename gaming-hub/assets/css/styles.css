@@ -232,6 +232,22 @@ main {
   margin-top: 0;
 }
 
+.guide-lock-meter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.guide-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+}
+
 .stack-form {
   display: grid;
   gap: 12px;
@@ -282,11 +298,22 @@ main {
   gap: 16px;
 }
 
+.footer-note {
+  padding: 0 0 16px;
+  color: var(--muted);
+}
+
 .footer a {
   display: block;
   color: var(--muted);
   text-decoration: none;
   margin-bottom: 6px;
+}
+
+.btn-disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .sr-only {

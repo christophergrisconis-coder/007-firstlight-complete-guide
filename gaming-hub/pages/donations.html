@@ -11,28 +11,46 @@
     <main class="container page-layout">
       <header class="section-head">
         <h1>Support The Hub</h1>
-        <p>Donations and merch support links with safe integration placeholders.</p>
+        <p>Choose your payment method. Card and Apple Pay should run through a PCI-compliant processor.</p>
       </header>
       <section class="card-grid">
         <article class="panel">
-          <h2>Ko-fi</h2>
-          <p>Add your Ko-fi profile link here.</p>
-          <a class="btn btn-secondary" href="#">Add Ko-fi URL</a>
+          <h2>Apple Pay</h2>
+          <p>Use Stripe Checkout or Payment Links with Apple Pay enabled.</p>
+          <a id="apple-pay-link" class="btn btn-secondary" href="#">Configure Apple Pay Link</a>
         </article>
         <article class="panel">
-          <h2>Buy Me a Coffee</h2>
-          <p>Add your Buy Me a Coffee link here.</p>
-          <a class="btn btn-secondary" href="#">Add BMC URL</a>
+          <h2>PayPal</h2>
+          <p>Use your PayPal.Me or hosted checkout link.</p>
+          <a id="paypal-link" class="btn btn-secondary" href="#">Configure PayPal Link</a>
         </article>
         <article class="panel">
-          <h2>Stripe Checkout</h2>
-          <p>Not wired by default. Use Stripe Payment Links for easiest beginner setup.</p>
-          <a class="btn btn-secondary" href="#">Add Stripe Link</a>
+          <h2>Cash App</h2>
+          <p>Use your Cash App payment handle URL.</p>
+          <a id="cashapp-link" class="btn btn-secondary" href="#">Configure Cash App Link</a>
+        </article>
+        <article class="panel">
+          <h2>Zelle</h2>
+          <p id="zelle-instructions">Add your Zelle payment instructions in config.</p>
+        </article>
+        <article class="panel">
+          <h2>Debit / Credit Card</h2>
+          <p>Never collect card numbers directly on your own forms. Use Stripe-hosted checkout pages.</p>
+          <a id="card-link" class="btn btn-accent" href="#">Open Secure Card Checkout</a>
         </article>
       </section>
-      <p class="form-note">No fake payment processing is implemented in this starter.</p>
+      <section class="panel">
+        <h2>Fraud and Safety</h2>
+        <ul>
+          <li>Do not store raw card data on this site.</li>
+          <li>Use Stripe Checkout or Payment Links so Stripe handles PCI compliance.</li>
+          <li>Enable 3D Secure, Radar rules, and webhook verification for subscription status.</li>
+        </ul>
+      </section>
+      <p class="form-note">No raw card handling is implemented in this project by design.</p>
     </main>
     <div id="site-footer"></div>
     <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/donations.js"></script>
   </body>
 </html>

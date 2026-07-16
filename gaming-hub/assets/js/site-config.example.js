@@ -7,4 +7,15 @@ export const SITE_CONFIG = {
   // Add your production custom domain and local dev URL.
   siteUrl: "https://your-domain.com",
   localUrl: "http://127.0.0.1:4173",
+  paymentLinks: {
+    monthlyProCheckoutUrl: "https://buy.stripe.com/YOUR_SUBSCRIPTION_LINK",
+    oneTimeApplePayUrl: "https://buy.stripe.com/YOUR_APPLE_PAY_COMPAT_LINK",
+    oneTimePayPalUrl: "https://paypal.me/YOUR_HANDLE",
+    oneTimeCashAppUrl: "https://cash.app/$YOUR_HANDLE",
+    oneTimeCardCheckoutUrl: "https://buy.stripe.com/YOUR_CARD_CHECKOUT_LINK",
+    zelleInstructions: "Use your business email in Zelle",
+  },
+  edgeFunctions: {
+    missingReportNotifier: "send-missing-report-email",
+  },
 };

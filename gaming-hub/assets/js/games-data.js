@@ -7,6 +7,14 @@ export const GAMES = [
     releaseWindow: "Available now",
     featured: true,
     description: "Open-world action RPG known for exploration depth, boss design, and worldbuilding.",
+    guideSections: [
+      "Starter class setup and stat priorities",
+      "Early rune route and safe upgrade path",
+      "Essential weapon and summon pickups",
+      "Midgame boss order and optional detours",
+      "Endgame build pivots and resistance checks",
+      "NG+ optimization and completion route",
+    ],
   },
   {
     id: "balatro",
@@ -16,6 +24,14 @@ export const GAMES = [
     releaseWindow: "Available now",
     featured: true,
     description: "Highly replayable deck-building poker-inspired strategy game with fast runs.",
+    guideSections: [
+      "Joker priority list for first 3 antes",
+      "Economy management and reroll discipline",
+      "Reliable score multipliers by blind type",
+      "Boss blind counters and anti-brick tactics",
+      "High-ante survival loadouts",
+      "Seed consistency and score ceiling route",
+    ],
   },
   {
     id: "hades-ii",
@@ -25,6 +41,14 @@ export const GAMES = [
     releaseWindow: "Early access",
     featured: false,
     description: "Stylized combat roguelike with narrative progression and high-mobility gameplay.",
+    guideSections: [
+      "Weapon pick order by playstyle",
+      "Arcana and boon synergy pairs",
+      "Safe region routing and resource planning",
+      "Boss pattern counters and damage windows",
+      "Heat scaling strategy for reliable clears",
+      "Post-clear progression and mastery loop",
+    ],
   },
   {
     id: "helldivers-2",
@@ -34,6 +58,14 @@ export const GAMES = [
     releaseWindow: "Available now",
     featured: false,
     description: "Co-op extraction-style shooter focused on squad coordination and mission pressure.",
+    guideSections: [
+      "Squad role setup and loadout pairing",
+      "Mission objective priority and pacing",
+      "Stratagem timing and cooldown economy",
+      "Threat category counters and fallback plans",
+      "Resource farming without overextending",
+      "High-difficulty extraction consistency",
+    ],
   },
   {
     id: "black-myth-wukong",
@@ -43,5 +75,13 @@ export const GAMES = [
     releaseWindow: "Available now",
     featured: true,
     description: "Action-heavy mythic RPG with cinematic boss encounters and high-fidelity combat.",
+    guideSections: [
+      "Core stance mechanics and timing drills",
+      "Boss opener routes and punish windows",
+      "Gear path for early survivability",
+      "Transformation usage by encounter type",
+      "Late-game challenge sequence planning",
+      "Completion cleanup and hidden encounter notes",
+    ],
   },
 ];
