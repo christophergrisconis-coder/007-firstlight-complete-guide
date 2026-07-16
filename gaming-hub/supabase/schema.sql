@@ -32,6 +32,17 @@ create table if not exists public.missing_reports (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.quest_progress (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  game_id text not null,
+  quest_id text not null,
+  completed boolean not null default false,
+  current_step int not null default 0,
+  is_expanded boolean not null default true,
+  updated_at timestamptz not null default now(),
+  primary key (user_id, game_id, quest_id)
+);
+
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -74,6 +85,7 @@ alter table public.profiles enable row level security;
 alter table public.subscribers enable row level security;
 alter table public.subscriptions enable row level security;
 alter table public.missing_reports enable row level security;
+alter table public.quest_progress enable row level security;
 
 -- Profiles policies
 -- Users can read/update only their own profile.
@@ -94,6 +106,13 @@ create policy "subscription read own"
 on public.subscriptions
 for select
 using (auth.uid() = user_id);
+
+drop policy if exists "quest progress own all" on public.quest_progress;
+create policy "quest progress own all"
+on public.quest_progress
+for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
 
 -- Subscriber policies
 -- Anyone can create/refresh their subscription record.
