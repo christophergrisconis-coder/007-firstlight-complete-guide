@@ -483,6 +483,9 @@ export const QUEST_REPO_LINKS = {
   "007-first-light": {
     "*": "/gaming-hub/custom-guides/007/index.html",
   },
+  "ghost-of-yotei": {
+    "*": "https://www.perplexity.ai/computer/a/bf36535d-6972-4e0f-93a2-6070f7717976",
+  },
   "red-dead-redemption-2": {
     "*": "/gaming-hub/custom-guides/rdr2/index.html",
   },

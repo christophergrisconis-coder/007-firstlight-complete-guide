@@ -6,6 +6,9 @@ export const CUSTOM_GUIDE_ROUTES = {
   // Embedded custom app copied from your 007 repository.
   "007-first-light": "/gaming-hub/007/",
 
+  // Hosted custom app for Ghost of Yotei.
+  "ghost-of-yotei": "https://www.perplexity.ai/computer/a/bf36535d-6972-4e0f-93a2-6070f7717976",
+
   // Ghost and RDR1 currently fall back to integrated in-site guide pages
   // until direct deployed app URLs are available.
 
