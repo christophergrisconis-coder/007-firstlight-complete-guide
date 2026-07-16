@@ -484,7 +484,7 @@ export const QUEST_REPO_LINKS = {
     "*": "/gaming-hub/custom-guides/007/index.html",
   },
   "ghost-of-yotei": {
-    "*": "/gaming-hub/custom-guides/ghost-of-yotei/index.html",
+    "*": "/gaming-hub/custom-guides/ghost-of-yotei/",
   },
   "red-dead-redemption-2": {
     "*": "/gaming-hub/custom-guides/rdr2/index.html",

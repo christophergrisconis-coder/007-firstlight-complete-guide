@@ -29,6 +29,15 @@ const guideHref = (id) => {
   return `${basePath}/guide.html?game=${encodeURIComponent(id)}`;
 };
 
+const guideLinkAttrs = (id) => {
+  const route = CUSTOM_GUIDE_ROUTES[id];
+  if (!route) {
+    return "";
+  }
+  const isExternal = /^(https?:)?\/\//i.test(route);
+  return isExternal ? 'target="_blank" rel="noopener noreferrer"' : "";
+};
+
 const card = (game, access) => {
   const all = game.guideSections || [];
   const canViewFull = access.tier === "pro" || access.tier === "trial";
@@ -54,7 +63,7 @@ const card = (game, access) => {
       <span class="guide-lock-fill" style="width:${lockedPercent}%"></span>
     </div>
     <div class="game-card-actions">
-      <a class="btn btn-accent" href="${guideHref(game.id)}" ${CUSTOM_GUIDE_ROUTES[game.id] ? 'target="_blank" rel="noopener noreferrer"' : ""}>Open Guide</a>
+      <a class="btn btn-accent" href="${guideHref(game.id)}" ${guideLinkAttrs(game.id)}>Open Guide</a>
     </div>
     <p class="form-note">Quick Guide Snapshot</p>
     <ul class="guide-list">${listItems(visibleSections)}</ul>
