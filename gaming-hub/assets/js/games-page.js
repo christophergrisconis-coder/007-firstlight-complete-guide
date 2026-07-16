@@ -38,17 +38,24 @@ const card = (game, access) => {
 
   return `
   <article class="panel game-card">
-    <p class="eyebrow">${game.featured ? "Featured" : "Game"}</p>
+    <div class="game-card-head">
+      <p class="eyebrow">${game.featured ? "Featured" : "Game"}</p>
+      <p class="game-card-status">${game.releaseWindow}</p>
+    </div>
     <h2>${game.title}</h2>
-    <p>${game.description}</p>
+    <p class="game-card-description">${game.description}</p>
     <div class="meta-row">${badgeList(game.genre, "meta-badge")}</div>
     <div class="meta-row">${badgeList(game.platform, "platform-badge")}</div>
-    <p><strong>Status:</strong> ${game.releaseWindow}</p>
     <div class="guide-lock-meter">
       <span>Guide Access</span>
       <strong>${lockedPercent}%</strong>
     </div>
-    <a class="btn btn-accent" href="${guideHref(game.id)}" ${CUSTOM_GUIDE_ROUTES[game.id] ? 'target="_blank" rel="noopener noreferrer"' : ""}>Open Guide</a>
+    <div class="guide-lock-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${lockedPercent}">
+      <span class="guide-lock-fill" style="width:${lockedPercent}%"></span>
+    </div>
+    <div class="game-card-actions">
+      <a class="btn btn-accent" href="${guideHref(game.id)}" ${CUSTOM_GUIDE_ROUTES[game.id] ? 'target="_blank" rel="noopener noreferrer"' : ""}>Open Guide</a>
+    </div>
     <p class="form-note">Quick Guide Snapshot</p>
     <ul class="guide-list">${listItems(visibleSections)}</ul>
     ${

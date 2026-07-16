@@ -291,6 +291,55 @@ main {
   font-size: 1.15rem;
 }
 
+.game-card {
+  display: grid;
+  gap: 10px;
+}
+
+.game-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.game-card-status {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.game-card-description {
+  margin: 0;
+  color: #dce5f0;
+}
+
+.guide-lock-track {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.guide-lock-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #42d6c5 0%, #ff9d5a 100%);
+}
+
+.game-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.game-card .btn {
+  width: 100%;
+}
+
 .meta-row {
   display: flex;
   gap: 8px;
@@ -453,6 +502,15 @@ main {
   flex-wrap: wrap;
 }
 
+.guide-layout {
+  display: grid;
+  gap: 14px;
+}
+
+.quest-nav-panel {
+  align-self: start;
+}
+
 .quest-nav-buttons,
 .quest-controls {
   display: flex;
@@ -463,6 +521,9 @@ main {
 .quest-list {
   display: grid;
   gap: 8px;
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 2px;
 }
 
 .quest-item {
@@ -478,6 +539,13 @@ main {
   color: var(--text);
   padding: 11px 12px;
   cursor: pointer;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.quest-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(66, 214, 197, 0.36);
+  background: rgba(19, 28, 40, 0.9);
 }
 
 .quest-item-selected {
@@ -506,6 +574,24 @@ main {
 .quest-step-current {
   color: var(--accent-soft);
   font-weight: 700;
+}
+
+.guide-step-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+}
+
+.guide-step-list li {
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(12, 18, 27, 0.75);
+  border-radius: 8px;
+}
+
+.guide-step-list .quest-step-current {
+  border-color: rgba(66, 214, 197, 0.52);
+  background: rgba(20, 45, 49, 0.55);
 }
 
 @keyframes rise-in {
@@ -665,5 +751,21 @@ main {
   .payment-logo {
     width: 24px;
     height: 24px;
+  }
+
+  .guide-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 980px) {
+  .guide-layout {
+    grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.45fr);
+    align-items: start;
+  }
+
+  .quest-nav-panel {
+    position: sticky;
+    top: 86px;
   }
 }
