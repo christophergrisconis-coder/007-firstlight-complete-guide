@@ -9,10 +9,22 @@ const basePath = location.pathname.includes("/pages/") ? ".." : ".";
 
 const listItems = (items) => items.map((item) => `<li>${item}</li>`).join("");
 const badgeList = (items, cls) => items.map((item) => `<span class="${cls}">${item}</span>`).join("");
+const resolveCustomRoute = (route) => {
+  if (!route) {
+    return route;
+  }
+
+  if (/^(https?:)?\/\//i.test(route) || route.startsWith("/")) {
+    return route;
+  }
+
+  return `${basePath}/${route.replace(/^\.\//, "")}`;
+};
+
 const guideHref = (id) => {
   const customRoute = CUSTOM_GUIDE_ROUTES[id];
   if (customRoute) {
-    return customRoute;
+    return resolveCustomRoute(customRoute);
   }
   return `${basePath}/guide.html?game=${encodeURIComponent(id)}`;
 };
