@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="help">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head">
+        <h1>Help And FAQ</h1>
+        <p>Quick support for account setup, search usage, and subscriptions.</p>
+      </header>
+
+      <section class="panel">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Why is social sign-in not working yet?</summary>
+          <p>Google and Apple require provider setup in Supabase and valid callback URLs.</p>
+        </details>
+        <details>
+          <summary>How does registration count work?</summary>
+          <p>It reads from a real profiles table in Supabase, not a hardcoded frontend number.</p>
+        </details>
+        <details>
+          <summary>How do I replace hero images?</summary>
+          <p>Update URLs in the image manifest file with your approved, licensed image links.</p>
+        </details>
+      </section>
+
+      <section class="panel" id="updates">
+        <h2>Platform Updates</h2>
+        <ul>
+          <li>Initial production scaffold with real auth architecture and search flow.</li>
+          <li>Cloudflare Pages-ready static deployment structure.</li>
+          <li>Subscriber form connected to Supabase table for future email automation.</li>
+        </ul>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>

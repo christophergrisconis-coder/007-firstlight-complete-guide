@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscribe | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="subscribe">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head">
+        <h1>Subscribe For Updates</h1>
+        <p>Store real subscriber records now, connect sending provider later.</p>
+      </header>
+      <section class="panel">
+        <form id="subscribe-form" class="stack-form">
+          <label>Email <input type="email" id="subscriber-email" required /></label>
+          <label>
+            Consent
+            <select id="subscriber-consent">
+              <option value="true">I agree to receive update emails</option>
+              <option value="false">No consent</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-accent">Subscribe</button>
+        </form>
+        <p id="subscribe-status" class="form-note" aria-live="polite"></p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/subscribe.js"></script>
+  </body>
+</html>

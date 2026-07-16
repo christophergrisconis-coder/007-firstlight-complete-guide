@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="signin">
+    <div id="site-header"></div>
+    <main class="container page-layout auth-layout">
+      <header class="section-head">
+        <h1>Sign In</h1>
+        <p>Use email, Google, or Apple through Supabase Auth.</p>
+      </header>
+      <section class="panel">
+        <div class="auth-actions">
+          <button id="signin-google" class="btn btn-secondary" type="button">Continue With Google</button>
+          <button id="signin-apple" class="btn btn-secondary" type="button">Continue With Apple</button>
+        </div>
+        <form id="signin-form" class="stack-form">
+          <label>Email <input type="email" id="signin-email" required /></label>
+          <label>Password <input type="password" id="signin-password" required /></label>
+          <button type="submit" class="btn btn-accent">Sign In With Email</button>
+        </form>
+        <p id="signin-status" class="form-note" aria-live="polite"></p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/auth.js"></script>
+  </body>
+</html>

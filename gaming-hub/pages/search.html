@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="search">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head">
+        <h1>Search Games</h1>
+        <p>Find games by title, genre, or platform.</p>
+      </header>
+
+      <section class="panel">
+        <label for="search-input">Search</label>
+        <input id="search-input" type="search" placeholder="Try: action, RPG, co-op" />
+      </section>
+
+      <section id="search-loading" class="loading-state hidden">Loading results...</section>
+      <section id="search-empty" class="empty-state hidden">No results yet. Try another query.</section>
+      <section id="search-results" class="card-grid" aria-live="polite"></section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/search.js"></script>
+  </body>
+</html>

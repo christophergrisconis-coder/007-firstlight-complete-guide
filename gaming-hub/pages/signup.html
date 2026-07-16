@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="signup">
+    <div id="site-header"></div>
+    <main class="container page-layout auth-layout">
+      <header class="section-head">
+        <h1>Create Account</h1>
+        <p>Create a real account stored in Supabase Auth and profiles.</p>
+      </header>
+      <section class="panel">
+        <div class="auth-actions">
+          <button id="signup-google" class="btn btn-secondary" type="button">Sign Up With Google</button>
+          <button id="signup-apple" class="btn btn-secondary" type="button">Sign Up With Apple</button>
+        </div>
+        <form id="signup-form" class="stack-form">
+          <label>Display Name <input type="text" id="signup-name" required /></label>
+          <label>Email <input type="email" id="signup-email" required /></label>
+          <label>Password <input type="password" id="signup-password" minlength="6" required /></label>
+          <button type="submit" class="btn btn-accent">Create Account With Email</button>
+        </form>
+        <p id="signup-status" class="form-note" aria-live="polite"></p>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+    <script type="module" src="../assets/js/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Arcadia Grid</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="contact">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head">
+        <h1>Contact</h1>
+        <p>Send platform feedback, partnership requests, or support issues.</p>
+      </header>
+      <section class="panel">
+        <form id="contact-form" class="stack-form">
+          <label>Name <input type="text" name="name" required /></label>
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Message <textarea name="message" rows="6" required></textarea></label>
+          <button type="submit" class="btn btn-accent">Send Message</button>
+          <p class="form-note">This starter form is UI-only. Connect to Formspree, Resend, or Supabase Edge Functions.</p>
+        </form>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>
