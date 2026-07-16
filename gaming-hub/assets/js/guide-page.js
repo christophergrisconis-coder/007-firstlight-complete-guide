@@ -1,7 +1,18 @@
 import { GAMES } from "./games-data.js";
 import { IMPORTED_GUIDES, QUEST_REPO_LINKS } from "./guide-imports.js";
-import { FULL_IMPORTED_SECTIONS } from "./imported-guide-data.js";
 import { supabase } from "./supabase-client.js";
+
+let FULL_IMPORTED_SECTIONS = {};
+
+const loadImportedSections = async () => {
+  try {
+    const mod = await import("./imported-guide-data.js");
+    FULL_IMPORTED_SECTIONS = mod.FULL_IMPORTED_SECTIONS || {};
+  } catch {
+    // Fallback to lightweight imported guide summaries when detailed sections are unavailable.
+    FULL_IMPORTED_SECTIONS = {};
+  }
+};
 
 const titleNode = document.querySelector("#guide-title");
 const descriptionNode = document.querySelector("#guide-description");
@@ -471,6 +482,8 @@ const wireEvents = () => {
 };
 
 const init = async () => {
+  await loadImportedSections();
+
   const game = GAMES.find((item) => item.id === gameId);
   if (!game) {
     renderNotFound();
