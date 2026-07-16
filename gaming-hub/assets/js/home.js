@@ -1,9 +1,39 @@
 import { HERO_IMAGE_MANIFEST } from "./image-manifest.js?v=2";
 import { assertSupabase } from "./supabase-client.js";
 import { GAMES } from "./games-data.js";
+import { CUSTOM_GUIDE_ROUTES } from "./custom-guide-routes.js";
 
 const hero = document.querySelector("#home-hero");
 const homeGuidePreviewGrid = document.querySelector("#home-guide-preview-grid");
+
+const resolveCustomRoute = (route) => {
+  if (!route) {
+    return route;
+  }
+
+  if (/^(https?:)?\/\//i.test(route) || route.startsWith("/")) {
+    return route;
+  }
+
+  return `./${route.replace(/^\.\//, "")}`;
+};
+
+const guideHref = (id) => {
+  const customRoute = CUSTOM_GUIDE_ROUTES[id];
+  if (customRoute) {
+    return resolveCustomRoute(customRoute);
+  }
+  return `./guide?game=${encodeURIComponent(id)}`;
+};
+
+const guideLinkAttrs = (id) => {
+  const route = CUSTOM_GUIDE_ROUTES[id];
+  if (!route) {
+    return "";
+  }
+  const isExternal = /^(https?:)?\/\//i.test(route);
+  return isExternal ? 'target="_blank" rel="noopener noreferrer"' : "";
+};
 
 const renderHomeGuidePreview = () => {
   if (!homeGuidePreviewGrid) {
@@ -20,7 +50,7 @@ const renderHomeGuidePreview = () => {
           <h3>${game.title}</h3>
           <p>${game.description}</p>
           <ul class="guide-list">${quick.map((item) => `<li>${item}</li>`).join("")}</ul>
-          <a class="btn btn-accent" href="./pages/games.html">Open Guide</a>
+          <a class="btn btn-accent" href="${guideHref(game.id)}" ${guideLinkAttrs(game.id)}>Open Guide</a>
         </article>
       `;
     })
