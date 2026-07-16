@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RDR2 Journey Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="kicker">Arthur Morgan Tracker</p>
+        <h1>Red Dead Redemption 2 Completion Dashboard</h1>
+        <p class="sub">
+          Track story chapters, side content, challenges, and 100 percent goals in one place.
+        </p>
+        <div class="stats">
+          <article>
+            <span id="completed-count">0</span>
+            <small>Completed</small>
+          </article>
+          <article>
+            <span id="total-count">0</span>
+            <small>Total</small>
+          </article>
+          <article>
+            <span id="progress-percent">0%</span>
+            <small>Overall</small>
+          </article>
+        </div>
+      </header>
+
+      <section class="controls">
+        <input id="search" type="search" placeholder="Search missions, side quests, collectibles..." />
+        <button id="reset-progress" type="button">Reset Progress</button>
+      </section>
+
+      <section id="category-grid" class="category-grid"></section>
+    </main>
+
+    <script type="module" src="./app/main.js"></script>
+  </body>
+</html>
