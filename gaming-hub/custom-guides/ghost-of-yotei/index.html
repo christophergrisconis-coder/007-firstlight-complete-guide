@@ -140,23 +140,130 @@
       </section>
     </main>
 
-    <script type="module">
-      import { FULL_IMPORTED_SECTIONS } from "../../assets/js/imported-guide-data.js";
-
-      const source = FULL_IMPORTED_SECTIONS["ghost-of-yotei"] || [];
-      const quests = [];
-      for (const section of source) {
-        if (Array.isArray(section.entries)) {
-          for (const entry of section.entries) {
-            quests.push({
-              title: entry.title || section.title || "Quest",
-              summary: entry.summary || "",
-              steps: Array.isArray(entry.steps) ? entry.steps : [],
-              outcome: entry.outcome || "",
-            });
-          }
-        }
-      }
+    <script>
+      const quests = [
+        {
+          title: "The Snake",
+          summary: "Prologue mission establishing Atsu's revenge arc and core combat fundamentals.",
+          steps: [
+            "Witness the attack on Kasabe village and regroup.",
+            "Clear the house assault waves and survive the fire route.",
+            "Duel The Snake and learn parry and dodge timing.",
+            "Follow Jubei through the homestead memory sequence.",
+          ],
+          outcome: "Spyglass, opening gear unlocks, and Resolve upgrade.",
+        },
+        {
+          title: "Belly of the Beast",
+          summary: "Infiltrate the Yotei Six garrison and extract a key informant.",
+          steps: [
+            "Scout the Ishikari garrison with Spyglass markers.",
+            "Infiltrate and free the prisoner without raising alarm.",
+            "Escort the informant to safety through pursuit waves.",
+          ],
+          outcome: "Rider's Edge (Tier 2 katana), currency, and technique points.",
+        },
+        {
+          title: "A Mad Pursuit",
+          summary: "Mounted pursuit mission to intercept a Yotei Six messenger.",
+          steps: [
+            "Ride south and engage escort riders on the move.",
+            "Isolate the messenger and recover the sealed letter.",
+            "Return to base and decode strategic intelligence.",
+          ],
+          outcome: "Horse barding upgrade and progression currency.",
+        },
+        {
+          title: "The Yotei Six",
+          summary: "Identify all major lieutenants and trigger Act-level hunt routes.",
+          steps: [
+            "Meet the contact and collect the updated dossier.",
+            "Confirm identities and track The Widow's movement.",
+            "Lock in target order for regional progression.",
+          ],
+          outcome: "Ghost Armour Tier I and additional technique points.",
+        },
+        {
+          title: "The Oni",
+          summary: "Heavy duel featuring timing-based punish windows against a brute archetype.",
+          steps: [
+            "Clear the temple approach and secure the arena.",
+            "Phase 1: parry overhead chains and punish recovery.",
+            "Phase 2: dodge charge attacks and finish execution window.",
+          ],
+          outcome: "Oni's Resolve charm and major combat progression.",
+        },
+        {
+          title: "The Kitsune",
+          summary: "Illusion-focused boss chapter with puzzle and mirror mechanics.",
+          steps: [
+            "Enter spirit gate and clear decoy encounters.",
+            "Solve lantern puzzle to break illusion layer.",
+            "Defeat true Kitsune in rapid burst phase.",
+          ],
+          outcome: "Kitsune mask cosmetic and key progression unlock.",
+        },
+        {
+          title: "Ryuhei the Enforcer",
+          summary: "Prison liberation arc followed by multi-phase spear boss encounter.",
+          steps: [
+            "Infiltrate camp and free all prisoner groups.",
+            "Reach command tower and start boss duel.",
+            "Manage adds during Phase 2 and close in berserk phase.",
+          ],
+          outcome: "Ryuhei spear collectible and fast travel unlock.",
+        },
+        {
+          title: "The Dragon",
+          summary: "Final summit battle requiring full toolkit mastery across four phases.",
+          steps: [
+            "Ascend to Teshio summit and prepare resources.",
+            "Cycle stance strategy across precision and armor phases.",
+            "Survive hazard phase and complete final parry sequence.",
+          ],
+          outcome: "Endgame weapon tier, completion pathway, and ending unlock.",
+        },
+        {
+          title: "The Farmer and the Fox",
+          summary: "Early side tale focused on environmental investigation and village defense.",
+          steps: [
+            "Follow tracks from the damaged harvest field.",
+            "Locate displaced fox den and investigate cause.",
+            "Defeat the burn patrol threatening the area.",
+          ],
+          outcome: "Harvest charm and side-route progression reward.",
+        },
+        {
+          title: "Silk and Ash",
+          summary: "Recovery side mission revealing contraband maps tied to lieutenant operations.",
+          steps: [
+            "Scout the camp and recover three marked silk bales.",
+            "Inspect hidden map compartment evidence.",
+            "Deliver map intel to resistance contact.",
+          ],
+          outcome: "Crafting material and regional intel advancement.",
+        },
+        {
+          title: "A Good Death",
+          summary: "Honor narrative quest centered on a retired samurai's final stand.",
+          steps: [
+            "Hear final request and prepare ceremonial setup.",
+            "Escort to duel site and manage encounter integrity.",
+            "Resolve finale according to honor outcome.",
+          ],
+          outcome: "Rare forging material and story reputation gain.",
+        },
+        {
+          title: "The Lighthouse Keeper",
+          summary: "Stealth rescue mission with sabotage objective and timed extraction.",
+          steps: [
+            "Scale cliffs and secure lower storage rescue target.",
+            "Disable lighthouse signal mechanism in upper chamber.",
+            "Escape before supply confirmation arrives.",
+          ],
+          outcome: "Coastal route control and tactical navigation advantage.",
+        },
+      ];
 
       const listNode = document.querySelector("#quest-list");
       const titleNode = document.querySelector("#quest-title");
