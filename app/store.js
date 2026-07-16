@@ -14,7 +14,7 @@ const defaultState = {
   },
 };
 
-const mergeState = (saved) => ({
+export const mergeState = (saved) => ({
   ...defaultState,
   ...saved,
   missionChecklist: { ...defaultState.missionChecklist, ...(saved?.missionChecklist || {}) },

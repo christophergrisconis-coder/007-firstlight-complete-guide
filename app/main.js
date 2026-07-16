@@ -5,8 +5,19 @@ import {
   getGlobalProgress,
 } from "./progress.js";
 import { fetchUserTracker, getInitialUserTracker } from "./analytics.js";
+import {
+  getInitialAuthState,
+  initAuth,
+  loadCloudProgress,
+  saveCloudProgress,
+  signInApple,
+  signInEmail,
+  signInGoogle,
+  signOutUser,
+  signUpEmail,
+} from "./auth.js";
 import { getBackgroundSet } from "./backgrounds.js";
-import { loadState, resetState, saveState } from "./store.js";
+import { loadState, mergeState, resetState, saveState } from "./store.js";
 import { renderApp } from "./ui.js";
 
 const root = document.querySelector("#app");
@@ -53,6 +64,10 @@ const validationIssues = getValidationIssues();
 
 let state = loadState();
 let userTracker = getInitialUserTracker();
+let authState = getInitialAuthState();
+let authFeedback = "";
+let loadedCloudUid = "";
+let cloudSaveTimeout;
 
 if (!MISSIONS.some((mission) => mission.id === state.view.selectedMissionId)) {
   state.view.selectedMissionId = MISSIONS[0].id;
@@ -96,7 +111,37 @@ const render = () => {
     achievementProgress,
     validationIssues,
     userTracker,
+    authState: {
+      ...authState,
+      message: authFeedback || authState.message,
+    },
   });
+};
+
+const getAuthFormValues = () => {
+  const emailInput = document.querySelector("[data-auth-input='email']");
+  const passwordInput = document.querySelector("[data-auth-input='password']");
+  const displayNameInput = document.querySelector("[data-auth-input='display-name']");
+
+  return {
+    email: emailInput instanceof HTMLInputElement ? emailInput.value.trim() : "",
+    password: passwordInput instanceof HTMLInputElement ? passwordInput.value : "",
+    displayName: displayNameInput instanceof HTMLInputElement ? displayNameInput.value.trim() : "",
+  };
+};
+
+const queueCloudSave = () => {
+  if (!authState.user) {
+    return;
+  }
+
+  clearTimeout(cloudSaveTimeout);
+  cloudSaveTimeout = setTimeout(() => {
+    saveCloudProgress(state, authState.user).catch(() => {
+      authFeedback = "Could not sync to cloud right now. Local progress is still saved.";
+      render();
+    });
+  }, 700);
 };
 
 const refreshUserTracker = async () => {
@@ -174,6 +219,7 @@ const copyText = async (text) => {
 const update = (mutator) => {
   mutator();
   saveState(state);
+  queueCloudSave();
   render();
 };
 
@@ -282,7 +328,126 @@ document.addEventListener("click", (event) => {
     state = resetState();
     state.view.selectedMissionId = MISSIONS[0].id;
     saveState(state);
+    queueCloudSave();
     render();
+  }
+
+  if (action === "auth-create-account") {
+    const { email, password, displayName } = getAuthFormValues();
+    if (!email || !password) {
+      authFeedback = "Email and password are required.";
+      render();
+      return;
+    }
+
+    signUpEmail({ email, password, displayName })
+      .then(() => {
+        authFeedback = "Account created. Signed in.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Unable to create account.";
+        render();
+      });
+  }
+
+  if (action === "auth-signin-email") {
+    const { email, password } = getAuthFormValues();
+    if (!email || !password) {
+      authFeedback = "Email and password are required.";
+      render();
+      return;
+    }
+
+    signInEmail({ email, password })
+      .then(() => {
+        authFeedback = "Signed in with email.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Unable to sign in.";
+        render();
+      });
+  }
+
+  if (action === "auth-signin-google") {
+    signInGoogle()
+      .then(() => {
+        authFeedback = "Signed in with Google.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Google sign-in failed.";
+        render();
+      });
+  }
+
+  if (action === "auth-signin-apple") {
+    signInApple()
+      .then(() => {
+        authFeedback = "Signed in with Apple.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Apple sign-in failed.";
+        render();
+      });
+  }
+
+  if (action === "auth-signout") {
+    signOutUser()
+      .then(() => {
+        authFeedback = "Signed out.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Sign-out failed.";
+        render();
+      });
+  }
+
+  if (action === "cloud-save-now") {
+    if (!authState.user) {
+      authFeedback = "Sign in first to save cloud progress.";
+      render();
+      return;
+    }
+
+    saveCloudProgress(state, authState.user)
+      .then(() => {
+        authFeedback = "Cloud save complete.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Cloud save failed.";
+        render();
+      });
+  }
+
+  if (action === "cloud-load-now") {
+    if (!authState.user) {
+      authFeedback = "Sign in first to load cloud progress.";
+      render();
+      return;
+    }
+
+    loadCloudProgress(authState.user)
+      .then((cloudState) => {
+        if (!cloudState) {
+          authFeedback = "No cloud save found yet for this account.";
+          render();
+          return;
+        }
+
+        state = mergeState(cloudState);
+        saveState(state);
+        authFeedback = "Cloud save loaded.";
+        render();
+      })
+      .catch((error) => {
+        authFeedback = error.message || "Cloud load failed.";
+        render();
+      });
   }
 
   if (action === "copy-mission-plan") {
@@ -308,3 +473,27 @@ document.addEventListener("click", (event) => {
 
 render();
 refreshUserTracker();
+
+initAuth(async (nextAuthState) => {
+  authState = nextAuthState;
+
+  if (authState.user?.uid && authState.user.uid !== loadedCloudUid) {
+    loadedCloudUid = authState.user.uid;
+    try {
+      const cloudState = await loadCloudProgress(authState.user);
+      if (cloudState) {
+        state = mergeState(cloudState);
+        saveState(state);
+        authFeedback = "Loaded your account progress from cloud.";
+      }
+    } catch {
+      authFeedback = "Signed in, but cloud progress could not be loaded.";
+    }
+  }
+
+  if (!authState.user) {
+    loadedCloudUid = "";
+  }
+
+  render();
+});

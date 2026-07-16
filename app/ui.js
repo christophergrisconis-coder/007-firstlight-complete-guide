@@ -175,6 +175,56 @@ const summaryBoard = (globalProgress) => {
   `;
 };
 
+const accountPanel = (authState) => {
+  const isSignedIn = Boolean(authState.user);
+  const userName = authState.user?.displayName || "Agent";
+  const userEmail = authState.user?.email || "";
+  const provider = authState.user?.provider || "";
+
+  return `
+    <section class="panel account-panel">
+      <div class="title-row">
+        <h2>Create Account / Sign In</h2>
+        <span class="pill">${isSignedIn ? "Signed In" : "Guest"}</span>
+      </div>
+
+      <div class="account-grid">
+        <label>
+          Display Name
+          <input data-auth-input="display-name" type="text" placeholder="Your 00 codename">
+        </label>
+        <label>
+          Email
+          <input data-auth-input="email" type="email" placeholder="you@example.com">
+        </label>
+        <label>
+          Password
+          <input data-auth-input="password" type="password" placeholder="At least 6 characters">
+        </label>
+      </div>
+
+      <div class="account-actions">
+        <button class="ghost-btn" data-action="auth-create-account">Create Account</button>
+        <button class="ghost-btn" data-action="auth-signin-email">Sign In With Email</button>
+        <button class="ghost-btn" data-action="auth-signin-google">Sign In With Google</button>
+        <button class="ghost-btn" data-action="auth-signin-apple">Sign In With Apple</button>
+        <button class="ghost-btn" data-action="auth-signout">Sign Out</button>
+      </div>
+
+      <div class="account-status">
+        <p><strong>Status:</strong> ${esc(authState.message || "")}</p>
+        <p><strong>User:</strong> ${isSignedIn ? esc(`${userName} (${userEmail})`) : "Not signed in"}</p>
+        <p><strong>Provider:</strong> ${isSignedIn ? esc(provider) : "None"}</p>
+      </div>
+
+      <div class="account-actions">
+        <button class="ghost-btn" data-action="cloud-save-now" ${isSignedIn ? "" : "disabled"}>Save Progress To Account</button>
+        <button class="ghost-btn" data-action="cloud-load-now" ${isSignedIn ? "" : "disabled"}>Load Progress From Account</button>
+      </div>
+    </section>
+  `;
+};
+
 const userAnalyticsPanel = (userTracker) => {
   const newUsers =
     typeof userTracker.newUsersTotal === "number"
@@ -381,6 +431,7 @@ export const renderApp = ({
   achievementProgress,
   validationIssues,
   userTracker,
+  authState,
 }) => {
   return `
     <header class="hero">
@@ -393,6 +444,7 @@ export const renderApp = ({
     </header>
 
     ${summaryBoard(globalProgress)}
+    ${accountPanel(authState)}
     ${userAnalyticsPanel(userTracker)}
 
     <section class="mission-layout">

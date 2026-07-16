@@ -55,3 +55,36 @@ Use the filename map in `assets/backgrounds/README.md` and add your own licensed
 - Section backgrounds: files in `assets/backgrounds/pages/`
 
 The app will automatically switch mission background when you select a different mission.
+
+## Account sign-in and cloud save
+
+The app now includes account creation and sign-in with:
+
+- Email/password
+- Google
+- Apple
+
+It also supports account-based cloud progress save/load.
+
+### Setup steps
+
+1. Create a Firebase project.
+2. Enable Authentication providers: Email/Password, Google, Apple.
+3. Enable Firestore Database.
+4. Update `app/firebase-config.js`:
+
+```js
+export const firebaseConfig = {
+  enabled: true,
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID",
+};
+```
+
+### Firestore data path
+
+- `users/{uid}/progress/main`
+
+Each signed-in user gets their own saved progress document.
