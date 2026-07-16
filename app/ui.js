@@ -96,12 +96,12 @@ const missionDetail = (state) => {
     .join("");
 
   return `
-    <section class="panel mission-detail">
+    <section class="panel mission-detail" id="mission-detail">
       <div class="title-row">
         <h2>${mission.order}. ${esc(mission.name)}</h2>
         <div class="title-actions">
           <span class="pill">${p.percent}% complete</span>
-          <button class="ghost-btn" data-action="copy-mission-plan" data-id="${mission.id}">Copy Mission Run Plan</button>
+          <button class="btn btn-ops" data-action="copy-mission-plan" data-id="${mission.id}">Issue 00 Briefing</button>
         </div>
       </div>
       ${progressBar(p.percent)}
@@ -154,7 +154,7 @@ const summaryBoard = (globalProgress) => {
     .join("");
 
   return `
-    <section class="panel summary-board">
+    <section class="panel summary-board" id="summary-board">
       <h2>Global 100% Tracker</h2>
       <div class="summary-top">
         <article class="hero-progress">
@@ -167,7 +167,7 @@ const summaryBoard = (globalProgress) => {
           <p><strong>Quests:</strong> ${globalProgress.questsDone}/${globalProgress.questsTotal}</p>
           <p><strong>Collectibles:</strong> ${globalProgress.collectiblesDone}/${globalProgress.collectiblesTotal}</p>
           <p><strong>Challenges:</strong> ${globalProgress.challengesDone}/${globalProgress.challengesTotal}</p>
-          <button data-action="reset-progress" class="ghost-btn">Reset Local Progress</button>
+          <button data-action="reset-progress" class="btn btn-danger">Reset Field Intel</button>
         </article>
       </div>
       <div class="type-grid">${typeRows}</div>
@@ -182,7 +182,7 @@ const accountPanel = (authState) => {
   const provider = authState.user?.provider || "";
 
   return `
-    <section class="panel account-panel">
+    <section class="panel account-panel" id="account-panel">
       <div class="title-row">
         <h2>Create Account / Sign In</h2>
         <span class="pill">${isSignedIn ? "Signed In" : "Guest"}</span>
@@ -204,11 +204,11 @@ const accountPanel = (authState) => {
       </div>
 
       <div class="account-actions">
-        <button class="ghost-btn" data-action="auth-create-account">Create Account</button>
-        <button class="ghost-btn" data-action="auth-signin-email">Sign In With Email</button>
-        <button class="ghost-btn" data-action="auth-signin-google">Sign In With Google</button>
-        <button class="ghost-btn" data-action="auth-signin-apple">Sign In With Apple</button>
-        <button class="ghost-btn" data-action="auth-signout">Sign Out</button>
+        <button class="btn btn-ops" data-action="auth-create-account">Create MI6 Profile</button>
+        <button class="btn btn-ghost" data-action="auth-signin-email">Sign In With Email</button>
+        <button class="btn btn-brand" data-action="auth-signin-google">Sign In With Google</button>
+        <button class="btn btn-brand" data-action="auth-signin-apple">Sign In With Apple</button>
+        <button class="btn btn-danger" data-action="auth-signout">Sign Out</button>
       </div>
 
       <div class="account-status">
@@ -218,8 +218,8 @@ const accountPanel = (authState) => {
       </div>
 
       <div class="account-actions">
-        <button class="ghost-btn" data-action="cloud-save-now" ${isSignedIn ? "" : "disabled"}>Save Progress To Account</button>
-        <button class="ghost-btn" data-action="cloud-load-now" ${isSignedIn ? "" : "disabled"}>Load Progress From Account</button>
+        <button class="btn btn-ops" data-action="cloud-save-now" ${isSignedIn ? "" : "disabled"}>Save To Agent Vault</button>
+        <button class="btn btn-ghost" data-action="cloud-load-now" ${isSignedIn ? "" : "disabled"}>Load From Agent Vault</button>
       </div>
     </section>
   `;
@@ -241,7 +241,7 @@ const userAnalyticsPanel = (userTracker) => {
     : "Cached";
 
   return `
-    <section class="panel analytics-panel">
+    <section class="panel analytics-panel" id="analytics-panel">
       <div class="title-row">
         <h2>Website User Tracker</h2>
         <span class="pill">${esc(statusLabel)}</span>
@@ -303,7 +303,7 @@ const collectiblesLookup = (state, filteredCollectibles) => {
     .join("");
 
   return `
-    <section class="panel lookup-panel">
+    <section class="panel lookup-panel" id="lookup-panel">
       <div class="title-row">
         <h2>Collectible Lookup</h2>
         <span class="pill">${filteredCollectibles.length} visible</span>
@@ -442,6 +442,14 @@ export const renderApp = ({
       </div>
       <div class="hero-badge">100% Ready</div>
     </header>
+
+    <section class="ops-nav" aria-label="Quick ops">
+      <a class="btn btn-ghost" href="#summary-board">Global Tracker</a>
+      <a class="btn btn-ghost" href="#account-panel">Account</a>
+      <a class="btn btn-ghost" href="#analytics-panel">User Intel</a>
+      <a class="btn btn-ghost" href="#mission-detail">Mission Detail</a>
+      <a class="btn btn-ghost" href="#lookup-panel">Collectibles</a>
+    </section>
 
     ${summaryBoard(globalProgress)}
     ${accountPanel(authState)}
