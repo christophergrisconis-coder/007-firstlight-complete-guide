@@ -1,11 +1,21 @@
 import { GAMES } from "./games-data.js";
 import { getAccessState } from "./access.js";
+import { CUSTOM_GUIDE_ROUTES } from "./custom-guide-routes.js";
 
 const grid = document.querySelector("#games-grid");
 const empty = document.querySelector("#games-empty");
 const banner = document.querySelector("#guide-access-banner");
+const basePath = location.pathname.includes("/pages/") ? ".." : ".";
 
 const listItems = (items) => items.map((item) => `<li>${item}</li>`).join("");
+const badgeList = (items, cls) => items.map((item) => `<span class="${cls}">${item}</span>`).join("");
+const guideHref = (id) => {
+  const customRoute = CUSTOM_GUIDE_ROUTES[id];
+  if (customRoute) {
+    return customRoute;
+  }
+  return `${basePath}/guide.html?game=${encodeURIComponent(id)}`;
+};
 
 const card = (game, access) => {
   const all = game.guideSections || [];
@@ -19,18 +29,20 @@ const card = (game, access) => {
     <p class="eyebrow">${game.featured ? "Featured" : "Game"}</p>
     <h2>${game.title}</h2>
     <p>${game.description}</p>
-    <p><strong>Genre:</strong> ${game.genre.join(", ")}</p>
-    <p><strong>Platform:</strong> ${game.platform.join(", ")}</p>
+    <div class="meta-row">${badgeList(game.genre, "meta-badge")}</div>
+    <div class="meta-row">${badgeList(game.platform, "platform-badge")}</div>
     <p><strong>Status:</strong> ${game.releaseWindow}</p>
     <div class="guide-lock-meter">
       <span>Guide Access</span>
       <strong>${lockedPercent}%</strong>
     </div>
+    <a class="btn btn-accent" href="${guideHref(game.id)}" ${CUSTOM_GUIDE_ROUTES[game.id] ? 'target="_blank" rel="noopener noreferrer"' : ""}>Open Guide</a>
+    <p class="form-note">Quick Guide Snapshot</p>
     <ul class="guide-list">${listItems(visibleSections)}</ul>
     ${
       canViewFull
         ? ""
-        : `<p class=\"form-note\">Remaining guide sections are locked for Pro members. Start a free 3-day trial, then continue at $1.99/month.</p><a class=\"btn btn-accent\" href=\"./subscribe.html\">Unlock Full Guide</a>`
+        : `<p class=\"form-note\">More walkthrough steps unlock after opening the guide and progressing through it.</p>`
     }
   </article>
 `;
