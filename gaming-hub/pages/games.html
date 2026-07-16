@@ -9,16 +9,31 @@
   <body data-page="games">
     <div id="site-header"></div>
     <main class="container page-layout">
-      <header class="section-head">
-        <h1>Games Library</h1>
-        <p>Curated cards for featured, trending, and new releases.</p>
+      <header class="section-head games-head">
+        <p class="eyebrow">Live Signal Feed</p>
+        <h1>Games Command Deck</h1>
+        <p>
+          A curated board of popular, relevant, and recent games with quick-start guide notes so visitors can begin immediately.
+        </p>
+        <div class="games-chip-row" aria-label="Library focus tags">
+          <span class="games-chip">Popular Now</span>
+          <span class="games-chip">Recent Releases</span>
+          <span class="games-chip">Guide WIP Ready</span>
+        </div>
       </header>
       <section id="guide-access-banner" class="panel"></section>
+      <section class="panel games-note-panel">
+        <h2>Quick Access Notes</h2>
+        <p>
+          Key games already in your rotation include Red Dead Redemption, Red Dead Redemption 2, and Ghost of Yotei.
+          Each card includes a basic quick guide until your full walkthroughs go live.
+        </p>
+      </section>
       <div id="games-grid" class="card-grid" aria-live="polite"></div>
       <div id="games-empty" class="empty-state hidden">No games available yet.</div>
     </main>
     <div id="site-footer"></div>
     <script type="module" src="../assets/js/app.js"></script>
-    <script type="module" src="../assets/js/games-page.js"></script>
+    <script type="module" src="../assets/js/games-page.js?v=20260716"></script>
   </body>
 </html>
