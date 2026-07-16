@@ -498,17 +498,20 @@ const init = async () => {
   }
 
   renderMeta(game);
-
-  if (supabase) {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    state.userId = session?.user?.id || null;
-  }
-
-  await loadQuestProgress();
   wireEvents();
   updateQuestNavigationButtons();
+  renderQuestList();
+  renderQuestDetail();
+
+  if (!supabase) {
+    return;
+  }
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  state.userId = session?.user?.id || null;
+  await loadQuestProgress();
   renderQuestList();
   renderQuestDetail();
 };
