@@ -26,7 +26,7 @@ const guideHref = (id) => {
   if (customRoute) {
     return resolveCustomRoute(customRoute);
   }
-  return `${basePath}/guide.html?game=${encodeURIComponent(id)}`;
+  return `${basePath}/guide?game=${encodeURIComponent(id)}`;
 };
 
 const guideLinkAttrs = (id) => {

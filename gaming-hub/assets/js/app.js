@@ -1,31 +1,32 @@
-const getBasePath = () => (location.pathname.includes("/pages/") ? ".." : ".");
+const HUB_ROOT = "/gaming-hub";
+const PAGE_ROOT = `${HUB_ROOT}/pages`;
 
 const navItems = [
-  ["Home", "index.html"],
-  ["Games", "pages/games.html"],
-  ["Search", "pages/search.html"],
-  ["Help", "pages/help.html"],
-  ["Contact", "pages/contact.html"],
-  ["Donations", "pages/donations.html"],
-  ["Subscribe", "pages/subscribe.html"],
-  ["Sign In", "pages/signin.html"],
-  ["Sign Up", "pages/signup.html"],
+  ["home", "Home", `${HUB_ROOT}/index.html`],
+  ["games", "Games", `${PAGE_ROOT}/games`],
+  ["search", "Search", `${PAGE_ROOT}/search.html`],
+  ["community", "Community", `${PAGE_ROOT}/community.html`],
+  ["help", "Help", `${PAGE_ROOT}/help.html`],
+  ["contact", "Contact", `${PAGE_ROOT}/contact.html`],
+  ["donations", "Donations", `${PAGE_ROOT}/donations.html`],
+  ["subscribe", "Subscribe", `${PAGE_ROOT}/subscribe.html`],
+  ["signin", "Sign In", `${PAGE_ROOT}/signin.html`],
+  ["signup", "Sign Up", `${PAGE_ROOT}/signup.html`],
 ];
 
 const renderHeader = () => {
-  const base = getBasePath();
   const active = document.body.dataset.page || "home";
   const links = navItems
-    .map(([label, path]) => {
-      const isActive = path.includes(active) || (active === "home" && path === "index.html");
-      return `<a class="${isActive ? "active" : ""}" href="${base}/${path}">${label}</a>`;
+    .map(([key, label, href]) => {
+      const isActive = key === active;
+      return `<a class="${isActive ? "active" : ""}" href="${href}">${label}</a>`;
     })
     .join("");
 
   return `
     <header class="topbar">
       <div class="container nav-wrap">
-        <a class="brand" href="${base}/index.html">Arcadia Grid</a>
+        <a class="brand" href="${HUB_ROOT}/index.html">Arcadia Grid</a>
         <button id="mobile-nav-toggle" class="mobile-nav-btn" type="button" aria-label="Toggle navigation">Menu</button>
         <nav id="site-nav" class="site-nav">${links}</nav>
       </div>
@@ -39,7 +40,6 @@ const renderHeader = () => {
 };
 
 const renderFooter = () => {
-  const base = getBasePath();
   return `
     <footer class="footer">
       <div class="container footer-grid">
@@ -49,8 +49,8 @@ const renderFooter = () => {
         </section>
         <section>
           <h3>Legal</h3>
-          <a href="${base}/pages/privacy.html">Privacy</a>
-          <a href="${base}/pages/terms.html">Terms</a>
+          <a href="${PAGE_ROOT}/privacy.html">Privacy</a>
+          <a href="${PAGE_ROOT}/terms.html">Terms</a>
         </section>
         <section>
           <h3>Owner Notes</h3>
@@ -75,8 +75,7 @@ const wireGlobalSearch = () => {
 
   const goSearch = () => {
     const query = encodeURIComponent(input.value.trim());
-    const base = getBasePath();
-    location.href = `${base}/pages/search.html${query ? `?q=${query}` : ""}`;
+    location.href = `${PAGE_ROOT}/search.html${query ? `?q=${query}` : ""}`;
   };
 
   btn.addEventListener("click", goSearch);
