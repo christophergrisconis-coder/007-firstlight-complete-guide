@@ -4,6 +4,8 @@ import {
   getFilteredCollectibles,
   getGlobalProgress,
 } from "./progress.js";
+import { fetchUserTracker, getInitialUserTracker } from "./analytics.js";
+import { getBackgroundSet } from "./backgrounds.js";
 import { loadState, resetState, saveState } from "./store.js";
 import { renderApp } from "./ui.js";
 
@@ -50,6 +52,7 @@ const getValidationIssues = () => {
 const validationIssues = getValidationIssues();
 
 let state = loadState();
+let userTracker = getInitialUserTracker();
 
 if (!MISSIONS.some((mission) => mission.id === state.view.selectedMissionId)) {
   state.view.selectedMissionId = MISSIONS[0].id;
@@ -59,6 +62,32 @@ const render = () => {
   const globalProgress = getGlobalProgress(state);
   const filteredCollectibles = getFilteredCollectibles(state);
   const achievementProgress = getAchievementProgress(state, globalProgress);
+  const backgroundSet = getBackgroundSet(state.view.selectedMissionId);
+
+  document.documentElement.style.setProperty(
+    "--mission-bg-image",
+    backgroundSet.mission ? `url('${backgroundSet.mission}')` : "none"
+  );
+  document.documentElement.style.setProperty(
+    "--summary-bg-image",
+    backgroundSet.summary ? `url('${backgroundSet.summary}')` : "none"
+  );
+  document.documentElement.style.setProperty(
+    "--missions-bg-image",
+    backgroundSet.missions ? `url('${backgroundSet.missions}')` : "none"
+  );
+  document.documentElement.style.setProperty(
+    "--lookup-bg-image",
+    backgroundSet.lookup ? `url('${backgroundSet.lookup}')` : "none"
+  );
+  document.documentElement.style.setProperty(
+    "--achievements-bg-image",
+    backgroundSet.achievements ? `url('${backgroundSet.achievements}')` : "none"
+  );
+  document.documentElement.style.setProperty(
+    "--data-bg-image",
+    backgroundSet.data ? `url('${backgroundSet.data}')` : "none"
+  );
 
   root.innerHTML = renderApp({
     state,
@@ -66,7 +95,13 @@ const render = () => {
     filteredCollectibles,
     achievementProgress,
     validationIssues,
+    userTracker,
   });
+};
+
+const refreshUserTracker = async () => {
+  userTracker = await fetchUserTracker();
+  render();
 };
 
 const checkbox = (done) => (done ? "[x]" : "[ ]");
@@ -272,3 +307,4 @@ document.addEventListener("click", (event) => {
 });
 
 render();
+refreshUserTracker();

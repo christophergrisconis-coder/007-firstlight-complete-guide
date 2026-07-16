@@ -44,3 +44,14 @@ This build is intentionally no-build and dependency-free.
 ## Placeholder policy
 
 Some route details and precise pickup location notes are intentionally marked as placeholders in the data layer where verified details are still pending. Expand these fields later without changing UI logic.
+
+## Real gameplay background images
+
+Background image slots are ready for approved gameplay screenshots.
+
+Use the filename map in `assets/backgrounds/README.md` and add your own licensed images:
+
+- Mission backgrounds: `assets/backgrounds/missions/m01.jpg` through `assets/backgrounds/missions/m18.jpg`
+- Section backgrounds: files in `assets/backgrounds/pages/`
+
+The app will automatically switch mission background when you select a different mission.

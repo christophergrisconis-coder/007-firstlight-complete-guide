@@ -175,6 +175,43 @@ const summaryBoard = (globalProgress) => {
   `;
 };
 
+const userAnalyticsPanel = (userTracker) => {
+  const newUsers =
+    typeof userTracker.newUsersTotal === "number"
+      ? userTracker.newUsersTotal.toLocaleString()
+      : "--";
+  const pageViews =
+    typeof userTracker.pageViewsTotal === "number"
+      ? userTracker.pageViewsTotal.toLocaleString()
+      : "--";
+  const statusLabel = userTracker.loading
+    ? "Loading"
+    : userTracker.available
+    ? "Live"
+    : "Cached";
+
+  return `
+    <section class="panel analytics-panel">
+      <div class="title-row">
+        <h2>Website User Tracker</h2>
+        <span class="pill">${esc(statusLabel)}</span>
+      </div>
+      <div class="analytics-grid">
+        <article class="stat-card analytics-stat">
+          <h4>New Users</h4>
+          <p>${newUsers}</p>
+        </article>
+        <article class="stat-card analytics-stat">
+          <h4>Total Visits</h4>
+          <p>${pageViews}</p>
+        </article>
+      </div>
+      <p class="analytics-note">${esc(userTracker.message || "")}</p>
+      <p class="analytics-note">Visitor ID: ${esc(userTracker.visitorIdShort || "--")}</p>
+    </section>
+  `;
+};
+
 const collectiblesLookup = (state, filteredCollectibles) => {
   const typeOptions = ["All", ...Object.keys(GAME.collectibleTotals)]
     .map(
@@ -343,6 +380,7 @@ export const renderApp = ({
   filteredCollectibles,
   achievementProgress,
   validationIssues,
+  userTracker,
 }) => {
   return `
     <header class="hero">
@@ -355,6 +393,7 @@ export const renderApp = ({
     </header>
 
     ${summaryBoard(globalProgress)}
+    ${userAnalyticsPanel(userTracker)}
 
     <section class="mission-layout">
       ${missionSidebar(state)}
