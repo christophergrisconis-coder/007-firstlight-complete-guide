@@ -1,7 +1,31 @@
-import { HERO_IMAGE_MANIFEST } from "./image-manifest.js";
+import { HERO_IMAGE_MANIFEST } from "./image-manifest.js?v=2";
 import { assertSupabase } from "./supabase-client.js";
+import { GAMES } from "./games-data.js";
 
 const hero = document.querySelector("#home-hero");
+const homeGuidePreviewGrid = document.querySelector("#home-guide-preview-grid");
+
+const renderHomeGuidePreview = () => {
+  if (!homeGuidePreviewGrid) {
+    return;
+  }
+
+  const picks = GAMES.slice(0, 6);
+  homeGuidePreviewGrid.innerHTML = picks
+    .map((game) => {
+      const quick = (game.guideSections || []).slice(0, 2);
+      return `
+        <article class="panel game-card home-preview-card">
+          <p class="eyebrow">${game.featured ? "Popular Pick" : "Guide Pick"}</p>
+          <h3>${game.title}</h3>
+          <p>${game.description}</p>
+          <ul class="guide-list">${quick.map((item) => `<li>${item}</li>`).join("")}</ul>
+          <a class="btn btn-accent" href="./pages/games.html">Open Guide</a>
+        </article>
+      `;
+    })
+    .join("");
+};
 
 const renderRegistrationPanel = async () => {
   if (!hero) {
@@ -80,3 +104,4 @@ const startHeroRotation = () => {
 
 startHeroRotation();
 renderRegistrationPanel();
+renderHomeGuidePreview();
