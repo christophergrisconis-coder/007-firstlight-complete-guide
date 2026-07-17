@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community | Arcadia Grid</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-page="community">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head community-head">
+        <p class="eyebrow">Community Thread Group</p>
+        <h1>Guide Talk Hub</h1>
+        <p>
+          Share insights, route ideas, and tips about guides. Direct ads, merch promotion, and competitor guide links are blocked.
+        </p>
+      </header>
+
+      <section class="panel community-rules">
+        <h2>Posting Rules</h2>
+        <ul>
+          <li>Keep posts related to game guides, strategies, and progress tips.</li>
+          <li>No advertising other guide websites, services, or merchandise.</li>
+          <li>No external links or promotional offers.</li>
+        </ul>
+      </section>
+
+      <section class="panel community-compose">
+        <h2>Start A Thread</h2>
+        <form id="community-form" class="stack-form">
+          <label>
+            Display name
+            <input id="community-name" type="text" maxlength="40" placeholder="Your name" required />
+          </label>
+          <label>
+            Message
+            <textarea id="community-message" rows="4" maxlength="500" placeholder="Share your guide thoughts..." required></textarea>
+          </label>
+          <button class="btn btn-accent" type="submit">Post Message</button>
+        </form>
+        <p id="community-status" class="form-note" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Latest Threads</h2>
+        <div id="community-empty" class="empty-state hidden">No posts yet. Be the first to share a guide tip.</div>
+        <div id="community-list" class="community-list" aria-live="polite"></div>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../app.js?v=20260717"></script>
+    <script type="module" src="../community.js"></script>
+  </body>
+</html>

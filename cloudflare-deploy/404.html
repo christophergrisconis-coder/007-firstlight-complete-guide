@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        const path = window.location.pathname || "";
+        const q = window.location.search || "";
+        const h = window.location.hash || "";
+
+        if (path === "/guide.html") {
+          window.location.replace(`/guide${q}${h}`);
+          return;
+        }
+        if (path === "/games.html") {
+          window.location.replace(`/games${q}${h}`);
+          return;
+        }
+
+        window.location.replace(`/gaming-hub/${q}${h}`);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
