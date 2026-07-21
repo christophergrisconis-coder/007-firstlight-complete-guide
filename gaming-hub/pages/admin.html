@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Arcadia Grid</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-page="admin">
+    <div id="site-header"></div>
+    <main class="container page-layout">
+      <header class="section-head">
+        <h1>Owner Admin Dashboard</h1>
+        <p>Monitor account registration and website access metrics from one place.</p>
+      </header>
+
+      <section class="panel">
+        <div class="admin-head">
+          <div>
+            <p class="eyebrow">Owner Session</p>
+            <p id="admin-owner-email" class="admin-owner-email">Checking session...</p>
+          </div>
+          <button id="admin-refresh" class="btn btn-secondary" type="button">Refresh</button>
+        </div>
+        <p id="admin-status" class="form-note" aria-live="polite">Loading...</p>
+      </section>
+
+      <section id="admin-metrics" class="panel admin-metrics-grid">
+        <article class="panel stat-panel">
+          <p class="eyebrow">Accounts</p>
+          <h2>Registered Users</h2>
+          <p id="admin-registration-count" class="stat-value">--</p>
+          <p class="form-note">Owner-only value sourced from Supabase.</p>
+        </article>
+
+        <article class="panel stat-panel">
+          <p class="eyebrow">Traffic</p>
+          <h2>Total Visits</h2>
+          <p id="admin-total-visits" class="stat-value">--</p>
+          <p class="form-note">Global visit count updates automatically.</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Admin Setup Checklist</h2>
+        <ul>
+          <li>Add Supabase URL and anon key in assets/js/site-config.js.</li>
+          <li>Run gaming-hub/supabase/schema.sql in Supabase SQL Editor.</li>
+          <li>Sign up or sign in with your owner email.</li>
+          <li>Open this dashboard and click Refresh to claim owner metrics.</li>
+        </ul>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script type="module" src="../app.js?v=20260721"></script>
+    <script type="module" src="../admin.js?v=20260721"></script>
+  </body>
+</html>

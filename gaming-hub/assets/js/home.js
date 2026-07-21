@@ -2,6 +2,7 @@ import { HERO_IMAGE_MANIFEST } from "./image-manifest.js?v=2";
 import { assertSupabase } from "./supabase-client.js";
 import { GAMES } from "./games-data.js";
 import { CUSTOM_GUIDE_ROUTES } from "./custom-guide-routes.js";
+import { getVisitTotals } from "./traffic-metrics.js";
 
 const hero = document.querySelector("#home-hero");
 const homeGuidePreviewGrid = document.querySelector("#home-guide-preview-grid");
@@ -82,8 +83,14 @@ const renderRegistrationPanel = async () => {
   panel.className = "hero-stats";
   panel.innerHTML = `
     <p class="eyebrow">Owner Metrics</p>
-    <h2>Registered Accounts</h2>
-    <p id="registration-count">Loading...</p>
+    <h2>Website Metrics</h2>
+    <div class="metrics-stack">
+      <p class="metric-label">Registered Accounts</p>
+      <p id="registration-count" class="metric-value">Loading...</p>
+      <p class="metric-label">Total Visits</p>
+      <p id="total-visits-count" class="metric-value">Loading...</p>
+    </div>
+    <a class="btn btn-secondary" href="./pages/admin.html">Open Admin Dashboard</a>
     <p class="hero-note">Private count visible only to your owner account.</p>
   `;
 
@@ -107,6 +114,15 @@ const renderRegistrationPanel = async () => {
   } catch (error) {
     panel.querySelector("#registration-count").textContent = "Owner metrics unavailable";
     console.info(error.message);
+  }
+
+  try {
+    const visits = await getVisitTotals();
+    const total = Number(visits.totalVisits || 0).toLocaleString();
+    const sourceSuffix = visits.source === "local" ? " (cached)" : "";
+    panel.querySelector("#total-visits-count").textContent = `${total}${sourceSuffix}`;
+  } catch {
+    panel.querySelector("#total-visits-count").textContent = "Unavailable";
   }
 };
 

@@ -1,3 +1,5 @@
+import { trackSiteVisit } from "./traffic-metrics.js";
+
 const HUB_ROOT = "/gaming-hub";
 const PAGE_ROOT = `${HUB_ROOT}/pages`;
 
@@ -10,6 +12,7 @@ const navItems = [
   ["contact", "Contact", `${PAGE_ROOT}/contact.html`],
   ["donations", "Donations", `${PAGE_ROOT}/donations.html`],
   ["subscribe", "Subscribe", `${PAGE_ROOT}/subscribe.html`],
+  ["admin", "Admin", `${PAGE_ROOT}/admin.html`],
   ["signin", "Sign In", `${PAGE_ROOT}/signin.html`],
   ["signup", "Sign Up", `${PAGE_ROOT}/signup.html`],
 ];
@@ -102,3 +105,4 @@ document.querySelector("#site-header").innerHTML = renderHeader();
 document.querySelector("#site-footer").innerHTML = renderFooter();
 wireGlobalSearch();
 wireMobileNav();
+trackSiteVisit();

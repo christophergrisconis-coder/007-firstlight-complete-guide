@@ -365,6 +365,61 @@ main {
   color: #ffd2d7;
 }
 
+.library-chip,
+.category-chip {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+}
+
+.library-chip {
+  background: rgba(66, 214, 197, 0.18);
+  border-color: rgba(66, 214, 197, 0.45);
+  color: #d6fffa;
+}
+
+.category-chip {
+  background: rgba(255, 157, 90, 0.15);
+  border-color: rgba(255, 157, 90, 0.35);
+  color: #ffe4d4;
+}
+
+.library-group {
+  display: grid;
+  gap: 12px;
+}
+
+.library-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.library-group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.library-group-head h2 {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.03em;
+  font-size: 1.24rem;
+}
+
+.library-group-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .guide-lock-meter {
   display: flex;
   justify-content: space-between;
@@ -411,6 +466,61 @@ main {
   font-size: 2rem;
   margin: 0;
   color: var(--accent-soft);
+}
+
+.metrics-stack {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.metric-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metric-value {
+  margin: 0 0 6px;
+  color: var(--accent-soft);
+  font-size: 1.65rem;
+  font-weight: 800;
+}
+
+.admin-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-owner-email {
+  margin: 0;
+  font-weight: 700;
+}
+
+.admin-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.stat-panel {
+  background: linear-gradient(140deg, rgba(13, 22, 36, 0.94) 0%, rgba(20, 18, 36, 0.92) 100%);
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-soft);
+}
+
+.admin-metrics-disabled {
+  opacity: 0.72;
 }
 
 .text-link {
