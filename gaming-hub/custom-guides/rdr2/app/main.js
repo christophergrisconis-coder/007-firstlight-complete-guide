@@ -11,22 +11,89 @@ const RDR2_BACKGROUND_SET = {
   },
 };
 
+const inferLoadoutStep = (objective, complication) => {
+  const text = `${objective} ${complication}`.toLowerCase();
+
+  if (text.includes("hunt") || text.includes("deer") || text.includes("bear")) {
+    return "Equip bow/rifle, bring scent cover if available, and prioritize clean shots for pelt quality.";
+  }
+
+  if (text.includes("train") || text.includes("bank") || text.includes("rob")) {
+    return "Bring high-damage sidearm, shotgun, and full dead-eye tonics before the robbery phase starts.";
+  }
+
+  if (text.includes("rescue") || text.includes("escort")) {
+    return "Pack healing items and prioritize horse health so the escort/rescue path cannot fail late.";
+  }
+
+  if (text.includes("steal") || text.includes("wagon") || text.includes("stagecoach")) {
+    return "Carry a fast weapon loadout and clear witnesses quickly before theft objectives lock failure states.";
+  }
+
+  return "Restock ammo, tonics, and horse supplies before entering the mission trigger zone.";
+};
+
+const inferTacticalStep = (complication) => {
+  const text = complication.toLowerCase();
+
+  if (text.includes("law") || text.includes("pinkerton")) {
+    return "Break line of sight when wanted pressure spikes, then reposition before re-engaging.";
+  }
+
+  if (text.includes("stealth") || text.includes("infiltrate")) {
+    return "Use cover and silent takedowns first; only escalate to open combat if the mission forces it.";
+  }
+
+  if (text.includes("escort") || text.includes("survivor") || text.includes("wagon")) {
+    return "Stay close to the escorted target and clear flank threats before pushing the route forward.";
+  }
+
+  if (text.includes("ambush") || text.includes("crossfire")) {
+    return "Prioritize elevated shooters first, then collapse remaining enemies from hard cover.";
+  }
+
+  return `Handle the pressure point cleanly: ${complication}.`;
+};
+
+const inferGoldReplayStep = (objective, complication) => {
+  const text = `${objective} ${complication}`.toLowerCase();
+
+  if (text.includes("ride") || text.includes("chase") || text.includes("escape")) {
+    return "Gold replay prep: memorize route shortcuts and maintain top horse speed without collisions.";
+  }
+
+  if (text.includes("fight") || text.includes("gunfight") || text.includes("assault")) {
+    return "Gold replay prep: chain headshots from cover and avoid health item use where possible.";
+  }
+
+  if (text.includes("stealth") || text.includes("infiltrate")) {
+    return "Gold replay prep: complete stealth segment undetected and reduce time lost to alert resets.";
+  }
+
+  return "Gold replay prep: target faster completion time and cleaner objective execution on replay.";
+};
+
 const createMission = (id, title, objective, complication, finishStep) => ({
   id,
   title,
   steps: [
-    `Start mission and lock checkpoint for ${title}.`,
-    `Complete the main objective: ${objective}.`,
-    `Handle the pressure point: ${complication}.`,
-    finishStep || "Reach the final objective marker and complete the mission result scene.",
+    ["Briefing", `Start ${title} and review mission-fail conditions before moving out.`],
+    ["Loadout", inferLoadoutStep(objective, complication)],
+    ["Approach", "Travel to the mission zone, stay in the objective radius, and avoid unnecessary alerts."],
+    ["Primary", `Primary objective: ${objective}.`],
+    ["Tactical", inferTacticalStep(complication)],
+    ["Stability", "Keep allies and horse alive, loot safely, and stabilize before pushing the next marker."],
+    ["Finish", finishStep || "Reach the final objective marker and complete the mission result scene."],
+    ["Post-Check", "Save progress, restock resources, and confirm next unlocked mission node."],
+    ["Gold Replay", inferGoldReplayStep(objective, complication)],
   ],
 });
 
 const missionItemsFromChapter = (chapterId, missions) =>
   missions.flatMap((mission) =>
-    mission.steps.map((step, index) => [
+    mission.steps.map(([phase, step], index) => [
       `${chapterId}-${mission.id}-step-${String(index + 1).padStart(2, "0")}`,
-      `${mission.title} - Step ${index + 1}`,
+      `${mission.title} - ${phase}`,
       step,
     ])
   );
