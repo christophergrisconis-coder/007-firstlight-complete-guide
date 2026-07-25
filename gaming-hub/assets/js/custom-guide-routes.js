@@ -3,6 +3,9 @@ export const CUSTOM_GUIDE_ROUTES = {
   // Example:
   // "ghost-of-yotei": "https://your-custom-guide-domain.com/ghost-of-yotei",
 
+  // AC Shadows 100% Completion Guide.
+  "assassins-creed-shadows": "/gaming-hub/custom-guides/ac-shadows/",
+
   // Embedded custom app copied from your 007 repository.
   "007-first-light": "/gaming-hub/007/",
 

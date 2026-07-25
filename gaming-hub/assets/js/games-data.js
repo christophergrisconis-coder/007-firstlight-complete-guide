@@ -1,5 +1,22 @@
 export const GAMES = [
   {
+    id: "assassins-creed-shadows",
+    title: "Assassin's Creed Shadows",
+    genre: ["Action RPG", "Open World", "Stealth"],
+    platform: ["PC", "PS5", "Xbox"],
+    releaseWindow: "Active guide",
+    featured: true,
+    description: "Full 100% completion guide — all 86 story quests, 79 side quests, 687 region collectibles, hideout, allies, sumi-e, and all 55 trophies.",
+    guideSections: [
+      "Story: all 86 quests across Prologue, Acts 1–3, and Epilogue as Naoe and Yasuke",
+      "Side quests: 79 quests across all 9 provinces with ally and trophy flags",
+      "Regions: 687 collectibles — viewpoints, kakurega, castles, temples, shrines, kofun, and more",
+      "Season Watch: 5 legendary sumi-e paintings — 4 are season and time-of-day locked",
+      "Hideout: full 24-step build order with exact resource costs for every structure",
+      "Trophies: all 55 (Platinum + 54) with unlock conditions and missable flags",
+    ],
+  },
+  {
     id: "007-first-light",
     title: "007: First Light",
     genre: ["Action", "Stealth"],
