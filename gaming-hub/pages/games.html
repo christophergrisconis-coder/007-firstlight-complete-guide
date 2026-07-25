@@ -3,37 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Games | Arcadia Grid</title>
+    <title>Guide Library | Quest &amp; Guides</title>
+    <meta name="description" content="Browse the full Quest &amp; Guides library — 100% completion walkthroughs, trophy guides, and collectible trackers." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body data-page="games">
     <div id="site-header"></div>
     <main class="container page-layout">
+
+      <!-- Games Page Banner -->
       <header class="section-head games-head">
-        <p class="eyebrow">Live Signal Feed</p>
-        <h1>Games Command Deck</h1>
+        <p class="eyebrow">Complete Guide Library</p>
+        <h1>All Games</h1>
         <p>
-          A curated board of popular, relevant, and recent games with quick-start guide notes so visitors can begin immediately.
+          Every guide is built for 100% completion — verified against multiple sources, with interactive
+          checklists, per-region collectible counts, and full trophy roadmaps.
         </p>
         <div class="games-chip-row" aria-label="Library focus tags">
-          <span class="games-chip">Popular Now</span>
-          <span class="games-chip">Recent Releases</span>
-          <span class="games-chip">Guide WIP Ready</span>
+          <span class="games-chip">100% Completion</span>
+          <span class="games-chip">Interactive Checklists</span>
+          <span class="games-chip">Trophy Guides</span>
+          <span class="games-chip">Collectible Trackers</span>
         </div>
       </header>
+
       <section id="guide-access-banner" class="panel"></section>
+
       <section class="panel games-note-panel">
-        <h2>Quick Access Notes</h2>
+        <h2>Active Guides</h2>
         <p>
-          Key games already in your rotation include Red Dead Redemption, Red Dead Redemption 2, and Ghost of Yotei.
-          Each card includes a basic quick guide until your full walkthroughs go live.
+          Current library includes Assassin's Creed Shadows, Ghost of Yotei, Red Dead Redemption,
+          Red Dead Redemption 2, Elden Ring Nightreign, Black Myth: Wukong, and 007: First Light.
+          New guides are added regularly.
         </p>
       </section>
+
       <div id="games-grid" class="card-grid" aria-live="polite"></div>
-      <div id="games-empty" class="empty-state hidden">No games available yet.</div>
+      <div id="games-empty" class="empty-state hidden">No guides available yet.</div>
+
     </main>
     <div id="site-footer"></div>
-    <script type="module" src="../assets/js/app.js?v=20260717"></script>
-    <script type="module" src="../assets/js/games-page.js?v=20260716"></script>
+    <script type="module" src="../assets/js/app.js?v=20260725"></script>
+    <script type="module" src="../assets/js/games-page.js?v=20260725"></script>
   </body>
 </html>
