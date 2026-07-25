@@ -199,7 +199,7 @@ footer b{color:var(--dim)}
   </nav>
 </header>
 
-<main>
+<main data-gate="true">
 
 <!-- ============ OVERVIEW ============ -->
 <section id="overview">
@@ -1147,5 +1147,6 @@ window.addEventListener("scroll", ()=>{
   navLinks.forEach((a,i)=>a.classList.toggle("on", i===cur));
 }, {passive:true});
 </script>
+<script type="module" src="/gaming-hub/assets/js/content-gate.js?v=20260725"></script>
 </body>
 </html>
