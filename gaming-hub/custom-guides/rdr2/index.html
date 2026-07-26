@@ -1,50 +1,792 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RDR2 Journey Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css?v=20260721f" />
-  </head>
-  <body>
-    <main class="page" data-gate="true">
-      <header class="hero">
-        <p class="kicker">Arthur Morgan Tracker</p>
-        <h1>Red Dead Redemption 2 Completion Dashboard</h1>
-        <p class="sub">
-          Track story chapters, side content, challenges, and 100 percent goals in one place.
-        </p>
-        <div class="stats">
-          <article>
-            <span id="completed-count">0</span>
-            <small>Completed</small>
-          </article>
-          <article>
-            <span id="total-count">0</span>
-            <small>Total</small>
-          </article>
-          <article>
-            <span id="progress-percent">0%</span>
-            <small>Overall</small>
-          </article>
-        </div>
-      </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Red Dead Redemption 2 — 100% Completion Guide</title>
+<style>
+:root{
+  --bg:#0a0806;--bg2:#120e0a;--bg3:#1a1410;--bg4:#221a14;
+  --line:#2e2418;--line2:#3d3020;
+  --red:#8b1a1a;--red2:#b02020;--crimson:#6e1414;
+  --gold:#c8a840;--gold2:#dfc060;
+  --txt:#e0d4c0;--dim:#9a8870;--faint:#6a5c48;--green:#4a9a60;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:118px}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;font-size:15px}
+h1,h2,h3,h4{font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif}
+::selection{background:var(--red);color:#fff}
+header{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(14,10,6,.9),rgba(10,8,4,.97));border-bottom:2px solid var(--red);box-shadow:0 4px 18px rgba(0,0,0,.8)}
+.hd-top{display:flex;align-items:center;gap:14px;padding:10px 18px 6px}
+.hd-mark{width:38px;height:38px;flex:0 0 38px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);background:radial-gradient(circle at 50% 40%,#2a1408,#100804);font-family:Georgia,serif;box-shadow:0 0 14px rgba(200,168,64,.2)}
+.hd-title{flex:1;min-width:0}
+.hd-title h1{font-size:16px;letter-spacing:.05em;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.hd-title small{display:block;color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hd-pct{text-align:right;line-height:1.15}
+.hd-pct b{font-size:21px;color:var(--gold2);font-variant-numeric:tabular-nums}
+.hd-pct span{display:block;font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.hd-bar{height:6px;background:#1a1008;margin:5px 18px 8px;border-radius:3px;overflow:hidden}
+.hd-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--red2) 60%,var(--gold));border-radius:3px;transition:width .35s}
+nav{display:flex;gap:2px;overflow-x:auto;padding:0 12px 8px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.05em;padding:6px 11px;border-radius:4px;border:1px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--gold2);background:var(--bg3)}
+main{max-width:1060px;margin:0 auto;padding:22px 14px 90px}
+section{margin-bottom:40px}
+.sec-hd{position:relative;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;min-height:110px;padding:14px 18px 12px;margin-bottom:16px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(10,8,4,.3),rgba(8,6,2,.95)),var(--bg3);box-shadow:inset 0 -30px 50px rgba(0,0,0,.6),0 2px 12px rgba(0,0,0,.5)}
+.sec-hd h2{font-size:22px;color:var(--gold2);letter-spacing:.04em;position:relative;z-index:1}
+.sec-hd p{color:var(--dim);font-size:13px;position:relative;z-index:1;max-width:700px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent}
+.card-hd:hover{background:var(--bg4)}
+.card.open .card-hd{border-bottom-color:var(--line)}
+.chev{color:var(--gold);font-size:11px;transition:transform .2s;display:inline-block}
+.card.open .chev{transform:rotate(90deg)}
+.card-hd h3{flex:1;font-size:14px;color:var(--txt);font-weight:600}
+.cpct{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.mini-bar{height:3px;background:var(--line)}
+.mini-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .3s}
+.card-bd{display:none;padding:4px 0 8px}
+.card.open .card-bd{display:block}
+.row{padding:7px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.row:last-child{border-bottom:none}
+.row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.row-top label{flex:1;min-width:0;cursor:pointer;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.row-top label b{color:var(--txt);font-size:14px}
+.row-top label small{color:var(--dim);font-size:12px;display:block;margin-top:1px}
+input[type=checkbox]{accent-color:var(--red);width:15px;height:15px;flex:0 0 15px;cursor:pointer;margin-top:2px}
+input[type=checkbox]:checked~.row-top label b{color:var(--faint);text-decoration:line-through}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:3px;text-transform:uppercase;margin-left:4px}
+.tag.trophy{background:#201808;color:var(--gold);border:1px solid #4a3810}
+.tag.missable{background:#200808;color:#e08080;border:1px solid #4a1818}
+.tag.honor{background:#081820;color:#80b8e0;border:1px solid #183848}
+.tag.gold{background:#201808;color:var(--gold2);border:1px solid #4a3810}
+.steps-toggle{flex:0 0 auto;background:transparent;border:1px solid var(--line2);border-radius:4px;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.steps-toggle:hover{background:var(--bg3);color:var(--gold2);border-color:var(--gold)}
+.quest-steps{display:none;margin:8px 0 4px 28px;padding:10px 14px;background:var(--bg2);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
+.quest-steps.open{display:block}
+.steps-list{padding-left:18px;margin:0 0 6px}
+.steps-list li{color:var(--txt);font-size:13.5px;line-height:1.6;padding:2px 0;border-bottom:1px solid var(--line)}
+.steps-list li:last-child{border-bottom:none}
+.step-missable{margin-top:7px;padding:5px 10px;background:rgba(139,26,26,.15);border:1px solid var(--red);border-radius:4px;color:#f0a0a0;font-size:12.5px}
+.step-reward{margin-top:5px;padding:5px 10px;background:rgba(200,168,64,.10);border:1px solid var(--gold);border-radius:4px;color:var(--gold2);font-size:12.5px}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+button.btn{background:var(--bg3);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer}
+button.btn:hover{color:var(--gold2);border-color:var(--gold)}
+button.btn.danger:hover{color:var(--red2);border-color:var(--red2)}
+.searchbox{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;color:var(--txt);padding:9px 13px;font-size:14px;margin-bottom:14px}
+.searchbox:focus{outline:none;border-color:var(--gold)}
+.hidden{display:none!important}
+.sec-note{color:var(--dim);font-size:13px;padding:8px 14px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin-bottom:8px}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
+footer b{color:var(--dim)}
+.content-gate-wall{margin:32px 14px;padding:32px 24px;background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line2);border-radius:12px;text-align:center}
+.content-gate-wall h3{color:var(--gold2);font-size:20px;margin-bottom:10px}
+.content-gate-wall p{color:var(--dim);font-size:14px;max-width:480px;margin:0 auto 20px}
+.gate-btn{display:inline-block;padding:11px 28px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;letter-spacing:.04em}
+.gate-btn:hover{background:var(--red2)}
+.gate-btn.secondary{background:transparent;border:1px solid var(--line2);color:var(--dim);margin-left:10px}
+.gate-btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:640px){
+  html{scroll-padding-top:132px}
+  .hd-title h1{font-size:13.5px}
+  .hd-pct b{font-size:18px}
+  main{padding:16px 8px 70px}
+  .sec-hd{min-height:90px;padding:10px 12px 8px}
+  .sec-hd h2{font-size:18px}
+  .quest-steps{margin-left:14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd-top">
+    <div class="hd-mark" style="font-size:11px;letter-spacing:-.5px">RDR2</div>
+    <div class="hd-title">
+      <h1>Red Dead Redemption 2 — 100% Guide</h1>
+      <small>All Missions · Strangers · Collectibles · Trophies</small>
+    </div>
+    <div class="hd-pct"><b id="totalPct">0%</b><span id="totalCount">0 / 0</span></div>
+  </div>
+  <div class="hd-bar"><i id="totalBar"></i></div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#main">Main Story</a>
+    <a href="#side">Side Missions</a>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#trophies">Trophies</a>
+  </nav>
+</header>
+<main>
+  <section id="overview">
+    <div class="sec-hd"><h2>Red Dead Redemption 2 — 100% Completion</h2><p>Complete all 83 main missions across 8 chapters/epilogues, 14 side missions, all stranger encounters, collectibles, and trophies. Honor affects the Chapter 6 ending.</p></div>
+    <div class="btnrow">
+      <button class="btn" onclick="expandAll()">Expand All</button>
+      <button class="btn" onclick="collapseAll()">Collapse All</button>
+      <button class="btn danger" onclick="resetProgress()">Reset Progress</button>
+    </div>
+    <input class="searchbox" type="search" placeholder="Search missions, strangers, collectibles..." oninput="filterRows(this.value)">
+    <div class="sec-note">⚠ Honor Warning: High Honor is required for the best ending in Chapter 6 and unlocks exclusive stranger missions. Maintain High Honor throughout Arthur's story. | Progress saves automatically to your browser.</div>
+  </section>
+  <section id="main">
+    <div class="sec-hd"><h2>🤠 Main Story Missions</h2><p>All 83 missions across Prologue, Chapters 1–6, and both Epilogue parts. Complete all for 100%.</p></div>
+    <div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Prologue <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 3</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="outlaws from the west gang camp established">
+  <input type="checkbox" id="rdr2-prologue-outlawsfromthewest-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-prologue-outlawsfromthewest-0"><b>Outlaws from the West</b><small>Gang camp established</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-prologue-outlawsfromthewest-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-prologue-outlawsfromthewest-0"><ol class="steps-list"><li>After the opening cutscene, follow Dutch and Micah through the snow to Colter.</li><li>Eliminate the O&#39;Driscoll Boys in the abandoned town — use cover and Dead Eye.</li><li>Search the building for supplies: food, medicine, and ammunition.</li><li>Follow Dutch back to the gang&#39;s camp to complete the mission.</li><li>This mission introduces the core shooting mechanics.</li></ol><div class="step-reward">🏆 Gang camp established</div></div>
+</div><div class="row" data-search="enter, pursued by a memory hunting introduced">
+  <input type="checkbox" id="rdr2-prologue-enterpursuedbyamemory-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-prologue-enterpursuedbyamemory-1"><b>Enter, Pursued by a Memory</b><small>Hunting introduced</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-prologue-enterpursuedbyamemory-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-prologue-enterpursuedbyamemory-1"><ol class="steps-list"><li>Follow Dutch and Charles through the snow on horseback.</li><li>Hunt a deer to provide food for the gang — use your bow for a clean kill.</li><li>Skin the deer and return to camp with the meat.</li><li>Speak with Hosea and other gang members to begin building relationships.</li><li>This mission introduces hunting and camp mechanics.</li></ol><div class="step-reward">🏆 Hunting introduced</div></div>
+</div><div class="row" data-search="old friends colm o&#39;driscoll introduced">
+  <input type="checkbox" id="rdr2-prologue-oldfriends-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-prologue-oldfriends-2"><b>Old Friends</b><small>Colm O&#39;Driscoll introduced</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-prologue-oldfriends-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-prologue-oldfriends-2"><ol class="steps-list"><li>Ride with Dutch, Arthur, and Micah to intercept the O&#39;Driscoll Boys.</li><li>Eliminate the O&#39;Driscoll ambush party — use cover on the hillside.</li><li>Chase down the fleeing O&#39;Driscolls on horseback.</li><li>Interrogate the captured O&#39;Driscoll for information about Colm.</li><li>Return to camp to complete the mission.</li></ol><div class="step-reward">🏆 Colm O&#39;Driscoll introduced</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 1: Colter <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 4</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="the aftermath of genesis hunting skills taught">
+  <input type="checkbox" id="rdr2-chapter1colt-theaftermathofgenesis-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter1colt-theaftermathofgenesis-0"><b>The Aftermath of Genesis</b><small>Hunting skills taught</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter1colt-theaftermathofgenesis-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter1colt-theaftermathofgenesis-0"><ol class="steps-list"><li>Follow Hosea and Dutch out of camp to explore the area.</li><li>Hunt with Hosea — he teaches advanced hunting techniques.</li><li>Skin the animals you kill and collect the pelts.</li><li>Return to camp with the supplies.</li><li>This mission teaches the full hunting loop.</li></ol><div class="step-reward">🏆 Hunting skills taught</div></div>
+</div><div class="row" data-search="who is not without sin story development">
+  <input type="checkbox" id="rdr2-chapter1colt-whoisnotwithoutsin-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter1colt-whoisnotwithoutsin-1"><b>Who is Not Without Sin</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter1colt-whoisnotwithoutsin-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter1colt-whoisnotwithoutsin-1"><ol class="steps-list"><li>Follow Dutch to the local preacher&#39;s location.</li><li>Observe the confrontation between Dutch and the preacher.</li><li>This is a story-only mission with no combat.</li><li>Return to camp after the cutscene.</li><li>Introduces Dutch&#39;s philosophy and character.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="blessed are the meek? micah freed">
+  <input type="checkbox" id="rdr2-chapter1colt-blessedarethemeek-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter1colt-blessedarethemeek-2"><b>Blessed are the Meek?</b><small>Micah freed</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter1colt-blessedarethemeek-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter1colt-blessedarethemeek-2"><ol class="steps-list"><li>Ride with Dutch to rescue Micah from Strawberry jail.</li><li>Eliminate the lawmen guarding the jail — use stealth or guns.</li><li>Free Micah from his cell.</li><li>Escape Strawberry with Micah — avoid or fight the pursuing lawmen.</li><li>Ride to the safe distance marker to complete the mission.</li></ol><div class="step-reward">🏆 Micah freed</div></div>
+</div><div class="row" data-search="eastward bound chapter 2 unlocked">
+  <input type="checkbox" id="rdr2-chapter1colt-eastwardbound-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter1colt-eastwardbound-3"><b>Eastward Bound</b><small>Chapter 2 unlocked</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter1colt-eastwardbound-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter1colt-eastwardbound-3"><ol class="steps-list"><li>Pack up the camp — interact with the camp items to load the wagons.</li><li>Follow Dutch and the gang out of Colter toward Horseshoe Overlook.</li><li>This is a travel/story mission with no combat.</li><li>Arrive at the new camp location to complete the mission.</li><li>Chapter 2 begins at Horseshoe Overlook.</li></ol><div class="step-reward">🏆 Chapter 2 unlocked</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 2: Horseshoe Overlook <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 18</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="who the hell is leviticus cornwall? $50 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-whothehellisleviticuscorn-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-whothehellisleviticuscorn-0"><b>Who the Hell is Leviticus Cornwall?</b><small>$50 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-whothehellisleviticuscorn-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-whothehellisleviticuscorn-0"><ol class="steps-list"><li>Ride with Dutch and the gang to intercept the Cornwall train.</li><li>Stop the train — ride alongside it and board from horseback.</li><li>Eliminate the guards on the train cars.</li><li>Collect the money and supplies from the train.</li><li>Escape the Pinkertons who arrive — ride hard to lose them.</li></ol><div class="step-reward">🏆 $50 to camp funds</div></div>
+</div><div class="row" data-search="honoring debts debt collected">
+  <input type="checkbox" id="rdr2-chapter2hors-honoringdebts-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-honoringdebts-1"><b>Honoring Debts</b><small>Debt collected</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-honoringdebts-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-honoringdebts-1"><ol class="steps-list"><li>Ride with Javier to find a contact who owes the gang money.</li><li>Track the contact to their location.</li><li>Confront the contact and collect the debt — use persuasion or force.</li><li>Return to camp with the money.</li><li>Introduces the debt collection side of gang life.</li></ol><div class="step-reward">🏆 Debt collected</div></div>
+</div><div class="row" data-search="americans at rest story development, lenny bond">
+  <input type="checkbox" id="rdr2-chapter2hors-americansatrest-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-americansatrest-2"><b>Americans at Rest</b><small>Story development, Lenny bond</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-americansatrest-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-americansatrest-2"><ol class="steps-list"><li>Ride with Lenny to Valentine.</li><li>Drink with Lenny in the saloon — this is a story/comedy mission.</li><li>Get into a bar fight — defend yourself against the locals.</li><li>Escape the law in Valentine after the fight.</li><li>Return to camp to complete the mission.</li></ol><div class="step-reward">🏆 Story development, Lenny bond</div></div>
+</div><div class="row" data-search="the first shall be last sean macguire returns to camp">
+  <input type="checkbox" id="rdr2-chapter2hors-thefirstshallbelast-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-thefirstshallbelast-3"><b>The First Shall Be Last</b><small>Sean MacGuire returns to camp</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-thefirstshallbelast-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-thefirstshallbelast-3"><ol class="steps-list"><li>Ride with Javier to rescue Sean MacGuire from the bounty hunters.</li><li>Scout the bounty hunter camp from the ridge.</li><li>Eliminate the bounty hunters — use the high ground advantage.</li><li>Free Sean from his captors.</li><li>Return to camp with Sean to complete the mission.</li></ol><div class="step-reward">🏆 Sean MacGuire returns to camp</div></div>
+</div><div class="row" data-search="paying a social call braithwaite-gray feud introduced">
+  <input type="checkbox" id="rdr2-chapter2hors-payingasocialcall-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-payingasocialcall-4"><b>Paying a Social Call</b><small>Braithwaite-Gray feud introduced</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-payingasocialcall-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-payingasocialcall-4"><ol class="steps-list"><li>Ride with the gang to the Adler Ranch.</li><li>Eliminate the O&#39;Driscoll Boys occupying the ranch.</li><li>Search the ranch for information about the Blackwater money.</li><li>Collect the clue about the Braithwaite-Gray feud.</li><li>Return to camp to complete the mission.</li></ol><div class="step-reward">🏆 Braithwaite-Gray feud introduced</div></div>
+</div><div class="row" data-search="pouring forth oil $80 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-pouringforthoil-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-pouringforthoil-5"><b>Pouring Forth Oil</b><small>$80 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-pouringforthoil-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-pouringforthoil-5"><ol class="steps-list"><li>Ride with John to scout the Cornwall oil fields.</li><li>Rob the Cornwall oil wagon — eliminate the guards.</li><li>Deliver the oil wagon to the fence.</li><li>Escape the pursuing lawmen.</li><li>Return to camp to complete the mission.</li></ol><div class="step-reward">🏆 $80 to camp funds</div></div>
+</div><div class="row" data-search="pouring forth oil ii $80 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-pouringforthoilii-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-pouringforthoilii-6"><b>Pouring Forth Oil II</b><small>$80 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-pouringforthoilii-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-pouringforthoilii-6"><ol class="steps-list"><li>Follow up on the Cornwall oil operation.</li><li>Rob the second Cornwall oil wagon.</li><li>Deliver the wagon to the fence.</li><li>Escape the law.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $80 to camp funds</div></div>
+</div><div class="row" data-search="pouring forth oil iii $80 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-pouringforthoiliii-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-pouringforthoiliii-7"><b>Pouring Forth Oil III</b><small>$80 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-pouringforthoiliii-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-pouringforthoiliii-7"><ol class="steps-list"><li>Complete the third oil operation.</li><li>Rob the Cornwall oil train.</li><li>Deliver the goods.</li><li>Escape.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $80 to camp funds</div></div>
+</div><div class="row" data-search="pouring forth oil iv cornwall oil arc complete">
+  <input type="checkbox" id="rdr2-chapter2hors-pouringforthoiliv-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-pouringforthoiliv-8"><b>Pouring Forth Oil IV</b><small>Cornwall oil arc complete</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-pouringforthoiliv-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-pouringforthoiliv-8"><ol class="steps-list"><li>Final oil operation — rob the Cornwall refinery.</li><li>Fight through the guards at the refinery.</li><li>Collect the money and supplies.</li><li>Escape the Pinkertons.</li><li>Return to camp to complete the arc.</li></ol><div class="step-reward">🏆 Cornwall oil arc complete</div></div>
+</div><div class="row" data-search="a quiet time story development">
+  <input type="checkbox" id="rdr2-chapter2hors-aquiettime-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-aquiettime-9"><b>A Quiet Time</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-aquiettime-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-aquiettime-9"><ol class="steps-list"><li>Ride to Valentine with Lenny for a quiet evening.</li><li>Visit the saloon and enjoy the evening.</li><li>The evening gets complicated — deal with the situation.</li><li>Escape Valentine without getting arrested.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="polite society, valentine style story development">
+  <input type="checkbox" id="rdr2-chapter2hors-politesocietyvalentinesty-10" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-politesocietyvalentinesty-10"><b>Polite Society, Valentine Style</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-politesocietyvalentinesty-10',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-politesocietyvalentinesty-10"><ol class="steps-list"><li>Ride to Valentine with the gang.</li><li>Participate in the social activities in town.</li><li>Deal with the situation that arises.</li><li>Escape Valentine.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="we loved once and true story development">
+  <input type="checkbox" id="rdr2-chapter2hors-welovedonceandtrue-11" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-welovedonceandtrue-11"><b>We Loved Once and True</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-welovedonceandtrue-11',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-welovedonceandtrue-11"><ol class="steps-list"><li>Ride with Arthur to meet a contact.</li><li>Retrieve the item the contact has for the gang.</li><li>Deal with the complication that arises.</li><li>Return to camp.</li><li>Introduces a key character.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the spines of america $50 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-thespinesofamerica-12" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-thespinesofamerica-12"><b>The Spines of America</b><small>$50 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-thespinesofamerica-12',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-thespinesofamerica-12"><ol class="steps-list"><li>Ride with Hosea to rob a stagecoach.</li><li>Stop the stagecoach on the road.</li><li>Eliminate the guards and collect the strongbox.</li><li>Escape the law.</li><li>Return to camp with the money.</li></ol><div class="step-reward">🏆 $50 to camp funds</div></div>
+</div><div class="row" data-search="blessed are the peacemakers story development">
+  <input type="checkbox" id="rdr2-chapter2hors-blessedarethepeacemakers-13" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-blessedarethepeacemakers-13"><b>Blessed are the Peacemakers</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-blessedarethepeacemakers-13',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-blessedarethepeacemakers-13"><ol class="steps-list"><li>Ride with Dutch to meet with Colm O&#39;Driscoll for a truce.</li><li>The truce is a trap — fight your way out.</li><li>Escape the O&#39;Driscoll ambush.</li><li>Return to camp.</li><li>Colm O&#39;Driscoll becomes a primary antagonist.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="an american pastoral scene braithwaite relationship established">
+  <input type="checkbox" id="rdr2-chapter2hors-anamericanpastoralscene-14" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-anamericanpastoralscene-14"><b>An American Pastoral Scene</b><small>Braithwaite relationship established</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-anamericanpastoralscene-14',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-anamericanpastoralscene-14"><ol class="steps-list"><li>Ride with the gang to the Braithwaite Manor.</li><li>Participate in the social call with the Braithwaites.</li><li>Gather information about the Braithwaite-Gray feud.</li><li>Return to camp.</li><li>Braithwaite family introduced.</li></ol><div class="step-reward">🏆 Braithwaite relationship established</div></div>
+</div><div class="row" data-search="a fisher of men jack marston bond, fishing introduced">
+  <input type="checkbox" id="rdr2-chapter2hors-afisherofmen-15" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-afisherofmen-15"><b>A Fisher of Men</b><small>Jack Marston bond, Fishing introduced</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-afisherofmen-15',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-afisherofmen-15"><ol class="steps-list"><li>Ride with young Jack Marston to the fishing spot.</li><li>Teach Jack how to fish — follow the on-screen prompts.</li><li>Catch a fish together.</li><li>Return to camp with Jack.</li><li>One of the most heartfelt missions in the game.</li></ol><div class="step-reward">🏆 Jack Marston bond, Fishing introduced</div></div>
+</div><div class="row" data-search="sodom? back to gomorrah $200 to camp funds">
+  <input type="checkbox" id="rdr2-chapter2hors-sodombacktogomorrah-16" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-sodombacktogomorrah-16"><b>Sodom? Back to Gomorrah</b><small>$200 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-sodombacktogomorrah-16',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-sodombacktogomorrah-16"><ol class="steps-list"><li>Ride with the Lemoyne Raiders to rob the Cornwalls&#39; train.</li><li>Board the moving train.</li><li>Eliminate the guards and blow the safe.</li><li>Collect the money.</li><li>Escape the law and return to camp.</li></ol><div class="step-reward">🏆 $200 to camp funds</div></div>
+</div><div class="row" data-search="jailbreak john marston freed">
+  <input type="checkbox" id="rdr2-chapter2hors-jailbreak-17" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter2hors-jailbreak-17"><b>Jailbreak</b><small>John Marston freed</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter2hors-jailbreak-17',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter2hors-jailbreak-17"><ol class="steps-list"><li>Ride with the gang to break John Marston out of Strawberry jail.</li><li>Eliminate the lawmen guarding the jail.</li><li>Free John from his cell.</li><li>Escape Strawberry with John.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 John Marston freed</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 3: Clemens Point <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 18</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="the new south chapter 3 begins">
+  <input type="checkbox" id="rdr2-chapter3clem-thenewsouth-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-thenewsouth-0"><b>The New South</b><small>Chapter 3 begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-thenewsouth-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-thenewsouth-0"><ol class="steps-list"><li>Arrive at Clemens Point — the new camp location.</li><li>Explore the camp and speak with gang members.</li><li>Ride with Dutch to survey the area.</li><li>This is a story/travel mission.</li><li>Chapter 3 begins.</li></ol><div class="step-reward">🏆 Chapter 3 begins</div></div>
+</div><div class="row" data-search="further questions of female suffrage story development">
+  <input type="checkbox" id="rdr2-chapter3clem-furtherquestionsoffemales-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-furtherquestionsoffemales-1"><b>Further Questions of Female Suffrage</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-furtherquestionsoffemales-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-furtherquestionsoffemales-1"><ol class="steps-list"><li>Ride with Hosea and Penelope Braithwaite.</li><li>Participate in the suffragette rally.</li><li>Deal with the opposition that arrives.</li><li>Escort Penelope to safety.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="horse flesh for dinner $100 to camp funds">
+  <input type="checkbox" id="rdr2-chapter3clem-horsefleshfordinner-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-horsefleshfordinner-2"><b>Horse Flesh for Dinner</b><small>$100 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-horsefleshfordinner-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-horsefleshfordinner-2"><ol class="steps-list"><li>Ride with Uncle and Charles to steal horses from the Braithwaites.</li><li>Infiltrate the Braithwaite horse paddock at night.</li><li>Steal the prized horses without alerting the guards.</li><li>Deliver the horses to the fence in Rhodes.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $100 to camp funds</div></div>
+</div><div class="row" data-search="advertising, the new american art story development">
+  <input type="checkbox" id="rdr2-chapter3clem-advertisingthenewamerican-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-advertisingthenewamerican-3"><b>Advertising, the New American Art</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-advertisingthenewamerican-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-advertisingthenewamerican-3"><ol class="steps-list"><li>Ride with Hosea to set up a con in Rhodes.</li><li>Participate in the con — follow Hosea&#39;s lead.</li><li>The con goes sideways — deal with the situation.</li><li>Escape Rhodes.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="magicians for sport $80 to camp funds">
+  <input type="checkbox" id="rdr2-chapter3clem-magiciansforsport-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-magiciansforsport-4"><b>Magicians for Sport</b><small>$80 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-magiciansforsport-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-magiciansforsport-4"><ol class="steps-list"><li>Ride with Micah and Bill to rob a stagecoach.</li><li>Stop the stagecoach on the road.</li><li>Eliminate the guards and collect the strongbox.</li><li>Escape the law.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $80 to camp funds</div></div>
+</div><div class="row" data-search="a short walk in a pretty town story development">
+  <input type="checkbox" id="rdr2-chapter3clem-ashortwalkinaprettytown-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-ashortwalkinaprettytown-5"><b>A Short Walk in a Pretty Town</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-ashortwalkinaprettytown-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-ashortwalkinaprettytown-5"><ol class="steps-list"><li>Ride with Dutch and the gang to Rhodes.</li><li>The situation in Rhodes escalates — a shootout breaks out.</li><li>Fight through the town alongside your gang.</li><li>Escape Rhodes with the gang.</li><li>Return to camp — the Braithwaite-Gray feud intensifies.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="blood feuds, ancient and modern jack marston rescued">
+  <input type="checkbox" id="rdr2-chapter3clem-bloodfeudsancientandmoder-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-bloodfeudsancientandmoder-6"><b>Blood Feuds, Ancient and Modern</b><small>Jack Marston rescued</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-bloodfeudsancientandmoder-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-bloodfeudsancientandmoder-6"><ol class="steps-list"><li>Ride with Dutch and the gang to attack the Braithwaite Manor.</li><li>Storm the manor and eliminate the Braithwaite guards.</li><li>Find and confront Catherine Braithwaite.</li><li>Rescue Jack Marston from the Braithwaites.</li><li>Return to camp with Jack — a major story moment.</li></ol><div class="step-reward">🏆 Jack Marston rescued</div></div>
+</div><div class="row" data-search="an honest mistake story development">
+  <input type="checkbox" id="rdr2-chapter3clem-anhonestmistake-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-anhonestmistake-7"><b>An Honest Mistake</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-anhonestmistake-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-anhonestmistake-7"><ol class="steps-list"><li>Ride with Bill and Micah to rob a stagecoach.</li><li>Stop the stagecoach — it turns out to be a lawman convoy.</li><li>Fight your way out of the ambush.</li><li>Escape the pursuing lawmen.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the course of true love high honor, story development">
+  <input type="checkbox" id="rdr2-chapter3clem-thecourseoftruelove-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-thecourseoftruelove-8"><b>The Course of True Love</b><span class="tag honor">Honor</span><small>High Honor, Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-thecourseoftruelove-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-thecourseoftruelove-8"><ol class="steps-list"><li>Help Penelope Braithwaite and Beau Gray elope.</li><li>Escort the couple through hostile territory.</li><li>Defeat the Gray family members who pursue them.</li><li>Deliver the couple to safety.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 High Honor, Story development</div></div>
+</div><div class="row" data-search="the fine art of conversation story development">
+  <input type="checkbox" id="rdr2-chapter3clem-thefineartofconversation-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-thefineartofconversation-9"><b>The Fine Art of Conversation</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-thefineartofconversation-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-thefineartofconversation-9"><ol class="steps-list"><li>Ride with Dutch to meet with Sheriff Gray.</li><li>Participate in the tense conversation.</li><li>The meeting goes wrong — fight your way out.</li><li>Escape Rhodes with Dutch.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="friends in very low places new job unlocked">
+  <input type="checkbox" id="rdr2-chapter3clem-friendsinverylowplaces-10" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-friendsinverylowplaces-10"><b>Friends in Very Low Places</b><small>New job unlocked</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-friendsinverylowplaces-10',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-friendsinverylowplaces-10"><ol class="steps-list"><li>Ride with Josiah Trelawny to find a contact.</li><li>The contact has information about a job.</li><li>Deal with the complication that arises.</li><li>Return to camp with the information.</li><li>New job opportunity unlocked.</li></ol><div class="step-reward">🏆 New job unlocked</div></div>
+</div><div class="row" data-search="preaching forgiveness as he went story development">
+  <input type="checkbox" id="rdr2-chapter3clem-preachingforgivenessashew-11" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-preachingforgivenessashew-11"><b>Preaching Forgiveness as He Went</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-preachingforgivenessashew-11',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-preachingforgivenessashew-11"><ol class="steps-list"><li>Ride with Dutch to confront the Lemoyne Raiders.</li><li>Fight through the Raiders&#39; camp.</li><li>Rescue the hostages held by the Raiders.</li><li>Escape with the hostages.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="revenge is a dish best eaten braithwaite-gray feud resolved">
+  <input type="checkbox" id="rdr2-chapter3clem-revengeisadishbesteaten-12" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-revengeisadishbesteaten-12"><b>Revenge is a Dish Best Eaten</b><small>Braithwaite-Gray feud resolved</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-revengeisadishbesteaten-12',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-revengeisadishbesteaten-12"><ol class="steps-list"><li>Ride with the gang to attack the Gray family.</li><li>Storm the Gray estate and eliminate the Gray family members.</li><li>Collect the money and supplies.</li><li>Escape with the gang.</li><li>Return to camp — the Braithwaite-Gray feud ends.</li></ol><div class="step-reward">🏆 Braithwaite-Gray feud resolved</div></div>
+</div><div class="row" data-search="a land of opportunity story development">
+  <input type="checkbox" id="rdr2-chapter3clem-alandofopportunity-13" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-alandofopportunity-13"><b>A Land of Opportunity</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-alandofopportunity-13',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-alandofopportunity-13"><ol class="steps-list"><li>Ride with Dutch and the gang to meet the Grays.</li><li>The meeting is a trap — fight your way out.</li><li>Escape the Gray ambush.</li><li>Return to camp.</li><li>Chapter 3 nears its end.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="sodom? back to gomorrah (ii) $200 to camp funds">
+  <input type="checkbox" id="rdr2-chapter3clem-sodombacktogomorrahii-14" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-sodombacktogomorrahii-14"><b>Sodom? Back to Gomorrah (II)</b><small>$200 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-sodombacktogomorrahii-14',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-sodombacktogomorrahii-14"><ol class="steps-list"><li>Second major train robbery of Chapter 3.</li><li>Board the moving train.</li><li>Eliminate the guards and blow the safe.</li><li>Collect the money.</li><li>Escape and return to camp.</li></ol><div class="step-reward">🏆 $200 to camp funds</div></div>
+</div><div class="row" data-search="the sheep and the goats $100 to camp funds">
+  <input type="checkbox" id="rdr2-chapter3clem-thesheepandthegoats-15" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-thesheepandthegoats-15"><b>The Sheep and the Goats</b><small>$100 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-thesheepandthegoats-15',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-thesheepandthegoats-15"><ol class="steps-list"><li>Ride with the gang to rob a stagecoach.</li><li>Stop the stagecoach and eliminate the guards.</li><li>Collect the strongbox.</li><li>Escape the law.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $100 to camp funds</div></div>
+</div><div class="row" data-search="fatherhood and other dreams story development">
+  <input type="checkbox" id="rdr2-chapter3clem-fatherhoodandotherdreams-16" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-fatherhoodandotherdreams-16"><b>Fatherhood and Other Dreams</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-fatherhoodandotherdreams-16',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-fatherhoodandotherdreams-16"><ol class="steps-list"><li>Ride with John to meet with his family.</li><li>Help John reconnect with Abigail and Jack.</li><li>This is a story/character mission.</li><li>Return to camp.</li><li>John Marston&#39;s family dynamic explored.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the battle of shady belle shady belle camp unlocked">
+  <input type="checkbox" id="rdr2-chapter3clem-thebattleofshadybelle-17" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter3clem-thebattleofshadybelle-17"><b>The Battle of Shady Belle</b><small>Shady Belle camp unlocked</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter3clem-thebattleofshadybelle-17',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter3clem-thebattleofshadybelle-17"><ol class="steps-list"><li>Ride with the gang to attack Shady Belle.</li><li>Storm the mansion and eliminate the Lemoyne Raiders occupying it.</li><li>Clear all floors of the mansion.</li><li>Secure the mansion for the gang&#39;s new camp.</li><li>Chapter 3 ends — the gang moves to Shady Belle.</li></ol><div class="step-reward">🏆 Shady Belle camp unlocked</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 4: Saint Denis <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 9</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="the joys of civilization saint denis opens">
+  <input type="checkbox" id="rdr2-chapter4sain-thejoysofcivilization-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-thejoysofcivilization-0"><b>The Joys of Civilization</b><small>Saint Denis opens</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-thejoysofcivilization-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-thejoysofcivilization-0"><ol class="steps-list"><li>Arrive in Saint Denis with Dutch.</li><li>Explore the city — the largest location in the game.</li><li>Meet Angelo Bronte, the city&#39;s crime boss.</li><li>This is a story/exploration mission.</li><li>Saint Denis opens up.</li></ol><div class="step-reward">🏆 Saint Denis opens</div></div>
+</div><div class="row" data-search="no, no and thrice, no story development">
+  <input type="checkbox" id="rdr2-chapter4sain-nonoandthriceno-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-nonoandthriceno-1"><b>No, No and Thrice, No</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-nonoandthriceno-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-nonoandthriceno-1"><ol class="steps-list"><li>Ride with Hosea and Trelawny to set up a con in Saint Denis.</li><li>Participate in the con at the theater.</li><li>The con goes sideways — deal with the situation.</li><li>Escape Saint Denis.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="angelo bronte, a man of honor bronte relationship established">
+  <input type="checkbox" id="rdr2-chapter4sain-angelobronteamanofhonor-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-angelobronteamanofhonor-2"><b>Angelo Bronte, a Man of Honor</b><small>Bronte relationship established</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-angelobronteamanofhonor-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-angelobronteamanofhonor-2"><ol class="steps-list"><li>Ride with Dutch and Arthur to meet with Angelo Bronte.</li><li>Participate in the meeting — Bronte has information about the Blackwater money.</li><li>Complete Bronte&#39;s task to earn his trust.</li><li>Return to camp.</li><li>Bronte becomes a key contact.</li></ol><div class="step-reward">🏆 Bronte relationship established</div></div>
+</div><div class="row" data-search="help a brother out swanson bond">
+  <input type="checkbox" id="rdr2-chapter4sain-helpabrotherout-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-helpabrotherout-3"><b>Help a Brother Out</b><small>Swanson bond</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-helpabrotherout-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-helpabrotherout-3"><ol class="steps-list"><li>Ride with Reverend Swanson to help him with a personal matter.</li><li>Deal with the situation Swanson has gotten himself into.</li><li>Escort Swanson back to camp safely.</li><li>Return to camp.</li><li>Swanson&#39;s character arc begins.</li></ol><div class="step-reward">🏆 Swanson bond</div></div>
+</div><div class="row" data-search="horsemen, apocalypse $100 to camp funds">
+  <input type="checkbox" id="rdr2-chapter4sain-horsemenapocalypse-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-horsemenapocalypse-4"><b>Horsemen, Apocalypse</b><small>$100 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-horsemenapocalypse-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-horsemenapocalypse-4"><ol class="steps-list"><li>Ride with Micah to rob a stagecoach.</li><li>Stop the stagecoach and eliminate the guards.</li><li>Collect the strongbox.</li><li>Escape the law.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $100 to camp funds</div></div>
+</div><div class="row" data-search="urban pleasures $150 to camp funds">
+  <input type="checkbox" id="rdr2-chapter4sain-urbanpleasures-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-urbanpleasures-5"><b>Urban Pleasures</b><small>$150 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-urbanpleasures-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-urbanpleasures-5"><ol class="steps-list"><li>Ride with Lenny to rob a trolley in Saint Denis.</li><li>Stop the trolley and collect the money.</li><li>Escape the Saint Denis police.</li><li>Return to camp.</li><li>Introduces Saint Denis law enforcement.</li></ol><div class="step-reward">🏆 $150 to camp funds</div></div>
+</div><div class="row" data-search="country pursuits wapiti storyline begins">
+  <input type="checkbox" id="rdr2-chapter4sain-countrypursuits-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-countrypursuits-6"><b>Country Pursuits</b><small>Wapiti storyline begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-countrypursuits-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-countrypursuits-6"><ol class="steps-list"><li>Ride with Charles to help the Wapiti Indians.</li><li>Assist the Wapiti in dealing with a threat.</li><li>Return to camp.</li><li>Wapiti Indian storyline begins.</li></ol><div class="step-reward">🏆 Wapiti storyline begins</div></div>
+</div><div class="row" data-search="revenge is a dish best eaten (ii) story development">
+  <input type="checkbox" id="rdr2-chapter4sain-revengeisadishbesteatenii-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-revengeisadishbesteatenii-7"><b>Revenge is a Dish Best Eaten (II)</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-revengeisadishbesteatenii-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-revengeisadishbesteatenii-7"><ol class="steps-list"><li>Ride with Dutch to confront Angelo Bronte.</li><li>Storm Bronte&#39;s mansion and fight through his guards.</li><li>Capture Bronte.</li><li>Deal with Bronte — Dutch&#39;s actions here are controversial.</li><li>Escape Saint Denis.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="banking, the old american art chapter 5 begins">
+  <input type="checkbox" id="rdr2-chapter4sain-bankingtheoldamericanart-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter4sain-bankingtheoldamericanart-8"><b>Banking, the Old American Art</b><span class="tag missable">Missable</span><small>Chapter 5 begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter4sain-bankingtheoldamericanart-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter4sain-bankingtheoldamericanart-8"><ol class="steps-list"><li>Ride with the gang to rob the Saint Denis bank.</li><li>Enter the bank and secure the vault.</li><li>Blow the vault and collect the money.</li><li>Escape the bank — the police respond in force.</li><li>Fight through Saint Denis to reach the boat — Chapter 4 ends dramatically.</li></ol><div class="step-missable">⚠ Sean MacGuire dies in this mission</div><div class="step-reward">🏆 Chapter 5 begins</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 5: Guarma <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 5</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="welcome to the new world guarma chapter begins">
+  <input type="checkbox" id="rdr2-chapter5guar-welcometothenewworld-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter5guar-welcometothenewworld-0"><b>Welcome to the New World</b><small>Guarma chapter begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter5guar-welcometothenewworld-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter5guar-welcometothenewworld-0"><ol class="steps-list"><li>Arrive in Guarma after the shipwreck.</li><li>Survive the jungle — find food and water.</li><li>Locate Dutch and the other gang members.</li><li>This is a survival/exploration mission.</li><li>Guarma is a linear island chapter.</li></ol><div class="step-reward">🏆 Guarma chapter begins</div></div>
+</div><div class="row" data-search="a kind and benevolent despot story development">
+  <input type="checkbox" id="rdr2-chapter5guar-akindandbenevolentdespot-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter5guar-akindandbenevolentdespot-1"><b>A Kind and Benevolent Despot</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter5guar-akindandbenevolentdespot-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter5guar-akindandbenevolentdespot-1"><ol class="steps-list"><li>Help Dutch deal with the local dictator.</li><li>Fight through the dictator&#39;s soldiers.</li><li>Complete the objective.</li><li>Advance the Guarma story.</li><li>Return to the gang&#39;s location.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="savagery unleashed story development">
+  <input type="checkbox" id="rdr2-chapter5guar-savageryunleashed-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter5guar-savageryunleashed-2"><b>Savagery Unleashed</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter5guar-savageryunleashed-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter5guar-savageryunleashed-2"><ol class="steps-list"><li>Fight alongside the rebels against the dictator&#39;s forces.</li><li>Eliminate the soldiers attacking the rebel village.</li><li>Protect the villagers.</li><li>Advance the Guarma story.</li><li>Return to the gang.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="hell hath no fury story development">
+  <input type="checkbox" id="rdr2-chapter5guar-hellhathnofury-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter5guar-hellhathnofury-3"><b>Hell Hath No Fury</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter5guar-hellhathnofury-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter5guar-hellhathnofury-3"><ol class="steps-list"><li>Ride with Dutch to attack the dictator&#39;s compound.</li><li>Fight through the compound.</li><li>Complete the objective.</li><li>Escape the compound.</li><li>Advance the Guarma story.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="paradise mercifully departed chapter 6 begins">
+  <input type="checkbox" id="rdr2-chapter5guar-paradisemercifullydeparte-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter5guar-paradisemercifullydeparte-4"><b>Paradise Mercifully Departed</b><small>Chapter 6 begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter5guar-paradisemercifullydeparte-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter5guar-paradisemercifullydeparte-4"><ol class="steps-list"><li>Escape Guarma with the gang.</li><li>Fight through the soldiers to reach the boat.</li><li>Board the boat and escape.</li><li>Return to the United States.</li><li>Chapter 6 begins.</li></ol><div class="step-reward">🏆 Chapter 6 begins</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Chapter 6: Beaver Hollow <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 10</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="visiting hours story development">
+  <input type="checkbox" id="rdr2-chapter6beav-visitinghours-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-visitinghours-0"><b>Visiting Hours</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-visitinghours-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-visitinghours-0"><ol class="steps-list"><li>Ride to the prison to visit a contact.</li><li>Gather information from the contact.</li><li>Leave the prison without incident.</li><li>Return to camp.</li><li>Chapter 6 story begins.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="do not seek absolution high honor story development">
+  <input type="checkbox" id="rdr2-chapter6beav-donotseekabsolution-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-donotseekabsolution-1"><b>Do Not Seek Absolution</b><span class="tag missable">Missable</span><span class="tag honor">Honor</span><small>High Honor story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-donotseekabsolution-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-donotseekabsolution-1"><ol class="steps-list"><li>Ride with Arthur to help Edith Downes.</li><li>Help Edith and her son Archie get out of debt.</li><li>This mission requires High Honor to unlock.</li><li>Complete the tasks to help the Downes family.</li><li>Return to camp.</li></ol><div class="step-missable">⚠ Only available with High Honor</div><div class="step-reward">🏆 High Honor story development</div></div>
+</div><div class="row" data-search="a rage unleashed story development">
+  <input type="checkbox" id="rdr2-chapter6beav-arageunleashed-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-arageunleashed-2"><b>A Rage Unleashed</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-arageunleashed-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-arageunleashed-2"><ol class="steps-list"><li>Ride with Dutch and the gang to attack the Pinkertons.</li><li>Fight through the Pinkerton forces.</li><li>Eliminate the Pinkerton agents.</li><li>Escape with the gang.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="icarus and friends $200 to camp funds">
+  <input type="checkbox" id="rdr2-chapter6beav-icarusandfriends-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-icarusandfriends-3"><b>Icarus and Friends</b><small>$200 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-icarusandfriends-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-icarusandfriends-3"><ol class="steps-list"><li>Ride with the gang to rob a train.</li><li>Board the moving train.</li><li>Eliminate the guards and collect the money.</li><li>Escape the Pinkertons.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 $200 to camp funds</div></div>
+</div><div class="row" data-search="fleeting joy story development">
+  <input type="checkbox" id="rdr2-chapter6beav-fleetingjoy-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-fleetingjoy-4"><b>Fleeting Joy</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-fleetingjoy-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-fleetingjoy-4"><ol class="steps-list"><li>Spend time with Mary Linton.</li><li>This is a story/character mission.</li><li>Complete the activities with Mary.</li><li>Return to camp.</li><li>Arthur and Mary&#39;s relationship explored.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the delights of van horn story development">
+  <input type="checkbox" id="rdr2-chapter6beav-thedelightsofvanhorn-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-thedelightsofvanhorn-5"><b>The Delights of Van Horn</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-thedelightsofvanhorn-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-thedelightsofvanhorn-5"><ol class="steps-list"><li>Ride with Micah to Van Horn.</li><li>Deal with the situation in Van Horn.</li><li>Escape Van Horn.</li><li>Return to camp.</li><li>Story development.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="a fork in the road arthur&#39;s tuberculosis revealed">
+  <input type="checkbox" id="rdr2-chapter6beav-aforkintheroad-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-aforkintheroad-6"><b>A Fork in the Road</b><small>Arthur&#39;s tuberculosis revealed</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-aforkintheroad-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-aforkintheroad-6"><ol class="steps-list"><li>Arthur collapses — a major story moment.</li><li>Arthur is diagnosed with tuberculosis.</li><li>This mission changes the tone of the game.</li><li>Return to camp.</li><li>Arthur&#39;s mortality becomes the central theme.</li></ol><div class="step-reward">🏆 Arthur&#39;s tuberculosis revealed</div></div>
+</div><div class="row" data-search="my last boy john marston rescued">
+  <input type="checkbox" id="rdr2-chapter6beav-mylastboy-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-mylastboy-7"><b>My Last Boy</b><small>John Marston rescued</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-mylastboy-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-mylastboy-7"><ol class="steps-list"><li>Ride with Dutch to find John Marston.</li><li>John has been captured by the Pinkertons.</li><li>Fight through the Pinkertons to find John.</li><li>Rescue John.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 John Marston rescued</div></div>
+</div><div class="row" data-search="our best selves $300 to camp funds">
+  <input type="checkbox" id="rdr2-chapter6beav-ourbestselves-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-ourbestselves-8"><b>Our Best Selves</b><small>$300 to camp funds</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-ourbestselves-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-ourbestselves-8"><ol class="steps-list"><li>Ride with Dutch and the gang to rob the Annesburg mine.</li><li>Fight through the mine guards.</li><li>Collect the money.</li><li>Escape the Pinkertons.</li><li>Return to camp — the gang is fracturing.</li></ol><div class="step-reward">🏆 $300 to camp funds</div></div>
+</div><div class="row" data-search="red dead redemption chapter 6 complete, epilogue begins">
+  <input type="checkbox" id="rdr2-chapter6beav-reddeadredemption-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-chapter6beav-reddeadredemption-9"><b>Red Dead Redemption</b><span class="tag missable">Missable</span><span class="tag honor">Honor</span><small>Chapter 6 complete, Epilogue begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-chapter6beav-reddeadredemption-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-chapter6beav-reddeadredemption-9"><ol class="steps-list"><li>The final mission of Chapter 6 — Arthur&#39;s last stand.</li><li>Help John Marston escape the Pinkertons.</li><li>Fight through the Pinkerton forces on the mountain.</li><li>Arthur faces Micah in the final confrontation.</li><li>The ending depends on your Honor level — High Honor gives the best ending.</li></ol><div class="step-missable">⚠ High Honor required for best ending</div><div class="step-reward">🏆 Chapter 6 complete, Epilogue begins</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Epilogue Part 1: Pronghorn Ranch <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 10</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="the wheel epilogue part 1 begins">
+  <input type="checkbox" id="rdr2-epiloguepart-thewheel-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-thewheel-0"><b>The Wheel</b><small>Epilogue Part 1 begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-thewheel-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-thewheel-0"><ol class="steps-list"><li>Play as John Marston — the epilogue begins.</li><li>John is working at Pronghorn Ranch.</li><li>Complete the ranch work tasks.</li><li>This is a story/character mission.</li><li>Epilogue Part 1 begins.</li></ol><div class="step-reward">🏆 Epilogue Part 1 begins</div></div>
+</div><div class="row" data-search="simple pleasures story development">
+  <input type="checkbox" id="rdr2-epiloguepart-simplepleasures-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-simplepleasures-1"><b>Simple Pleasures</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-simplepleasures-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-simplepleasures-1"><ol class="steps-list"><li>Continue working at Pronghorn Ranch.</li><li>Complete the daily tasks.</li><li>Build relationships with the ranch workers.</li><li>This is a story/character mission.</li><li>John&#39;s new life is established.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="farming, for beginners farming mechanics introduced">
+  <input type="checkbox" id="rdr2-epiloguepart-farmingforbeginners-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-farmingforbeginners-2"><b>Farming, for Beginners</b><small>Farming mechanics introduced</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-farmingforbeginners-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-farmingforbeginners-2"><ol class="steps-list"><li>Learn the farming mechanics at Pronghorn Ranch.</li><li>Complete the farming tasks.</li><li>This is a tutorial/story mission.</li><li>Return to the ranch.</li><li>John&#39;s domestic life explored.</li></ol><div class="step-reward">🏆 Farming mechanics introduced</div></div>
+</div><div class="row" data-search="fatherhood, for beginners story development">
+  <input type="checkbox" id="rdr2-epiloguepart-fatherhoodforbeginners-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-fatherhoodforbeginners-3"><b>Fatherhood, for Beginners</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-fatherhoodforbeginners-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-fatherhoodforbeginners-3"><ol class="steps-list"><li>Spend time with Jack Marston.</li><li>Complete the activities with Jack.</li><li>This is a story/character mission.</li><li>Return to the ranch.</li><li>John and Jack&#39;s relationship explored.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="old habits story development">
+  <input type="checkbox" id="rdr2-epiloguepart-oldhabits-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-oldhabits-4"><b>Old Habits</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-oldhabits-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-oldhabits-4"><ol class="steps-list"><li>John&#39;s past catches up with him.</li><li>Deal with the threat to the ranch.</li><li>Protect the ranch workers.</li><li>Escape the situation.</li><li>John decides to leave the ranch.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="motherhood family reunited">
+  <input type="checkbox" id="rdr2-epiloguepart-motherhood-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-motherhood-5"><b>Motherhood</b><small>Family reunited</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-motherhood-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-motherhood-5"><ol class="steps-list"><li>Abigail arrives at the ranch.</li><li>Reunite with Abigail and Jack.</li><li>This is a story/character mission.</li><li>Plan the next steps for the family.</li><li>Epilogue Part 1 nears its end.</li></ol><div class="step-reward">🏆 Family reunited</div></div>
+</div><div class="row" data-search="gainful employment money earned">
+  <input type="checkbox" id="rdr2-epiloguepart-gainfulemployment-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-gainfulemployment-6"><b>Gainful Employment</b><small>Money earned</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-gainfulemployment-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-gainfulemployment-6"><ol class="steps-list"><li>John takes on work to earn money for the family.</li><li>Complete the job tasks.</li><li>Return to the ranch with the earnings.</li><li>This is a story/character mission.</li><li>John&#39;s determination to go straight is shown.</li></ol><div class="step-reward">🏆 Money earned</div></div>
+</div><div class="row" data-search="home improvement for beginners beecher&#39;s hope construction begins">
+  <input type="checkbox" id="rdr2-epiloguepart-homeimprovementforbeginne-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-homeimprovementforbeginne-7"><b>Home Improvement for Beginners</b><small>Beecher&#39;s Hope construction begins</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-homeimprovementforbeginne-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-homeimprovementforbeginne-7"><ol class="steps-list"><li>Begin building the Beecher&#39;s Hope homestead.</li><li>Gather the required materials.</li><li>Complete the construction tasks.</li><li>Return to the homestead.</li><li>Beecher&#39;s Hope begins to take shape.</li></ol><div class="step-reward">🏆 Beecher&#39;s Hope construction begins</div></div>
+</div><div class="row" data-search="a new future imagined story development">
+  <input type="checkbox" id="rdr2-epiloguepart-anewfutureimagined-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-anewfutureimagined-8"><b>A New Future Imagined</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-anewfutureimagined-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-anewfutureimagined-8"><ol class="steps-list"><li>Continue building Beecher&#39;s Hope.</li><li>Complete more construction tasks.</li><li>Speak with Abigail about the future.</li><li>This is a story/character mission.</li><li>John&#39;s dream of a new life takes shape.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="advertising, the new american art ii money earned">
+  <input type="checkbox" id="rdr2-epiloguepart-advertisingthenewamerican-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-advertisingthenewamerican-9"><b>Advertising, the New American Art II</b><small>Money earned</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-advertisingthenewamerican-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-advertisingthenewamerican-9"><ol class="steps-list"><li>John takes on a con job to earn money.</li><li>Participate in the con.</li><li>Deal with the complication that arises.</li><li>Return to Beecher&#39;s Hope.</li><li>Money earned for the homestead.</li></ol><div class="step-reward">🏆 Money earned</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Epilogue Part 2: Beecher&#39;s Hope <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 6</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="beecher&#39;s hope beecher&#39;s hope complete">
+  <input type="checkbox" id="rdr2-epiloguepart-beechershope-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-beechershope-0"><b>Beecher&#39;s Hope</b><small>Beecher&#39;s Hope complete</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-beechershope-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-beechershope-0"><ol class="steps-list"><li>John and his family move into the completed homestead.</li><li>Explore Beecher&#39;s Hope.</li><li>This is a story/character mission.</li><li>The homestead is now your base.</li><li>Epilogue Part 2 begins.</li></ol><div class="step-reward">🏆 Beecher&#39;s Hope complete</div></div>
+</div><div class="row" data-search="an honest day&#39;s labors story development">
+  <input type="checkbox" id="rdr2-epiloguepart-anhonestdayslabors-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-anhonestdayslabors-1"><b>An Honest Day&#39;s Labors</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-anhonestdayslabors-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-anhonestdayslabors-1"><ol class="steps-list"><li>Complete the ranch work at Beecher&#39;s Hope.</li><li>Help the neighboring ranchers.</li><li>This is a story/character mission.</li><li>Return to Beecher&#39;s Hope.</li><li>John&#39;s honest life continues.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="home improvement for beginners ii beecher&#39;s hope fully upgraded">
+  <input type="checkbox" id="rdr2-epiloguepart-homeimprovementforbeginne-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-homeimprovementforbeginne-2"><b>Home Improvement for Beginners II</b><small>Beecher&#39;s Hope fully upgraded</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-homeimprovementforbeginne-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-homeimprovementforbeginne-2"><ol class="steps-list"><li>Continue improving Beecher&#39;s Hope.</li><li>Complete the remaining construction tasks.</li><li>The homestead is fully upgraded.</li><li>Speak with Abigail.</li><li>Beecher&#39;s Hope is complete.</li></ol><div class="step-reward">🏆 Beecher&#39;s Hope fully upgraded</div></div>
+</div><div class="row" data-search="a really big bastard legendary bear pelt">
+  <input type="checkbox" id="rdr2-epiloguepart-areallybigbastard-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-areallybigbastard-3"><b>A Really Big Bastard</b><small>Legendary Bear Pelt</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-areallybigbastard-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-areallybigbastard-3"><ol class="steps-list"><li>Hunt the legendary bear near Beecher&#39;s Hope.</li><li>Track the bear through the wilderness.</li><li>Defeat the legendary bear.</li><li>Skin the bear and collect the legendary pelt.</li><li>Return to Beecher&#39;s Hope.</li></ol><div class="step-reward">🏆 Legendary Bear Pelt</div></div>
+</div><div class="row" data-search="the wheel (ii) story complete">
+  <input type="checkbox" id="rdr2-epiloguepart-thewheelii-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-thewheelii-4"><b>The Wheel (II)</b><small>Story complete</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-thewheelii-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-thewheelii-4"><ol class="steps-list"><li>John&#39;s past comes back one final time.</li><li>Deal with the final threat.</li><li>Protect the family.</li><li>The epilogue&#39;s climax.</li><li>The final story mission of RDR2.</li></ol><div class="step-reward">🏆 Story complete</div></div>
+</div><div class="row" data-search="american venom platinum trophy path, story complete">
+  <input type="checkbox" id="rdr2-epiloguepart-americanvenom-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-epiloguepart-americanvenom-5"><b>American Venom</b><span class="tag missable">Missable</span><small>Platinum trophy path, Story complete</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-epiloguepart-americanvenom-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-epiloguepart-americanvenom-5"><ol class="steps-list"><li>The final mission — John hunts down Micah Bell.</li><li>Travel to Mount Hagen.</li><li>Fight through Micah&#39;s gang.</li><li>Confront Micah in the final showdown.</li><li>The game ends — watch the final cutscene.</li></ol><div class="step-missable">⚠ Final mission — no return after completion</div><div class="step-reward">🏆 Platinum trophy path, Story complete</div></div>
+</div></div>
+</div>
+  </section>
+  <section id="side">
+    <div class="sec-hd"><h2>📜 Side Missions & Strangers</h2><p>All 14 side missions and stranger encounters. Many reward unique weapons and items.</p></div>
+    <div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Strangers &amp; Freaks <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 10</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="the noblest of men, and a woman calloway&#39;s revolver (legendary weapon)">
+  <input type="checkbox" id="rdr2-s-strangersfre-thenoblestofmenandawoman-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-thenoblestofmenandawoman-0"><b>The Noblest of Men, and a Woman</b><small>Calloway&#39;s Revolver (legendary weapon)</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-thenoblestofmenandawoman-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-thenoblestofmenandawoman-0"><ol class="steps-list"><li>Find the first gunslinger in a saloon — he gives you a task to find four legendary gunslingers.</li><li>Photograph each gunslinger: Emmet Granger, Flaco Hernandez, Billy Midnight, and Black Belle.</li><li>Each gunslinger requires finding them, taking their photo, and defeating them in a duel.</li><li>Return to Theodore Levin after photographing all four gunslingers.</li><li>Duel Jim &#39;Boy&#39; Calloway in the final confrontation.</li></ol><div class="step-reward">🏆 Calloway&#39;s Revolver (legendary weapon)</div></div>
+</div><div class="row" data-search="a bright bouncing boy dragic&#39;s electric lantern">
+  <input type="checkbox" id="rdr2-s-strangersfre-abrightbouncingboy-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-abrightbouncingboy-1"><b>A Bright Bouncing Boy</b><small>Dragic&#39;s Electric Lantern</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-abrightbouncingboy-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-abrightbouncingboy-1"><ol class="steps-list"><li>Find Marko Dragic at the Saint Denis fairground.</li><li>Help Dragic demonstrate his electric boat — control it through the obstacle course.</li><li>Return to Dragic&#39;s laboratory in the Roanoke Ridge.</li><li>Help Dragic complete his lightning experiment.</li><li>Return to the lab after a few in-game days to find the completed automaton.</li></ol><div class="step-reward">🏆 Dragic&#39;s Electric Lantern</div></div>
+</div><div class="row" data-search="the veteran story development, unique item">
+  <input type="checkbox" id="rdr2-s-strangersfre-theveteran-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-theveteran-2"><b>The Veteran</b><small>Story development, unique item</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-theveteran-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-theveteran-2"><ol class="steps-list"><li>Find the veteran soldier NPC in the wilderness.</li><li>Help him with his personal mission.</li><li>Complete the tasks he requires.</li><li>Return to him after completing the tasks.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development, unique item</div></div>
+</div><div class="row" data-search="duchesses and other animals algernon&#39;s revolver (legendary weapon)">
+  <input type="checkbox" id="rdr2-s-strangersfre-duchessesandotheranimals-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-duchessesandotheranimals-3"><b>Duchesses and Other Animals</b><small>Algernon&#39;s Revolver (legendary weapon)</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-duchessesandotheranimals-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-duchessesandotheranimals-3"><ol class="steps-list"><li>Find the naturalist Algernon Wasp in Saint Denis.</li><li>Collect the rare orchids and birds he requests — 5 types of orchids and 5 types of birds.</li><li>Return each collection to Wasp.</li><li>Complete all five collection tasks.</li><li>Receive the Algernon&#39;s Revolver (legendary weapon) as the final reward.</li></ol><div class="step-reward">🏆 Algernon&#39;s Revolver (legendary weapon)</div></div>
+</div><div class="row" data-search="the smell of the grease paint story development">
+  <input type="checkbox" id="rdr2-s-strangersfre-thesmellofthegreasepaint-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-thesmellofthegreasepaint-4"><b>The Smell of the Grease Paint</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-thesmellofthegreasepaint-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-thesmellofthegreasepaint-4"><ol class="steps-list"><li>Find the traveling circus performer NPC.</li><li>Help them with their performance problem.</li><li>Complete the tasks required.</li><li>Return to the performer.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the artist&#39;s way story development">
+  <input type="checkbox" id="rdr2-s-strangersfre-theartistsway-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-theartistsway-5"><b>The Artist&#39;s Way</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-theartistsway-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-theartistsway-5"><ol class="steps-list"><li>Find the struggling artist NPC.</li><li>Help them with their artistic problem.</li><li>Complete the tasks required.</li><li>Return to the artist.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="he&#39;s british, of course story development">
+  <input type="checkbox" id="rdr2-s-strangersfre-hesbritishofcourse-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-hesbritishofcourse-6"><b>He&#39;s British, of Course</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-hesbritishofcourse-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-hesbritishofcourse-6"><ol class="steps-list"><li>Find the British naturalist NPC.</li><li>Help him with his animal research.</li><li>Complete the animal-related tasks.</li><li>Return to the naturalist.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="the widow of willard&#39;s rest story development">
+  <input type="checkbox" id="rdr2-s-strangersfre-thewidowofwillardsrest-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-thewidowofwillardsrest-7"><b>The Widow of Willard&#39;s Rest</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-thewidowofwillardsrest-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-thewidowofwillardsrest-7"><ol class="steps-list"><li>Find the widow NPC at Willard&#39;s Rest.</li><li>Help her with her personal situation.</li><li>Complete the tasks she requires.</li><li>Return to her.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div><div class="row" data-search="a test of faith jawbone knife (unique weapon)">
+  <input type="checkbox" id="rdr2-s-strangersfre-atestoffaith-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-atestoffaith-8"><b>A Test of Faith</b><small>Jawbone Knife (unique weapon)</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-atestoffaith-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-atestoffaith-8"><ol class="steps-list"><li>Find the dinosaur bone researcher NPC.</li><li>Collect the dinosaur bones scattered across the map — 30 total.</li><li>Return each set of bones to the researcher.</li><li>Complete all bone collection tasks.</li><li>Receive the Jawbone Knife (unique weapon) as the final reward.</li></ol><div class="step-reward">🏆 Jawbone Knife (unique weapon)</div></div>
+</div><div class="row" data-search="the iniquities of history story development">
+  <input type="checkbox" id="rdr2-s-strangersfre-theiniquitiesofhistory-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-strangersfre-theiniquitiesofhistory-9"><b>The Iniquities of History</b><small>Story development</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-strangersfre-theiniquitiesofhistory-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-strangersfre-theiniquitiesofhistory-9"><ol class="steps-list"><li>Find the Confederate soldier NPC.</li><li>Help him with his personal mission.</li><li>Complete the tasks he requires.</li><li>Return to him.</li><li>Receive the reward.</li></ol><div class="step-reward">🏆 Story development</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Companion Activities <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 4</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="fishing with jack jack bond increased">
+  <input type="checkbox" id="rdr2-s-companionact-fishingwithjack-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-companionact-fishingwithjack-0"><b>Fishing with Jack</b><small>Jack bond increased</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-companionact-fishingwithjack-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-companionact-fishingwithjack-0"><ol class="steps-list"><li>Speak with Jack Marston at camp.</li><li>Ride with Jack to the fishing spot.</li><li>Teach Jack to fish — follow the prompts.</li><li>Catch fish together.</li><li>Return to camp.</li></ol><div class="step-reward">🏆 Jack bond increased</div></div>
+</div><div class="row" data-search="hunting with charles charles bond increased">
+  <input type="checkbox" id="rdr2-s-companionact-huntingwithcharles-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-companionact-huntingwithcharles-1"><b>Hunting with Charles</b><small>Charles bond increased</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-companionact-huntingwithcharles-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-companionact-huntingwithcharles-1"><ol class="steps-list"><li>Speak with Charles Smith at camp.</li><li>Ride with Charles to the hunting area.</li><li>Hunt together — Charles teaches advanced techniques.</li><li>Return to camp with the pelts.</li><li>Charles bond increased.</li></ol><div class="step-reward">🏆 Charles bond increased</div></div>
+</div><div class="row" data-search="poker with lenny lenny bond increased">
+  <input type="checkbox" id="rdr2-s-companionact-pokerwithlenny-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-companionact-pokerwithlenny-2"><b>Poker with Lenny</b><small>Lenny bond increased</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-companionact-pokerwithlenny-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-companionact-pokerwithlenny-2"><ol class="steps-list"><li>Speak with Lenny Summers at camp.</li><li>Play poker with Lenny and other gang members.</li><li>Win or lose — the bond increases regardless.</li><li>Return to camp activities.</li><li>Lenny bond increased.</li></ol><div class="step-reward">🏆 Lenny bond increased</div></div>
+</div><div class="row" data-search="stargazing with rains fall rains fall bond increased">
+  <input type="checkbox" id="rdr2-s-companionact-stargazingwithrainsfall-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-s-companionact-stargazingwithrainsfall-3"><b>Stargazing with Rains Fall</b><small>Rains Fall bond increased</small></label><button class="steps-toggle" onclick="toggleSteps('qs-rdr2-s-companionact-stargazingwithrainsfall-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-rdr2-s-companionact-stargazingwithrainsfall-3"><ol class="steps-list"><li>Speak with Rains Fall at the Wapiti camp.</li><li>Ride with Rains Fall to a scenic overlook.</li><li>Stargaze together — listen to his stories.</li><li>Return to camp.</li><li>Rains Fall bond increased.</li></ol><div class="step-reward">🏆 Rains Fall bond increased</div></div>
+</div></div>
+</div>
+  </section>
+  <section id="collectibles">
+    <div class="sec-hd"><h2>🦴 Collectibles</h2><p>All collectible categories for 100% completion.</p></div>
+    <div class="sec-note"><b>Dinosaur Bones (30):</b> Scattered across the map — complete "A Test of Faith" stranger mission to track them.<br>
+    <b>Rock Carvings (10):</b> Found on cliff faces and rock formations — complete the "Geology for Beginners" stranger mission.<br>
+    <b>Dream Catchers (20):</b> Hanging in trees across the map — complete the "Paying Respects" stranger mission.<br>
+    <b>Legendary Animals (16):</b> One per region — hunt all for the Trapper's legendary gear sets.<br>
+    <b>Legendary Fish (13):</b> One per body of water — complete the "Fisher of Fish" stranger mission.<br>
+    <b>Cigarette Cards (144):</b> Found in cigarette packs — complete the full set for a unique reward.<br>
+    <b>Grave Sites (9):</b> Visit all graves of fallen gang members for the "Paying Respects" trophy.</div>
+  </section>
+  <section id="trophies">
+    <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 15 trophies for RDR2 including the Legend of the West Platinum.</p></div>
+    <div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>All Trophies <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 15</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="legend of the west (platinum) attain 100% completion.">
+  <input type="checkbox" id="rdr2-tr-legendofthewestplatinum-0" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-legendofthewestplatinum-0"><b>Legend of the West (Platinum)</b><span class="tag trophy">Trophy</span><small>Attain 100% completion.</small></label></div>
+  
+</div><div class="row" data-search="story complete complete the main story.">
+  <input type="checkbox" id="rdr2-tr-storycomplete-1" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-storycomplete-1"><b>Story Complete</b><span class="tag trophy">Trophy</span><small>Complete the main story.</small></label></div>
+  
+</div><div class="row" data-search="100% completion complete all story missions, stranger missions, and activities.">
+  <input type="checkbox" id="rdr2-tr-100completion-2" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-100completion-2"><b>100% Completion</b><span class="tag trophy">Trophy</span><small>Complete all story missions, stranger missions, and activities.</small></label></div>
+  
+</div><div class="row" data-search="skin deep skin every animal species in the game.">
+  <input type="checkbox" id="rdr2-tr-skindeep-3" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-skindeep-3"><b>Skin Deep</b><span class="tag trophy">Trophy</span><small>Skin every animal species in the game.</small></label></div>
+  
+</div><div class="row" data-search="collector&#39;s item collect all dinosaur bones, rock carvings, and dream catchers.">
+  <input type="checkbox" id="rdr2-tr-collectorsitem-4" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-collectorsitem-4"><b>Collector&#39;s Item</b><span class="tag trophy">Trophy</span><small>Collect all dinosaur bones, rock carvings, and dream catchers.</small></label></div>
+  
+</div><div class="row" data-search="lending a hand complete all optional honor missions.">
+  <input type="checkbox" id="rdr2-tr-lendingahand-5" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-lendingahand-5"><b>Lending a Hand</b><span class="tag trophy">Trophy</span><small>Complete all optional honor missions.</small></label></div>
+  
+</div><div class="row" data-search="paying respects find all grave sites.">
+  <input type="checkbox" id="rdr2-tr-payingrespects-6" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-payingrespects-6"><b>Paying Respects</b><span class="tag trophy">Trophy</span><small>Find all grave sites.</small></label></div>
+  
+</div><div class="row" data-search="hobby horse complete all challenges.">
+  <input type="checkbox" id="rdr2-tr-hobbyhorse-7" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-hobbyhorse-7"><b>Hobby Horse</b><span class="tag trophy">Trophy</span><small>Complete all challenges.</small></label></div>
+  
+</div><div class="row" data-search="notorious complete all bounty hunter missions.">
+  <input type="checkbox" id="rdr2-tr-notorious-8" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-notorious-8"><b>Notorious</b><span class="tag trophy">Trophy</span><small>Complete all bounty hunter missions.</small></label></div>
+  
+</div><div class="row" data-search="friends with benefits complete all companion activities.">
+  <input type="checkbox" id="rdr2-tr-friendswithbenefits-9" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-friendswithbenefits-9"><b>Friends With Benefits</b><span class="tag trophy">Trophy</span><small>Complete all companion activities.</small></label></div>
+  
+</div><div class="row" data-search="poacher kill and skin every legendary animal.">
+  <input type="checkbox" id="rdr2-tr-poacher-10" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-poacher-10"><b>Poacher</b><span class="tag trophy">Trophy</span><small>Kill and skin every legendary animal.</small></label></div>
+  
+</div><div class="row" data-search="weapons expert get 10 kills with each weapon type.">
+  <input type="checkbox" id="rdr2-tr-weaponsexpert-11" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-weaponsexpert-11"><b>Weapons Expert</b><span class="tag trophy">Trophy</span><small>Get 10 kills with each weapon type.</small></label></div>
+  
+</div><div class="row" data-search="horseman complete all horse bonding and racing activities.">
+  <input type="checkbox" id="rdr2-tr-horseman-12" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-horseman-12"><b>Horseman</b><span class="tag trophy">Trophy</span><small>Complete all horse bonding and racing activities.</small></label></div>
+  
+</div><div class="row" data-search="survivalist craft all items.">
+  <input type="checkbox" id="rdr2-tr-survivalist-13" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-survivalist-13"><b>Survivalist</b><span class="tag trophy">Trophy</span><small>Craft all items.</small></label></div>
+  
+</div><div class="row" data-search="bandit complete all robbery missions.">
+  <input type="checkbox" id="rdr2-tr-bandit-14" onchange="_ck(this)">
+  <div class="row-top"><label for="rdr2-tr-bandit-14"><b>Bandit</b><span class="tag trophy">Trophy</span><small>Complete all robbery missions.</small></label></div>
+  
+</div></div>
+</div>
+  </section>
+</main>
+<footer><b>Quest &amp; Guides</b> — questandguides.com · Red Dead Redemption 2 100% Completion Guide</footer>
+<script>
+window._GUIDE_LSKEY='rdr2_progress_v1';
 
-      <section class="controls">
-        <input id="search" type="search" placeholder="Search missions, side quests, collectibles..." />
-        <button id="reset-progress" type="button">Reset Progress</button>
-      </section>
+const _LSKEY = window._GUIDE_LSKEY || 'guide_progress_v1';
+let _saved = {};
+try { _saved = JSON.parse(localStorage.getItem(_LSKEY)||'{}'); } catch(e){ _saved={}; }
+let _saveTimer=null;
+function _persist(){ clearTimeout(_saveTimer); _saveTimer=setTimeout(()=>{ try{ localStorage.setItem(_LSKEY,JSON.stringify(_saved)); }catch(e){} },150); }
 
-      <section id="category-grid" class="category-grid"></section>
-    </main>
+function _ck(cb){
+  if(cb.checked) _saved[cb.id]=1; else delete _saved[cb.id];
+  _persist();
+  _updateAll();
+}
 
-    <script type="module" src="./app/main.js?v=20260721f"></script>
-  <script type="module" src="/gaming-hub/assets/js/content-gate.js?v=20260725"></script>
+function toggleSteps(id,btn){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const open=el.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+  btn.textContent=open?'▲ Hide steps':'▼ How to complete';
+}
+
+function _updateAll(){
+  let total=0,done=0;
+  document.querySelectorAll('[data-card]').forEach(card=>{
+    const cbs=card.querySelectorAll('input[type=checkbox]');
+    const cd=Array.from(cbs).filter(c=>c.checked).length;
+    const ct=cbs.length;
+    total+=ct; done+=cd;
+    const pct=ct?Math.round(cd/ct*100):0;
+    const cpct=card.querySelector('[data-cpct]');
+    const cbar=card.querySelector('[data-cbar]');
+    if(cpct)cpct.textContent=`${cd}/${ct}`;
+    if(cbar)cbar.style.width=pct+'%';
+  });
+  const pct=total?Math.round(done/total*100):0;
+  const pb=document.getElementById('totalBar');
+  const pp=document.getElementById('totalPct');
+  const pc=document.getElementById('totalCount');
+  if(pb)pb.style.width=pct+'%';
+  if(pp)pp.textContent=pct+'%';
+  if(pc)pc.textContent=done+' / '+total;
+}
+
+function expandAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.add('open')); _updateAll(); }
+function collapseAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.remove('open')); _updateAll(); }
+function resetProgress(){
+  if(!confirm('Reset all progress? This cannot be undone.'))return;
+  _saved={};
+  localStorage.removeItem(_LSKEY);
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  _updateAll();
+}
+
+function filterRows(q){
+  const s=q.toLowerCase();
+  document.querySelectorAll('.row[data-search]').forEach(r=>{
+    r.classList.toggle('hidden',s&&!r.dataset.search.includes(s));
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  Object.keys(_saved).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.checked=true;
+  });
+  _updateAll();
+});
+
+(function(){
+  const tier=(()=>{ try{ const u=JSON.parse(localStorage.getItem('qag_user')||'{}'); return u.tier||'basic'; }catch(e){ return 'basic'; } })();
+  if(tier==='pro'||tier==='trial')return;
+  window.addEventListener('DOMContentLoaded',()=>{
+    const all=Array.from(document.querySelectorAll('section'));
+    const half=Math.ceil(all.length/2);
+    let gated=0;
+    all.forEach((s,i)=>{ if(i>=half){ s.style.display='none'; gated++; } });
+    if(gated>0){
+      const wall=document.createElement('div');
+      wall.className='content-gate-wall';
+      wall.innerHTML=`<h3>🤠 You've reached the free preview</h3>
+        <p>Subscribe to unlock the full 100% guide — all missions, all steps, all collectibles.</p>
+        <a href="/gaming-hub/pages/subscribe.html" class="gate-btn">Unlock Full Guide — $1.99/mo</a>
+        <a href="/gaming-hub/pages/auth.html" class="gate-btn secondary">Sign In</a>`;
+      document.querySelector('main').appendChild(wall);
+    }
+  });
+})();
+
+</script>
 </body>
 </html>

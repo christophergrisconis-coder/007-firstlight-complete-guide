@@ -1,19 +1,449 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>007 First Light 100% Completion Guide</title>
-    <meta
-      name="description"
-      content="Data-driven 007 First Light 100% completion guide with mission checklists, collectible tracking, challenge support, and achievement progress."
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="backdrop"></div>
-    <main id="app" data-gate="true"></main>
-    <script type="module" src="./app/main.js?v=20260716b"></script>
-  <script type="module" src="/gaming-hub/assets/js/content-gate.js?v=20260725"></script>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>007 First Light — 100% Completion Guide</title>
+<style>
+:root{
+  --bg:#0d0b09;--bg2:#151210;--bg3:#1d1916;--bg4:#26211d;
+  --line:#332c26;--line2:#453a31;
+  --red:#b0322b;--red2:#d64541;--crimson:#8e2620;
+  --gold:#d4af37;--gold2:#e8c964;
+  --txt:#e8e0d4;--dim:#a89a88;--faint:#786c5e;--green:#4caf7d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:118px}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;font-size:15px}
+h1,h2,h3,h4{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Palatino Linotype',Georgia,serif}
+::selection{background:var(--red);color:#fff}
+header{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(16,10,8,.86),rgba(12,9,7,.96));border-bottom:2px solid var(--accent,var(--red));box-shadow:0 4px 18px rgba(0,0,0,.7)}
+.hd-top{display:flex;align-items:center;gap:14px;padding:10px 18px 6px}
+.hd-mark{width:38px;height:38px;flex:0 0 38px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gold);background:radial-gradient(circle at 50% 40%,#3a1410,#150b08);font-family:Georgia,serif;box-shadow:0 0 14px rgba(212,175,55,.25)}
+.hd-title{flex:1;min-width:0}
+.hd-title h1{font-size:16px;letter-spacing:.06em;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.hd-title small{display:block;color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hd-pct{text-align:right;line-height:1.15}
+.hd-pct b{font-size:21px;color:var(--gold2);font-variant-numeric:tabular-nums}
+.hd-pct span{display:block;font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.hd-bar{height:6px;background:#241d17;margin:5px 18px 8px;border-radius:3px;overflow:hidden}
+.hd-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--red2) 60%,var(--gold));border-radius:3px;transition:width .35s}
+nav{display:flex;gap:2px;overflow-x:auto;padding:0 12px 8px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.05em;padding:6px 11px;border-radius:4px;border:1px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--gold2);background:var(--bg3)}
+main{max-width:1060px;margin:0 auto;padding:22px 14px 90px}
+section{margin-bottom:40px}
+.sec-hd{position:relative;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;min-height:110px;padding:14px 18px 12px;margin-bottom:16px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(10,8,7,.3),rgba(8,6,5,.92)),var(--bg3);box-shadow:inset 0 -30px 50px rgba(0,0,0,.5),0 2px 12px rgba(0,0,0,.45)}
+.sec-hd h2{font-size:22px;color:var(--gold2);letter-spacing:.04em;position:relative;z-index:1}
+.sec-hd p{color:var(--dim);font-size:13px;position:relative;z-index:1;max-width:700px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent}
+.card-hd:hover{background:var(--bg4)}
+.card.open .card-hd{border-bottom-color:var(--line)}
+.chev{color:var(--gold);font-size:11px;transition:transform .2s;display:inline-block}
+.card.open .chev{transform:rotate(90deg)}
+.card-hd h3{flex:1;font-size:14px;color:var(--txt);font-weight:600}
+.cpct{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.mini-bar{height:3px;background:var(--line)}
+.mini-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .3s}
+.card-bd{display:none;padding:4px 0 8px}
+.card.open .card-bd{display:block}
+.row{padding:7px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.row:last-child{border-bottom:none}
+.row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.row-top label{flex:1;min-width:0;cursor:pointer;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.row-top label b{color:var(--txt);font-size:14px}
+.row-top label small{color:var(--dim);font-size:12px;display:block;margin-top:1px}
+input[type=checkbox]{accent-color:var(--red);width:15px;height:15px;flex:0 0 15px;cursor:pointer;margin-top:2px}
+input[type=checkbox]:checked~.row-top label b{color:var(--faint);text-decoration:line-through}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:3px;text-transform:uppercase;margin-left:4px}
+.tag.trophy{background:#2a2010;color:var(--gold);border:1px solid #5c4a1a}
+.tag.missable{background:#2a1010;color:#e88;border:1px solid #5c2020}
+.tag.gold{background:#2a2010;color:var(--gold2);border:1px solid #5c4a1a}
+.tag.note{background:#1a1a2a;color:#88aaee;border:1px solid #2a3a5a}
+.steps-toggle{flex:0 0 auto;background:transparent;border:1px solid var(--line2);border-radius:4px;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.steps-toggle:hover{background:var(--bg3);color:var(--gold2);border-color:var(--gold)}
+.quest-steps{display:none;margin:8px 0 4px 28px;padding:10px 14px;background:var(--bg2);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
+.quest-steps.open{display:block}
+.steps-list{padding-left:18px;margin:0 0 6px}
+.steps-list li{color:var(--txt);font-size:13.5px;line-height:1.6;padding:2px 0;border-bottom:1px solid var(--line)}
+.steps-list li:last-child{border-bottom:none}
+.step-missable{margin-top:7px;padding:5px 10px;background:rgba(176,50,43,.15);border:1px solid var(--red);border-radius:4px;color:#f0a09a;font-size:12.5px}
+.step-reward{margin-top:5px;padding:5px 10px;background:rgba(212,175,55,.10);border:1px solid var(--gold);border-radius:4px;color:var(--gold2);font-size:12.5px}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+button.btn{background:var(--bg3);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer}
+button.btn:hover{color:var(--gold2);border-color:var(--gold)}
+button.btn.danger:hover{color:var(--red2);border-color:var(--red2)}
+.searchbox{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;color:var(--txt);padding:9px 13px;font-size:14px;margin-bottom:14px}
+.searchbox:focus{outline:none;border-color:var(--gold)}
+.hidden{display:none!important}
+.sec-note{color:var(--dim);font-size:13px;padding:8px 14px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin-bottom:8px}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
+footer b{color:var(--dim)}
+.content-gate-wall{margin:32px 14px;padding:32px 24px;background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line2);border-radius:12px;text-align:center}
+.content-gate-wall h3{color:var(--gold2);font-size:20px;margin-bottom:10px}
+.content-gate-wall p{color:var(--dim);font-size:14px;max-width:480px;margin:0 auto 20px}
+.gate-btn{display:inline-block;padding:11px 28px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;letter-spacing:.04em}
+.gate-btn:hover{background:var(--red2)}
+.gate-btn.secondary{background:transparent;border:1px solid var(--line2);color:var(--dim);margin-left:10px}
+.gate-btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:640px){
+  html{scroll-padding-top:132px}
+  .hd-title h1{font-size:13.5px}
+  .hd-pct b{font-size:18px}
+  main{padding:16px 8px 70px}
+  .sec-hd{min-height:90px;padding:10px 12px 8px}
+  .sec-hd h2{font-size:18px}
+  .quest-steps{margin-left:14px}
+}
+
+:root{--accent:#1a4a7a;}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd-top">
+    <div class="hd-mark" style="font-size:12px;letter-spacing:-.5px">007</div>
+    <div class="hd-title">
+      <h1>007 First Light — 100% Guide</h1>
+      <small>All Missions · Collectibles · Challenges · Trophies</small>
+    </div>
+    <div class="hd-pct"><b id="totalPct">0%</b><span id="totalCount">0 / 0</span></div>
+  </div>
+  <div class="hd-bar"><i id="totalBar"></i></div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#missions">Missions</a>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#trophies">Trophies</a>
+  </nav>
+</header>
+<main>
+  <section id="overview">
+    <div class="sec-hd"><h2>007 First Light — 100% Completion</h2><p>Complete all 11 missions (18 sub-chapters), find all 92 collectibles (36 Cards, 23 Intel, 14 Mementos, 10 Postcards, 9 Legacy Items), and unlock all trophies.</p></div>
+    <div class="btnrow">
+      <button class="btn" onclick="expandAll()">Expand All</button>
+      <button class="btn" onclick="collapseAll()">Collapse All</button>
+      <button class="btn danger" onclick="resetProgress()">Reset Progress</button>
+    </div>
+    <input class="searchbox" type="search" placeholder="Search missions, collectibles, trophies..." oninput="filterRows(this.value)">
+    <div class="sec-note">Collectibles: 36 Playing Cards · 23 MI6 Intel Files · 14 Mementos · 10 Postcards · 9 Legacy Items. Use Chapter Select to replay missions for missed collectibles. No collectible is permanently missable after story completion.</div>
+  </section>
+  <section id="missions">
+    <div class="sec-hd"><h2>🔫 Missions</h2><p>All 11 missions with step-by-step walkthrough, collectible locations, Pacifist and Ghost challenge notes.</p></div>
+    <div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Against the Odds <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Prologue · Sub-missions: Against the Odds, In His Majesty&#39;s Secret Service</div><div class="row" data-search="against the odds 4 playing cards in the camp area">
+  <input type="checkbox" id="fl-againsttheodds-0" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-againsttheodds-0"><b>Against the Odds</b><span class="tag trophy">Trophy</span><span class="tag note">Collectibles</span><small>4 Playing Cards in the camp area</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-againsttheodds-0',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-againsttheodds-0"><ol class="steps-list"><li>Start in the military camp — you play as a Navy Aircrewman, not yet 007.</li><li>Complete the opening combat sequence — eliminate the hostile forces in the camp.</li><li>Reach the extraction point while avoiding reinforcements.</li><li>Complete the sub-mission &#39;In His Majesty&#39;s Secret Service&#39; — follow M&#39;s contact through the facility.</li><li>Interact with all required objectives and collectibles: 4 Playing Cards hidden in the camp area.</li><li>Complete the Pacifist Challenge: reach the extraction without killing anyone.</li><li>Complete the Ghost Challenge: reach the extraction without being detected.</li><li>The prologue ends with Bond being recruited — Chapter 1 begins.</li></ol><div class="step-reward">🏆 Against the Odds (Bronze)</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: A Night Out <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 1 · Sub-missions: The Needle&#39;s Eye, The Heart of the Matter, A New Home</div><div class="row" data-search="a night out 2 playing cards, 1 postcard, 1 intel file">
+  <input type="checkbox" id="fl-anightout-1" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-anightout-1"><b>A Night Out</b><span class="tag note">Collectibles</span><small>2 Playing Cards, 1 Postcard, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-anightout-1',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-anightout-1"><ol class="steps-list"><li>Arrive at the mission location — a high-society event.</li><li>Complete &#39;The Needle&#39;s Eye&#39; — navigate the event using social stealth (eavesdrop, bluff, pickpocket).</li><li>Use the Q-Watch to identify NPC qualities — avoid Watchers who prevent bluffing.</li><li>Complete &#39;The Heart of the Matter&#39; — locate the target and extract information.</li><li>Complete &#39;A New Home&#39; — escape the event after the situation escalates.</li><li>Collectibles: 2 Playing Cards, 1 Postcard, 1 Intel file hidden in the venue.</li><li>Pacifist Challenge: complete the mission without killing anyone.</li><li>Ghost Challenge: complete without being detected.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: A Night Out (Mission 2) <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 2 · Sub-missions: A Night Out, A Matter of Considerable Delicacy</div><div class="row" data-search="a night out (mission 2) 3 playing cards, 1 memento, 1 intel file">
+  <input type="checkbox" id="fl-anightoutmission2-2" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-anightoutmission2-2"><b>A Night Out (Mission 2)</b><span class="tag note">Collectibles</span><small>3 Playing Cards, 1 Memento, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-anightoutmission2-2',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-anightoutmission2-2"><ol class="steps-list"><li>Travel to the new mission location — a different city.</li><li>Complete &#39;A Night Out&#39; — a social infiltration mission.</li><li>Use eavesdropping to gather intel before approaching the target.</li><li>Complete &#39;A Matter of Considerable Delicacy&#39; — a tense negotiation/confrontation.</li><li>Collectibles: 3 Playing Cards, 1 Memento, 1 Intel file.</li><li>Pacifist Challenge: use non-lethal takedowns only.</li><li>Ghost Challenge: complete without triggering any alarms.</li><li>Mission ends with a story revelation.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: All the Time in the World <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 3 · Sub-missions: All the Time in the World, Out of the Ashes</div><div class="row" data-search="all the time in the world 5 playing cards, 2 intel files, 1 memento, 1 postcard">
+  <input type="checkbox" id="fl-allthetimeintheworld-3" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-allthetimeintheworld-3"><b>All the Time in the World</b><span class="tag trophy">Trophy</span><span class="tag note">Collectibles</span><small>5 Playing Cards, 2 Intel files, 1 Memento, 1 Postcard</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-allthetimeintheworld-3',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-allthetimeintheworld-3"><ol class="steps-list"><li>Arrive at the sprawling hotel level — the largest mission in the game.</li><li>Complete &#39;All the Time in the World&#39; — 27 challenges are available in this mission.</li><li>Explore all floors of the hotel to find collectibles and complete challenges.</li><li>Complete &#39;Out of the Ashes&#39; — escape the hotel after the situation deteriorates.</li><li>Collectibles: 5 Playing Cards, 2 Intel files, 1 Memento, 1 Postcard.</li><li>Pacifist Challenge: complete the hotel section without kills.</li><li>Ghost Challenge: navigate the hotel without detection.</li><li>This is the longest mission — allow 60-90 minutes for full completion.</li></ol><div class="step-reward">🏆 All the Time in the World (Silver)</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: The Past Never Dies <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 4 · Sub-missions: The Past Never Dies</div><div class="row" data-search="the past never dies 2 playing cards, 1 legacy item, 1 intel file">
+  <input type="checkbox" id="fl-thepastneverdies-4" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-thepastneverdies-4"><b>The Past Never Dies</b><span class="tag note">Collectibles</span><small>2 Playing Cards, 1 Legacy Item, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-thepastneverdies-4',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-thepastneverdies-4"><ol class="steps-list"><li>Travel to the mission location — a location tied to Bond&#39;s past.</li><li>Complete the investigation sequence — gather evidence.</li><li>Confront the antagonist&#39;s agent.</li><li>Defeat the agent in combat or use stealth to neutralize them.</li><li>Collectibles: 2 Playing Cards, 1 Legacy Item, 1 Intel file.</li><li>Pacifist Challenge: neutralize without killing.</li><li>Ghost Challenge: complete without detection.</li><li>Mission ends with a major story revelation about Bond&#39;s past.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Beyond the Grave <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 5 · Sub-missions: Beyond the Grave</div><div class="row" data-search="beyond the grave 3 playing cards, 1 memento, 1 intel file">
+  <input type="checkbox" id="fl-beyondthegrave-5" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-beyondthegrave-5"><b>Beyond the Grave</b><span class="tag note">Collectibles</span><small>3 Playing Cards, 1 Memento, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-beyondthegrave-5',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-beyondthegrave-5"><ol class="steps-list"><li>Arrive at the mission location — a cemetery or memorial site.</li><li>Investigate the location for clues about the conspiracy.</li><li>Avoid or neutralize the guards patrolling the area.</li><li>Find the hidden cache of intelligence.</li><li>Collectibles: 3 Playing Cards, 1 Memento, 1 Intel file.</li><li>Pacifist Challenge: complete without kills.</li><li>Ghost Challenge: complete without detection.</li><li>Mission advances the main conspiracy plot.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Uninvited <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 6 · Sub-missions: Uninvited</div><div class="row" data-search="uninvited 2 playing cards, 1 legacy item, 1 intel file">
+  <input type="checkbox" id="fl-uninvited-6" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-uninvited-6"><b>Uninvited</b><span class="tag note">Collectibles</span><small>2 Playing Cards, 1 Legacy Item, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-uninvited-6',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-uninvited-6"><ol class="steps-list"><li>Infiltrate the restricted facility — you are not expected.</li><li>Use disguises and bluffing to move through the facility.</li><li>Reach the target location deep inside the facility.</li><li>Extract the required intelligence or item.</li><li>Collectibles: 2 Playing Cards, 1 Legacy Item, 1 Intel file.</li><li>Pacifist Challenge: complete without kills.</li><li>Ghost Challenge: complete without triggering alarms.</li><li>Mission ends with a confrontation.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Knightfall <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 7 · Sub-missions: Knightfall, Going Old School</div><div class="row" data-search="knightfall 3 playing cards, 1 memento, 1 postcard, 1 legacy item">
+  <input type="checkbox" id="fl-knightfall-7" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-knightfall-7"><b>Knightfall</b><span class="tag trophy">Trophy</span><span class="tag note">Collectibles</span><small>3 Playing Cards, 1 Memento, 1 Postcard, 1 Legacy Item</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-knightfall-7',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-knightfall-7"><ol class="steps-list"><li>Arrive at the mission location — a historic British setting.</li><li>Complete &#39;Knightfall&#39; — a combat-heavy mission with multiple enemy waves.</li><li>Complete &#39;Going Old School&#39; — a section where Bond must use only basic equipment.</li><li>Defeat the mission&#39;s boss encounter.</li><li>Collectibles: 3 Playing Cards, 1 Memento, 1 Postcard, 1 Legacy Item.</li><li>Pacifist Challenge: use non-lethal takedowns in &#39;Going Old School&#39;.</li><li>Ghost Challenge: complete &#39;Knightfall&#39; without detection.</li><li>Mission ends with a major story event.</li></ol><div class="step-reward">🏆 Knightfall (Bronze)</div></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Time to Die <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 8 · Sub-missions: Time to Die, Man of the Hour</div><div class="row" data-search="time to die 2 playing cards, 1 legacy item, 1 intel file">
+  <input type="checkbox" id="fl-timetodie-8" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-timetodie-8"><b>Time to Die</b><span class="tag note">Collectibles</span><small>2 Playing Cards, 1 Legacy Item, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-timetodie-8',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-timetodie-8"><ol class="steps-list"><li>Travel to the penultimate mission location.</li><li>Complete &#39;Time to Die&#39; — a high-stakes infiltration.</li><li>Complete &#39;Man of the Hour&#39; — Bond must make a critical decision.</li><li>The mission&#39;s outcome affects the final mission setup.</li><li>Collectibles: 2 Playing Cards, 1 Legacy Item, 1 Intel file.</li><li>Pacifist Challenge: complete &#39;Time to Die&#39; without kills.</li><li>Ghost Challenge: complete &#39;Man of the Hour&#39; without detection.</li><li>Mission ends with a cliffhanger.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: Wave of the Future <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 9 · Sub-missions: Wave of the Future</div><div class="row" data-search="wave of the future 3 playing cards, 1 memento, 1 intel file">
+  <input type="checkbox" id="fl-waveofthefuture-9" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-waveofthefuture-9"><b>Wave of the Future</b><span class="tag note">Collectibles</span><small>3 Playing Cards, 1 Memento, 1 Intel file</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-waveofthefuture-9',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-waveofthefuture-9"><ol class="steps-list"><li>Arrive at the final act location — a high-tech facility.</li><li>Infiltrate the facility and reach the main objective.</li><li>Defeat the waves of enemies protecting the objective.</li><li>Complete the technical objective (hack, destroy, or extract).</li><li>Collectibles: 3 Playing Cards, 1 Memento, 1 Intel file.</li><li>Pacifist Challenge: use non-lethal methods throughout.</li><li>Ghost Challenge: reach the objective without triggering alarms.</li><li>Mission sets up the final confrontation.</li></ol></div>
+</div></div>
+</div><div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mission: For England <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 1</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="sec-note">Chapter: Mission 10 (Final) · Sub-missions: For England</div><div class="row" data-search="for england 2 playing cards, 1 legacy item, 1 postcard">
+  <input type="checkbox" id="fl-forengland-10" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-forengland-10"><b>For England</b><span class="tag trophy">Trophy</span><span class="tag missable">Missable</span><span class="tag note">Collectibles</span><small>2 Playing Cards, 1 Legacy Item, 1 Postcard</small></label><button class="steps-toggle" onclick="toggleSteps('qs-fl-forengland-10',this)" aria-expanded="false">▼ How to complete</button></div>
+  <div class="quest-steps" id="qs-fl-forengland-10"><ol class="steps-list"><li>Begin the final mission — the ultimate confrontation.</li><li>Fight through the final location to reach the main antagonist.</li><li>Complete the final stealth/combat gauntlet.</li><li>Confront the main antagonist in the climactic boss fight.</li><li>Collectibles: 2 Playing Cards, 1 Legacy Item, 1 Postcard — collect before the final fight.</li><li>Pacifist Challenge: reach the antagonist without killing anyone.</li><li>Ghost Challenge: complete the approach without detection.</li><li>Defeat the antagonist to complete the game and unlock the ending.</li></ol><div class="step-missable">⚠ Collect all items before the final fight — no return after</div><div class="step-reward">🏆 For England (Gold), License to Kill (Platinum)</div></div>
+</div></div>
+</div>
+  </section>
+  <section id="collectibles">
+    <div class="sec-hd"><h2>🃏 Collectibles</h2><p>All 92 collectibles across all missions. Collectible locations are listed in each mission's steps panel above.</p></div>
+    <div class="sec-note"><b>Playing Cards (36):</b> 4 in Prologue, 2-5 per mission thereafter. Check each mission's steps for exact locations.<br>
+    <b>MI6 Intel Files (23):</b> Documents and files hidden in mission environments — often in side rooms and offices.<br>
+    <b>Mementos (14):</b> Personal items tied to Bond's backstory — look in personal quarters and private areas.<br>
+    <b>Postcards (10):</b> Found in tourist areas and public spaces within mission environments.<br>
+    <b>Legacy Items (9):</b> Iconic Bond items — one or two per mission, often in secure areas. Use Chapter Select to replay for any missed.</div>
+  </section>
+  <section id="trophies">
+    <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 16 trophies for 007 First Light including the License to Kill Platinum.</p></div>
+    <div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>All Trophies <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 16</em></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd"><div class="row" data-search="license to kill (platinum) earn all other trophies.">
+  <input type="checkbox" id="fl-tr-licensetokillplatinum-0" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-licensetokillplatinum-0"><b>License to Kill (Platinum)</b><span class="tag trophy">Trophy</span><small>Earn all other trophies.</small></label></div>
+  
+</div><div class="row" data-search="against the odds complete the prologue.">
+  <input type="checkbox" id="fl-tr-againsttheodds-1" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-againsttheodds-1"><b>Against the Odds</b><span class="tag trophy">Trophy</span><small>Complete the Prologue.</small></label></div>
+  
+</div><div class="row" data-search="all the time in the world complete all 27 challenges in mission 3.">
+  <input type="checkbox" id="fl-tr-allthetimeintheworld-2" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-allthetimeintheworld-2"><b>All the Time in the World</b><span class="tag trophy">Trophy</span><small>Complete all 27 challenges in Mission 3.</small></label></div>
+  
+</div><div class="row" data-search="knightfall complete mission 7.">
+  <input type="checkbox" id="fl-tr-knightfall-3" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-knightfall-3"><b>Knightfall</b><span class="tag trophy">Trophy</span><small>Complete Mission 7.</small></label></div>
+  
+</div><div class="row" data-search="for england complete the main story.">
+  <input type="checkbox" id="fl-tr-forengland-4" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-forengland-4"><b>For England</b><span class="tag trophy">Trophy</span><small>Complete the main story.</small></label></div>
+  
+</div><div class="row" data-search="pacifist complete a mission without killing anyone.">
+  <input type="checkbox" id="fl-tr-pacifist-5" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-pacifist-5"><b>Pacifist</b><span class="tag trophy">Trophy</span><small>Complete a mission without killing anyone.</small></label></div>
+  
+</div><div class="row" data-search="ghost complete a mission without being detected.">
+  <input type="checkbox" id="fl-tr-ghost-6" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-ghost-6"><b>Ghost</b><span class="tag trophy">Trophy</span><small>Complete a mission without being detected.</small></label></div>
+  
+</div><div class="row" data-search="card shark collect all 36 playing cards.">
+  <input type="checkbox" id="fl-tr-cardshark-7" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-cardshark-7"><b>Card Shark</b><span class="tag trophy">Trophy</span><small>Collect all 36 Playing Cards.</small></label></div>
+  
+</div><div class="row" data-search="intel analyst collect all 23 mi6 files.">
+  <input type="checkbox" id="fl-tr-intelanalyst-8" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-intelanalyst-8"><b>Intel Analyst</b><span class="tag trophy">Trophy</span><small>Collect all 23 MI6 Files.</small></label></div>
+  
+</div><div class="row" data-search="sentimental collect all 14 mementos.">
+  <input type="checkbox" id="fl-tr-sentimental-9" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-sentimental-9"><b>Sentimental</b><span class="tag trophy">Trophy</span><small>Collect all 14 Mementos.</small></label></div>
+  
+</div><div class="row" data-search="wish you were here collect all 10 postcards.">
+  <input type="checkbox" id="fl-tr-wishyouwerehere-10" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-wishyouwerehere-10"><b>Wish You Were Here</b><span class="tag trophy">Trophy</span><small>Collect all 10 Postcards.</small></label></div>
+  
+</div><div class="row" data-search="legacy collect all 9 legacy items.">
+  <input type="checkbox" id="fl-tr-legacy-11" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-legacy-11"><b>Legacy</b><span class="tag trophy">Trophy</span><small>Collect all 9 Legacy Items.</small></label></div>
+  
+</div><div class="row" data-search="full dossier collect all 92 collectibles.">
+  <input type="checkbox" id="fl-tr-fulldossier-12" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-fulldossier-12"><b>Full Dossier</b><span class="tag trophy">Trophy</span><small>Collect all 92 collectibles.</small></label></div>
+  
+</div><div class="row" data-search="q&#39;s favourite use every gadget at least once.">
+  <input type="checkbox" id="fl-tr-qsfavourite-13" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-qsfavourite-13"><b>Q&#39;s Favourite</b><span class="tag trophy">Trophy</span><small>Use every gadget at least once.</small></label></div>
+  
+</div><div class="row" data-search="eavesdropper eavesdrop on 20 conversations.">
+  <input type="checkbox" id="fl-tr-eavesdropper-14" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-eavesdropper-14"><b>Eavesdropper</b><span class="tag trophy">Trophy</span><small>Eavesdrop on 20 conversations.</small></label></div>
+  
+</div><div class="row" data-search="master of disguise use a disguise in every mission.">
+  <input type="checkbox" id="fl-tr-masterofdisguise-15" onchange="_ck(this)">
+  <div class="row-top"><label for="fl-tr-masterofdisguise-15"><b>Master of Disguise</b><span class="tag trophy">Trophy</span><small>Use a disguise in every mission.</small></label></div>
+  
+</div></div>
+</div>
+  </section>
+</main>
+<footer><b>Quest &amp; Guides</b> — questandguides.com · 007 First Light 100% Completion Guide</footer>
+<script>
+window._GUIDE_LSKEY='fl007_progress_v1';
+
+const _LSKEY = window._GUIDE_LSKEY || 'guide_progress_v1';
+let _saved = {};
+try { _saved = JSON.parse(localStorage.getItem(_LSKEY)||'{}'); } catch(e){ _saved={}; }
+let _saveTimer=null;
+function _persist(){ clearTimeout(_saveTimer); _saveTimer=setTimeout(()=>{ try{ localStorage.setItem(_LSKEY,JSON.stringify(_saved)); }catch(e){} },150); }
+
+function _ck(cb){
+  if(cb.checked) _saved[cb.id]=1; else delete _saved[cb.id];
+  _persist();
+  _updateAll();
+}
+
+function toggleSteps(id,btn){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const open=el.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+  btn.textContent=open?'▲ Hide steps':'▼ How to complete';
+}
+
+function _updateAll(){
+  let total=0,done=0;
+  document.querySelectorAll('[data-card]').forEach(card=>{
+    const cbs=card.querySelectorAll('input[type=checkbox]');
+    const cd=Array.from(cbs).filter(c=>c.checked).length;
+    const ct=cbs.length;
+    total+=ct; done+=cd;
+    const pct=ct?Math.round(cd/ct*100):0;
+    const cpct=card.querySelector('[data-cpct]');
+    const cbar=card.querySelector('[data-cbar]');
+    if(cpct)cpct.textContent=`${cd}/${ct}`;
+    if(cbar)cbar.style.width=pct+'%';
+  });
+  const pct=total?Math.round(done/total*100):0;
+  const pb=document.getElementById('totalBar');
+  const pp=document.getElementById('totalPct');
+  const pc=document.getElementById('totalCount');
+  if(pb)pb.style.width=pct+'%';
+  if(pp)pp.textContent=pct+'%';
+  if(pc)pc.textContent=done+' / '+total;
+}
+
+function expandAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.add('open')); _updateAll(); }
+function collapseAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.remove('open')); _updateAll(); }
+function resetProgress(){
+  if(!confirm('Reset all progress? This cannot be undone.'))return;
+  _saved={};
+  localStorage.removeItem(_LSKEY);
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  _updateAll();
+}
+
+function filterRows(q){
+  const s=q.toLowerCase();
+  document.querySelectorAll('.row[data-search]').forEach(r=>{
+    r.classList.toggle('hidden',s&&!r.dataset.search.includes(s));
+  });
+}
+
+// Restore saved checkboxes
+document.addEventListener('DOMContentLoaded',()=>{
+  Object.keys(_saved).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.checked=true;
+  });
+  _updateAll();
+});
+
+// Content gate: hide second half for non-subscribers
+(function(){
+  const tier=(()=>{ try{ const u=JSON.parse(localStorage.getItem('qag_user')||'{}'); return u.tier||'basic'; }catch(e){ return 'basic'; } })();
+  if(tier==='pro'||tier==='trial')return;
+  window.addEventListener('DOMContentLoaded',()=>{
+    const all=Array.from(document.querySelectorAll('section'));
+    const half=Math.ceil(all.length/2);
+    let gated=0;
+    all.forEach((s,i)=>{ if(i>=half){ s.style.display='none'; gated++; } });
+    if(gated>0){
+      const wall=document.createElement('div');
+      wall.className='content-gate-wall';
+      wall.innerHTML=`<h3>⚔ You've reached the free preview</h3>
+        <p>Subscribe to unlock the full 100% guide — all quests, all steps, all collectibles.</p>
+        <a href="/gaming-hub/pages/subscribe.html" class="gate-btn">Unlock Full Guide — $1.99/mo</a>
+        <a href="/gaming-hub/pages/auth.html" class="gate-btn secondary">Sign In</a>`;
+      document.querySelector('main').appendChild(wall);
+    }
+  });
+})();
+
+</script>
 </body>
 </html>
