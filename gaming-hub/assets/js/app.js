@@ -19,7 +19,18 @@ const navItems = [
 
 const renderHeader = () => {
   const active = document.body.dataset.page || "home";
-  const links = navItems
+  // Auth-aware nav
+  let user = null;
+  try { const s = localStorage.getItem('qag_session'); if (s) user = JSON.parse(s); } catch {}
+  const extraItems = user
+    ? [['account', user.display_name || 'My Account', `${PAGE_ROOT}/account.html`]]
+    : [];
+  const allItems = [...navItems, ...extraItems];
+  const links = allItems
+    .filter(([key]) => {
+      if (user) return !['signin','signup'].includes(key);
+      return key !== 'admin';
+    })
     .map(([key, label, href]) => {
       const isActive = key === active;
       return `<a class="${isActive ? "active" : ""}" href="${href}">${label}</a>`;

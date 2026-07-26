@@ -1,58 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard | Arcadia Grid</title>
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
-  <body data-page="admin">
-    <div id="site-header"></div>
-    <main class="container page-layout">
-      <header class="section-head">
-        <h1>Owner Admin Dashboard</h1>
-        <p>Monitor account registration and website access metrics from one place.</p>
-      </header>
-
-      <section class="panel">
-        <div class="admin-head">
-          <div>
-            <p class="eyebrow">Owner Session</p>
-            <p id="admin-owner-email" class="admin-owner-email">Checking session...</p>
-          </div>
-          <button id="admin-refresh" class="btn btn-secondary" type="button">Refresh</button>
-        </div>
-        <p id="admin-status" class="form-note" aria-live="polite">Loading...</p>
-      </section>
-
-      <section id="admin-metrics" class="panel admin-metrics-grid">
-        <article class="panel stat-panel">
-          <p class="eyebrow">Accounts</p>
-          <h2>Registered Users</h2>
-          <p id="admin-registration-count" class="stat-value">--</p>
-          <p class="form-note">Owner-only value sourced from Supabase.</p>
-        </article>
-
-        <article class="panel stat-panel">
-          <p class="eyebrow">Traffic</p>
-          <h2>Total Visits</h2>
-          <p id="admin-total-visits" class="stat-value">--</p>
-          <p class="form-note">Global visit count updates automatically.</p>
-        </article>
-      </section>
-
-      <section class="panel">
-        <h2>Admin Setup Checklist</h2>
-        <ul>
-          <li>Add Supabase URL and anon key in assets/js/site-config.js.</li>
-          <li>Run gaming-hub/supabase/schema.sql in Supabase SQL Editor.</li>
-          <li>Sign up or sign in with your owner email.</li>
-          <li>Open this dashboard and click Refresh to claim owner metrics.</li>
-        </ul>
-      </section>
-    </main>
-    <div id="site-footer"></div>
-    <script type="module" src="../app.js?v=20260721"></script>
-    <script type="module" src="../admin.js?v=20260721"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Quest & Guides</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+body{background:#0a0a0f;color:#e0e0e8;font-family:'Inter',sans-serif;margin:0}
+.page-header{background:linear-gradient(135deg,#0d0d15,#1a1a2e);border-bottom:1px solid rgba(185,145,75,.2);padding:1rem 2rem;display:flex;align-items:center;gap:1rem}
+.page-header a{color:#b9914b;text-decoration:none;font-family:'Cinzel',serif}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.3rem;color:#e8d5a3;margin:0;flex:1;text-align:center}
+.admin-nav{display:flex;gap:0;background:#12121a;border-bottom:1px solid rgba(185,145,75,.15)}
+.admin-nav button{padding:.75rem 1.5rem;background:none;border:none;color:#8a8a9a;font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.admin-nav button.active,.admin-nav button:hover{color:#b9914b;border-bottom-color:#b9914b}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:#12121a;border:1px solid rgba(185,145,75,.2);border-radius:10px;padding:1.25rem;text-align:center}
+.stat-num{font-family:'Cinzel',serif;font-size:2rem;color:#b9914b;display:block}
+.stat-label{font-size:.8rem;color:#8a8a9a;margin-top:.25rem}
+.stat-sub{font-size:.7rem;color:#555;margin-top:.2rem}
+.section-title{font-family:'Cinzel',serif;font-size:1rem;color:#b9914b;margin:1.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(185,145,75,.15)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{text-align:left;padding:.6rem .75rem;color:#8a8a9a;font-weight:500;border-bottom:1px solid rgba(255,255,255,.06)}
+td{padding:.6rem .75rem;border-bottom:1px solid rgba(255,255,255,.04);color:#c8c8d8}
+tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:.2rem .5rem;border-radius:4px;font-size:.7rem;font-weight:600}
+.badge-admin{background:rgba(185,145,75,.2);color:#b9914b}
+.badge-pro{background:rgba(40,167,69,.15);color:#5cb85c}
+.badge-basic{background:rgba(100,100,120,.2);color:#9a9aaa}
+.search-row{display:flex;gap:.75rem;margin-bottom:1rem}
+.search-row input{flex:1;padding:.6rem .9rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e0e0e8;font-size:.875rem;font-family:'Inter',sans-serif}
+.search-row input:focus{outline:none;border-color:#b9914b}
+.btn{padding:.5rem 1rem;border-radius:6px;font-size:.8rem;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.btn-sm-gold{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0a0f}
+.btn-sm-outline{background:transparent;border:1px solid rgba(185,145,75,.3);color:#b9914b}
+.btn-sm-danger{background:transparent;border:1px solid rgba(220,53,69,.3);color:#ff6b7a}
+.top-pages{display:flex;flex-direction:column;gap:.5rem}
+.page-row{display:flex;align-items:center;gap:1rem;padding:.5rem .75rem;background:rgba(255,255,255,.02);border-radius:6px}
+.page-path{flex:1;font-size:.85rem;color:#c8c8d8;font-family:monospace}
+.page-views{font-size:.85rem;color:#b9914b;font-weight:600;min-width:60px;text-align:right}
+.access-denied{text-align:center;padding:4rem 2rem}
+.access-denied h2{font-family:'Cinzel',serif;color:#e8d5a3;margin-bottom:1rem}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <a href="/gaming-hub/">&#9876; Quest &amp; Guides</a>
+  <h1>Admin Dashboard</h1>
+</div>
+<div id="access-denied" class="access-denied" style="display:none">
+  <h2>Access Denied</h2>
+  <p style="color:#8a8a9a">This page is restricted to administrators.</p>
+  <a href="/gaming-hub/" style="color:#b9914b">Return Home</a>
+</div>
+<div id="admin-content" style="display:none">
+  <nav class="admin-nav">
+    <button class="active" onclick="showTab('stats')">Statistics</button>
+    <button onclick="showTab('users')">Users</button>
+    <button onclick="showTab('discussions')">Discussions</button>
+  </nav>
+  <div class="container">
+    <!-- Stats Tab -->
+    <div class="tab-panel active" id="tab-stats">
+      <div class="stat-grid" id="stat-grid">
+        <div class="stat-card"><span class="stat-num" id="s-total-users">—</span><div class="stat-label">Total Users</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-new-today">—</span><div class="stat-label">New Today</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-new-week">—</span><div class="stat-label">New This Week</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-pro">—</span><div class="stat-label">Pro Subscribers</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-views-today">—</span><div class="stat-label">Page Views Today</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-views-week">—</span><div class="stat-label">Views This Week</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-total-views">—</span><div class="stat-label">Total Page Views</div></div>
+        <div class="stat-card"><span class="stat-num" id="s-discussions">—</span><div class="stat-label">Discussion Posts</div></div>
+      </div>
+      <div class="section-title">Top Pages</div>
+      <div class="top-pages" id="top-pages"></div>
+      <div class="section-title">Recent Signups</div>
+      <table id="recent-users-table">
+        <thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Provider</th><th>Joined</th></tr></thead>
+        <tbody id="recent-users-body"></tbody>
+      </table>
+    </div>
+    <!-- Users Tab -->
+    <div class="tab-panel" id="tab-users">
+      <div class="search-row">
+        <input type="text" id="user-search" placeholder="Search by email or name…">
+        <button class="btn btn-sm-gold" onclick="searchUsers()">Search</button>
+      </div>
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Tier</th><th>Joined</th><th>Actions</th></tr></thead>
+        <tbody id="users-body"></tbody>
+      </table>
+      <div id="users-pagination" style="margin-top:1rem;color:#8a8a9a;font-size:.8rem"></div>
+    </div>
+    <!-- Discussions Tab -->
+    <div class="tab-panel" id="tab-discussions">
+      <p style="color:#8a8a9a;font-size:.875rem">Showing all discussion posts across all guides. Click Delete to remove a post.</p>
+      <table>
+        <thead><tr><th>User</th><th>Guide</th><th>Content</th><th>Posted</th><th>Actions</th></tr></thead>
+        <tbody id="disc-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="../assets/js/qag-auth.js"></script>
+<script>
+const API='https://api.questandguides.com';
+function showTab(t){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  event.target.classList.add('active');
+  if(t==='users')loadUsers();
+  if(t==='discussions')loadDiscs();
+}
+function fmt(ts){if(!ts)return'—';const d=new Date(ts*1000);return d.toLocaleDateString()}
+function tierBadge(t){const cls=t==='admin'?'badge-admin':t==='pro'?'badge-pro':'badge-basic';return`<span class="badge ${cls}">${t}</span>`}
+async function loadStats(){
+  const r=await fetch(API+'/api/admin/stats',{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  const d=await r.json();
+  if(!d.success)return;
+  const s=d.stats;
+  document.getElementById('s-total-users').textContent=s.total_users;
+  document.getElementById('s-new-today').textContent=s.new_today;
+  document.getElementById('s-new-week').textContent=s.new_this_week;
+  document.getElementById('s-pro').textContent=s.pro_subscribers;
+  document.getElementById('s-views-today').textContent=s.views_today;
+  document.getElementById('s-views-week').textContent=s.views_this_week;
+  document.getElementById('s-total-views').textContent=s.total_page_views;
+  document.getElementById('s-discussions').textContent=s.total_discussions;
+  const tp=document.getElementById('top-pages');
+  tp.innerHTML=(d.top_pages||[]).map(p=>`<div class="page-row"><span class="page-path">${p.path}</span><span class="page-views">${p.views} views</span></div>`).join('');
+  const rb=document.getElementById('recent-users-body');
+  rb.innerHTML=(d.recent_users||[]).map(u=>`<tr><td>${u.display_name||'—'}</td><td>${u.email}</td><td>${tierBadge(u.tier)}</td><td>${u.provider||'email'}</td><td>${fmt(u.created_at)}</td></tr>`).join('');
+}
+let userPage=1;
+async function loadUsers(page=1){
+  userPage=page;
+  const q=document.getElementById('user-search').value;
+  const r=await fetch(`${API}/api/admin/users?page=${page}&q=${encodeURIComponent(q)}`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  const d=await r.json();
+  if(!d.success)return;
+  const b=document.getElementById('users-body');
+  b.innerHTML=(d.users||[]).map(u=>`<tr>
+    <td>${u.display_name||'—'}</td><td>${u.email}</td>
+    <td>${tierBadge(u.role)}</td><td>${tierBadge(u.tier)}</td><td>${fmt(u.created_at)}</td>
+    <td><button class="btn btn-sm-gold" onclick="setTier('${u.id}','pro')" style="margin-right:.25rem">Pro</button><button class="btn btn-sm-outline" onclick="setTier('${u.id}','basic')">Basic</button></td>
+  </tr>`).join('');
+  document.getElementById('users-pagination').textContent=`Page ${page} of ${Math.ceil(d.total/25)} (${d.total} users)`;
+}
+function searchUsers(){loadUsers(1)}
+async function setTier(id,tier){
+  await fetch(`${API}/api/admin/users/${id}/tier`,{method:'PUT',headers:{Authorization:'Bearer '+QAGAuth.getToken(),'Content-Type':'application/json'},body:JSON.stringify({tier})});
+  loadUsers(userPage);
+}
+async function loadDiscs(){
+  const r=await fetch(`${API}/api/discussions?guide=general&page=1`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  const d=await r.json();
+  const b=document.getElementById('disc-body');
+  b.innerHTML=(d.posts||[]).map(p=>`<tr>
+    <td>${p.display_name||'—'}</td><td>${p.guide_id}</td>
+    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.content}</td>
+    <td>${fmt(p.created_at)}</td>
+    <td><button class="btn btn-sm-danger" onclick="deletePost(${p.id})">Delete</button><button class="btn btn-sm-outline" onclick="pinPost(${p.id})" style="margin-left:.25rem">${p.pinned?'Unpin':'Pin'}</button></td>
+  </tr>`).join('');
+}
+async function deletePost(id){
+  if(!confirm('Delete this post?'))return;
+  await fetch(`${API}/api/discussions/${id}`,{method:'DELETE',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  loadDiscs();
+}
+async function pinPost(id){
+  await fetch(`${API}/api/discussions/${id}/pin`,{method:'POST',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  loadDiscs();
+}
+async function init(){
+  const user=QAGAuth.getUser();
+  if(!user||user.role!=='admin'){document.getElementById('access-denied').style.display='block';return}
+  document.getElementById('admin-content').style.display='block';
+  loadStats();
+}
+init();
+</script>
+</body>
 </html>

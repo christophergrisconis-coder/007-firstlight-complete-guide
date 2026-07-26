@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — Quest & Guides</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+body{background:#0a0a0f;color:#e0e0e8;font-family:'Inter',sans-serif;margin:0}
+.page-header{background:linear-gradient(135deg,#0d0d15 0%,#1a1a2e 100%);border-bottom:1px solid rgba(185,145,75,.2);padding:1rem 2rem;display:flex;align-items:center;gap:1rem}
+.page-header a{color:#b9914b;text-decoration:none;font-family:'Cinzel',serif;font-size:1.1rem}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.3rem;color:#e8d5a3;margin:0;flex:1;text-align:center}
+.container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+.card{background:#12121a;border:1px solid rgba(185,145,75,.2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.card-title{font-family:'Cinzel',serif;font-size:1rem;color:#b9914b;margin:0 0 1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(185,145,75,.15)}
+.avatar-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#b9914b,#8b6914);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.5rem;color:#0a0a0f;font-weight:700;flex-shrink:0}
+.avatar img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.user-info h2{font-family:'Cinzel',serif;font-size:1.2rem;color:#e8d5a3;margin:0 0 .25rem}
+.user-info p{color:#8a8a9a;font-size:.85rem;margin:0}
+.tier-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:20px;font-size:.75rem;font-weight:600;margin-top:.5rem}
+.tier-basic{background:rgba(100,100,120,.2);border:1px solid rgba(100,100,120,.4);color:#9a9aaa}
+.tier-pro{background:rgba(185,145,75,.15);border:1px solid rgba(185,145,75,.4);color:#b9914b}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:1rem}
+.stat-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1rem;text-align:center}
+.stat-num{font-family:'Cinzel',serif;font-size:1.6rem;color:#b9914b;display:block}
+.stat-label{font-size:.75rem;color:#8a8a9a;margin-top:.25rem}
+.guide-progress{display:flex;flex-direction:column;gap:.75rem}
+.guide-row{display:flex;align-items:center;gap:1rem}
+.guide-name{font-size:.875rem;color:#c8c8d8;min-width:160px}
+.progress-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#b9914b,#d4a85c);border-radius:3px;transition:width .5s ease}
+.progress-pct{font-size:.75rem;color:#b9914b;min-width:36px;text-align:right}
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+.btn{padding:.6rem 1.25rem;border-radius:8px;font-size:.875rem;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0a0f;font-weight:600}
+.btn-outline{background:transparent;border:1px solid rgba(185,145,75,.4);color:#b9914b}
+.btn-outline:hover{background:rgba(185,145,75,.1)}
+.btn-danger{background:transparent;border:1px solid rgba(220,53,69,.3);color:#ff6b7a}
+.btn-danger:hover{background:rgba(220,53,69,.1)}
+.not-signed-in{text-align:center;padding:4rem 2rem}
+.not-signed-in h2{font-family:'Cinzel',serif;color:#e8d5a3;margin-bottom:1rem}
+.not-signed-in p{color:#8a8a9a;margin-bottom:2rem}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <a href="/gaming-hub/">&#9876; Quest &amp; Guides</a>
+  <h1>My Account</h1>
+</div>
+<div class="container" id="main-content">
+  <div class="not-signed-in" id="not-signed-in" style="display:none">
+    <h2>Not Signed In</h2>
+    <p>Sign in to view your account and sync your guide progress.</p>
+    <a href="signin.html?next=/gaming-hub/pages/account.html" class="btn btn-primary" style="text-decoration:none;display:inline-block">Sign In</a>
+  </div>
+  <div id="account-content" style="display:none">
+    <div class="card">
+      <div class="avatar-row">
+        <div class="avatar" id="avatar-el">?</div>
+        <div class="user-info">
+          <h2 id="user-name">Loading…</h2>
+          <p id="user-email"></p>
+          <span class="tier-badge tier-basic" id="tier-badge">Free</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a href="subscribe.html" class="btn btn-primary" id="upgrade-btn" style="text-decoration:none">Upgrade to Pro</a>
+        <button class="btn btn-danger" onclick="QAGAuth.signOut()">Sign Out</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Guide Progress</div>
+      <div class="stat-grid" id="stat-grid"></div>
+      <div class="guide-progress" id="guide-progress"></div>
+    </div>
+  </div>
+</div>
+<script src="../assets/js/qag-auth.js"></script>
+<script>
+const GUIDES=[
+  {id:'ac-shadows',name:'AC Shadows',total:982},
+  {id:'ghost-of-yotei',name:'Ghost of Yotei',total:500},
+  {id:'rdr2',name:'Red Dead 2',total:400},
+  {id:'007',name:'007 First Light',total:200}
+];
+async function init(){
+  const user=QAGAuth.getUser();
+  if(!user){document.getElementById('not-signed-in').style.display='block';return}
+  document.getElementById('account-content').style.display='block';
+  document.getElementById('user-name').textContent=user.display_name||user.email;
+  document.getElementById('user-email').textContent=user.email;
+  const av=document.getElementById('avatar-el');
+  av.textContent=(user.display_name||user.email||'?')[0].toUpperCase();
+  const badge=document.getElementById('tier-badge');
+  if(user.tier==='pro'||user.role==='admin'){badge.textContent=user.role==='admin'?'Admin':'Pro';badge.className='tier-badge tier-pro';document.getElementById('upgrade-btn').style.display='none'}
+  let totalChecked=0,totalItems=0;
+  const progEl=document.getElementById('guide-progress');
+  for(const g of GUIDES){
+    const p=await QAGAuth.loadProgress(g.id)||{};
+    const checked=Object.values(p).filter(Boolean).length;
+    totalChecked+=checked;totalItems+=g.total;
+    const pct=Math.round((checked/g.total)*100);
+    progEl.innerHTML+=`<div class="guide-row"><span class="guide-name">${g.name}</span><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div><span class="progress-pct">${pct}%</span></div>`;
+  }
+  document.getElementById('stat-grid').innerHTML=`
+    <div class="stat-box"><span class="stat-num">${GUIDES.length}</span><div class="stat-label">Guides Tracked</div></div>
+    <div class="stat-box"><span class="stat-num">${totalChecked}</span><div class="stat-label">Items Completed</div></div>
+    <div class="stat-box"><span class="stat-num">${Math.round((totalChecked/Math.max(totalItems,1))*100)}%</span><div class="stat-label">Overall Progress</div></div>
+  `;
+}
+init();
+</script>
+</body>
+</html>
