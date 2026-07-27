@@ -2,6 +2,7 @@ export const GAMES = [
   {
     id: "assassins-creed-shadows",
     title: "Assassin's Creed Shadows",
+    image: "/gaming-hub/assets/img/games/ac-shadows-hero.jpg",
     genre: ["Action RPG", "Open World", "Stealth"],
     platform: ["PC", "PS5", "Xbox"],
     releaseWindow: "Active guide",
@@ -19,6 +20,7 @@ export const GAMES = [
   {
     id: "007-first-light",
     title: "007: First Light",
+    image: "/gaming-hub/assets/img/games/007-hero.jpg",
     genre: ["Action", "Stealth"],
     platform: ["PC", "PS5", "Xbox"],
     releaseWindow: "Active guide",
@@ -36,6 +38,7 @@ export const GAMES = [
   {
     id: "ghost-of-yotei",
     title: "Ghost of Yotei",
+    image: "/gaming-hub/assets/img/games/ghost-of-yotei-hero.jpg",
     genre: ["Action", "Open World"],
     platform: ["PS5"],
     releaseWindow: "Recent / Active interest",
@@ -53,6 +56,7 @@ export const GAMES = [
   {
     id: "red-dead-redemption",
     title: "Red Dead Redemption",
+    image: "/gaming-hub/assets/img/games/rdr1-hero.jpg",
     genre: ["Action Adventure", "Open World"],
     platform: ["PS4", "Switch", "Xbox"],
     releaseWindow: "Classic / Still popular",
@@ -70,6 +74,7 @@ export const GAMES = [
   {
     id: "red-dead-redemption-2",
     title: "Red Dead Redemption 2",
+    image: "/gaming-hub/assets/img/games/rdr2-hero.jpg",
     genre: ["Action Adventure", "Open World"],
     platform: ["PC", "PS4", "Xbox"],
     releaseWindow: "Evergreen / Highly active",

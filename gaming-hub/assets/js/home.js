@@ -45,8 +45,11 @@ const renderHomeGuidePreview = () => {
   homeGuidePreviewGrid.innerHTML = picks
     .map((game) => {
       const quick = (game.guideSections || []).slice(0, 2);
+      const imgStyle = game.image
+        ? `style="background-image:linear-gradient(rgba(8,6,4,.5),rgba(8,6,4,.88)),url('${game.image}');background-size:cover;background-position:center top"`
+        : '';
       return `
-        <article class="panel game-card home-preview-card">
+        <article class="panel game-card home-preview-card" ${imgStyle}>
           <p class="eyebrow">${game.featured ? "Popular Pick" : "Guide Pick"}</p>
           <h3>${game.title}</h3>
           <p>${game.description}</p>
