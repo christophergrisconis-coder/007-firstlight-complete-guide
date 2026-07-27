@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Witcher 3: Wild Hunt — 100% Completion Guide | Quest & Guides</title>
+<meta name="description" content="Complete 100% guide for The Witcher 3: Wild Hunt. All main quests, all 26 contracts, all side quests, all Gwent cards, all witcher gear sets, all 79 trophies, and both DLCs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#04060a;--bg2:#080c10;--bg3:#0e1218;--bg4:#141820;
+  --txt:#dde0e8;--dim:#7880a0;--faint:#404858;
+  --gold:#b8a040;--gold2:#d8c060;--gold3:#f0d878;
+  --green:#2a5a30;--green2:#3a7040;--emerald:#50c060;
+  --red:#5a1a20;--crimson:#b02838;
+  --line:rgba(184,160,64,.10);--line2:rgba(184,160,64,.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:112px;background:var(--bg1);color:var(--txt);font-family:'Inter',system-ui,sans-serif}
+body{min-height:100vh}
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(4,6,10,.97);border-bottom:1px solid var(--line2);backdrop-filter:blur(10px)}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.08em;white-space:nowrap;margin-right:24px;flex-shrink:0}
+.qag-brand span{color:var(--gold2)}
+.qag-navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.qag-navlinks::-webkit-scrollbar{display:none}
+.qag-navlinks a{color:var(--dim);text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.qag-navlinks a:hover{color:var(--gold2);background:rgba(184,160,64,.1)}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qag-nav-auth a{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .15s}
+.qag-signin-btn{color:var(--dim);border:1px solid var(--line2)}
+.qag-signin-btn:hover{color:var(--gold2)}
+.qag-signup-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#040608;border:none}
+.qag-nav-user{display:none;align-items:center;gap:10px}
+.qag-nav-username{font-size:12px;color:var(--gold);font-weight:600}
+.qag-signout-btn{font-size:11px;color:var(--dim);background:none;border:1px solid var(--line2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.qag-signout-btn:hover{color:var(--gold2)}
+.qag-hamburger{display:none;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer;padding:4px 8px;margin-left:8px}
+.qag-mobile-menu{display:none;flex-direction:column;background:rgba(4,6,10,.98);border-top:1px solid var(--line);padding:12px 16px 16px}
+.qag-mobile-menu a,.qag-mobile-menu button{display:block;color:var(--dim);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;width:100%}
+.qag-mobile-menu a:hover,.qag-mobile-menu button:hover{color:var(--gold2)}
+.qag-mobile-menu.open{display:flex}
+@media(max-width:768px){.qag-navlinks,.qag-nav-auth{display:none}.qag-nav-user{display:none!important}.qag-hamburger{display:block}}
+.guide-hero{position:relative;min-height:200px;background:linear-gradient(180deg,#060a06 0%,#04060a 100%);overflow:hidden;display:flex;align-items:flex-end}
+.guide-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,rgba(50,120,60,.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 60%,rgba(184,160,64,.12) 0%,transparent 50%)}
+.guide-hero-content{position:relative;z-index:1;padding:24px 16px 20px;max-width:900px;margin:0 auto;width:100%}
+.guide-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line2);border-radius:3px;padding:2px 8px;margin-bottom:10px}
+.guide-hero-content h1{font-family:'Cinzel',serif;font-size:clamp(20px,5vw,36px);font-weight:700;color:var(--txt);line-height:1.15;margin-bottom:6px}
+.guide-hero-content .subtitle{color:var(--dim);font-size:13px;margin-bottom:14px}
+.progress-bar-wrap{background:var(--bg3);border-radius:8px;overflow:hidden;height:8px;max-width:400px;margin-bottom:6px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--green2),var(--emerald));transition:width .4s;border-radius:8px}
+.progress-label{font-size:12px;color:var(--dim)}
+.progress-label b{color:var(--gold2)}
+.guide-nav{background:var(--bg2);border-bottom:1px solid var(--line);position:sticky;top:48px;z-index:100;overflow-x:auto;scrollbar-width:none}
+.guide-nav::-webkit-scrollbar{display:none}
+.guide-nav-inner{display:flex;gap:0;padding:0 16px;max-width:900px;margin:0 auto}
+.guide-nav-inner a{color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.guide-nav-inner a:hover{color:var(--gold2);border-bottom-color:var(--gold)}
+main{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+section{margin-bottom:28px}
+.sec-hd{background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--line);border-radius:10px 10px 0 0;padding:14px 18px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.sec-hd h2{font-family:'Cinzel',serif;font-size:clamp(15px,3vw,20px);font-weight:700;color:var(--txt);line-height:1.2}
+.sec-hd .sec-meta{text-align:right;flex-shrink:0}
+.sec-hd .sec-pct{font-size:20px;font-weight:700;color:var(--gold2);font-family:'Cinzel',serif}
+.sec-hd .sec-count{font-size:11px;color:var(--faint);display:block}
+.sec-body{background:var(--bg2);border:1px solid var(--line);border-top:none;border-radius:0 0 10px 10px;overflow:hidden}
+.sec-note{color:var(--dim);font-size:13px;padding:9px 16px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin:8px 12px}
+.card{border-bottom:1px solid var(--line);overflow:hidden}
+.card:last-child{border-bottom:none}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;background:var(--bg2);transition:background .15s}
+.card-hd:hover{background:var(--bg3)}
+.card.open .card-hd{background:var(--bg3)}
+.chev{color:var(--gold);font-size:11px;transition:transform .2s;display:inline-block;flex-shrink:0}
+.card.open .chev{transform:rotate(90deg)}
+.card-hd h3{flex:1;font-size:13px;color:var(--txt);font-weight:600}
+.cpct{font-size:11px;color:var(--faint);white-space:nowrap}
+.mini-bar{height:3px;background:var(--line)}
+.mini-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--green2),var(--emerald));transition:width .3s}
+.card-bd{display:none;padding:4px 0 8px}
+.card.open .card-bd{display:block}
+.row{padding:8px 16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.row:last-child{border-bottom:none}
+.row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.row-top label{flex:1;min-width:0;cursor:pointer;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.row-top label b{color:var(--txt);font-size:13px}
+.row-top label small{color:var(--dim);font-size:12px;display:block;margin-top:2px}
+input[type=checkbox]{accent-color:var(--emerald);width:15px;height:15px;flex:0 0 15px;cursor:pointer;margin-top:2px}
+input[type=checkbox]:checked+label b{color:var(--faint);text-decoration:line-through}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:3px;text-transform:uppercase;margin-left:4px}
+.tag.gold{background:#201808;color:var(--gold);border:1px solid #4a3810}
+.tag.silver{background:#141420;color:#a0a8c8;border:1px solid #303060}
+.tag.bronze{background:#180c08;color:#c09070;border:1px solid #402818}
+.tag.plat{background:#180820;color:#d080ff;border:1px solid #4a2060}
+.tag.warn{background:#201008;color:#e0a060;border:1px solid #503010}
+.tag.miss{background:#200808;color:#e06060;border:1px solid #501010}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px 0}
+button.btn{background:var(--bg3);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .15s}
+button.btn:hover{color:var(--gold2);border-color:var(--gold)}
+button.btn.danger:hover{color:#e08080;border-color:#e08080}
+.searchbox{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;color:var(--txt);padding:9px 14px;font-size:14px;margin-bottom:14px}
+.searchbox:focus{outline:none;border-color:var(--gold)}
+.hidden{display:none!important}
+.miss-banner{background:rgba(176,40,56,.15);border:1px solid var(--crimson);border-radius:6px;padding:10px 14px;margin:0 0 16px;color:#f0a0a0;font-size:13px}
+.miss-banner b{color:var(--crimson)}
+.content-gate-wall{margin:32px 0;padding:32px 24px;background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line2);border-radius:12px;text-align:center}
+.content-gate-wall h3{color:var(--gold2);font-size:20px;margin-bottom:10px;font-family:'Cinzel',serif}
+.content-gate-wall p{color:var(--dim);font-size:14px;max-width:480px;margin:0 auto 20px}
+.gate-btn{display:inline-block;padding:11px 28px;background:var(--crimson);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;letter-spacing:.04em;transition:background .15s}
+.gate-btn:hover{background:var(--red)}
+.gate-btn.secondary{background:transparent;border:1px solid var(--line2);color:var(--dim);margin-left:10px}
+.gate-btn.secondary:hover{border-color:var(--gold);color:var(--gold)}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
+footer b{color:var(--dim)}
+@media(max-width:640px){html{scroll-padding-top:130px}main{padding:16px 8px 70px}}
+</style>
+</head>
+<body>
+
+<!-- SITE NAV -->
+<nav class="qag-sitenav" id="qag-sitenav">
+  <div class="qag-sitenav-inner">
+    <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
+    <div class="qag-navlinks">
+      <a href="/gaming-hub/">Home</a>
+      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/search.html">Search</a>
+      <a href="/gaming-hub/pages/community.html">Community</a>
+      <a href="/gaming-hub/pages/help.html">Help</a>
+      <a href="/gaming-hub/pages/contact.html">Contact</a>
+      <a href="/gaming-hub/pages/donations.html">Donate</a>
+      <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
+    </div>
+    <div class="qag-nav-auth" id="qag-nav-auth">
+      <a class="qag-signin-btn" href="/gaming-hub/pages/signin.html">Sign In</a>
+      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Sign Up</a>
+    </div>
+    <div class="qag-nav-user" id="qag-nav-user">
+      <span class="qag-nav-username" id="qag-nav-username"></span>
+      <button class="qag-signout-btn" id="qag-signout-btn">Sign Out</button>
+    </div>
+    <button class="qag-hamburger" id="qag-hamburger" aria-label="Menu">&#9776;</button>
+  </div>
+  <div class="qag-mobile-menu" id="qag-mobile-menu">
+    <a href="/gaming-hub/">Home</a>
+    <a href="/gaming-hub/pages/games.html">Games</a>
+    <a href="/gaming-hub/pages/search.html">Search</a>
+    <a href="/gaming-hub/pages/community.html">Community</a>
+    <a href="/gaming-hub/pages/help.html">Help</a>
+    <a href="/gaming-hub/pages/contact.html">Contact</a>
+    <a href="/gaming-hub/pages/donations.html">Donate</a>
+    <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
+    <div id="qag-mobile-auth">
+      <a href="/gaming-hub/pages/signin.html">Sign In</a>
+      <a href="/gaming-hub/pages/signup.html">Sign Up</a>
+    </div>
+    <div id="qag-mobile-user" style="display:none">
+      <span id="qag-mobile-username" style="color:var(--gold);font-size:13px;font-weight:600;display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)"></span>
+      <button id="qag-mobile-signout" style="display:block;color:var(--dim);background:none;border:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;cursor:pointer;text-align:left;width:100%">Sign Out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="guide-hero">
+  <div class="guide-hero-bg"></div>
+  <div class="guide-hero-content">
+    <span class="guide-badge">100% Completion Guide</span>
+    <h1>The Witcher 3: Wild Hunt</h1>
+    <p class="subtitle">All main quests &bull; All 26 contracts &bull; All Gwent cards &bull; All witcher gear sets &bull; Both DLCs &bull; All 79 trophies &bull; Platinum</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="main-progress-fill" style="width:0%"></div></div>
+    <p class="progress-label"><b id="main-pct-label">0%</b> complete &mdash; <span id="main-count-label">0 / 0</span> tasks</p>
+  </div>
+</div>
+
+<!-- GUIDE NAV -->
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#main-quests">Main Quests</a>
+    <a href="#contracts">Contracts</a>
+    <a href="#side-quests">Side Quests</a>
+    <a href="#gwent">Gwent</a>
+    <a href="#witcher-gear">Witcher Gear</a>
+    <a href="#hearts-of-stone">Hearts of Stone</a>
+    <a href="#blood-and-wine">Blood and Wine</a>
+    <a href="#trophies">All Trophies</a>
+  </div>
+</nav>
+
+<main>
+  <div class="btnrow">
+    <button class="btn" onclick="expandAll()">Expand All</button>
+    <button class="btn" onclick="collapseAll()">Collapse All</button>
+    <button class="btn danger" onclick="resetAll()">Reset Progress</button>
+  </div>
+  <input class="searchbox" type="search" placeholder="Search quests, contracts, trophies..." oninput="filterRows(this.value)">
+
+  <div class="miss-banner"><b>&#9888; Missable Trophies Warning:</b> Several trophies are missable due to story choices. Key ones: <b>Assassin of Kings</b> (kill Radovid in Reason of State), <b>Family Counselor</b> (save the Baron's wife and daughter — requires specific choices in Ladies of the Wood and Family Matters), <b>Kingmaker</b> (requires supporting Dijkstra). Plan your choices before Act III.</div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="sec-hd">
+      <h2>Recommended Completion Order</h2>
+      <div class="sec-meta"><div class="sec-pct" style="font-size:13px;color:var(--dim)">Read First</div></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">79 trophies total (PS) or 78 achievements (PC/Xbox). Estimated time: 90–150 hours. Difficulty: 7/10. Play on Death March for the "I'm Not Afraid of Anything" trophy. Do NOT start NG+ until all base game trophies are earned.</p>
+      <div class="card" id="card-order">
+        <div class="card-hd" onclick="toggleCard('card-order')">
+          <span class="chev">&#9658;</span>
+          <h3>Stage-by-Stage Roadmap</h3>
+        </div>
+        <div class="card-bd">
+          <div class="row"><div class="row-top"><label><b>Stage 1 — White Orchard (Prologue)</b><small>Complete all quests, contracts, and POIs in White Orchard. Get the Kaer Morhen Trained trophy. Do NOT skip the training.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 2 — Velen (Act I)</b><small>Complete all Velen main quests, side quests, and contracts. The Baron questline (Family Matters) has the most missable choices. Complete Ladies of the Wood carefully.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 3 — Novigrad (Act I)</b><small>Complete all Novigrad quests. Collect Gwent cards from merchants and players. Do all fist fights and horse races for Brawl Master and Fast and Furious trophies.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 4 — Skellige (Act I)</b><small>Complete all Skellige quests and contracts. Finish the Skellige succession questline. Collect remaining Gwent cards. Do the Brawler trophy fight against Olaf.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 5 — Kaer Morhen (Act II)</b><small>Complete the Battle of Kaer Morhen. Bring as many allies as possible for the best ending. This is where Ciri's fate is largely determined.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 6 — Act III (Endgame)</b><small>Complete Reason of State (kill Radovid for Assassin of Kings). Finish all remaining quests. Save before the point of no return. Get all 3 endings on separate saves.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 7 — Mop-Up</b><small>Clear all remaining POIs, collect all Gwent cards, craft all witcher gear sets. Get any remaining combat/crafting trophies.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 8 — Hearts of Stone DLC</b><small>Complete the full HoS questline. Missable: The Caretaker fight. Get all HoS-specific trophies.</small></label></div></div>
+          <div class="row"><div class="row-top"><label><b>Stage 9 — Blood and Wine DLC</b><small>Complete the full BaW questline in Toussaint. Get the good ending (save Syanna and Anna Henrietta). Collect all BaW Gwent cards. Upgrade Corvo Bianco.</small></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN QUESTS -->
+  <section id="main-quests">
+    <div class="sec-hd">
+      <h2>Main Quests</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-mainquests">0%</div><span class="sec-count" id="cnt-mainquests">0 / 37</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">37 main quests across Prologue, Act I, Act II, and Act III. Complete all for the "Passed the Trial" trophy. Several quests have missable choices that affect the ending.</p>
+      <div class="card" id="card-mq-prologue">
+        <div class="card-hd" onclick="toggleCard('card-mq-prologue')">
+          <span class="chev">&#9658;</span>
+          <h3>Prologue — White Orchard</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-mq-prologue"></i></div>
+          <span class="cpct" id="cpct-mq-prologue">0/5</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="kaer morhen prologue main quest" id="row-mq1"><div class="row-top"><input type="checkbox" id="mq1" onchange="tick('mainquests','mq1')"><label for="mq1"><b>Kaer Morhen</b><small>Tutorial. Complete all training with Vesemir. Unlocks Kaer Morhen Trained trophy.</small></label></div></div>
+          <div class="row" data-search="lilac and gooseberries prologue main quest" id="row-mq2"><div class="row-top"><input type="checkbox" id="mq2" onchange="tick('mainquests','mq2')"><label for="mq2"><b>Lilac and Gooseberries</b><small>Track Yennefer to White Orchard. Speak with the innkeeper.</small></label></div></div>
+          <div class="row" data-search="the beast of white orchard prologue main quest" id="row-mq3"><div class="row-top"><input type="checkbox" id="mq3" onchange="tick('mainquests','mq3')"><label for="mq3"><b>The Beast of White Orchard</b><small>Kill the griffin terrorizing White Orchard. First major monster hunt.</small></label></div></div>
+          <div class="row" data-search="the incident at white orchard prologue main quest" id="row-mq4"><div class="row-top"><input type="checkbox" id="mq4" onchange="tick('mainquests','mq4')"><label for="mq4"><b>The Incident at White Orchard</b><small>Triggered after the griffin fight. Leads to leaving White Orchard.</small></label></div></div>
+          <div class="row" data-search="imperial audience vizima main quest" id="row-mq5"><div class="row-top"><input type="checkbox" id="mq5" onchange="tick('mainquests','mq5')"><label for="mq5"><b>Imperial Audience</b><small>Meet Emperor Emhyr var Emreis in Vizima. Receive the mission to find Ciri.</small></label></div></div>
+        </div>
+      </div>
+      <div class="card" id="card-mq-act1">
+        <div class="card-hd" onclick="toggleCard('card-mq-act1')">
+          <span class="chev">&#9658;</span>
+          <h3>Act I — Velen, Novigrad, Skellige</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-mq-act1"></i></div>
+          <span class="cpct" id="cpct-mq-act1">0/20</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="bloody baron family matters velen main quest missable" id="row-mq6"><div class="row-top"><input type="checkbox" id="mq6" onchange="tick('mainquests','mq6')"><label for="mq6"><b>Bloody Baron (Family Matters)</b><small>Find Ciri's trail through the Baron. Missable: choices here affect the Baron's fate and Family Counselor trophy.</small><span class="tag miss">Missable</span></label></div></div>
+          <div class="row" data-search="ladies of the wood velen main quest" id="row-mq7"><div class="row-top"><input type="checkbox" id="mq7" onchange="tick('mainquests','mq7')"><label for="mq7"><b>Ladies of the Wood</b><small>Investigate the Crones of Crookback Bog. Choices here affect the Baron questline ending.</small><span class="tag miss">Missable</span></label></div></div>
+          <div class="row" data-search="wandering in the dark velen main quest" id="row-mq8"><div class="row-top"><input type="checkbox" id="mq8" onchange="tick('mainquests','mq8')"><label for="mq8"><b>Wandering in the Dark</b><small>Explore the elven ruins with Keira Metz. Find clues about the Wild Hunt.</small></label></div></div>
+          <div class="row" data-search="magic lamp velen main quest keira" id="row-mq9"><div class="row-top"><input type="checkbox" id="mq9" onchange="tick('mainquests','mq9')"><label for="mq9"><b>Magic Lamp</b><small>Retrieve the magic lamp for Keira Metz during Wandering in the Dark.</small></label></div></div>
+          <div class="row" data-search="hunting a witch velen main quest" id="row-mq10"><div class="row-top"><input type="checkbox" id="mq10" onchange="tick('mainquests','mq10')"><label for="mq10"><b>Hunting a Witch</b><small>Find Keira Metz in Velen. Leads to Wandering in the Dark.</small></label></div></div>
+          <div class="row" data-search="novigrad dreaming main quest" id="row-mq11"><div class="row-top"><input type="checkbox" id="mq11" onchange="tick('mainquests','mq11')"><label for="mq11"><b>Novigrad Dreaming</b><small>Investigate Novigrad for Ciri's trail. Meet Triss Merigold.</small></label></div></div>
+          <div class="row" data-search="broken flowers novigrad main quest triss" id="row-mq12"><div class="row-top"><input type="checkbox" id="mq12" onchange="tick('mainquests','mq12')"><label for="mq12"><b>Broken Flowers</b><small>Help Dandelion by finding his contacts. Introduces the Novigrad storyline.</small></label></div></div>
+          <div class="row" data-search="get junior novigrad main quest" id="row-mq13"><div class="row-top"><input type="checkbox" id="mq13" onchange="tick('mainquests','mq13')"><label for="mq13"><b>Get Junior</b><small>Track down Whoreson Junior in Novigrad. Major Novigrad quest.</small></label></div></div>
+          <div class="row" data-search="count reuven's treasure novigrad main quest" id="row-mq14"><div class="row-top"><input type="checkbox" id="mq14" onchange="tick('mainquests','mq14')"><label for="mq14"><b>Count Reuven's Treasure</b><small>Help Dijkstra recover his stolen treasure. Leads to Reason of State later.</small></label></div></div>
+          <div class="row" data-search="a favor for radovid novigrad main quest" id="row-mq15"><div class="row-top"><input type="checkbox" id="mq15" onchange="tick('mainquests','mq15')"><label for="mq15"><b>A Favor for Radovid</b><small>Spy mission for King Radovid. Sets up the Reason of State questline.</small></label></div></div>
+          <div class="row" data-search="pyres of novigrad main quest" id="row-mq16"><div class="row-top"><input type="checkbox" id="mq16" onchange="tick('mainquests','mq16')"><label for="mq16"><b>Pyres of Novigrad</b><small>Rescue Triss from the witch hunters. Key Novigrad quest.</small></label></div></div>
+          <div class="row" data-search="now or never novigrad main quest triss romance" id="row-mq17"><div class="row-top"><input type="checkbox" id="mq17" onchange="tick('mainquests','mq17')"><label for="mq17"><b>Now or Never</b><small>Help Triss evacuate mages from Novigrad. Romance opportunity with Triss.</small></label></div></div>
+          <div class="row" data-search="the isle of mists main quest act 2" id="row-mq18"><div class="row-top"><input type="checkbox" id="mq18" onchange="tick('mainquests','mq18')"><label for="mq18"><b>The Isle of Mists</b><small>Find Ciri on the Isle of Mists. <b>Point of No Return</b> — complete all side quests before this.</small><span class="tag warn">Point of No Return</span></label></div></div>
+          <div class="row" data-search="the king is dead long live the king skellige main quest" id="row-mq19"><div class="row-top"><input type="checkbox" id="mq19" onchange="tick('mainquests','mq19')"><label for="mq19"><b>The King is Dead — Long Live the King</b><small>Attend King Bran's funeral in Skellige. Begins the Skellige succession arc.</small></label></div></div>
+          <div class="row" data-search="missing persons skellige main quest" id="row-mq20"><div class="row-top"><input type="checkbox" id="mq20" onchange="tick('mainquests','mq20')"><label for="mq20"><b>Missing Persons</b><small>Search for Ciri's trail in Skellige. Leads to Bald Mountain.</small></label></div></div>
+          <div class="row" data-search="ugly baby skellige main quest" id="row-mq21"><div class="row-top"><input type="checkbox" id="mq21" onchange="tick('mainquests','mq21')"><label for="mq21"><b>Ugly Baby</b><small>Find Avallac'h's laboratory. Leads to the Kaer Morhen gathering.</small></label></div></div>
+          <div class="row" data-search="bald mountain skellige main quest crones" id="row-mq22"><div class="row-top"><input type="checkbox" id="mq22" onchange="tick('mainquests','mq22')"><label for="mq22"><b>Bald Mountain</b><small>Confront the Crones of Crookback Bog. Major boss fight. Affects the Baron's fate.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the sunstone skellige main quest" id="row-mq23"><div class="row-top"><input type="checkbox" id="mq23" onchange="tick('mainquests','mq23')"><label for="mq23"><b>The Sunstone</b><small>Find the Sunstone to lure the Wild Hunt. Requires completing Skellige succession quests.</small></label></div></div>
+          <div class="row" data-search="veni vidi vigo main quest skellige" id="row-mq24"><div class="row-top"><input type="checkbox" id="mq24" onchange="tick('mainquests','mq24')"><label for="mq24"><b>Veni Vidi Vigo</b><small>Meet Avallac'h and Ciri. Prepares for the final battle.</small></label></div></div>
+          <div class="row" data-search="on thin ice main quest wild hunt" id="row-mq25"><div class="row-top"><input type="checkbox" id="mq25" onchange="tick('mainquests','mq25')"><label for="mq25"><b>On Thin Ice</b><small>Battle the Wild Hunt on the frozen sea. Leads to the final sequence.</small></label></div></div>
+        </div>
+      </div>
+      <div class="card" id="card-mq-act2">
+        <div class="card-hd" onclick="toggleCard('card-mq-act2')">
+          <span class="chev">&#9658;</span>
+          <h3>Act II &amp; III — Kaer Morhen &amp; Endgame</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-mq-act2"></i></div>
+          <span class="cpct" id="cpct-mq-act2">0/12</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="the battle of kaer morhen act 2 main quest" id="row-mq26"><div class="row-top"><input type="checkbox" id="mq26" onchange="tick('mainquests','mq26')"><label for="mq26"><b>The Battle of Kaer Morhen</b><small>Defend Kaer Morhen from the Wild Hunt. Bring as many allies as possible for the best ending. Eskel/Lambert/Zoltan/Triss/Yen/Keira all contribute.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="blood on the battlefield act 2 main quest ciri" id="row-mq27"><div class="row-top"><input type="checkbox" id="mq27" onchange="tick('mainquests','mq27')"><label for="mq27"><b>Blood on the Battlefield</b><small>Aftermath of Kaer Morhen. Key choices here determine Ciri's fate (witcher or empress ending).</small><span class="tag miss">Missable</span></label></div></div>
+          <div class="row" data-search="final preparations act 3 main quest" id="row-mq28"><div class="row-top"><input type="checkbox" id="mq28" onchange="tick('mainquests','mq28')"><label for="mq28"><b>Final Preparations</b><small>Prepare for the final battle. Gather allies. Yen's quest and Triss's quest branch here.</small></label></div></div>
+          <div class="row" data-search="reason of state act 3 main quest radovid missable" id="row-mq29"><div class="row-top"><input type="checkbox" id="mq29" onchange="tick('mainquests','mq29')"><label for="mq29"><b>Reason of State</b><small>Assassinate King Radovid with Dijkstra, Roche, and Ves. Required for Assassin of Kings trophy. <b>Must complete Count Reuven's Treasure and A Favor for Radovid first.</b></small><span class="tag miss">Missable Trophy</span></label></div></div>
+          <div class="row" data-search="a deadly plot act 3 main quest dijkstra" id="row-mq30"><div class="row-top"><input type="checkbox" id="mq30" onchange="tick('mainquests','mq30')"><label for="mq30"><b>A Deadly Plot</b><small>Uncover the conspiracy against Dijkstra. Leads into Reason of State.</small></label></div></div>
+          <div class="row" data-search="something ends something begins act 3 main quest ending" id="row-mq31"><div class="row-top"><input type="checkbox" id="mq31" onchange="tick('mainquests','mq31')"><label for="mq31"><b>Something Ends, Something Begins</b><small>The game's epilogue. Plays after the final boss. Different versions depending on your choices.</small></label></div></div>
+          <div class="row" data-search="through time and space act 3 main quest avallach" id="row-mq32"><div class="row-top"><input type="checkbox" id="mq32" onchange="tick('mainquests','mq32')"><label for="mq32"><b>Through Time and Space</b><small>Travel through dimensions with Avallac'h. Unique quest with multiple strange environments.</small></label></div></div>
+          <div class="row" data-search="tedd deireadh the final age act 3 main quest" id="row-mq33"><div class="row-top"><input type="checkbox" id="mq33" onchange="tick('mainquests','mq33')"><label for="mq33"><b>Tedd Deireadh, the Final Age</b><small>The final battle against the White Frost and Eredin. Last main quest before the ending.</small></label></div></div>
+          <div class="row" data-search="the child of the elder blood act 3 main quest" id="row-mq34"><div class="row-top"><input type="checkbox" id="mq34" onchange="tick('mainquests','mq34')"><label for="mq34"><b>The Child of the Elder Blood</b><small>Ciri's solo section. Your choices in this quest affect the final ending.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="cat school techniques act 3 main quest" id="row-mq35"><div class="row-top"><input type="checkbox" id="mq35" onchange="tick('mainquests','mq35')"><label for="mq35"><b>Cat School Techniques</b><small>Optional main-category quest. Find all Cat School gear diagrams.</small></label></div></div>
+          <div class="row" data-search="the great escape act 3 main quest" id="row-mq36"><div class="row-top"><input type="checkbox" id="mq36" onchange="tick('mainquests','mq36')"><label for="mq36"><b>The Great Escape</b><small>Rescue Margarita Laux-Antille from the Oxenfurt prison.</small></label></div></div>
+          <div class="row" data-search="brothers in arms act 3 main quest allies" id="row-mq37"><div class="row-top"><input type="checkbox" id="mq37" onchange="tick('mainquests','mq37')"><label for="mq37"><b>Brothers in Arms (Velen/Novigrad/Skellige/Nilfgaard)</b><small>Recruit all available allies for the Battle of Kaer Morhen. Do all 4 versions for the best outcome.</small><span class="tag miss">Affects Ending</span></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRACTS -->
+  <section id="contracts">
+    <div class="sec-hd">
+      <h2>Witcher Contracts</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-contracts">0%</div><span class="sec-count" id="cnt-contracts">0 / 26</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">Complete all 26 contracts for the "Veteran" trophy. 1 in White Orchard, 11 in Velen, 8 in Novigrad/Oxenfurt, 6 in Skellige. No missable contracts.</p>
+      <div class="card" id="card-contracts">
+        <div class="card-hd" onclick="toggleCard('card-contracts')">
+          <span class="chev">&#9658;</span>
+          <h3>All 26 Contracts</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-contracts"></i></div>
+          <span class="cpct" id="cpct-contracts">0/26</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="contract devil by the well white orchard" id="row-c1"><div class="row-top"><input type="checkbox" id="c1" onchange="tick('contracts','c1')"><label for="c1"><b>Devil by the Well</b><small>White Orchard. Kill the Noonwraith haunting the abandoned village well.</small></label></div></div>
+          <div class="row" data-search="contract the merry widow velen" id="row-c2"><div class="row-top"><input type="checkbox" id="c2" onchange="tick('contracts','c2')"><label for="c2"><b>The Merry Widow</b><small>Velen. Kill the Grave Hag terrorizing the village of Lindenvale.</small></label></div></div>
+          <div class="row" data-search="contract swamp thing velen" id="row-c3"><div class="row-top"><input type="checkbox" id="c3" onchange="tick('contracts','c3')"><label for="c3"><b>Swamp Thing</b><small>Velen. Kill the Foglet in the swamp near Downwarren.</small></label></div></div>
+          <div class="row" data-search="contract the white lady velen" id="row-c4"><div class="row-top"><input type="checkbox" id="c4" onchange="tick('contracts','c4')"><label for="c4"><b>The White Lady</b><small>Velen. Kill the Noonwraith haunting the fields near Farcorners.</small></label></div></div>
+          <div class="row" data-search="contract mysterious tracks velen" id="row-c5"><div class="row-top"><input type="checkbox" id="c5" onchange="tick('contracts','c5')"><label for="c5"><b>Mysterious Tracks</b><small>Velen. Investigate and kill the Werewolf near Blackbough.</small></label></div></div>
+          <div class="row" data-search="contract the beast of honorton velen" id="row-c6"><div class="row-top"><input type="checkbox" id="c6" onchange="tick('contracts','c6')"><label for="c6"><b>The Beast of Honorton</b><small>Velen. Kill the Leshen terrorizing the village of Honorton.</small></label></div></div>
+          <div class="row" data-search="contract missing miners velen" id="row-c7"><div class="row-top"><input type="checkbox" id="c7" onchange="tick('contracts','c7')"><label for="c7"><b>Missing Miners</b><small>Velen. Investigate the mine near Crow's Perch. Kill the Earth Elemental.</small></label></div></div>
+          <div class="row" data-search="contract shrieker velen" id="row-c8"><div class="row-top"><input type="checkbox" id="c8" onchange="tick('contracts','c8')"><label for="c8"><b>Shrieker</b><small>Velen. Kill the Cockatrice terrorizing Crow's Perch. Given by the Baron.</small></label></div></div>
+          <div class="row" data-search="contract phantom of the trade route velen" id="row-c9"><div class="row-top"><input type="checkbox" id="c9" onchange="tick('contracts','c9')"><label for="c9"><b>Phantom of the Trade Route</b><small>Velen. Kill the Wraith haunting the trade route near Mulbrydale.</small></label></div></div>
+          <div class="row" data-search="contract jenny o' the woods velen" id="row-c10"><div class="row-top"><input type="checkbox" id="c10" onchange="tick('contracts','c10')"><label for="c10"><b>Jenny o' the Woods</b><small>Velen. Kill the Nightwraith Jenny near Midcopse.</small></label></div></div>
+          <div class="row" data-search="contract the oxenfurt drunk novigrad" id="row-c11"><div class="row-top"><input type="checkbox" id="c11" onchange="tick('contracts','c11')"><label for="c11"><b>The Oxenfurt Drunk</b><small>Novigrad/Oxenfurt. Kill the Katakan vampire terrorizing Oxenfurt.</small></label></div></div>
+          <div class="row" data-search="contract doors slamming shut novigrad" id="row-c12"><div class="row-top"><input type="checkbox" id="c12" onchange="tick('contracts','c12')"><label for="c12"><b>Doors Slamming Shut</b><small>Novigrad. Kill Therazane the Earth Elemental. Required for Ashes to Ashes trophy.</small></label></div></div>
+          <div class="row" data-search="contract the mystery of the byways murders novigrad" id="row-c13"><div class="row-top"><input type="checkbox" id="c13" onchange="tick('contracts','c13')"><label for="c13"><b>The Mystery of the Byways Murders</b><small>Novigrad. Investigate the murders on the road. Kill the Doppler.</small></label></div></div>
+          <div class="row" data-search="contract an elusive thief novigrad" id="row-c14"><div class="row-top"><input type="checkbox" id="c14" onchange="tick('contracts','c14')"><label for="c14"><b>An Elusive Thief</b><small>Novigrad. Track and kill the Doppler thief stealing from merchants.</small></label></div></div>
+          <div class="row" data-search="contract the apiarian phantom novigrad" id="row-c15"><div class="row-top"><input type="checkbox" id="c15" onchange="tick('contracts','c15')"><label for="c15"><b>The Apiarian Phantom</b><small>Novigrad. Kill the Hound of the Wild Hunt terrorizing the beehives.</small></label></div></div>
+          <div class="row" data-search="contract deadly delights novigrad" id="row-c16"><div class="row-top"><input type="checkbox" id="c16" onchange="tick('contracts','c16')"><label for="c16"><b>Deadly Delights</b><small>Novigrad. Kill the Succubus luring men to their deaths.</small></label></div></div>
+          <div class="row" data-search="contract the creature from the oxenfurt forest novigrad" id="row-c17"><div class="row-top"><input type="checkbox" id="c17" onchange="tick('contracts','c17')"><label for="c17"><b>The Creature from the Oxenfurt Forest</b><small>Novigrad. Kill the Aeschna (giant insect) in the forest.</small></label></div></div>
+          <div class="row" data-search="contract the white vault novigrad" id="row-c18"><div class="row-top"><input type="checkbox" id="c18" onchange="tick('contracts','c18')"><label for="c18"><b>The White Vault</b><small>Novigrad. Investigate the abandoned vault. Kill the Wraith inside.</small></label></div></div>
+          <div class="row" data-search="contract muire d'yaeblen skellige" id="row-c19"><div class="row-top"><input type="checkbox" id="c19" onchange="tick('contracts','c19')"><label for="c19"><b>Muire D'yaeblen</b><small>Skellige. Kill the Drowned Dead terrorizing the docks of Kaer Trolde.</small></label></div></div>
+          <div class="row" data-search="contract the phantom of eldberg skellige" id="row-c20"><div class="row-top"><input type="checkbox" id="c20" onchange="tick('contracts','c20')"><label for="c20"><b>The Phantom of Eldberg</b><small>Skellige. Kill the Penitent haunting the Eldberg lighthouse.</small></label></div></div>
+          <div class="row" data-search="contract missing brother skellige" id="row-c21"><div class="row-top"><input type="checkbox" id="c21" onchange="tick('contracts','c21')"><label for="c21"><b>Missing Brother</b><small>Skellige. Find and kill the Werewolf that attacked a man's brother.</small></label></div></div>
+          <div class="row" data-search="contract here comes the groom skellige" id="row-c22"><div class="row-top"><input type="checkbox" id="c22" onchange="tick('contracts','c22')"><label for="c22"><b>Here Comes the Groom</b><small>Skellige. Kill the Fiend that abducted a man's bride-to-be.</small></label></div></div>
+          <div class="row" data-search="contract the lord of undvik skellige" id="row-c23"><div class="row-top"><input type="checkbox" id="c23" onchange="tick('contracts','c23')"><label for="c23"><b>The Lord of Undvik</b><small>Skellige. Kill the Ice Giant terrorizing the island of Undvik.</small></label></div></div>
+          <div class="row" data-search="contract troll trouble skellige" id="row-c24"><div class="row-top"><input type="checkbox" id="c24" onchange="tick('contracts','c24')"><label for="c24"><b>Troll Trouble</b><small>Skellige. Deal with the Rock Troll problem near Arinbjorn.</small></label></div></div>
+          <div class="row" data-search="contract in the heart of the woods skellige" id="row-c25"><div class="row-top"><input type="checkbox" id="c25" onchange="tick('contracts','c25')"><label for="c25"><b>In the Heart of the Woods</b><small>Skellige. Kill the Ancient Leshen in the forest near Fayrlund.</small></label></div></div>
+          <div class="row" data-search="contract dragon skellige" id="row-c26"><div class="row-top"><input type="checkbox" id="c26" onchange="tick('contracts','c26')"><label for="c26"><b>Dragon</b><small>Skellige. Investigate the "dragon" sightings on Ard Skellig. Not actually a dragon.</small></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIDE QUESTS -->
+  <section id="side-quests">
+    <div class="sec-hd">
+      <h2>Key Side Quests</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-sidequests">0%</div><span class="sec-count" id="cnt-sidequests">0 / 20</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">115 total side quests exist. These 20 are required for trophies or affect the main story ending. Complete them before the Isle of Mists point of no return.</p>
+      <div class="card" id="card-sq">
+        <div class="card-hd" onclick="toggleCard('card-sq')">
+          <span class="chev">&#9658;</span>
+          <h3>Trophy-Required &amp; Story-Critical Side Quests</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-sq"></i></div>
+          <span class="cpct" id="cpct-sq">0/20</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="a matter of life and death novigrad triss romance side quest" id="row-sq1"><div class="row-top"><input type="checkbox" id="sq1" onchange="tick('sidequests','sq1')"><label for="sq1"><b>A Matter of Life and Death</b><small>Novigrad. Help Triss at the masquerade ball. Romance opportunity — say "I love you" for the Triss romance ending.</small><span class="tag miss">Missable Romance</span></label></div></div>
+          <div class="row" data-search="the last wish skellige yennefer romance side quest" id="row-sq2"><div class="row-top"><input type="checkbox" id="sq2" onchange="tick('sidequests','sq2')"><label for="sq2"><b>The Last Wish</b><small>Skellige. Help Yennefer break her djinn wish. Say "I love you" for the Yennefer romance ending.</small><span class="tag miss">Missable Romance</span></label></div></div>
+          <div class="row" data-search="keira metz side quest an invitation from keira metz" id="row-sq3"><div class="row-top"><input type="checkbox" id="sq3" onchange="tick('sidequests','sq3')"><label for="sq3"><b>An Invitation from Keira Metz</b><small>Velen. Complete all of Keira's quests and send her to Kaer Morhen (not Radovid) for the best outcome and ally in Battle of Kaer Morhen.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the witcher's forge side quest skellige" id="row-sq4"><div class="row-top"><input type="checkbox" id="sq4" onchange="tick('sidequests','sq4')"><label for="sq4"><b>Echoes of the Past</b><small>Skellige. Help Yennefer investigate the Wild Hunt's trail. Required for Yennefer as ally.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the battle preparations side quest lambert" id="row-sq5"><div class="row-top"><input type="checkbox" id="sq5" onchange="tick('sidequests','sq5')"><label for="sq5"><b>Following the Thread</b><small>Novigrad. Lambert's quest. Complete it to have Lambert at the Battle of Kaer Morhen.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the sunstone side quest hjalmar an craite" id="row-sq6"><div class="row-top"><input type="checkbox" id="sq6" onchange="tick('sidequests','sq6')"><label for="sq6"><b>King's Gambit</b><small>Skellige. Support Cerys or Hjalmar for the throne. Affects Skellige's fate and available allies.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the truth is in the stars side quest zoltan" id="row-sq7"><div class="row-top"><input type="checkbox" id="sq7" onchange="tick('sidequests','sq7')"><label for="sq7"><b>A Poet Under Pressure</b><small>Novigrad. Rescue Dandelion from the Vegelbud estate. Required for Dandelion as ally.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="fists of fury velen novigrad skellige brawl master trophy" id="row-sq8"><div class="row-top"><input type="checkbox" id="sq8" onchange="tick('sidequests','sq8')"><label for="sq8"><b>Fists of Fury: Velen, Novigrad &amp; Skellige</b><small>Win all fist fights in all 3 regions. Required for Brawl Master trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="horse race velen novigrad skellige fast and furious trophy" id="row-sq9"><div class="row-top"><input type="checkbox" id="sq9" onchange="tick('sidequests','sq9')"><label for="sq9"><b>Horse Races: Velen, Novigrad &amp; Skellige</b><small>Win all horse races in all 3 regions. Required for Fast and Furious trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent old friends side quest novigrad" id="row-sq10"><div class="row-top"><input type="checkbox" id="sq10" onchange="tick('sidequests','sq10')"><label for="sq10"><b>Gwent: Old Friends</b><small>Novigrad. Beat all 4 Gwent players (Zoltan, Dandelion, Vespula, Lambert). Leads to Card Collector trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent playing innkeepers side quest" id="row-sq11"><div class="row-top"><input type="checkbox" id="sq11" onchange="tick('sidequests','sq11')"><label for="sq11"><b>Gwent: Playing Innkeepers</b><small>Beat all innkeepers at Gwent across all regions. Part of Card Collector trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent playing merchants side quest" id="row-sq12"><div class="row-top"><input type="checkbox" id="sq12" onchange="tick('sidequests','sq12')"><label for="sq12"><b>Gwent: Playing Merchants</b><small>Beat all merchants at Gwent. Part of Card Collector trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent playing nobles side quest" id="row-sq13"><div class="row-top"><input type="checkbox" id="sq13" onchange="tick('sidequests','sq13')"><label for="sq13"><b>Gwent: Playing Nobles</b><small>Beat all noble characters at Gwent. Part of Card Collector trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="the limits of the possible gwent tournament side quest" id="row-sq14"><div class="row-top"><input type="checkbox" id="sq14" onchange="tick('sidequests','sq14')"><label for="sq14"><b>Gwent: The Limits of the Possible</b><small>Win the Gwent tournament in Passiflora, Novigrad. Requires 36 unique cards collected first.</small><span class="tag silver">Trophy</span></label></div></div>
+          <div class="row" data-search="the man from cintra side quest ciri" id="row-sq15"><div class="row-top"><input type="checkbox" id="sq15" onchange="tick('sidequests','sq15')"><label for="sq15"><b>Payback</b><small>Novigrad. Help Ciri settle scores. Positive choices here contribute to the Ciri-lives ending.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the fall of the house of reardon side quest" id="row-sq16"><div class="row-top"><input type="checkbox" id="sq16" onchange="tick('sidequests','sq16')"><label for="sq16"><b>The Fall of the House of Reardon</b><small>Velen. Help Letho (if imported save) or clear the haunted manor. Affects Letho's availability.</small></label></div></div>
+          <div class="row" data-search="the sword the sword of destiny side quest" id="row-sq17"><div class="row-top"><input type="checkbox" id="sq17" onchange="tick('sidequests','sq17')"><label for="sq17"><b>Ciri's Story: The King of the Wolves</b><small>Ciri's flashback quest. Automatic during main story. Positive outcome contributes to best ending.</small><span class="tag miss">Affects Ending</span></label></div></div>
+          <div class="row" data-search="the play's the thing novigrad side quest" id="row-sq18"><div class="row-top"><input type="checkbox" id="sq18" onchange="tick('sidequests','sq18')"><label for="sq18"><b>The Play's the Thing</b><small>Novigrad. Help Dandelion put on a play to lure out a spy. Required to progress the Novigrad storyline.</small></label></div></div>
+          <div class="row" data-search="a dangerous game novigrad side quest" id="row-sq19"><div class="row-top"><input type="checkbox" id="sq19" onchange="tick('sidequests','sq19')"><label for="sq19"><b>A Dangerous Game</b><small>Novigrad. Help Caesar Bilzen recover stolen Gwent cards. Rewards rare cards for Card Collector.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="wine wars skellige side quest" id="row-sq20"><div class="row-top"><input type="checkbox" id="sq20" onchange="tick('sidequests','sq20')"><label for="sq20"><b>Possession</b><small>Skellige. Help Cerys cure Jarl Udalryk. Required for Cerys to become queen (best Skellige outcome).</small><span class="tag miss">Affects Ending</span></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GWENT -->
+  <section id="gwent">
+    <div class="sec-hd">
+      <h2>Gwent — Card Collector Trophy</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-gwent">0%</div><span class="sec-count" id="cnt-gwent">0 / 8</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">Collect all base game Gwent cards for the Card Collector trophy. Cards come from: merchants (buy), players (beat them), quest rewards, and chests. Do NOT sell any Gwent cards.</p>
+      <div class="card" id="card-gwent">
+        <div class="card-hd" onclick="toggleCard('card-gwent')">
+          <span class="chev">&#9658;</span>
+          <h3>Gwent Card Collection Milestones</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-gwent"></i></div>
+          <span class="cpct" id="cpct-gwent">0/8</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="gwent cards white orchard innkeeper" id="row-gw1"><div class="row-top"><input type="checkbox" id="gw1" onchange="tick('gwent','gw1')"><label for="gw1"><b>White Orchard Cards</b><small>Beat the innkeeper at the White Orchard tavern. Buy all cards from the herbalist.</small></label></div></div>
+          <div class="row" data-search="gwent cards velen merchants players" id="row-gw2"><div class="row-top"><input type="checkbox" id="gw2" onchange="tick('gwent','gw2')"><label for="gw2"><b>Velen Cards</b><small>Beat the innkeeper at the Inn at the Crossroads. Buy cards from merchants in Crow's Perch and Midcopse.</small></label></div></div>
+          <div class="row" data-search="gwent cards novigrad merchants players" id="row-gw3"><div class="row-top"><input type="checkbox" id="gw3" onchange="tick('gwent','gw3')"><label for="gw3"><b>Novigrad Cards</b><small>Buy from the Vivaldi Bank merchant. Beat Zoltan, Dandelion, Lambert, Vespula. Beat the Passiflora madam.</small></label></div></div>
+          <div class="row" data-search="gwent cards skellige merchants players" id="row-gw4"><div class="row-top"><input type="checkbox" id="gw4" onchange="tick('gwent','gw4')"><label for="gw4"><b>Skellige Cards</b><small>Buy from the Kaer Trolde armorer. Beat innkeepers on each island. Beat Crach an Craite.</small></label></div></div>
+          <div class="row" data-search="gwent cards quest rewards dangerous game" id="row-gw5"><div class="row-top"><input type="checkbox" id="gw5" onchange="tick('gwent','gw5')"><label for="gw5"><b>Quest Reward Cards</b><small>A Dangerous Game (Novigrad) rewards rare cards. Complete Gwent: Playing Innkeepers, Merchants, Nobles quests.</small></label></div></div>
+          <div class="row" data-search="gwent tournament limits of the possible passiflora" id="row-gw6"><div class="row-top"><input type="checkbox" id="gw6" onchange="tick('gwent','gw6')"><label for="gw6"><b>Win the Gwent Tournament</b><small>Win the Gwent tournament at the Passiflora in Novigrad. Requires 36 unique cards first. Rewards the Limits of the Possible trophy.</small><span class="tag silver">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent card collector trophy all cards" id="row-gw7"><div class="row-top"><input type="checkbox" id="gw7" onchange="tick('gwent','gw7')"><label for="gw7"><b>Card Collector Trophy</b><small>Collect all base game Gwent cards. Check the Gwent deck screen — all 4 factions should be complete.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="gwent all in trophy win with spy" id="row-gw8"><div class="row-top"><input type="checkbox" id="gw8" onchange="tick('gwent','gw8')"><label for="gw8"><b>All In Trophy</b><small>Win a Gwent match using only Spy cards. Build a full Nilfgaard spy deck and win any match.</small><span class="tag bronze">Trophy</span></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WITCHER GEAR -->
+  <section id="witcher-gear">
+    <div class="sec-hd">
+      <h2>Witcher Gear Sets</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-gear">0%</div><span class="sec-count" id="cnt-gear">0 / 6</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">Craft all 6 witcher gear sets for the Armed and Dangerous trophy. Each set has Basic, Enhanced, Superior, Mastercrafted, and Grandmaster (BaW DLC) tiers. Find all diagrams first, then craft each tier.</p>
+      <div class="card" id="card-gear">
+        <div class="card-hd" onclick="toggleCard('card-gear')">
+          <span class="chev">&#9658;</span>
+          <h3>All 6 Witcher Gear Sets</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-gear"></i></div>
+          <span class="cpct" id="cpct-gear">0/6</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="cat school witcher gear set diagrams" id="row-g1"><div class="row-top"><input type="checkbox" id="g1" onchange="tick('gear','g1')"><label for="g1"><b>Cat School Gear (Feline)</b><small>Fast attack / light armor. Diagrams scattered across Velen and Novigrad. Grandmaster in Toussaint (BaW).</small></label></div></div>
+          <div class="row" data-search="griffin school witcher gear set diagrams" id="row-g2"><div class="row-top"><input type="checkbox" id="g2" onchange="tick('gear','g2')"><label for="g2"><b>Griffin School Gear</b><small>Sign intensity / medium armor. Diagrams in Velen. Grandmaster in Toussaint (BaW).</small></label></div></div>
+          <div class="row" data-search="bear school witcher gear set diagrams ursine" id="row-g3"><div class="row-top"><input type="checkbox" id="g3" onchange="tick('gear','g3')"><label for="g3"><b>Bear School Gear (Ursine)</b><small>Strong attack / heavy armor. Diagrams in Skellige. Grandmaster in Toussaint (BaW).</small></label></div></div>
+          <div class="row" data-search="wolf school witcher gear set diagrams" id="row-g4"><div class="row-top"><input type="checkbox" id="g4" onchange="tick('gear','g4')"><label for="g4"><b>Wolf School Gear</b><small>Balanced / medium armor. Diagrams in Kaer Morhen area. Grandmaster in Toussaint (BaW).</small></label></div></div>
+          <div class="row" data-search="manticore school witcher gear set diagrams blood and wine" id="row-g5"><div class="row-top"><input type="checkbox" id="g5" onchange="tick('gear','g5')"><label for="g5"><b>Manticore School Gear</b><small>Alchemy / medium armor. Blood and Wine DLC only. Diagrams in Toussaint.</small><span class="tag gold">DLC</span></label></div></div>
+          <div class="row" data-search="viper school witcher gear set diagrams hearts of stone" id="row-g6"><div class="row-top"><input type="checkbox" id="g6" onchange="tick('gear','g6')"><label for="g6"><b>Viper School Gear</b><small>Hearts of Stone DLC only. Diagrams in the HoS region. Sword and armor set.</small><span class="tag gold">DLC</span></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEARTS OF STONE -->
+  <section id="hearts-of-stone">
+    <div class="sec-hd">
+      <h2>Hearts of Stone DLC</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-hos">0%</div><span class="sec-count" id="cnt-hos">0 / 8</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">13 trophies in Hearts of Stone. The main questline follows Geralt's contract with Gaunter O'Dimm. Recommended level: 30+. One missable: the Caretaker boss fight has a unique trophy.</p>
+      <div class="card" id="card-hos">
+        <div class="card-hd" onclick="toggleCard('card-hos')">
+          <span class="chev">&#9658;</span>
+          <h3>Hearts of Stone Checklist</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-hos"></i></div>
+          <span class="cpct" id="cpct-hos">0/8</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="hearts of stone main questline complete" id="row-hos1"><div class="row-top"><input type="checkbox" id="hos1" onchange="tick('hos','hos1')"><label for="hos1"><b>Complete the Main Questline</b><small>Full HoS story: Evil's Soft First Touches → Whatsoever a Man Soweth → Open Sesame → Scenes from a Marriage → Whatsoever a Man Soweth (finale).</small></label></div></div>
+          <div class="row" data-search="hearts of stone caretaker boss fight trophy" id="row-hos2"><div class="row-top"><input type="checkbox" id="hos2" onchange="tick('hos','hos2')"><label for="hos2"><b>Kill the Caretaker</b><small>Boss fight during the Haunted Mansion quest. Defeat him without using Quen for the Caretaker trophy.</small><span class="tag miss">Missable Trophy</span></label></div></div>
+          <div class="row" data-search="hearts of stone open sesame vault heist" id="row-hos3"><div class="row-top"><input type="checkbox" id="hos3" onchange="tick('hos','hos3')"><label for="hos3"><b>Open Sesame — The Heist</b><small>Plan and execute the vault heist with Casimir, Quinto, and Vimme. Complete all 3 preparation quests.</small></label></div></div>
+          <div class="row" data-search="hearts of stone olgierd von everec wishes" id="row-hos4"><div class="row-top"><input type="checkbox" id="hos4" onchange="tick('hos','hos4')"><label for="hos4"><b>Complete Olgierd's 3 Wishes</b><small>Retrieve Olgierd's horse, paint his portrait, and reunite him with his brother's ghost.</small></label></div></div>
+          <div class="row" data-search="hearts of stone viper school gear diagrams" id="row-hos5"><div class="row-top"><input type="checkbox" id="hos5" onchange="tick('hos','hos5')"><label for="hos5"><b>Collect Viper School Gear</b><small>Find all Viper gear diagrams in the HoS region. Craft the full set.</small></label></div></div>
+          <div class="row" data-search="hearts of stone gwent cards collect" id="row-hos6"><div class="row-top"><input type="checkbox" id="hos6" onchange="tick('hos','hos6')"><label for="hos6"><b>Collect All HoS Gwent Cards</b><small>Buy from merchants in the HoS region. Beat new Gwent players added in HoS.</small></label></div></div>
+          <div class="row" data-search="hearts of stone runewright enchanting" id="row-hos7"><div class="row-top"><input type="checkbox" id="hos7" onchange="tick('hos','hos7')"><label for="hos7"><b>Unlock Runewright (Master Level)</b><small>Invest in the Runewright NPC to unlock Master-level enchanting. Required for Enchanter trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="hearts of stone all trophies complete" id="row-hos8"><div class="row-top"><input type="checkbox" id="hos8" onchange="tick('hos','hos8')"><label for="hos8"><b>All 13 HoS Trophies Earned</b><small>Includes: Ashes to Ashes, Enchanter, Dressed to Kill, and all story trophies.</small></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOOD AND WINE -->
+  <section id="blood-and-wine">
+    <div class="sec-hd">
+      <h2>Blood and Wine DLC</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-baw">0%</div><span class="sec-count" id="cnt-baw">0 / 10</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">13 trophies in Blood and Wine. Set in Toussaint — the largest DLC. Recommended level: 35+. Multiple endings. Best ending: save both Syanna and Anna Henrietta. Grandmaster gear is here.</p>
+      <div class="card" id="card-baw">
+        <div class="card-hd" onclick="toggleCard('card-baw')">
+          <span class="chev">&#9658;</span>
+          <h3>Blood and Wine Checklist</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-baw"></i></div>
+          <span class="cpct" id="cpct-baw">0/10</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="blood and wine main questline complete toussaint" id="row-baw1"><div class="row-top"><input type="checkbox" id="baw1" onchange="tick('baw','baw1')"><label for="baw1"><b>Complete the Main Questline</b><small>Full BaW story: Envoys, Wineboys → The Beast of Toussaint → A Knight's Tales → Blood Run → The Night of Long Fangs → What Lies Unseen → Pomp and Strange Circumstance → ...And Bard Shall Play.</small></label></div></div>
+          <div class="row" data-search="blood and wine best ending save syanna anna henrietta" id="row-baw2"><div class="row-top"><input type="checkbox" id="baw2" onchange="tick('baw','baw2')"><label for="baw2"><b>Best Ending — Save Both Syanna &amp; Anna Henrietta</b><small>Get the Ribbon from the Land of a Thousand Fables. Give it to Syanna. Both sisters survive.</small><span class="tag miss">Missable</span></label></div></div>
+          <div class="row" data-search="blood and wine corvo bianco vineyard upgrade" id="row-baw3"><div class="row-top"><input type="checkbox" id="baw3" onchange="tick('baw','baw3')"><label for="baw3"><b>Fully Upgrade Corvo Bianco</b><small>Upgrade all rooms at your vineyard. Required for the Full Restoration trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="blood and wine grandmaster witcher gear all 4 sets" id="row-baw4"><div class="row-top"><input type="checkbox" id="baw4" onchange="tick('baw','baw4')"><label for="baw4"><b>Craft All 4 Grandmaster Gear Sets</b><small>Cat, Griffin, Bear, Wolf Grandmaster sets. Find diagrams from the Master Armorer in Toussaint. Required for Dressed to Kill trophy.</small><span class="tag silver">Trophy</span></label></div></div>
+          <div class="row" data-search="blood and wine manticore school gear craft" id="row-baw5"><div class="row-top"><input type="checkbox" id="baw5" onchange="tick('baw','baw5')"><label for="baw5"><b>Craft Manticore School Gear</b><small>Find all Manticore diagrams in Toussaint. Craft the full set.</small></label></div></div>
+          <div class="row" data-search="blood and wine gwent cards collect all" id="row-baw6"><div class="row-top"><input type="checkbox" id="baw6" onchange="tick('baw','baw6')"><label for="baw6"><b>Collect All BaW Gwent Cards</b><small>Buy from merchants in Toussaint. Beat new Gwent players in BaW. Includes the Skellige Storm expansion cards.</small></label></div></div>
+          <div class="row" data-search="blood and wine knight errant side quests" id="row-baw7"><div class="row-top"><input type="checkbox" id="baw7" onchange="tick('baw','baw7')"><label for="baw7"><b>Complete All Knight Errant Quests</b><small>Help the 3 knights of Toussaint (Guillaume, Palmerin, Milton). Required for the Knight for Hire trophy.</small><span class="tag bronze">Trophy</span></label></div></div>
+          <div class="row" data-search="blood and wine land of a thousand fables fairy tale" id="row-baw8"><div class="row-top"><input type="checkbox" id="baw8" onchange="tick('baw','baw8')"><label for="baw8"><b>Explore the Land of a Thousand Fables</b><small>Enter the fairy tale realm. Find the Ribbon for the best ending. Explore all areas for the Bookworm trophy items.</small></label></div></div>
+          <div class="row" data-search="blood and wine all contracts toussaint" id="row-baw9"><div class="row-top"><input type="checkbox" id="baw9" onchange="tick('baw','baw9')"><label for="baw9"><b>Complete All Toussaint Contracts</b><small>Several new contracts in Toussaint. Complete all for the Veteran trophy if not already earned.</small></label></div></div>
+          <div class="row" data-search="blood and wine all 13 trophies complete" id="row-baw10"><div class="row-top"><input type="checkbox" id="baw10" onchange="tick('baw','baw10')"><label for="baw10"><b>All 13 BaW Trophies Earned</b><small>Includes: Full Restoration, Dressed to Kill, Knight for Hire, and all story trophies.</small></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL TROPHIES -->
+  <section id="trophies">
+    <div class="sec-hd">
+      <h2>Key Trophies Checklist</h2>
+      <div class="sec-meta"><div class="sec-pct" id="pct-trophies">0%</div><span class="sec-count" id="cnt-trophies">0 / 20</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="sec-note">20 most important trophies to track. Full list has 79 (PS) / 78 (PC). Missable trophies are marked — plan your playthrough around them.</p>
+      <div class="card" id="card-trophies">
+        <div class="card-hd" onclick="toggleCard('card-trophies')">
+          <span class="chev">&#9658;</span>
+          <h3>Key Trophies</h3>
+          <div class="mini-bar" style="width:80px"><i id="bar-trophies"></i></div>
+          <span class="cpct" id="cpct-trophies">0/20</span>
+        </div>
+        <div class="card-bd">
+          <div class="row" data-search="platinum trophy the witcher 3" id="row-tr1"><div class="row-top"><input type="checkbox" id="tr1" onchange="tick('trophies','tr1')"><label for="tr1"><b>Witcher 3 Platinum</b><small>Obtain all other trophies. PS only.</small><span class="tag plat">Platinum</span></label></div></div>
+          <div class="row" data-search="passed the trial gold trophy main story" id="row-tr2"><div class="row-top"><input type="checkbox" id="tr2" onchange="tick('trophies','tr2')"><label for="tr2"><b>Passed the Trial</b><small>Complete the main story. Get the best ending (Ciri lives as a witcher) for full satisfaction.</small><span class="tag gold">Gold</span></label></div></div>
+          <div class="row" data-search="i'm not afraid of anything death march trophy" id="row-tr3"><div class="row-top"><input type="checkbox" id="tr3" onchange="tick('trophies','tr3')"><label for="tr3"><b>I'm Not Afraid of Anything</b><small>Complete the game on Death March difficulty. Must be done in a single playthrough.</small><span class="tag gold">Gold</span></label></div></div>
+          <div class="row" data-search="veteran trophy all 26 contracts" id="row-tr4"><div class="row-top"><input type="checkbox" id="tr4" onchange="tick('trophies','tr4')"><label for="tr4"><b>Veteran</b><small>Complete all 26 witcher contracts in the base game.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="armed and dangerous trophy witcher gear sets" id="row-tr5"><div class="row-top"><input type="checkbox" id="tr5" onchange="tick('trophies','tr5')"><label for="tr5"><b>Armed and Dangerous</b><small>Find and equip all elements of one witcher gear set (any tier).</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="brawl master trophy fist fights velen novigrad skellige" id="row-tr6"><div class="row-top"><input type="checkbox" id="tr6" onchange="tick('trophies','tr6')"><label for="tr6"><b>Brawl Master</b><small>Win all fist fights in Velen, Skellige, and Novigrad.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="brawler trophy olaf skellige bear" id="row-tr7"><div class="row-top"><input type="checkbox" id="tr7" onchange="tick('trophies','tr7')"><label for="tr7"><b>Brawler</b><small>Defeat Olaf, the Skellige champion of unarmed combat.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="fast and furious trophy horse races" id="row-tr8"><div class="row-top"><input type="checkbox" id="tr8" onchange="tick('trophies','tr8')"><label for="tr8"><b>Fast and Furious</b><small>Win all horse races in Velen, Novigrad, and Skellige.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="card collector trophy gwent all cards" id="row-tr9"><div class="row-top"><input type="checkbox" id="tr9" onchange="tick('trophies','tr9')"><label for="tr9"><b>Card Collector</b><small>Collect all base game Gwent cards.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="the limits of the possible trophy gwent tournament" id="row-tr10"><div class="row-top"><input type="checkbox" id="tr10" onchange="tick('trophies','tr10')"><label for="tr10"><b>The Limits of the Possible</b><small>Win the Gwent tournament at the Passiflora in Novigrad.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="assassin of kings trophy radovid reason of state missable" id="row-tr11"><div class="row-top"><input type="checkbox" id="tr11" onchange="tick('trophies','tr11')"><label for="tr11"><b>Assassin of Kings</b><small>Participate in the assassination of King Radovid. Complete Reason of State quest.</small><span class="tag miss">Missable</span><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="family counselor trophy baron wife daughter missable" id="row-tr12"><div class="row-top"><input type="checkbox" id="tr12" onchange="tick('trophies','tr12')"><label for="tr12"><b>Family Counselor</b><small>Reunite the Baron with his wife and daughter. Requires specific choices in Ladies of the Wood and Family Matters.</small><span class="tag miss">Missable</span><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="kingmaker trophy dijkstra support missable" id="row-tr13"><div class="row-top"><input type="checkbox" id="tr13" onchange="tick('trophies','tr13')"><label for="tr13"><b>Kingmaker</b><small>Support Dijkstra's political ambitions. Requires completing Count Reuven's Treasure and Reason of State.</small><span class="tag miss">Missable</span><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="kaer morhen trained trophy prologue" id="row-tr14"><div class="row-top"><input type="checkbox" id="tr14" onchange="tick('trophies','tr14')"><label for="tr14"><b>Kaer Morhen Trained</b><small>Complete all training exercises with Vesemir in the Prologue.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="even odds trophy kill monster without signs potions oils bombs" id="row-tr15"><div class="row-top"><input type="checkbox" id="tr15" onchange="tick('trophies','tr15')"><label for="tr15"><b>Even Odds</b><small>Kill a monster without using Signs, potions, mutagens, oils, or bombs. Use a weak enemy.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="butcher of blaviken trophy kill 5 enemies in 5 seconds" id="row-tr16"><div class="row-top"><input type="checkbox" id="tr16" onchange="tick('trophies','tr16')"><label for="tr16"><b>Butcher of Blaviken</b><small>Kill 5 enemies in under 5 seconds. Use Whirl ability and find a group of weak enemies.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="can't touch this trophy kill enemy with quen" id="row-tr17"><div class="row-top"><input type="checkbox" id="tr17" onchange="tick('trophies','tr17')"><label for="tr17"><b>Can't Touch This!</b><small>Kill an enemy using only the Quen Sign. Cast Quen, let enemy hit you, counter-kill with the explosion.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="dendrologist trophy max abilities one tree" id="row-tr18"><div class="row-top"><input type="checkbox" id="tr18" onchange="tick('trophies','tr18')"><label for="tr18"><b>Dendrologist</b><small>Max out all abilities in one skill tree. Requires significant leveling.</small><span class="tag bronze">Bronze</span></label></div></div>
+          <div class="row" data-search="dressed to kill trophy grandmaster witcher gear blood and wine" id="row-tr19"><div class="row-top"><input type="checkbox" id="tr19" onchange="tick('trophies','tr19')"><label for="tr19"><b>Dressed to Kill</b><small>Craft all 4 Grandmaster witcher gear sets. Blood and Wine DLC required.</small><span class="tag silver">Silver</span></label></div></div>
+          <div class="row" data-search="full restoration trophy corvo bianco vineyard blood and wine" id="row-tr20"><div class="row-top"><input type="checkbox" id="tr20" onchange="tick('trophies','tr20')"><label for="tr20"><b>Full Restoration</b><small>Fully restore Corvo Bianco vineyard. Blood and Wine DLC required.</small><span class="tag bronze">Trophy</span></label></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <b>Quest &amp; Guides</b> &mdash; The Witcher 3: Wild Hunt 100% Completion Guide &mdash; <a href="/gaming-hub/" style="color:var(--gold);text-decoration:none">Back to Home</a>
+</footer>
+
+<script>
+(function(){
+  var user=null;try{var s=localStorage.getItem('qag_user');if(s)user=JSON.parse(s);}catch(e){}
+  var authEl=document.getElementById('qag-nav-auth');
+  var userEl=document.getElementById('qag-nav-user');
+  var usernameEl=document.getElementById('qag-nav-username');
+  var mobileAuth=document.getElementById('qag-mobile-auth');
+  var mobileUser=document.getElementById('qag-mobile-user');
+  var mobileUsername=document.getElementById('qag-mobile-username');
+  if(user&&user.email){
+    if(authEl)authEl.style.display='none';
+    if(userEl){userEl.style.display='flex';}
+    if(usernameEl)usernameEl.textContent=user.name||user.display_name||user.email.split('@')[0];
+    if(mobileAuth)mobileAuth.style.display='none';
+    if(mobileUser)mobileUser.style.display='block';
+    if(mobileUsername)mobileUsername.textContent=user.name||user.display_name||user.email.split('@')[0];
+  }
+  function doSignOut(){localStorage.removeItem('qag_token');localStorage.removeItem('qag_user');localStorage.removeItem('qag_session');window.location.href='/gaming-hub/';}
+  var soBtn=document.getElementById('qag-signout-btn');
+  var soMob=document.getElementById('qag-mobile-signout');
+  if(soBtn)soBtn.onclick=doSignOut;
+  if(soMob)soMob.onclick=doSignOut;
+  var ham=document.getElementById('qag-hamburger');
+  var mob=document.getElementById('qag-mobile-menu');
+  if(ham&&mob)ham.onclick=function(){mob.classList.toggle('open');};
+})();
+
+const SECTIONS={
+  mainquests:{total:37,ids:['mq1','mq2','mq3','mq4','mq5','mq6','mq7','mq8','mq9','mq10','mq11','mq12','mq13','mq14','mq15','mq16','mq17','mq18','mq19','mq20','mq21','mq22','mq23','mq24','mq25','mq26','mq27','mq28','mq29','mq30','mq31','mq32','mq33','mq34','mq35','mq36','mq37']},
+  contracts:{total:26,ids:['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10','c11','c12','c13','c14','c15','c16','c17','c18','c19','c20','c21','c22','c23','c24','c25','c26']},
+  sidequests:{total:20,ids:['sq1','sq2','sq3','sq4','sq5','sq6','sq7','sq8','sq9','sq10','sq11','sq12','sq13','sq14','sq15','sq16','sq17','sq18','sq19','sq20']},
+  gwent:{total:8,ids:['gw1','gw2','gw3','gw4','gw5','gw6','gw7','gw8']},
+  gear:{total:6,ids:['g1','g2','g3','g4','g5','g6']},
+  hos:{total:8,ids:['hos1','hos2','hos3','hos4','hos5','hos6','hos7','hos8']},
+  baw:{total:10,ids:['baw1','baw2','baw3','baw4','baw5','baw6','baw7','baw8','baw9','baw10']},
+  trophies:{total:20,ids:['tr1','tr2','tr3','tr4','tr5','tr6','tr7','tr8','tr9','tr10','tr11','tr12','tr13','tr14','tr15','tr16','tr17','tr18','tr19','tr20']}
+};
+const SAVE_KEY='witcher3_progress';
+let _saved={};try{_saved=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');}catch(e){}
+
+function tick(section,id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  if(el.checked)_saved[id]=1;else delete _saved[id];
+  localStorage.setItem(SAVE_KEY,JSON.stringify(_saved));
+  _updateAll();
+}
+function _updateAll(){
+  let totalDone=0,totalAll=0;
+  Object.entries(SECTIONS).forEach(([sec,cfg])=>{
+    const done=cfg.ids.filter(id=>_saved[id]).length;
+    totalDone+=done;totalAll+=cfg.total;
+    const pct=cfg.total>0?Math.round(done/cfg.total*100):0;
+    const pctEl=document.getElementById('pct-'+sec);
+    const cntEl=document.getElementById('cnt-'+sec);
+    if(pctEl)pctEl.textContent=pct+'%';
+    if(cntEl)cntEl.textContent=done+' / '+cfg.total;
+  });
+  const subCards={
+    'mq-prologue':['mq1','mq2','mq3','mq4','mq5'],
+    'mq-act1':['mq6','mq7','mq8','mq9','mq10','mq11','mq12','mq13','mq14','mq15','mq16','mq17','mq18','mq19','mq20','mq21','mq22','mq23','mq24','mq25'],
+    'mq-act2':['mq26','mq27','mq28','mq29','mq30','mq31','mq32','mq33','mq34','mq35','mq36','mq37'],
+    'contracts':['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10','c11','c12','c13','c14','c15','c16','c17','c18','c19','c20','c21','c22','c23','c24','c25','c26'],
+    'sq':['sq1','sq2','sq3','sq4','sq5','sq6','sq7','sq8','sq9','sq10','sq11','sq12','sq13','sq14','sq15','sq16','sq17','sq18','sq19','sq20'],
+    'gwent':['gw1','gw2','gw3','gw4','gw5','gw6','gw7','gw8'],
+    'gear':['g1','g2','g3','g4','g5','g6'],
+    'hos':['hos1','hos2','hos3','hos4','hos5','hos6','hos7','hos8'],
+    'baw':['baw1','baw2','baw3','baw4','baw5','baw6','baw7','baw8','baw9','baw10'],
+    'trophies':['tr1','tr2','tr3','tr4','tr5','tr6','tr7','tr8','tr9','tr10','tr11','tr12','tr13','tr14','tr15','tr16','tr17','tr18','tr19','tr20']
+  };
+  Object.entries(subCards).forEach(([key,ids])=>{
+    const done=ids.filter(id=>_saved[id]).length;
+    const pct=ids.length>0?Math.round(done/ids.length*100):0;
+    const bar=document.getElementById('bar-'+key);
+    const cpct=document.getElementById('cpct-'+key);
+    if(bar)bar.style.width=pct+'%';
+    if(cpct)cpct.textContent=done+'/'+ids.length;
+  });
+  const mainPct=totalAll>0?Math.round(totalDone/totalAll*100):0;
+  const fill=document.getElementById('main-progress-fill');
+  const pctLbl=document.getElementById('main-pct-label');
+  const cntLbl=document.getElementById('main-count-label');
+  if(fill)fill.style.width=mainPct+'%';
+  if(pctLbl)pctLbl.textContent=mainPct+'%';
+  if(cntLbl)cntLbl.textContent=totalDone+' / '+totalAll;
+}
+function toggleCard(id){const card=document.getElementById(id);if(card)card.classList.toggle('open');}
+function expandAll(){document.querySelectorAll('.card').forEach(c=>c.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.card').forEach(c=>c.classList.remove('open'));}
+function resetAll(){if(!confirm('Reset all progress for this guide?'))return;_saved={};localStorage.removeItem(SAVE_KEY);document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);_updateAll();}
+function filterRows(q){const s=q.toLowerCase();document.querySelectorAll('.row[data-search]').forEach(r=>{r.classList.toggle('hidden',s&&!r.dataset.search.includes(s));});}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  Object.keys(_saved).forEach(id=>{const el=document.getElementById(id);if(el)el.checked=true;});
+  _updateAll();
+});
+
+// 50% CONTENT GATE
+(function(){
+  const tier=(()=>{try{const u=JSON.parse(localStorage.getItem('qag_user')||'{}');return u.tier||u.role==='admin'?'pro':'basic';}catch(e){return 'basic';}})();
+  if(tier==='pro'||tier==='trial'||tier==='admin')return;
+  window.addEventListener('DOMContentLoaded',()=>{
+    const all=Array.from(document.querySelectorAll('section'));
+    const half=Math.ceil(all.length/2);
+    let gated=0;
+    all.forEach((s,i)=>{if(i>=half){s.style.display='none';gated++;}});
+    if(gated>0){
+      const wall=document.createElement('div');
+      wall.className='content-gate-wall';
+      wall.innerHTML=`<h3>You've Reached the Free Preview</h3>
+        <p>Subscribe to unlock the full guide — all contracts, Gwent cards, witcher gear sets, Hearts of Stone, Blood and Wine, and every trophy.</p>
+        <a href="/gaming-hub/pages/subscribe.html" class="gate-btn">Unlock Full Guide — $1.99/mo</a>
+        <a href="/gaming-hub/pages/signin.html" class="gate-btn secondary">Sign In</a>`;
+      document.querySelector('main').appendChild(wall);
+    }
+  });
+})();
+</script>
+</body>
+</html>
