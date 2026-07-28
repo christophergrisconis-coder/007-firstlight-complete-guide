@@ -41,7 +41,7 @@ const renderHomeGuidePreview = () => {
     return;
   }
 
-  const picks = GAMES.slice(0, 6);
+  const picks = GAMES.slice(0, 9);
   homeGuidePreviewGrid.innerHTML = picks
     .map((game) => {
       const quick = (game.guideSections || []).slice(0, 2);
