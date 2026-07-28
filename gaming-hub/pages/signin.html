@@ -105,8 +105,9 @@ document.getElementById('signin-form').addEventListener('submit', async e => {
       body: JSON.stringify({email: document.getElementById('email').value, password: document.getElementById('password').value})
     });
     const data = await res.json();
-    if (data.access_token) {
-      saveSession(data.access_token, data.user || {email: document.getElementById('email').value});
+    const tok = data.token || data.access_token;
+    if (tok) {
+      saveSession(tok, data.user || {email: document.getElementById('email').value});
       showSuc('Signed in! Redirecting…');
       setTimeout(() => {const n=new URLSearchParams(window.location.search).get('next')||'/gaming-hub/';window.location.href=n;}, 800);
     } else {
@@ -134,8 +135,9 @@ document.getElementById('btn-google').addEventListener('click', () => {
           body: JSON.stringify({id_token: resp.credential})
         });
         const data = await res.json();
-        if (data.access_token) {
-          saveSession(data.access_token, data.user || {});
+        const tok = data.token || data.access_token;
+        if (tok) {
+          saveSession(tok, data.user || {});
           showSuc('Signed in with Google! Redirecting…');
           setTimeout(() => {const n=new URLSearchParams(window.location.search).get('next')||'/gaming-hub/';window.location.href=n;}, 800);
         } else {

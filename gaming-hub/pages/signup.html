@@ -114,8 +114,9 @@ document.getElementById('signup-form').addEventListener('submit', async e => {
       })
     });
     const data = await res.json();
-    if (data.access_token) {
-      saveSession(data.access_token, data.user || {email: document.getElementById('email').value, display_name: document.getElementById('name').value});
+    const tok = data.token || data.access_token;
+    if (tok) {
+      saveSession(tok, data.user || {email: document.getElementById('email').value, display_name: document.getElementById('name').value});
       showSuc('Account created! Welcome to Quest & Guides. Redirecting…');
       setTimeout(() => { window.location.href = '/gaming-hub/'; }, 1500);
     } else {
@@ -143,8 +144,9 @@ document.getElementById('btn-google').addEventListener('click', () => {
           body: JSON.stringify({id_token: resp.credential})
         });
         const data = await res.json();
-        if (data.access_token) {
-          saveSession(data.access_token, data.user || {});
+        const tok = data.token || data.access_token;
+        if (tok) {
+          saveSession(tok, data.user || {});
           showSuc('Account created with Google! Redirecting…');
           setTimeout(() => { window.location.href = '/gaming-hub/'; }, 1000);
         } else {
