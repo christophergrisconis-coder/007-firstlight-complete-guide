@@ -497,16 +497,43 @@ async function pinPost(id) {
   loadDiscs();
 }
 
-// ── Init & auto-refresh ───────────────────────────────────────────────────
+// ── Init & auto-refresh ─────────────────────────────────────────────────────────────────────────
+const OWNER_EMAILS_FE = ['christophergrisconis@gmail.com','bombsquad.sgt@gmail.com','chrisgrisconis@icloud.com','admin@questandguides.com'];
 async function init() {
-  const user = QAGAuth.getUser();
-  if (!user || user.role !== 'admin') {
+  // Always verify admin status live from the Render API.
+  // Never trust localStorage role alone - handles stale/Cloudflare tokens.
+  const storedToken = localStorage.getItem('qag_token');
+  if (!storedToken) {
+    document.getElementById('access-denied').innerHTML = '<h2>Not Signed In</h2><p style="color:#8a8a9a"><a href="/gaming-hub/pages/signin.html" style="color:#b9914b">Sign in</a> with your admin account.</p>';
+    document.getElementById('access-denied').style.display = 'block';
+    return;
+  }
+  try {
+    const r = await fetch(API + '/api/auth/me', {
+      headers: { Authorization: 'Bearer ' + storedToken }
+    });
+    if (!r.ok) {
+      document.getElementById('access-denied').innerHTML = '<h2>Session Expired</h2><p style="color:#8a8a9a">Your session is invalid. <a href="/gaming-hub/pages/signin.html" style="color:#b9914b">Sign in again</a> with your admin account.</p>';
+      document.getElementById('access-denied').style.display = 'block';
+      localStorage.removeItem('qag_token');
+      localStorage.removeItem('qag_user');
+      return;
+    }
+    const d = await r.json();
+    const liveUser = d.user || d;
+    const isAdmin = liveUser.role === 'admin' || OWNER_EMAILS_FE.includes((liveUser.email||'').toLowerCase());
+    if (!isAdmin) {
+      document.getElementById('access-denied').style.display = 'block';
+      return;
+    }
+    localStorage.setItem('qag_user', JSON.stringify(liveUser));
+  } catch(e) {
+    document.getElementById('access-denied').innerHTML = '<h2>Connection Error</h2><p style="color:#8a8a9a">Could not reach the server. Wait 30 seconds and <a href="" style="color:#b9914b" onclick="location.reload();return false;">refresh</a>.</p>';
     document.getElementById('access-denied').style.display = 'block';
     return;
   }
   document.getElementById('admin-content').style.display = 'block';
   loadStats();
-  // Auto-refresh stats + activity every 30 seconds
   setInterval(() => {
     loadStats();
     const activeTab = document.querySelector('.tab-panel.active');
