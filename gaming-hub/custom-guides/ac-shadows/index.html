@@ -189,6 +189,11 @@ footer b{color:var(--dim)}
   .tier{width:62px}
   .quest-steps{margin-left:14px}
 }
+.content-gate-wall{margin:32px 14px;padding:32px 24px;background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line2);border-radius:12px;text-align:center}
+.content-gate-wall h3{color:var(--gold2);font-size:20px;margin-bottom:10px}
+.content-gate-wall p{color:var(--dim);font-size:14px;max-width:480px;margin:0 auto 20px}
+.gate-btn{display:inline-block;padding:10px 22px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none;margin:4px 6px;background:var(--crimson);color:#fff;border:none;cursor:pointer}
+.gate-btn.secondary{background:transparent;color:var(--gold2);border:1px solid var(--gold2)}
 </style>
 </head>
 <body>
@@ -4075,6 +4080,27 @@ function refresh(){
   document.getElementById("totalBar").style.width = pct+"%";
 }
 refresh();
+
+// ===== CONTENT GATE =====
+(function(){
+  const tier=(()=>{ try{ const u=JSON.parse(localStorage.getItem('qag_user')||'{}'); return u.tier||'basic'; }catch(e){ return 'basic'; } })();
+  if(tier==='pro'||tier==='trial')return;
+  window.addEventListener('DOMContentLoaded',()=>{
+    const all=Array.from(document.querySelectorAll('section'));
+    const half=Math.ceil(all.length/2);
+    let gated=0;
+    all.forEach((s,i)=>{ if(i>=half){ s.style.display='none'; gated++; } });
+    if(gated>0){
+      const wall=document.createElement('div');
+      wall.className='content-gate-wall';
+      wall.innerHTML=`<h3>⛩️ You've reached the free preview</h3>
+        <p>Subscribe to unlock the full 100% guide — all quests, all collectibles, all trophies.</p>
+        <a href="/gaming-hub/pages/subscribe.html" class="gate-btn">Unlock Full Guide — $1.99/mo</a>
+        <a href="/gaming-hub/pages/auth.html" class="gate-btn secondary">Sign In</a>`;
+      document.querySelector('main').appendChild(wall);
+    }
+  });
+})();
 
 // nav highlight on scroll
 const navLinks = [...document.querySelectorAll("#topnav a")];
