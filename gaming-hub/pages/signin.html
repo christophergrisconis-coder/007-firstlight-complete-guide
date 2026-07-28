@@ -89,25 +89,49 @@ try{const t=localStorage.getItem('qag_token');const u=localStorage.getItem('qag_
 function saveSession(token, user){
   localStorage.setItem('qag_token', token);
   localStorage.setItem('qag_user', JSON.stringify(user));
-  // Legacy key for qag-auth.js compatibility
   localStorage.setItem('qag_session', JSON.stringify({...user, token}));
+}
+
+// Wake up the API on page load (Render free tier cold-start can take 30-60s)
+// Ping silently so it's warm by the time the user hits submit
+let apiReady = false;
+(async () => {
+  try {
+    await fetch(API + '/api/', {method:'GET', signal: AbortSignal.timeout(60000)});
+    apiReady = true;
+  } catch(e) { apiReady = true; /* proceed anyway */ }
+})();
+
+// Core login function with one automatic retry on empty/network error
+async function doLogin(email, password, attempt = 1) {
+  const res = await fetch(API + '/api/auth/login', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({email, password}),
+    signal: AbortSignal.timeout(60000)
+  });
+  let data;
+  try { data = await res.json(); } catch(e) { data = {}; }
+  const tok = data.token || data.access_token;
+  if (!tok && attempt === 1 && !data.detail) {
+    // Empty body = server was still waking up; wait 3s and retry once
+    await new Promise(r => setTimeout(r, 3000));
+    return doLogin(email, password, 2);
+  }
+  return {tok, data};
 }
 
 // Email/password sign in
 document.getElementById('signin-form').addEventListener('submit', async e => {
   e.preventDefault(); clearMsg();
   const btn = document.getElementById('submit-btn');
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
   btn.textContent = 'Signing in…'; btn.disabled = true;
   try {
-    const res = await fetch(API + '/api/auth/login', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({email: document.getElementById('email').value, password: document.getElementById('password').value})
-    });
-    const data = await res.json();
-    const tok = data.token || data.access_token;
+    const {tok, data} = await doLogin(email, password);
     if (tok) {
-      saveSession(tok, data.user || {email: document.getElementById('email').value});
+      saveSession(tok, data.user || {email});
       showSuc('Signed in! Redirecting…');
       setTimeout(() => {const n=new URLSearchParams(window.location.search).get('next')||'/gaming-hub/';window.location.href=n;}, 800);
     } else {
@@ -115,7 +139,7 @@ document.getElementById('signin-form').addEventListener('submit', async e => {
       btn.textContent = 'Sign In'; btn.disabled = false;
     }
   } catch(err) {
-    showErr('Connection error. Please try again.');
+    showErr('Connection error — the server may be waking up. Please try again in a moment.');
     btn.textContent = 'Sign In'; btn.disabled = false;
   }
 });
@@ -132,9 +156,11 @@ document.getElementById('btn-google').addEventListener('click', () => {
         const res = await fetch(API + '/api/auth/google', {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({id_token: resp.credential})
+          body: JSON.stringify({id_token: resp.credential}),
+          signal: AbortSignal.timeout(60000)
         });
-        const data = await res.json();
+        let data;
+        try { data = await res.json(); } catch(e) { data = {}; }
         const tok = data.token || data.access_token;
         if (tok) {
           saveSession(tok, data.user || {});
