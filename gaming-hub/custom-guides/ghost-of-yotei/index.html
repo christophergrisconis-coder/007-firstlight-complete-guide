@@ -79,6 +79,8 @@ button.btn.danger:hover{color:var(--red2);border-color:var(--red2)}
 .searchbox:focus{outline:none;border-color:var(--gold)}
 .hidden{display:none!important}
 .sec-note{color:var(--dim);font-size:13px;padding:8px 14px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin-bottom:8px}
+.pbar-wrap{height:3px;background:var(--line);margin:0 0 2px}
+.pbar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .3s}
 footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
 footer b{color:var(--dim)}
 .content-gate-wall{margin:32px 14px;padding:32px 24px;background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line2);border-radius:12px;text-align:center}
@@ -224,6 +226,9 @@ footer b{color:var(--dim)}
     <a href="#side">Side Tales</a>
     <a href="#mythic">Mythic Tales</a>
     <a href="#trophies">Trophies</a>
+    <a href="#bounties">Bounties</a>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#legendary-armor">Legendary Armor</a>
   </nav>
 </header>
 <main>
@@ -742,7 +747,7 @@ footer b{color:var(--dim)}
 </div>
   </section>
   <section id="trophies">
-    <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 20 trophies for Ghost of Yōtei including the Platinum.</p></div>
+    <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 54 trophies for Ghost of Yōtei — 1 Platinum, 2 Gold, 7 Silver, 44 Bronze. Complete all for the Platinum.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -832,6 +837,155 @@ footer b{color:var(--dim)}
   
 </div></div>
 </div>
+  </section>
+
+  <section id="bounties">
+    <div class="sec-hd"><h2>🎯 Bounties</h2><p>All 31 bounty targets across 6 regions. Pick up bounty cards at inn boards. Complete all for the <b>Master Bounty Hunter</b> Gold Trophy. Capstone bounties unlock after clearing all 4 standard targets in each region.</p></div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Yotei Grasslands <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 5</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="smiling yoshitomo yotei grasslands bounty"><input type="checkbox" id="goy-b-yg-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-yg-0"><b>Smiling Yoshitomo</b><span class="tag note">Bounty</span><small>Track to his camp southeast of Mt. Yotei. Reward: Coin + Weapon Kit.</small></label></div></div>
+<div class="row" data-search="muneji bone crusher yotei grasslands bounty"><input type="checkbox" id="goy-b-yg-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-yg-1"><b>Muneji the Bone Crusher</b><span class="tag note">Bounty</span><small>Large brute near the northern logging camp. Reward: Coin + Heavy Armor piece.</small></label></div></div>
+<div class="row" data-search="black powder ippei yotei grasslands bounty"><input type="checkbox" id="goy-b-yg-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-yg-2"><b>Black Powder Ippei</b><span class="tag note">Bounty</span><small>Explosives expert hiding in a cave near the river. Reward: Coin + Bomb Pouch upgrade.</small></label></div></div>
+<div class="row" data-search="three terrors yotei grasslands bounty"><input type="checkbox" id="goy-b-yg-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-yg-3"><b>The Three Terrors</b><span class="tag note">Bounty</span><small>Trio at the old shrine ruins — defeat all three simultaneously. Reward: Coin + Charm.</small></label></div></div>
+<div class="row" data-search="soma condemned yotei grasslands bounty capstone"><input type="checkbox" id="goy-b-yg-4" onchange="_ck(this)"><div class="row-top"><label for="goy-b-yg-4"><b>Soma the Condemned</b><span class="tag gold">Capstone</span><small>Unlocks after all 4 above. Reward: Nameless Death Weapon Kit + 2,000 Coin.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Tokachi Range <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 5</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="one-eye moritaka tokachi range bounty"><input type="checkbox" id="goy-b-tr-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tr-0"><b>One-Eye Moritaka</b><span class="tag note">Bounty</span><small>Former samurai, patrols the mountain pass. Reward: Coin + Katana upgrade.</small></label></div></div>
+<div class="row" data-search="old lady yae tokachi range bounty"><input type="checkbox" id="goy-b-tr-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tr-1"><b>Old Lady Yae</b><span class="tag note">Bounty</span><small>Poison user near the hot springs — bring antidotes. Reward: Coin + Poison Antidote recipe.</small></label></div></div>
+<div class="row" data-search="inokichi hungry tokachi range bounty"><input type="checkbox" id="goy-b-tr-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tr-2"><b>Inokichi the Hungry</b><span class="tag note">Bounty</span><small>Near the abandoned village. Reward: Coin + Supplies.</small></label></div></div>
+<div class="row" data-search="iron chuta tokachi range bounty"><input type="checkbox" id="goy-b-tr-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tr-3"><b>Iron Chuta</b><span class="tag note">Bounty</span><small>Heavily armored enforcer at the mountain fort. Reward: Coin + Heavy Armor upgrade.</small></label></div></div>
+<div class="row" data-search="bear man chikatoshi tokachi range bounty capstone"><input type="checkbox" id="goy-b-tr-4" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tr-4"><b>Bear Man Chikatoshi</b><span class="tag gold">Capstone</span><small>Unlocks after all 4 above. Reward: Armor set piece + 2,000 Coin.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Ishikari Plain <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 5</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="toshi torch ishikari plain bounty"><input type="checkbox" id="goy-b-ip-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-ip-0"><b>Toshi the Torch</b><span class="tag note">Bounty</span><small>Arsonist in the burned farmlands. Reward: Coin + Fire Bomb upgrade.</small></label></div></div>
+<div class="row" data-search="blue yamauba ishikari plain bounty"><input type="checkbox" id="goy-b-ip-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-ip-1"><b>Blue Yamauba</b><span class="tag note">Bounty</span><small>Mountain witch leading a cult near the old shrine. Reward: Coin + Charm of Izanami.</small></label></div></div>
+<div class="row" data-search="eijiro ruthless ishikari plain bounty"><input type="checkbox" id="goy-b-ip-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-ip-2"><b>Eijiro the Ruthless</b><span class="tag note">Bounty</span><small>Mercenary commander at the river crossing. Reward: Coin + Melee Charm.</small></label></div></div>
+<div class="row" data-search="turtle man kamekichi ishikari plain bounty"><input type="checkbox" id="goy-b-ip-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-ip-3"><b>Turtle Man Kamekichi</b><span class="tag note">Bounty</span><small>Nearly invulnerable armored warrior — use Ghost Weapons to break his guard. Reward: Coin + Armor piece.</small></label></div></div>
+<div class="row" data-search="shiro swindler ishikari plain bounty capstone"><input type="checkbox" id="goy-b-ip-4" onchange="_ck(this)"><div class="row-top"><label for="goy-b-ip-4"><b>Shiro the Swindler</b><span class="tag gold">Capstone</span><small>Unlocks after all 4 above. Reward: Ginji's Guard Armor set + 2,000 Coin.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Nayoro Wilds <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 5</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="crow genzo nayoro wilds bounty"><input type="checkbox" id="goy-b-nw-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-nw-0"><b>Crow Genzo</b><span class="tag note">Bounty</span><small>Master archer in treetops — use smoke bombs to close the distance. Reward: Coin + Bow upgrade.</small></label></div></div>
+<div class="row" data-search="bloody harunobu nayoro wilds bounty"><input type="checkbox" id="goy-b-nw-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-nw-1"><b>Bloody Harunobu</b><span class="tag note">Bounty</span><small>Berserker with two blades near the frozen lake. Reward: Coin + Dual Katana upgrade.</small></label></div></div>
+<div class="row" data-search="silent killer nayoro wilds bounty"><input type="checkbox" id="goy-b-nw-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-nw-2"><b>The Silent Killer</b><span class="tag note">Bounty</span><small>Shinobi assassin who stalks the forest — use Focused Hearing to detect her. Reward: Coin + Stealth Charm.</small></label></div></div>
+<div class="row" data-search="iron mask fujiwara nayoro wilds bounty"><input type="checkbox" id="goy-b-nw-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-nw-3"><b>Iron Mask Fujiwara</b><span class="tag note">Bounty</span><small>Warlord in a fortified camp near the river delta. Reward: Coin + Yari weapon upgrade.</small></label></div></div>
+<div class="row" data-search="shadow wolf takeda nayoro wilds bounty capstone"><input type="checkbox" id="goy-b-nw-4" onchange="_ck(this)"><div class="row-top"><label for="goy-b-nw-4"><b>Shadow Wolf Takeda</b><span class="tag gold">Capstone</span><small>Unlocks after all 4 above. Reward: Shadow Wolf Armor set + 2,000 Coin.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Teshio Ridge <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 4</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="snowstorm katagiri teshio ridge bounty"><input type="checkbox" id="goy-b-tesh-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tesh-0"><b>Snowstorm Katagiri</b><span class="tag note">Bounty</span><small>Blizzard fighter — attack during lulls in the storm. Reward: Coin + Cold Resistance Charm.</small></label></div></div>
+<div class="row" data-search="nameless killer teshio ridge bounty"><input type="checkbox" id="goy-b-tesh-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tesh-1"><b>Nameless Killer</b><span class="tag note">Bounty</span><small>Tracks you — set a trap using Ghost Weapons. Reward: Coin + Kunai upgrade.</small></label></div></div>
+<div class="row" data-search="black night kubo teshio ridge bounty"><input type="checkbox" id="goy-b-tesh-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tesh-2"><b>Black Night Kubo</b><span class="tag note">Bounty</span><small>Only appears after dark — wait until nightfall. Reward: Nameless Death Weapon Kit + 2,000 Coin.</small></label></div></div>
+<div class="row" data-search="inagawa gambler teshio ridge bounty capstone"><input type="checkbox" id="goy-b-tesh-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-tesh-3"><b>Inagawa the Gambler</b><span class="tag gold">Capstone</span><small>Unlocks after all 3 above. Reward: Black Night Armor set + 2,000 Coin.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Oshima Coast <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 7</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="eagle eye kondo oshima coast bounty"><input type="checkbox" id="goy-b-oc-0" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-0"><b>Eagle Eye Kondo</b><span class="tag note">Bounty</span><small>Sniper on clifftops — use the Grappling Hook to reach him. Reward: Coin + Bow upgrade.</small></label></div></div>
+<div class="row" data-search="iwa beautiful oshima coast bounty"><input type="checkbox" id="goy-b-oc-1" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-1"><b>Iwa the Beautiful</b><span class="tag note">Bounty</span><small>Seductive spy who uses poison — do not accept food or drink. Reward: Coin + Poison Resistance Charm.</small></label></div></div>
+<div class="row" data-search="tadaaki terrible oshima coast bounty"><input type="checkbox" id="goy-b-oc-2" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-2"><b>Tadaaki the Terrible</b><span class="tag note">Bounty</span><small>Pirate captain at the harbor — defeat crew first, then fight on the docks. Reward: Coin + Matchlock upgrade.</small></label></div></div>
+<div class="row" data-search="last brother oshima coast bounty"><input type="checkbox" id="goy-b-oc-3" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-3"><b>The Last Brother</b><span class="tag note">Bounty</span><small>Survivor of a bandit clan seeking revenge. Reward: Coin + Melee Charm.</small></label></div></div>
+<div class="row" data-search="tooth breaker oshima coast bounty"><input type="checkbox" id="goy-b-oc-4" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-4"><b>The Tooth Breaker</b><span class="tag note">Bounty</span><small>Brawler champion at the coastal village. Reward: Coin + Unarmed combat upgrade.</small></label></div></div>
+<div class="row" data-search="shinpachi armor thief oshima coast bounty"><input type="checkbox" id="goy-b-oc-5" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-5"><b>Shinpachi the Armor Thief</b><span class="tag note">Bounty</span><small>Wears stolen armor from fallen samurai. Reward: Coin + Armor piece.</small></label></div></div>
+<div class="row" data-search="brokered trust oshima coast bounty capstone master bounty hunter"><input type="checkbox" id="goy-b-oc-6" onchange="_ck(this)"><div class="row-top"><label for="goy-b-oc-6"><b>A Brokered Trust</b><span class="tag gold">Capstone</span><small>Unlocks after all 6 above. Reward: Coastal Warlord Armor set + 3,000 Coin. 🏆 <b>Master Bounty Hunter</b> (Gold)</small></label></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collectibles">
+    <div class="sec-hd"><h2>🗺 Collectibles by Region</h2><p>All collectible types across Ezo. Use the Shamisen to reveal nearby collectibles on the minimap. None are missable — all remain available after the story ends.</p></div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Altars of Reflection <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 61 total (30 needed for Platinum)</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+        <div class="sec-note">Small stone altars found throughout Ezo. Interact with each to hear a memory from Atsu's past. You only need 30 of 61 for the Platinum trophy, but all 61 count toward 100% map completion.</div>
+<div class="row" data-search="altars reflection yotei grasslands 12"><input type="checkbox" id="goy-c-altar-yg" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-yg"><b>Yotei Grasslands — 12 Altars</b><span class="tag note">Collectible</span><small>Near shrines, hilltops, and ancient trees. Play the Shamisen to reveal locations on the minimap.</small></label></div></div>
+<div class="row" data-search="altars reflection ishikari plain 10"><input type="checkbox" id="goy-c-altar-ip" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-ip"><b>Ishikari Plain — 10 Altars</b><span class="tag note">Collectible</span><small>Concentrated near the river delta and castle ruins.</small></label></div></div>
+<div class="row" data-search="altars reflection tokachi range 9"><input type="checkbox" id="goy-c-altar-tr" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-tr"><b>Tokachi Range — 9 Altars</b><span class="tag note">Collectible</span><small>On mountain paths and near dojo locations.</small></label></div></div>
+<div class="row" data-search="altars reflection nayoro wilds 8"><input type="checkbox" id="goy-c-altar-nw" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-nw"><b>Nayoro Wilds — 8 Altars</b><span class="tag note">Collectible</span><small>Hidden in dense forest and near Ainu village sites.</small></label></div></div>
+<div class="row" data-search="altars reflection teshio ridge 11"><input type="checkbox" id="goy-c-altar-tesh" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-tesh"><b>Teshio Ridge — 11 Altars</b><span class="tag note">Collectible</span><small>Scattered across the frozen tundra — use the Shamisen during blizzards to locate them.</small></label></div></div>
+<div class="row" data-search="altars reflection oshima coast 11"><input type="checkbox" id="goy-c-altar-oc" onchange="_ck(this)"><div class="row-top"><label for="goy-c-altar-oc"><b>Oshima Coast — 11 Altars</b><span class="tag note">Collectible</span><small>On clifftops and coastal ruins overlooking the sea.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Pillars of the Fallen <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 30 total (5 per region)</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+        <div class="sec-note">Stone pillars commemorating fallen warriors. Each has a name and a short story. Not required for Platinum but count toward 100% map completion.</div>
+<div class="row" data-search="pillars fallen yotei grasslands"><input type="checkbox" id="goy-c-pillar-yg" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-yg"><b>Yotei Grasslands — 5 Pillars</b><span class="tag note">Collectible</span><small>Near old battlefields and warrior graves.</small></label></div></div>
+<div class="row" data-search="pillars fallen ishikari plain"><input type="checkbox" id="goy-c-pillar-ip" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-ip"><b>Ishikari Plain — 5 Pillars</b><span class="tag note">Collectible</span><small>Near castle ruins and former samurai encampments.</small></label></div></div>
+<div class="row" data-search="pillars fallen tokachi range"><input type="checkbox" id="goy-c-pillar-tr" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-tr"><b>Tokachi Range — 5 Pillars</b><span class="tag note">Collectible</span><small>On mountain passes where battles were fought.</small></label></div></div>
+<div class="row" data-search="pillars fallen nayoro wilds"><input type="checkbox" id="goy-c-pillar-nw" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-nw"><b>Nayoro Wilds — 5 Pillars</b><span class="tag note">Collectible</span><small>Hidden in the forest near Ainu sacred sites.</small></label></div></div>
+<div class="row" data-search="pillars fallen teshio ridge"><input type="checkbox" id="goy-c-pillar-tesh" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-tesh"><b>Teshio Ridge — 5 Pillars</b><span class="tag note">Collectible</span><small>Buried in snow near the frozen battlefield sites.</small></label></div></div>
+<div class="row" data-search="pillars fallen oshima coast"><input type="checkbox" id="goy-c-pillar-oc" onchange="_ck(this)"><div class="row-top"><label for="goy-c-pillar-oc"><b>Oshima Coast — 5 Pillars</b><span class="tag note">Collectible</span><small>On sea cliffs and coastal fortifications.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Ainu Sacred Items <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 20 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+        <div class="sec-note">Sacred Ainu cultural items hidden throughout Ezo. Collecting all 20 unlocks the <b>Sitturaynu</b> Bronze Trophy. Complete the <i>Heart of an Ainu</i> side tale to reveal map markers.</div>
+<div class="row" data-search="ainu items nayoro wilds 8"><input type="checkbox" id="goy-c-ainu-nw" onchange="_ck(this)"><div class="row-top"><label for="goy-c-ainu-nw"><b>Nayoro Wilds — 8 Ainu Items</b><span class="tag note">Collectible</span><small>Near Ainu kotan (village) sites and sacred trees.</small></label></div></div>
+<div class="row" data-search="ainu items teshio ridge 6"><input type="checkbox" id="goy-c-ainu-tesh" onchange="_ck(this)"><div class="row-top"><label for="goy-c-ainu-tesh"><b>Teshio Ridge — 6 Ainu Items</b><span class="tag note">Collectible</span><small>Near frozen river crossings and ancient burial sites.</small></label></div></div>
+<div class="row" data-search="ainu items tokachi range 3"><input type="checkbox" id="goy-c-ainu-tr" onchange="_ck(this)"><div class="row-top"><label for="goy-c-ainu-tr"><b>Tokachi Range — 3 Ainu Items</b><span class="tag note">Collectible</span><small>Near the Ainu Kotan side tale location.</small></label></div></div>
+<div class="row" data-search="ainu items oshima coast 3"><input type="checkbox" id="goy-c-ainu-oc" onchange="_ck(this)"><div class="row-top"><label for="goy-c-ainu-oc"><b>Oshima Coast — 3 Ainu Items</b><span class="tag note">Collectible</span><small>Near the coastal fishing villages.</small></label></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="legendary-armor">
+    <div class="sec-hd"><h2>🛡 Legendary Armor Sets</h2><p>All 8 legendary armor sets in Ghost of Yōtei. Collect all for the <b>For All Occasions</b> Silver Trophy. Each set has unique perks and can be upgraded at a merchant.</p></div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>All Legendary Armor Sets <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 8</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="card-bd"><div class="pbar-wrap"><div class="pbar-fill" data-cbar></div></div>
+<div class="row" data-search="onryo armor legendary"><input type="checkbox" id="goy-a-onryo" onchange="_ck(this)"><div class="row-top"><label for="goy-a-onryo"><b>Onryo Armor</b><span class="tag trophy">Legendary</span><small>Atsu's signature armor — upgraded throughout the story. Perks: Ghost Weapon damage +25%, Fear generation +20%.</small></label></div></div>
+<div class="row" data-search="undying samurai armor legendary ishikari"><input type="checkbox" id="goy-a-undying" onchange="_ck(this)"><div class="row-top"><label for="goy-a-undying"><b>Undying Samurai Armor</b><span class="tag trophy">Legendary</span><small>Reward from The Undying Samurai side tale (Ishikari Plain). Perks: Melee damage +20%, Resolve gain +15%.</small></label></div></div>
+<div class="row" data-search="spider lily general armor legendary tokachi"><input type="checkbox" id="goy-a-spiderlily" onchange="_ck(this)"><div class="row-top"><label for="goy-a-spiderlily"><b>Spider Lily Armor</b><span class="tag trophy">Legendary</span><small>Reward from The Spider Lily General side tale (Tokachi Range). Perks: Stealth +30%, Assassination damage +25%.</small></label></div></div>
+<div class="row" data-search="dragonfly armor legendary tokachi"><input type="checkbox" id="goy-a-dragonfly" onchange="_ck(this)"><div class="row-top"><label for="goy-a-dragonfly"><b>Dragonfly Armor</b><span class="tag trophy">Legendary</span><small>Reward from The Dragonfly Armor side tale (Tokachi Range). Perks: Dodge distance +20%, Parry window +15%.</small></label></div></div>
+<div class="row" data-search="heart ainu armor legendary nayoro"><input type="checkbox" id="goy-a-ainu" onchange="_ck(this)"><div class="row-top"><label for="goy-a-ainu"><b>Heart of the Ainu Armor</b><span class="tag trophy">Legendary</span><small>Reward from The Heart of an Ainu side tale (Nayoro Wilds). Perks: Health +20%, Ainu charm effectiveness +25%.</small></label></div></div>
+<div class="row" data-search="crimson kimono armor legendary teshio"><input type="checkbox" id="goy-a-crimson" onchange="_ck(this)"><div class="row-top"><label for="goy-a-crimson"><b>Crimson Kimono Armor</b><span class="tag trophy">Legendary</span><small>Reward from The Crimson Kimono side tale (Teshio Ridge). Perks: Fire resistance +40%, Quickfire damage +20%.</small></label></div></div>
+<div class="row" data-search="ginji guard armor legendary ishikari bounty"><input type="checkbox" id="goy-a-ginji" onchange="_ck(this)"><div class="row-top"><label for="goy-a-ginji"><b>Ginji's Guard Armor</b><span class="tag trophy">Legendary</span><small>Reward from Ishikari Plain bounty capstone (Shiro the Swindler). Perks: Guard break resistance +30%, Stagger recovery +20%.</small></label></div></div>
+<div class="row" data-search="black night armor legendary teshio bounty"><input type="checkbox" id="goy-a-blacknight" onchange="_ck(this)"><div class="row-top"><label for="goy-a-blacknight"><b>Black Night Armor</b><span class="tag trophy">Legendary</span><small>Reward from Teshio Ridge bounty capstone (Inagawa the Gambler). Perks: Night combat damage +35%, Enemy detection range -25%.</small></label></div></div>
+      </div>
+    </div>
   </section>
 </main>
 <footer><b>Quest &amp; Guides</b> — questandguides.com · Ghost of Yōtei 100% Completion Guide</footer>
