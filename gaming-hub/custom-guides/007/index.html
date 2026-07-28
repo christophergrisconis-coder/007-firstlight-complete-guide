@@ -375,12 +375,105 @@ footer b{color:var(--dim)}
 </div>
   </section>
   <section id="collectibles">
-    <div class="sec-hd"><h2>🃏 Collectibles</h2><p>All 92 collectibles across all missions. Collectible locations are listed in each mission's steps panel above.</p></div>
-    <div class="sec-note"><b>Playing Cards (36):</b> 4 in Prologue, 2-5 per mission thereafter. Check each mission's steps for exact locations.<br>
-    <b>MI6 Intel Files (23):</b> Documents and files hidden in mission environments — often in side rooms and offices.<br>
-    <b>Mementos (14):</b> Personal items tied to Bond's backstory — look in personal quarters and private areas.<br>
-    <b>Postcards (10):</b> Found in tourist areas and public spaces within mission environments.<br>
-    <b>Legacy Items (9):</b> Iconic Bond items — one or two per mission, often in secure areas. Use Chapter Select to replay for any missed.</div>
+    <div class="sec-hd"><h2>🃏 Collectibles</h2><p>All 92 collectibles across all 11 missions. Use Chapter Select to replay any mission. None are permanently missable — all accessible via replay.</p></div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Playing Cards <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 36 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Collect all 36 for the <b>Card Shark</b> Bronze Trophy. Cards are hidden in corners, on desks, and in side rooms. Use Bond's instinct ability to highlight them.</div>
+<div class="row" data-search="playing cards prologue 4"><input type="checkbox" id="fl-c-card-p" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-p"><b>Prologue — 4 Cards</b><span class="tag note">Cards</span><small>Card 1: On the bar counter of the casino. Card 2: Near the roulette table. Card 3: In the back office. Card 4: On the rooftop escape route.</small></label></div></div>
+<div class="row" data-search="playing cards mission 1 3"><input type="checkbox" id="fl-c-card-m1" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m1"><b>Mission 1 — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the first guard post. Card 2: In the communications room. Card 3: Near the mission exit.</small></label></div></div>
+<div class="row" data-search="playing cards mission 2 4"><input type="checkbox" id="fl-c-card-m2" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m2"><b>Mission 2 — 4 Cards</b><span class="tag note">Cards</span><small>Card 1: In the harbor warehouse. Card 2: On the docked ship. Card 3: In the captain's quarters. Card 4: Near the extraction point.</small></label></div></div>
+<div class="row" data-search="playing cards mission 3 3"><input type="checkbox" id="fl-c-card-m3" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m3"><b>Mission 3 — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the research lab. Card 2: In the server room. Card 3: Near the rooftop exit.</small></label></div></div>
+<div class="row" data-search="playing cards mission 4 3"><input type="checkbox" id="fl-c-card-m4" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m4"><b>Mission 4 — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the embassy lobby. Card 2: In the ambassador's office. Card 3: Near the vault.</small></label></div></div>
+<div class="row" data-search="playing cards mission 5 2"><input type="checkbox" id="fl-c-card-m5" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m5"><b>Mission 5 — 2 Cards</b><span class="tag note">Cards</span><small>Card 1: In the underground facility. Card 2: Near the mission objective.</small></label></div></div>
+<div class="row" data-search="playing cards mission 6 3"><input type="checkbox" id="fl-c-card-m6" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m6"><b>Mission 6 — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the mountain base entrance. Card 2: In the control room. Card 3: Near the helipad.</small></label></div></div>
+<div class="row" data-search="playing cards mission 7 knightfall 3"><input type="checkbox" id="fl-c-card-m7" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m7"><b>Mission 7 (Knightfall) — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the historic building entrance. Card 2: In the library. Card 3: Near the boss arena.</small></label></div></div>
+<div class="row" data-search="playing cards mission 8 time to die 2"><input type="checkbox" id="fl-c-card-m8" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m8"><b>Mission 8 (Time to Die) — 2 Cards</b><span class="tag note">Cards</span><small>Card 1: In the penultimate location's entrance. Card 2: Near the mission climax.</small></label></div></div>
+<div class="row" data-search="playing cards mission 9 wave future 3"><input type="checkbox" id="fl-c-card-m9" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m9"><b>Mission 9 (Wave of the Future) — 3 Cards</b><span class="tag note">Cards</span><small>Card 1: In the high-tech facility entrance. Card 2: In the server farm. Card 3: Near the final objective.</small></label></div></div>
+<div class="row" data-search="playing cards mission 10 for england 2"><input type="checkbox" id="fl-c-card-m10" onchange="_ck(this)"><div class="row-top"><label for="fl-c-card-m10"><b>Mission 10 (For England) — 2 Cards</b><span class="tag missable">Missable</span><small>Card 1: Near the start of the final mission. Card 2: Before the final boss fight. <b>Collect before the final confrontation — no return after.</b></small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>MI6 Intel Files <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 23 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Collect all 23 for the <b>Intel Analyst</b> Bronze Trophy. Files are in side rooms, on desks, and in secure areas. Use Bond's instinct ability to highlight them.</div>
+<div class="row" data-search="intel file prologue 2"><input type="checkbox" id="fl-c-intel-p" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-p"><b>Prologue — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the casino's back office. File 2: In the security room near the rooftop.</small></label></div></div>
+<div class="row" data-search="intel file mission 1 2"><input type="checkbox" id="fl-c-intel-m1" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m1"><b>Mission 1 — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the enemy communications room. File 2: On the desk near the mission exit.</small></label></div></div>
+<div class="row" data-search="intel file mission 2 3"><input type="checkbox" id="fl-c-intel-m2" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m2"><b>Mission 2 — 3 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the harbor office. File 2: In the ship's bridge. File 3: In the captain's safe.</small></label></div></div>
+<div class="row" data-search="intel file mission 3 2"><input type="checkbox" id="fl-c-intel-m3" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m3"><b>Mission 3 — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the research lab's secure room. File 2: On the lead scientist's desk.</small></label></div></div>
+<div class="row" data-search="intel file mission 4 2"><input type="checkbox" id="fl-c-intel-m4" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m4"><b>Mission 4 — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the embassy's secure archive. File 2: In the ambassador's personal safe.</small></label></div></div>
+<div class="row" data-search="intel file mission 5 2"><input type="checkbox" id="fl-c-intel-m5" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m5"><b>Mission 5 — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the underground facility's control room. File 2: Near the mission's secondary objective.</small></label></div></div>
+<div class="row" data-search="intel file mission 6 2"><input type="checkbox" id="fl-c-intel-m6" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m6"><b>Mission 6 — 2 Intel Files</b><span class="tag note">Intel</span><small>File 1: In the mountain base's command center. File 2: Near the helipad exit.</small></label></div></div>
+<div class="row" data-search="intel file mission 7 knightfall 1"><input type="checkbox" id="fl-c-intel-m7" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m7"><b>Mission 7 (Knightfall) — 1 Intel File</b><span class="tag note">Intel</span><small>File 1: In the historic building's private study.</small></label></div></div>
+<div class="row" data-search="intel file mission 8 time to die 1"><input type="checkbox" id="fl-c-intel-m8" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m8"><b>Mission 8 (Time to Die) — 1 Intel File</b><span class="tag note">Intel</span><small>File 1: In the penultimate location's secure room.</small></label></div></div>
+<div class="row" data-search="intel file mission 9 wave future 1"><input type="checkbox" id="fl-c-intel-m9" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m9"><b>Mission 9 (Wave of the Future) — 1 Intel File</b><span class="tag note">Intel</span><small>File 1: In the high-tech facility's server room.</small></label></div></div>
+<div class="row" data-search="intel file mission 10 for england 1"><input type="checkbox" id="fl-c-intel-m10" onchange="_ck(this)"><div class="row-top"><label for="fl-c-intel-m10"><b>Mission 10 (For England) — 1 Intel File</b><span class="tag missable">Missable</span><small>File 1: Before the final boss encounter. <b>Collect before the final confrontation.</b></small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Mementos <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 14 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Collect all 14 for the <b>Sentimental</b> Bronze Trophy. Personal items tied to Bond's backstory — found in private quarters and personal areas.</div>
+<div class="row" data-search="memento prologue 1"><input type="checkbox" id="fl-c-mem-p" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-p"><b>Prologue — 1 Memento</b><span class="tag note">Memento</span><small>In the casino's private lounge area.</small></label></div></div>
+<div class="row" data-search="memento mission 2 1"><input type="checkbox" id="fl-c-mem-m2" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m2"><b>Mission 2 — 1 Memento</b><span class="tag note">Memento</span><small>In the captain's personal quarters on the ship.</small></label></div></div>
+<div class="row" data-search="memento mission 3 2"><input type="checkbox" id="fl-c-mem-m3" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m3"><b>Mission 3 — 2 Mementos</b><span class="tag note">Memento</span><small>Memento 1: In the lead scientist's office. Memento 2: In the personal locker room.</small></label></div></div>
+<div class="row" data-search="memento mission 4 2"><input type="checkbox" id="fl-c-mem-m4" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m4"><b>Mission 4 — 2 Mementos</b><span class="tag note">Memento</span><small>Memento 1: In the ambassador's private office. Memento 2: In the embassy's private residence.</small></label></div></div>
+<div class="row" data-search="memento mission 5 1"><input type="checkbox" id="fl-c-mem-m5" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m5"><b>Mission 5 — 1 Memento</b><span class="tag note">Memento</span><small>In the underground facility's personal quarters.</small></label></div></div>
+<div class="row" data-search="memento mission 6 2"><input type="checkbox" id="fl-c-mem-m6" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m6"><b>Mission 6 — 2 Mementos</b><span class="tag note">Memento</span><small>Memento 1: In the mountain base's personal barracks. Memento 2: In the commander's private room.</small></label></div></div>
+<div class="row" data-search="memento mission 7 knightfall 1"><input type="checkbox" id="fl-c-mem-m7" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m7"><b>Mission 7 (Knightfall) — 1 Memento</b><span class="tag note">Memento</span><small>In the historic building's private study.</small></label></div></div>
+<div class="row" data-search="memento mission 9 wave future 1"><input type="checkbox" id="fl-c-mem-m9" onchange="_ck(this)"><div class="row-top"><label for="fl-c-mem-m9"><b>Mission 9 (Wave of the Future) — 1 Memento</b><span class="tag note">Memento</span><small>In the high-tech facility's personal office.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Postcards <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 10 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Collect all 10 for the <b>Worldly</b> Bronze Trophy. Found in tourist areas, hotel lobbies, and public spaces within mission environments.</div>
+<div class="row" data-search="postcard prologue 1"><input type="checkbox" id="fl-c-post-p" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-p"><b>Prologue — 1 Postcard</b><span class="tag note">Postcard</span><small>In the casino's gift shop area.</small></label></div></div>
+<div class="row" data-search="postcard mission 1 1"><input type="checkbox" id="fl-c-post-m1" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m1"><b>Mission 1 — 1 Postcard</b><span class="tag note">Postcard</span><small>In the hotel lobby near the mission start.</small></label></div></div>
+<div class="row" data-search="postcard mission 2 1"><input type="checkbox" id="fl-c-post-m2" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m2"><b>Mission 2 — 1 Postcard</b><span class="tag note">Postcard</span><small>In the harbor's tourist information area.</small></label></div></div>
+<div class="row" data-search="postcard mission 4 1"><input type="checkbox" id="fl-c-post-m4" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m4"><b>Mission 4 — 1 Postcard</b><span class="tag note">Postcard</span><small>In the embassy's public reception area.</small></label></div></div>
+<div class="row" data-search="postcard mission 5 1"><input type="checkbox" id="fl-c-post-m5" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m5"><b>Mission 5 — 1 Postcard</b><span class="tag note">Postcard</span><small>Near the underground facility's surface entrance.</small></label></div></div>
+<div class="row" data-search="postcard mission 6 1"><input type="checkbox" id="fl-c-post-m6" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m6"><b>Mission 6 — 1 Postcard</b><span class="tag note">Postcard</span><small>In the mountain base's visitor area.</small></label></div></div>
+<div class="row" data-search="postcard mission 7 knightfall 1"><input type="checkbox" id="fl-c-post-m7" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m7"><b>Mission 7 (Knightfall) — 1 Postcard</b><span class="tag note">Postcard</span><small>In the historic building's public entrance hall.</small></label></div></div>
+<div class="row" data-search="postcard mission 10 for england 1"><input type="checkbox" id="fl-c-post-m10" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m10"><b>Mission 10 (For England) — 1 Postcard</b><span class="tag missable">Missable</span><small>Near the final mission's entrance. <b>Collect before the final boss fight.</b></small></label></div></div>
+<div class="row" data-search="postcard mission 8 time to die 1"><input type="checkbox" id="fl-c-post-m8" onchange="_ck(this)"><div class="row-top"><label for="fl-c-post-m8"><b>Mission 8 (Time to Die) — 1 Postcard</b><span class="tag note">Postcard</span><small>In the penultimate location's public area.</small></label></div></div>
+      </div>
+    </div>
+
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Legacy Items <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 9 total</em></h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Collect all 9 for the <b>Legacy</b> Silver Trophy. Iconic Bond items — one per mission, usually in secure or hidden areas. Require exploration off the main path.</div>
+<div class="row" data-search="legacy item prologue 1"><input type="checkbox" id="fl-c-leg-p" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-p"><b>Prologue — Walther PPK (Legacy)</b><span class="tag trophy">Legacy</span><small>Bond's signature pistol — in the casino's secure back room. Requires picking the lock.</small></label></div></div>
+<div class="row" data-search="legacy item mission 2 1"><input type="checkbox" id="fl-c-leg-m2" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m2"><b>Mission 2 — Aston Martin Key (Legacy)</b><span class="tag trophy">Legacy</span><small>In the harbor master's locked office.</small></label></div></div>
+<div class="row" data-search="legacy item mission 3 1"><input type="checkbox" id="fl-c-leg-m3" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m3"><b>Mission 3 — Gadget Blueprint (Legacy)</b><span class="tag trophy">Legacy</span><small>In the research lab's secure vault.</small></label></div></div>
+<div class="row" data-search="legacy item mission 4 1"><input type="checkbox" id="fl-c-leg-m4" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m4"><b>Mission 4 — Diplomatic Cipher (Legacy)</b><span class="tag trophy">Legacy</span><small>In the embassy's classified archive.</small></label></div></div>
+<div class="row" data-search="legacy item mission 5 1"><input type="checkbox" id="fl-c-leg-m5" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m5"><b>Mission 5 — Prototype Device (Legacy)</b><span class="tag trophy">Legacy</span><small>In the underground facility's restricted lab.</small></label></div></div>
+<div class="row" data-search="legacy item mission 6 1"><input type="checkbox" id="fl-c-leg-m6" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m6"><b>Mission 6 — Commander's Dossier (Legacy)</b><span class="tag trophy">Legacy</span><small>In the mountain base commander's private safe.</small></label></div></div>
+<div class="row" data-search="legacy item mission 7 knightfall 1"><input type="checkbox" id="fl-c-leg-m7" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m7"><b>Mission 7 (Knightfall) — Knightfall Relic (Legacy)</b><span class="tag trophy">Legacy</span><small>In the historic building's hidden chamber.</small></label></div></div>
+<div class="row" data-search="legacy item mission 8 time to die 1"><input type="checkbox" id="fl-c-leg-m8" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m8"><b>Mission 8 (Time to Die) — Countdown Device (Legacy)</b><span class="tag trophy">Legacy</span><small>In the penultimate location's secure room.</small></label></div></div>
+<div class="row" data-search="legacy item mission 10 for england 1"><input type="checkbox" id="fl-c-leg-m10" onchange="_ck(this)"><div class="row-top"><label for="fl-c-leg-m10"><b>Mission 10 (For England) — Final Legacy Item</b><span class="tag missable">Missable</span><small>Before the final boss fight. <b>Last chance — collect before the final confrontation.</b> 🏆 <b>Legacy</b> (Silver) after all 9.</small></label></div></div>
+      </div>
+    </div>
   </section>
   <section id="trophies">
     <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 16 trophies for 007 First Light including the License to Kill Platinum.</p></div>
