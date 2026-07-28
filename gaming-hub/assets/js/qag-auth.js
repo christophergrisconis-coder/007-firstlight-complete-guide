@@ -148,4 +148,17 @@ window.QAGAuth = QAGAuth;
 document.addEventListener('DOMContentLoaded', () => {
   QAGAuth.updateNav();
   QAGAuth.trackPage();
+  // Activity ping — fires immediately then every 60s for signed-in users
+  const PING_API = 'https://ggcodex-auth-api.onrender.com';
+  function sendActivityPing() {
+    const token = QAGAuth.getToken();
+    if (!token) return;
+    fetch(PING_API + '/api/activity/ping', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ page: window.location.pathname }),
+    }).catch(() => {});
+  }
+  sendActivityPing();
+  setInterval(sendActivityPing, 60000);
 });

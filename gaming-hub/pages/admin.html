@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — Quest & Guides</title>
+<title>Admin Dashboard — Quest &amp; Guides</title>
 <link rel="stylesheet" href="../assets/css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -12,16 +12,21 @@ body{background:#0a0a0f;color:#e0e0e8;font-family:'Inter',sans-serif;margin:0}
 .page-header a{color:#b9914b;text-decoration:none;font-family:'Cinzel',serif}
 .page-header h1{font-family:'Cinzel',serif;font-size:1.3rem;color:#e8d5a3;margin:0;flex:1;text-align:center}
 .admin-nav{display:flex;gap:0;background:#12121a;border-bottom:1px solid rgba(185,145,75,.15);flex-wrap:wrap}
-.admin-nav button{padding:.75rem 1.25rem;background:none;border:none;color:#8a8a9a;font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.admin-nav button{padding:.75rem 1.25rem;background:none;border:none;color:#8a8a9a;font-family:'Inter',sans-serif;font-size:.875rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;position:relative}
 .admin-nav button.active,.admin-nav button:hover{color:#b9914b;border-bottom-color:#b9914b}
-.container{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+.nav-badge{position:absolute;top:.4rem;right:.3rem;background:#ff6b7a;color:#fff;border-radius:10px;font-size:.6rem;font-weight:700;padding:.1rem .35rem;min-width:14px;text-align:center;display:none}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1rem}
 .tab-panel{display:none}.tab-panel.active{display:block}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
-.stat-card{background:#12121a;border:1px solid rgba(185,145,75,.2);border-radius:10px;padding:1.25rem;text-align:center}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:#12121a;border:1px solid rgba(185,145,75,.2);border-radius:10px;padding:1.25rem;text-align:center;transition:border-color .2s}
+.stat-card:hover{border-color:rgba(185,145,75,.4)}
 .stat-num{font-family:'Cinzel',serif;font-size:2rem;color:#b9914b;display:block}
+.stat-num.loading{color:#333;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .stat-label{font-size:.8rem;color:#8a8a9a;margin-top:.25rem}
 .stat-sub{font-size:.7rem;color:#555;margin-top:.2rem}
-.section-title{font-family:'Cinzel',serif;font-size:1rem;color:#b9914b;margin:1.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(185,145,75,.15)}
+.section-title{font-family:'Cinzel',serif;font-size:1rem;color:#b9914b;margin:1.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(185,145,75,.15);display:flex;align-items:center;gap:.75rem}
+.section-badge{background:rgba(255,107,122,.15);color:#ff6b7a;border-radius:10px;font-size:.7rem;font-weight:700;padding:.15rem .5rem}
 table{width:100%;border-collapse:collapse;font-size:.85rem}
 th{text-align:left;padding:.6rem .75rem;color:#8a8a9a;font-weight:500;border-bottom:1px solid rgba(255,255,255,.06)}
 td{padding:.6rem .75rem;border-bottom:1px solid rgba(255,255,255,.04);color:#c8c8d8}
@@ -32,21 +37,49 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .badge-basic{background:rgba(100,100,120,.2);color:#9a9aaa}
 .badge-trialing{background:rgba(0,123,255,.15);color:#5b9cf6}
 .badge-canceled{background:rgba(220,53,69,.15);color:#ff6b7a}
+.badge-unread{background:rgba(255,107,122,.15);color:#ff6b7a;font-size:.65rem}
+.badge-read{background:rgba(100,100,120,.15);color:#666;font-size:.65rem}
 .search-row{display:flex;gap:.75rem;margin-bottom:1rem}
 .search-row input{flex:1;padding:.6rem .9rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e0e0e8;font-size:.875rem;font-family:'Inter',sans-serif}
 .search-row input:focus{outline:none;border-color:#b9914b}
-.btn{padding:.5rem 1rem;border-radius:6px;font-size:.8rem;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.btn{padding:.5rem 1rem;border-radius:6px;font-size:.8rem;font-weight:500;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .15s}
+.btn:hover{opacity:.85}
 .btn-sm-gold{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0a0f}
 .btn-sm-outline{background:transparent;border:1px solid rgba(185,145,75,.3);color:#b9914b}
 .btn-sm-danger{background:transparent;border:1px solid rgba(220,53,69,.3);color:#ff6b7a}
+.btn-sm-green{background:transparent;border:1px solid rgba(40,167,69,.3);color:#5cb85c}
 .top-pages{display:flex;flex-direction:column;gap:.5rem}
 .page-row{display:flex;align-items:center;gap:1rem;padding:.5rem .75rem;background:rgba(255,255,255,.02);border-radius:6px}
 .page-path{flex:1;font-size:.85rem;color:#c8c8d8;font-family:monospace}
 .page-views{font-size:.85rem;color:#b9914b;font-weight:600;min-width:60px;text-align:right}
 .access-denied{text-align:center;padding:4rem 2rem}
 .access-denied h2{font-family:'Cinzel',serif;color:#e8d5a3;margin-bottom:1rem}
-.msg-preview{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .info-note{color:#8a8a9a;font-size:.8rem;padding:.75rem 1rem;background:rgba(185,145,75,.05);border:1px solid rgba(185,145,75,.1);border-radius:6px;margin-bottom:1rem}
+/* Activity panel */
+.activity-table-wrap{max-height:320px;overflow-y:auto;border:1px solid rgba(255,255,255,.05);border-radius:8px}
+.dot-green{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5cb85c;margin-right:.4rem;flex-shrink:0}
+.dot-grey{display:inline-block;width:8px;height:8px;border-radius:50%;background:#444;margin-right:.4rem;flex-shrink:0}
+.activity-row-live td{background:rgba(40,167,69,.04)}
+/* Messages inbox */
+.msg-list{display:flex;flex-direction:column;gap:.75rem}
+.msg-card{background:#12121a;border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.msg-card.unread{border-left:3px solid #b9914b}
+.msg-card-header{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;cursor:pointer;user-select:none}
+.msg-card-header:hover{background:rgba(255,255,255,.02)}
+.msg-meta{flex:1;min-width:0}
+.msg-sender{font-weight:600;color:#e0e0e8;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-card.unread .msg-sender{color:#e8d5a3}
+.msg-subject{font-size:.8rem;color:#8a8a9a;margin-top:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msg-time{font-size:.75rem;color:#555;white-space:nowrap;margin-left:auto}
+.msg-body{padding:0 1rem 1rem;border-top:1px solid rgba(255,255,255,.05);display:none}
+.msg-body.open{display:block}
+.msg-body p{color:#c8c8d8;font-size:.875rem;line-height:1.6;margin:.75rem 0}
+.msg-body-actions{display:flex;gap:.5rem;margin-top:.75rem}
+.msg-email-link{color:#b9914b;font-size:.8rem;text-decoration:none}
+.msg-email-link:hover{text-decoration:underline}
+.empty-state{text-align:center;padding:2.5rem;color:#555;font-size:.875rem}
+.refresh-note{font-size:.75rem;color:#555;margin-left:auto}
+.error-state{color:#ff6b7a;font-size:.85rem;padding:.75rem;background:rgba(220,53,69,.05);border:1px solid rgba(220,53,69,.15);border-radius:6px;margin-bottom:1rem}
 </style>
 </head>
 <body>
@@ -63,52 +96,75 @@ tr:hover td{background:rgba(255,255,255,.02)}
   <nav class="admin-nav">
     <button class="active" onclick="showTab('stats',this)">Statistics</button>
     <button onclick="showTab('users',this)">Users</button>
+    <button onclick="showTab('activity',this)">Live Activity</button>
     <button onclick="showTab('discussions',this)">Discussions</button>
-    <button onclick="showTab('stripe',this)">Stripe Subscribers</button>
-    <button onclick="showTab('messages',this)">Messages</button>
+    <button onclick="showTab('stripe',this)">Stripe</button>
+    <button onclick="showTab('messages',this)" id="nav-messages-btn">
+      Messages
+      <span class="nav-badge" id="nav-msg-badge">0</span>
+    </button>
   </nav>
   <div class="container">
-    <!-- Stats Tab -->
+
+    <!-- ── Stats Tab ── -->
     <div class="tab-panel active" id="tab-stats">
+      <div id="stats-error" class="error-state" style="display:none"></div>
       <div class="stat-grid" id="stat-grid">
-        <div class="stat-card"><span class="stat-num" id="s-total-users">—</span><div class="stat-label">Total Users</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-new-today">—</span><div class="stat-label">New Today</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-new-week">—</span><div class="stat-label">New This Week</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-pro">—</span><div class="stat-label">Pro Subscribers</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-views-today">—</span><div class="stat-label">Page Views Today</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-views-week">—</span><div class="stat-label">Views This Week</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-total-views">—</span><div class="stat-label">Total Page Views</div></div>
-        <div class="stat-card"><span class="stat-num" id="s-discussions">—</span><div class="stat-label">Discussion Posts</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-total-users">—</span><div class="stat-label">Total Users</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-pro">—</span><div class="stat-label">Pro Subscribers</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-basic">—</span><div class="stat-label">Basic Users</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-new-today">—</span><div class="stat-label">New Today</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-new-week">—</span><div class="stat-label">New This Week</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-active-hour">—</span><div class="stat-label">Active Last Hour</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-total-guides">—</span><div class="stat-label">Total Guides</div></div>
+        <div class="stat-card"><span class="stat-num loading" id="s-unread-msgs">—</span><div class="stat-label">Unread Messages</div></div>
       </div>
-      <div class="section-title">Top Pages</div>
-      <div class="top-pages" id="top-pages"></div>
-      <div class="section-title">Recent Signups</div>
+      <div class="section-title">Recent Signups <span class="refresh-note" id="stats-refresh-note"></span></div>
       <table id="recent-users-table">
         <thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Provider</th><th>Joined</th></tr></thead>
-        <tbody id="recent-users-body"></tbody>
+        <tbody id="recent-users-body"><tr><td colspan="5" style="color:#555;text-align:center">Loading…</td></tr></tbody>
       </table>
     </div>
-    <!-- Users Tab -->
+
+    <!-- ── Users Tab ── -->
     <div class="tab-panel" id="tab-users">
       <div class="search-row">
-        <input type="text" id="user-search" placeholder="Search by email or name…">
+        <input type="text" id="user-search" placeholder="Search by email or name…" onkeydown="if(event.key==='Enter')searchUsers()">
         <button class="btn btn-sm-gold" onclick="searchUsers()">Search</button>
       </div>
       <table>
         <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Tier</th><th>Joined</th><th>Actions</th></tr></thead>
-        <tbody id="users-body"></tbody>
+        <tbody id="users-body"><tr><td colspan="6" style="color:#555;text-align:center">Loading…</td></tr></tbody>
       </table>
       <div id="users-pagination" style="margin-top:1rem;color:#8a8a9a;font-size:.8rem"></div>
     </div>
-    <!-- Discussions Tab -->
+
+    <!-- ── Live Activity Tab ── -->
+    <div class="tab-panel" id="tab-activity">
+      <div class="section-title">
+        Live Activity
+        <span class="refresh-note" id="activity-refresh-note">Auto-refreshes every 30s</span>
+      </div>
+      <p style="color:#8a8a9a;font-size:.8rem;margin-bottom:1rem">Shows the last 50 pings. Rows with a green dot were active in the last 5 minutes.</p>
+      <div id="activity-error" class="error-state" style="display:none"></div>
+      <div class="activity-table-wrap">
+        <table>
+          <thead><tr><th>Status</th><th>Email</th><th>Page</th><th>Last Seen</th></tr></thead>
+          <tbody id="activity-body"><tr><td colspan="4" style="color:#555;text-align:center;padding:1.5rem">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── Discussions Tab ── -->
     <div class="tab-panel" id="tab-discussions">
-      <p style="color:#8a8a9a;font-size:.875rem">Showing all discussion posts across all guides. Click Delete to remove a post.</p>
+      <p style="color:#8a8a9a;font-size:.875rem">Showing all discussion posts across all guides.</p>
       <table>
         <thead><tr><th>User</th><th>Guide</th><th>Content</th><th>Posted</th><th>Actions</th></tr></thead>
-        <tbody id="disc-body"></tbody>
+        <tbody id="disc-body"><tr><td colspan="5" style="color:#555;text-align:center">Loading…</td></tr></tbody>
       </table>
     </div>
-    <!-- Stripe Tab -->
+
+    <!-- ── Stripe Tab ── -->
     <div class="tab-panel" id="tab-stripe">
       <div class="info-note" id="stripe-note" style="display:none"></div>
       <div class="stat-grid" style="margin-bottom:1.5rem">
@@ -123,166 +179,340 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <tbody id="stripe-body"></tbody>
       </table>
     </div>
-    <!-- Messages Tab -->
+
+    <!-- ── Messages Tab ── -->
     <div class="tab-panel" id="tab-messages">
-      <p style="color:#8a8a9a;font-size:.875rem">Contact form submissions from visitors.</p>
-      <table>
-        <thead><tr><th>From</th><th>Email</th><th>Subject</th><th>Message</th><th>Received</th><th>Actions</th></tr></thead>
-        <tbody id="messages-body"></tbody>
-      </table>
-      <div id="messages-empty" style="text-align:center;padding:2rem;color:#8a8a9a;display:none">No messages yet.</div>
+      <div class="section-title">
+        Messages Inbox
+        <span class="section-badge" id="unread-count-badge" style="display:none">0 unread</span>
+        <span class="refresh-note">Auto-refreshes every 30s</span>
+      </div>
+      <div id="messages-error" class="error-state" style="display:none"></div>
+      <div id="msg-list" class="msg-list"></div>
+      <div id="messages-empty" class="empty-state" style="display:none">No messages yet.</div>
     </div>
+
   </div>
 </div>
+
 <script src="../assets/js/qag-auth.js"></script>
 <script>
-const API='https://ggcodex-auth-api.onrender.com';
-function showTab(t,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');
-  if(btn)btn.classList.add('active');
-  if(t==='users')loadUsers();
-  if(t==='discussions')loadDiscs();
-  if(t==='stripe')loadStripe();
-  if(t==='messages')loadMessages();
+const API = window.QAG_API || 'https://ggcodex-auth-api.onrender.com';
+
+// ── Utilities ──────────────────────────────────────────────────────────────
+function tok() { return QAGAuth.getToken(); }
+function fmt(ts) {
+  if (!ts) return '—';
+  const d = typeof ts === 'number' ? new Date(ts * 1000) : new Date(ts);
+  return isNaN(d) ? '—' : d.toLocaleDateString();
 }
-function fmt(ts){if(!ts)return'—';const d=new Date(ts*1000);return d.toLocaleDateString()}
-function fmtDate(str){if(!str)return'—';return new Date(str).toLocaleDateString()}
-function tierBadge(t){const cls=t==='admin'?'badge-admin':t==='pro'?'badge-pro':t==='trialing'?'badge-trialing':t==='canceled'?'badge-canceled':'badge-basic';return`<span class="badge ${cls}">${t||'basic'}</span>`}
-async function loadStats(){
-  try{
-    const r=await fetch(API+'/api/admin/stats',{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-    const d=await r.json();
-    if(!d.success)return;
-    const s=d.stats;
-    document.getElementById('s-total-users').textContent=s.total_users||0;
-    document.getElementById('s-new-today').textContent=s.new_today||0;
-    document.getElementById('s-new-week').textContent=s.new_this_week||0;
-    document.getElementById('s-pro').textContent=s.pro_subscribers||0;
-    document.getElementById('s-views-today').textContent=s.views_today||0;
-    document.getElementById('s-views-week').textContent=s.views_this_week||0;
-    document.getElementById('s-total-views').textContent=s.total_page_views||0;
-    document.getElementById('s-discussions').textContent=s.total_discussions||0;
-    const tp=document.getElementById('top-pages');
-    tp.innerHTML=(d.top_pages||[]).map(p=>`<div class="page-row"><span class="page-path">${p.path}</span><span class="page-views">${p.views} views</span></div>`).join('') || '<p style="color:#8a8a9a;font-size:.85rem">No page view data yet.</p>';
-    const rb=document.getElementById('recent-users-body');
-    rb.innerHTML=(d.recent_users||[]).map(u=>`<tr><td>${u.display_name||'—'}</td><td>${u.email}</td><td>${tierBadge(u.tier)}</td><td>${u.provider||'email'}</td><td>${fmt(u.created_at)}</td></tr>`).join('') || '<tr><td colspan="5" style="color:#8a8a9a;text-align:center">No users yet.</td></tr>';
-  }catch(e){console.error('Stats error',e);}
+function fmtTime(ts) {
+  if (!ts) return '—';
+  const d = typeof ts === 'number' ? new Date(ts * 1000) : new Date(ts);
+  if (isNaN(d)) return '—';
+  const now = new Date();
+  const diff = Math.floor((now - d) / 1000);
+  if (diff < 60) return diff + 's ago';
+  if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+  return d.toLocaleDateString();
 }
-let userPage=1;
-async function loadUsers(page=1){
-  userPage=page;
-  const q=document.getElementById('user-search').value;
-  try{
-    const r=await fetch(`${API}/api/admin/users?page=${page}&q=${encodeURIComponent(q)}`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-    const d=await r.json();
-    if(!d.success)return;
-    const b=document.getElementById('users-body');
-    b.innerHTML=(d.users||[]).map(u=>`<tr>
-      <td>${u.display_name||'—'}</td><td>${u.email}</td>
+function tierBadge(t) {
+  const cls = t === 'admin' ? 'badge-admin' : t === 'pro' ? 'badge-pro' : t === 'trialing' ? 'badge-trialing' : t === 'canceled' ? 'badge-canceled' : 'badge-basic';
+  return `<span class="badge ${cls}">${t || 'basic'}</span>`;
+}
+
+// ── Tab switching ──────────────────────────────────────────────────────────
+function showTab(t, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + t).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (t === 'users') loadUsers();
+  if (t === 'discussions') loadDiscs();
+  if (t === 'stripe') loadStripe();
+  if (t === 'messages') loadMessages();
+  if (t === 'activity') loadActivity();
+}
+
+// ── Feature 1: Real Stats ─────────────────────────────────────────────────
+async function loadStats() {
+  const errEl = document.getElementById('stats-error');
+  errEl.style.display = 'none';
+  try {
+    const r = await fetch(API + '/api/admin/stats', { headers: { Authorization: 'Bearer ' + tok() } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (!d.success) throw new Error(d.detail || 'Unknown error');
+    const s = d.stats;
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = val ?? '0'; el.classList.remove('loading'); }
+    };
+    set('s-total-users', s.total_users);
+    set('s-pro', s.pro_subscribers);
+    set('s-basic', s.basic_users);
+    set('s-new-today', s.new_today);
+    set('s-new-week', s.new_this_week);
+    set('s-active-hour', s.active_last_hour);
+    set('s-total-guides', s.total_guides);
+    set('s-unread-msgs', s.unread_messages);
+    // Update nav badge
+    const unread = s.unread_messages || 0;
+    const badge = document.getElementById('nav-msg-badge');
+    badge.textContent = unread;
+    badge.style.display = unread > 0 ? 'inline-block' : 'none';
+    // Update messages inbox badge
+    const ub = document.getElementById('unread-count-badge');
+    if (ub) { ub.textContent = unread + ' unread'; ub.style.display = unread > 0 ? 'inline-block' : 'none'; }
+    // Recent users
+    const rb = document.getElementById('recent-users-body');
+    rb.innerHTML = (d.recent_users || []).map(u =>
+      `<tr><td>${u.display_name || '—'}</td><td>${u.email}</td><td>${tierBadge(u.tier)}</td><td>${u.provider || 'email'}</td><td>${fmt(u.created_at)}</td></tr>`
+    ).join('') || '<tr><td colspan="5" style="color:#555;text-align:center">No users yet.</td></tr>';
+    document.getElementById('stats-refresh-note').textContent = 'Updated ' + new Date().toLocaleTimeString();
+  } catch (e) {
+    errEl.textContent = 'Failed to load stats: ' + e.message;
+    errEl.style.display = 'block';
+  }
+}
+
+// ── Feature 2: Live Activity ──────────────────────────────────────────────
+async function loadActivity() {
+  const errEl = document.getElementById('activity-error');
+  errEl.style.display = 'none';
+  const body = document.getElementById('activity-body');
+  try {
+    const r = await fetch(API + '/api/admin/activity', { headers: { Authorization: 'Bearer ' + tok() } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    const rows = d.activity || [];
+    if (!rows.length) {
+      body.innerHTML = '<tr><td colspan="4" style="color:#555;text-align:center;padding:1.5rem">No active users.</td></tr>';
+      return;
+    }
+    const now = new Date();
+    body.innerHTML = rows.map(s => {
+      const pingTime = s.last_ping ? new Date(s.last_ping) : null;
+      const isLive = pingTime && (now - pingTime) < 5 * 60 * 1000;
+      return `<tr class="${isLive ? 'activity-row-live' : ''}">
+        <td><span class="${isLive ? 'dot-green' : 'dot-grey'}"></span>${isLive ? 'Live' : 'Away'}</td>
+        <td>${s.email || '—'}</td>
+        <td style="font-family:monospace;font-size:.8rem">${s.page || '/'}</td>
+        <td>${fmtTime(s.last_ping)}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('activity-refresh-note').textContent = 'Updated ' + new Date().toLocaleTimeString();
+  } catch (e) {
+    errEl.textContent = 'Failed to load activity: ' + e.message;
+    errEl.style.display = 'block';
+    body.innerHTML = '<tr><td colspan="4" style="color:#ff6b7a;text-align:center">Error loading activity.</td></tr>';
+  }
+}
+
+// ── Feature 3: Messages Inbox ─────────────────────────────────────────────
+async function loadMessages() {
+  const errEl = document.getElementById('messages-error');
+  const listEl = document.getElementById('msg-list');
+  const emptyEl = document.getElementById('messages-empty');
+  errEl.style.display = 'none';
+  listEl.innerHTML = '<div style="color:#555;text-align:center;padding:2rem">Loading…</div>';
+  emptyEl.style.display = 'none';
+  try {
+    const r = await fetch(API + '/api/admin/messages', { headers: { Authorization: 'Bearer ' + tok() } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    const msgs = d.messages || [];
+    if (!msgs.length) {
+      listEl.innerHTML = '';
+      emptyEl.style.display = 'block';
+      return;
+    }
+    // Sort: unread first
+    msgs.sort((a, b) => (a.read === b.read ? 0 : a.read ? 1 : -1));
+    listEl.innerHTML = msgs.map(m => buildMsgCard(m)).join('');
+    // Update unread badge
+    const unread = msgs.filter(m => !m.read).length;
+    const ub = document.getElementById('unread-count-badge');
+    if (ub) { ub.textContent = unread + ' unread'; ub.style.display = unread > 0 ? 'inline-block' : 'none'; }
+  } catch (e) {
+    errEl.textContent = 'Failed to load messages: ' + e.message;
+    errEl.style.display = 'block';
+    listEl.innerHTML = '';
+  }
+}
+
+function buildMsgCard(m) {
+  const preview = (m.message || '').substring(0, 80) + ((m.message || '').length > 80 ? '…' : '');
+  const timeStr = m.created_at ? fmtTime(m.created_at) : '—';
+  const unreadClass = m.read ? '' : 'unread';
+  const readBadge = m.read
+    ? `<span class="badge badge-read">Read</span>`
+    : `<span class="badge badge-unread">Unread</span>`;
+  return `<div class="msg-card ${unreadClass}" id="msg-${m.id}">
+    <div class="msg-card-header" onclick="toggleMsg('${m.id}')">
+      ${readBadge}
+      <div class="msg-meta">
+        <div class="msg-sender">${escHtml(m.name || '—')} &lt;${escHtml(m.email || '')}&gt;</div>
+        <div class="msg-subject">${escHtml(m.subject || 'General Inquiry')} — ${escHtml(preview)}</div>
+      </div>
+      <div class="msg-time">${timeStr}</div>
+    </div>
+    <div class="msg-body" id="msgbody-${m.id}">
+      <p>${escHtml(m.message || '').replace(/\n/g, '<br>')}</p>
+      <a class="msg-email-link" href="mailto:${escHtml(m.email || '')}">Reply to ${escHtml(m.email || '')}</a>
+      <div class="msg-body-actions">
+        ${!m.read ? `<button class="btn btn-sm-green" onclick="markRead('${m.id}')">Mark as Read</button>` : ''}
+        <button class="btn btn-sm-danger" onclick="deleteMsg('${m.id}')">Delete</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function toggleMsg(id) {
+  const body = document.getElementById('msgbody-' + id);
+  if (body) body.classList.toggle('open');
+}
+
+async function markRead(id) {
+  try {
+    await fetch(API + '/api/admin/messages/' + id + '/read', {
+      method: 'PATCH',
+      headers: { Authorization: 'Bearer ' + tok() }
+    });
+    // Update card in place
+    const card = document.getElementById('msg-' + id);
+    if (card) {
+      card.classList.remove('unread');
+      const badge = card.querySelector('.badge-unread');
+      if (badge) { badge.className = 'badge badge-read'; badge.textContent = 'Read'; }
+      const markBtn = card.querySelector('.btn-sm-green');
+      if (markBtn) markBtn.remove();
+    }
+    // Refresh nav badge
+    loadStats();
+  } catch (e) { alert('Failed to mark as read.'); }
+}
+
+async function deleteMsg(id) {
+  if (!confirm('Delete this message?')) return;
+  try {
+    await fetch(API + '/api/admin/messages/' + id, {
+      method: 'DELETE',
+      headers: { Authorization: 'Bearer ' + tok() }
+    });
+    const card = document.getElementById('msg-' + id);
+    if (card) card.remove();
+    const list = document.getElementById('msg-list');
+    if (list && !list.children.length) document.getElementById('messages-empty').style.display = 'block';
+    loadStats();
+  } catch (e) { alert('Failed to delete message.'); }
+}
+
+// ── Users Tab ─────────────────────────────────────────────────────────────
+let userPage = 1;
+async function loadUsers(page = 1) {
+  userPage = page;
+  const q = document.getElementById('user-search').value;
+  try {
+    const r = await fetch(`${API}/api/admin/users?page=${page}&q=${encodeURIComponent(q)}`, { headers: { Authorization: 'Bearer ' + tok() } });
+    const d = await r.json();
+    if (!d.success) return;
+    const b = document.getElementById('users-body');
+    b.innerHTML = (d.users || []).map(u => `<tr>
+      <td>${u.display_name || '—'}</td><td>${u.email}</td>
       <td>${tierBadge(u.role)}</td><td>${tierBadge(u.tier)}</td><td>${fmt(u.created_at)}</td>
-      <td><button class="btn btn-sm-gold" onclick="setTier('${u.id}','pro')" style="margin-right:.25rem">Pro</button><button class="btn btn-sm-outline" onclick="setTier('${u.id}','basic')">Basic</button></td>
-    </tr>`).join('') || '<tr><td colspan="6" style="color:#8a8a9a;text-align:center">No users found.</td></tr>';
-    document.getElementById('users-pagination').textContent=`Page ${page} of ${Math.ceil((d.total||0)/25)} (${d.total||0} users)`;
-  }catch(e){console.error('Users error',e);}
+      <td>
+        <button class="btn btn-sm-gold" onclick="setTier('${u.id}','pro')" style="margin-right:.25rem">Pro</button>
+        <button class="btn btn-sm-outline" onclick="setTier('${u.id}','basic')">Basic</button>
+      </td>
+    </tr>`).join('') || '<tr><td colspan="6" style="color:#555;text-align:center">No users found.</td></tr>';
+    document.getElementById('users-pagination').textContent = `Page ${page} of ${Math.ceil((d.total || 0) / 25)} (${d.total || 0} users)`;
+  } catch (e) { console.error('Users error', e); }
 }
-function searchUsers(){loadUsers(1)}
-async function setTier(id,tier){
-  await fetch(`${API}/api/admin/users/${id}/tier`,{method:'PUT',headers:{Authorization:'Bearer '+QAGAuth.getToken(),'Content-Type':'application/json'},body:JSON.stringify({tier})});
+function searchUsers() { loadUsers(1); }
+async function setTier(id, tier) {
+  await fetch(`${API}/api/admin/users/${id}/tier`, { method: 'PUT', headers: { Authorization: 'Bearer ' + tok(), 'Content-Type': 'application/json' }, body: JSON.stringify({ tier }) });
   loadUsers(userPage);
 }
-async function loadStripe(){
-  const note=document.getElementById('stripe-note');
-  try{
-    const r=await fetch(`${API}/api/admin/stripe`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-    const d=await r.json();
-    if(!d.success){
-      note.style.display='block';
-      note.textContent=d.error||'Stripe data unavailable. Your account may still be under review by Stripe.';
-      document.getElementById('stripe-active').textContent='—';
-      document.getElementById('stripe-mrr').textContent='—';
-      document.getElementById('stripe-total').textContent='—';
-      document.getElementById('stripe-trialing').textContent='—';
-      document.getElementById('stripe-body').innerHTML='<tr><td colspan="5" style="color:#8a8a9a;text-align:center">No Stripe data available yet.</td></tr>';
+
+// ── Stripe Tab ────────────────────────────────────────────────────────────
+async function loadStripe() {
+  const note = document.getElementById('stripe-note');
+  try {
+    const r = await fetch(`${API}/api/admin/stripe`, { headers: { Authorization: 'Bearer ' + tok() } });
+    const d = await r.json();
+    if (!d.success) {
+      note.style.display = 'block';
+      note.textContent = d.error || 'Stripe data unavailable.';
+      ['stripe-active','stripe-mrr','stripe-total','stripe-trialing'].forEach(id => document.getElementById(id).textContent = '—');
+      document.getElementById('stripe-body').innerHTML = '<tr><td colspan="5" style="color:#555;text-align:center">No Stripe data available yet.</td></tr>';
       return;
     }
-    note.style.display='none';
-    document.getElementById('stripe-active').textContent=d.active_subscribers||0;
-    document.getElementById('stripe-mrr').textContent='$'+((d.mrr_cents||0)/100).toFixed(2);
-    document.getElementById('stripe-total').textContent=d.total_customers||0;
-    document.getElementById('stripe-trialing').textContent=d.trialing||0;
-    const b=document.getElementById('stripe-body');
-    b.innerHTML=(d.subscribers||[]).map(s=>`<tr>
-      <td>${s.email}</td>
-      <td>${s.plan||'—'}</td>
-      <td>${tierBadge(s.status)}</td>
-      <td>${fmt(s.created)}</td>
-      <td>$${((s.amount||0)/100).toFixed(2)}/mo</td>
-    </tr>`).join('') || '<tr><td colspan="5" style="color:#8a8a9a;text-align:center">No subscribers yet.</td></tr>';
-  }catch(e){
-    note.style.display='block';
-    note.textContent='Error connecting to Stripe. Check that STRIPE_SECRET_KEY is set in Render.';
-    document.getElementById('stripe-body').innerHTML='<tr><td colspan="5" style="color:#ff6b7a;text-align:center">Connection error.</td></tr>';
+    note.style.display = 'none';
+    document.getElementById('stripe-active').textContent = d.active_subscribers || 0;
+    document.getElementById('stripe-mrr').textContent = '$' + ((d.mrr_cents || 0) / 100).toFixed(2);
+    document.getElementById('stripe-total').textContent = d.total_customers || 0;
+    document.getElementById('stripe-trialing').textContent = d.trialing || 0;
+    const b = document.getElementById('stripe-body');
+    b.innerHTML = (d.subscribers || []).map(s => `<tr>
+      <td>${s.email}</td><td>${s.plan || '—'}</td><td>${tierBadge(s.status)}</td>
+      <td>${fmt(s.created)}</td><td>$${((s.amount || 0) / 100).toFixed(2)}/mo</td>
+    </tr>`).join('') || '<tr><td colspan="5" style="color:#555;text-align:center">No subscribers yet.</td></tr>';
+  } catch (e) {
+    note.style.display = 'block';
+    note.textContent = 'Error connecting to Stripe.';
+    document.getElementById('stripe-body').innerHTML = '<tr><td colspan="5" style="color:#ff6b7a;text-align:center">Connection error.</td></tr>';
   }
 }
-async function loadMessages(){
-  const empty=document.getElementById('messages-empty');
-  const b=document.getElementById('messages-body');
-  try{
-    const r=await fetch(`${API}/api/admin/messages`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-    const d=await r.json();
-    if(!d.success||!d.messages||!d.messages.length){
-      b.innerHTML='';
-      empty.style.display='block';
-      return;
-    }
-    empty.style.display='none';
-    b.innerHTML=d.messages.map(m=>`<tr>
-      <td>${m.name||'—'}</td>
-      <td><a href="mailto:${m.email}" style="color:#b9914b">${m.email}</a></td>
-      <td>${m.subject||'—'}</td>
-      <td class="msg-preview" title="${(m.message||'').replace(/"/g,'&quot;')}">${m.message||'—'}</td>
-      <td>${fmtDate(m.created_at)}</td>
-      <td><button class="btn btn-sm-danger" onclick="deleteMessage('${m.id}')">Delete</button></td>
-    </tr>`).join('');
-  }catch(e){
-    b.innerHTML='<tr><td colspan="6" style="color:#ff6b7a;text-align:center">Error loading messages.</td></tr>';
-    empty.style.display='none';
-  }
-}
-async function deleteMessage(id){
-  if(!confirm('Delete this message?'))return;
-  await fetch(`${API}/api/admin/messages/${id}`,{method:'DELETE',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-  loadMessages();
-}
-async function loadDiscs(){
-  try{
-    const r=await fetch(`${API}/api/discussions?guide=general&page=1`,{headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
-    const d=await r.json();
-    const b=document.getElementById('disc-body');
-    b.innerHTML=(d.posts||[]).map(p=>`<tr>
-      <td>${p.display_name||'—'}</td><td>${p.guide_id}</td>
+
+// ── Discussions Tab ───────────────────────────────────────────────────────
+async function loadDiscs() {
+  try {
+    const r = await fetch(`${API}/api/discussions?guide=general&page=1`, { headers: { Authorization: 'Bearer ' + tok() } });
+    const d = await r.json();
+    const b = document.getElementById('disc-body');
+    b.innerHTML = (d.posts || []).map(p => `<tr>
+      <td>${p.display_name || '—'}</td><td>${p.guide_id}</td>
       <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.content}</td>
       <td>${fmt(p.created_at)}</td>
-      <td><button class="btn btn-sm-danger" onclick="deletePost(${p.id})">Delete</button><button class="btn btn-sm-outline" onclick="pinPost(${p.id})" style="margin-left:.25rem">${p.pinned?'Unpin':'Pin'}</button></td>
-    </tr>`).join('') || '<tr><td colspan="5" style="color:#8a8a9a;text-align:center">No discussions yet.</td></tr>';
-  }catch(e){console.error('Discussions error',e);}
+      <td>
+        <button class="btn btn-sm-danger" onclick="deletePost(${p.id})">Delete</button>
+        <button class="btn btn-sm-outline" onclick="pinPost(${p.id})" style="margin-left:.25rem">${p.pinned ? 'Unpin' : 'Pin'}</button>
+      </td>
+    </tr>`).join('') || '<tr><td colspan="5" style="color:#555;text-align:center">No discussions yet.</td></tr>';
+  } catch (e) { console.error('Discussions error', e); }
 }
-async function deletePost(id){
-  if(!confirm('Delete this post?'))return;
-  await fetch(`${API}/api/discussions/${id}`,{method:'DELETE',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+async function deletePost(id) {
+  if (!confirm('Delete this post?')) return;
+  await fetch(`${API}/api/discussions/${id}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + tok() } });
   loadDiscs();
 }
-async function pinPost(id){
-  await fetch(`${API}/api/discussions/${id}/pin`,{method:'POST',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+async function pinPost(id) {
+  await fetch(`${API}/api/discussions/${id}/pin`, { method: 'POST', headers: { Authorization: 'Bearer ' + tok() } });
   loadDiscs();
 }
-async function init(){
-  const user=QAGAuth.getUser();
-  if(!user||user.role!=='admin'){document.getElementById('access-denied').style.display='block';return}
-  document.getElementById('admin-content').style.display='block';
+
+// ── Init & auto-refresh ───────────────────────────────────────────────────
+async function init() {
+  const user = QAGAuth.getUser();
+  if (!user || user.role !== 'admin') {
+    document.getElementById('access-denied').style.display = 'block';
+    return;
+  }
+  document.getElementById('admin-content').style.display = 'block';
   loadStats();
+  // Auto-refresh stats + activity every 30 seconds
+  setInterval(() => {
+    loadStats();
+    const activeTab = document.querySelector('.tab-panel.active');
+    if (activeTab && activeTab.id === 'tab-activity') loadActivity();
+    if (activeTab && activeTab.id === 'tab-messages') loadMessages();
+  }, 30000);
 }
 init();
 </script>
