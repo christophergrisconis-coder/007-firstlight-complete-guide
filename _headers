@@ -1,0 +1,25 @@
+# Cloudflare Pages _headers
+# Prevents ALL browsers (Safari, Edge, Comet, DuckDuckGo, Chrome) from
+# caching the admin page and auth scripts. Forces a fresh fetch every time.
+
+/gaming-hub/pages/admin
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Surrogate-Control: no-store
+
+/gaming-hub/pages/admin.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Surrogate-Control: no-store
+
+/gaming-hub/pages/signin.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+/gaming-hub/pages/signup.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+/gaming-hub/assets/js/qag-auth.js
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
