@@ -21,4 +21,24 @@ export const CUSTOM_GUIDE_ROUTES = {
 
   // The Witcher 3: Wild Hunt — 100% Completion Guide.
   "the-witcher-3-wild-hunt": "/gaming-hub/custom-guides/witcher3/",
+  // Elden Ring — 100% Completion Guide.
+  "elden-ring": "/gaming-hub/custom-guides/elden-ring/",
+  // Baldurs Gate 3 — 100% Completion Guide.
+  "baldurs-gate-3": "/gaming-hub/custom-guides/baldurs-gate-3/",
+  // Cyberpunk 2077 — 100% Completion Guide.
+  "cyberpunk-2077": "/gaming-hub/custom-guides/cyberpunk-2077/",
+  // Monster Hunter Wilds — 100% Completion Guide.
+  "monster-hunter-wilds": "/gaming-hub/custom-guides/monster-hunter-wilds/",
+  // Spider Man 2 — 100% Completion Guide.
+  "spider-man-2": "/gaming-hub/custom-guides/spider-man-2/",
+  // God Of War Ragnarok — 100% Completion Guide.
+  "god-of-war-ragnarok": "/gaming-hub/custom-guides/god-of-war-ragnarok/",
+  // Astro Bot — 100% Completion Guide.
+  "astro-bot": "/gaming-hub/custom-guides/astro-bot/",
+  // Starfield — 100% Completion Guide.
+  "starfield": "/gaming-hub/custom-guides/starfield/",
+  // Hellblade 2 — 100% Completion Guide.
+  "hellblade-2": "/gaming-hub/custom-guides/hellblade-2/",
+  // Hades 2 — 100% Completion Guide.
+  "hades-2": "/gaming-hub/custom-guides/hades-2/",
 };
