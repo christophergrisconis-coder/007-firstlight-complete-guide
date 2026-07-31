@@ -246,6 +246,7 @@ footer b{color:var(--dim)}
     <a href="#trophies">Trophies</a>
     <a href="#bounties">Bounties</a>
     <a href="#collectibles">Collectibles</a>
+    <a href="#weapons">Weapons &amp; Items</a>
     <a href="#legendary-armor">Legendary Armor</a>
   </nav>
 </header>
@@ -763,6 +764,60 @@ footer b{color:var(--dim)}
   <div class="quest-steps" id="qs-goy-myth-fightingfirewithfire-5"><ol class="steps-list"><li>Find the musician in Ishikari Plain who knows this Myth.</li><li>Listen to the shamisen song — it reveals a fire weapon cache.</li><li>Travel to the cache location.</li><li>Defeat the Oni Raiders guarding the cache.</li><li>Collect the fire weapon upgrade.</li></ol><div class="step-reward">🏆 Fire Weapon Upgrade</div></div>
 </div></div>
 </div>
+  </section>
+  <section id="weapons">
+    <div class="sec-hd"><h2>⚔ Weapons &amp; Items</h2><p>All weapons, tools, and key items in Ghost of Yōtei. Weapons are unlocked through the main story, side tales, and crafting. Check off each weapon as you acquire it.</p></div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Katana &amp; Dual Katana</h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Atsu's primary weapons. The Dual Katana stance is unlocked through the main story in Act 1.</div>
+<div class="row" data-search="starting katana weapon ghost yotei"><input type="checkbox" id="goy-w-katana-start" onchange="_ck(this)"><div class="row-top"><label for="goy-w-katana-start"><b>Atsu's Katana</b><span class="tag note">Starting Weapon</span><small>Atsu's personal katana from the beginning of the game. Can be upgraded at a blacksmith using iron and steel.</small></label></div></div>
+<div class="row" data-search="dual katana stance weapon ghost yotei"><input type="checkbox" id="goy-w-dual-katana" onchange="_ck(this)"><div class="row-top"><label for="goy-w-dual-katana"><b>Dual Katana Stance</b><span class="tag trophy">Story Unlock</span><small>Unlocked during The Way of Dual Katana main tale. Allows simultaneous dual-wield attacks.</small></label></div></div>
+<div class="row" data-search="legendary katana weapon ghost yotei"><input type="checkbox" id="goy-w-katana-leg" onchange="_ck(this)"><div class="row-top"><label for="goy-w-katana-leg"><b>Legendary Katana (Mythic Tale)</b><span class="tag trophy">Mythic</span><small>Unlocked by completing the Mythic Tale about the legendary swordsmith. Requires gathering 3 rare materials.</small></label></div></div>
+<div class="row" data-search="yotei six katana weapon ghost yotei"><input type="checkbox" id="goy-w-yotei-six" onchange="_ck(this)"><div class="row-top"><label for="goy-w-yotei-six"><b>Yōtei Six Blade</b><span class="tag missable">Missable</span><small>Reward for defeating all 6 members of the Yōtei Six. Requires completing the Find a Lead on the Yōtei Six main tale chain.</small></label></div></div>
+      </div>
+    </div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Bows &amp; Ranged Weapons</h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+<div class="row" data-search="short bow weapon ghost yotei"><input type="checkbox" id="goy-w-shortbow" onchange="_ck(this)"><div class="row-top"><label for="goy-w-shortbow"><b>Short Bow</b><span class="tag note">Ranged</span><small>Starting ranged weapon. Fast draw speed, lower damage. Upgrade with wood and sinew at a bowyer.</small></label></div></div>
+<div class="row" data-search="longbow weapon ghost yotei"><input type="checkbox" id="goy-w-longbow" onchange="_ck(this)"><div class="row-top"><label for="goy-w-longbow"><b>Longbow</b><span class="tag note">Ranged</span><small>Unlocked after completing the Mythic Tale about the master archer. Higher damage and range than the Short Bow.</small></label></div></div>
+<div class="row" data-search="fire arrow bow weapon ghost yotei"><input type="checkbox" id="goy-w-firearrow" onchange="_ck(this)"><div class="row-top"><label for="goy-w-firearrow"><b>Fire Arrows</b><span class="tag note">Ammo Type</span><small>Crafted using oil and arrow shafts. Ignite enemies and flammable objects. Required for several side tales.</small></label></div></div>
+<div class="row" data-search="poison arrow bow weapon ghost yotei"><input type="checkbox" id="goy-w-poisonarrow" onchange="_ck(this)"><div class="row-top"><label for="goy-w-poisonarrow"><b>Poison Arrows</b><span class="tag note">Ammo Type</span><small>Crafted using toxic plants. Cause poison buildup on hit. Effective against armored enemies.</small></label></div></div>
+      </div>
+    </div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Tools &amp; Throwables</h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+<div class="row" data-search="kunai tool ghost yotei"><input type="checkbox" id="goy-w-kunai" onchange="_ck(this)"><div class="row-top"><label for="goy-w-kunai"><b>Kunai</b><span class="tag note">Tool</span><small>Starting throwable. Interrupt enemy attacks and break guarded stances. Craft from iron scraps.</small></label></div></div>
+<div class="row" data-search="smoke bomb tool ghost yotei"><input type="checkbox" id="goy-w-smoke" onchange="_ck(this)"><div class="row-top"><label for="goy-w-smoke"><b>Smoke Bomb</b><span class="tag note">Tool</span><small>Unlocked after completing the first Mythic Tale. Creates a smoke cloud for stealth escapes and repositioning.</small></label></div></div>
+<div class="row" data-search="sticky bomb tool ghost yotei"><input type="checkbox" id="goy-w-sticky" onchange="_ck(this)"><div class="row-top"><label for="goy-w-sticky"><b>Sticky Bomb</b><span class="tag note">Tool</span><small>Unlocked in Act 2. Adheres to surfaces and enemies — detonate remotely or on a timer.</small></label></div></div>
+<div class="row" data-search="wind chime tool ghost yotei"><input type="checkbox" id="goy-w-windchime" onchange="_ck(this)"><div class="row-top"><label for="goy-w-windchime"><b>Wind Chime</b><span class="tag note">Tool</span><small>Creates a distraction noise to lure enemies away from their patrol routes. Essential for stealth playthroughs.</small></label></div></div>
+<div class="row" data-search="caltrops tool ghost yotei"><input type="checkbox" id="goy-w-caltrops" onchange="_ck(this)"><div class="row-top"><label for="goy-w-caltrops"><b>Caltrops</b><span class="tag note">Tool</span><small>Unlocked in Act 2. Scatter on the ground to slow and damage pursuing enemies. Craft from iron and bamboo.</small></label></div></div>
+      </div>
+    </div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>Key Items &amp; Story Rewards</h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="sec-note">Key items received as story rewards or through specific side tales. These cannot be missed if you complete all main and side tales.</div>
+<div class="row" data-search="horse charm key item ghost yotei"><input type="checkbox" id="goy-w-horsecharm" onchange="_ck(this)"><div class="row-top"><label for="goy-w-horsecharm"><b>Horse Charm</b><span class="tag note">Key Item</span><small>Reward for completing the first Mythic Tale. Increases your horse's max health and stamina.</small></label></div></div>
+<div class="row" data-search="traveler's attire key item ghost yotei"><input type="checkbox" id="goy-w-traveler" onchange="_ck(this)"><div class="row-top"><label for="goy-w-traveler"><b>Traveler's Attire</b><span class="tag note">Key Item</span><small>Reward for discovering all 12 hot springs. Increases Resolve gained from exploration.</small></label></div></div>
+<div class="row" data-search="shaman drum key item ghost yotei"><input type="checkbox" id="goy-w-drum" onchange="_ck(this)"><div class="row-top"><label for="goy-w-drum"><b>Shaman's Drum</b><span class="tag note">Key Item</span><small>Reward for completing the Mythic Tale about the wandering shaman. Used to reveal hidden paths.</small></label></div></div>
+<div class="row" data-search="yotei six mask key item ghost yotei"><input type="checkbox" id="goy-w-mask" onchange="_ck(this)"><div class="row-top"><label for="goy-w-mask"><b>Yōtei Six Mask</b><span class="tag trophy">Story Reward</span><small>Reward for defeating all 6 members of the Yōtei Six. Cosmetic item — worn as a trophy of your victory.</small></label></div></div>
+      </div>
+    </div>
   </section>
   <section id="trophies">
     <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 54 trophies for Ghost of Yōtei — 1 Platinum, 2 Gold, 7 Silver, 44 Bronze. Complete all for the Platinum.</p></div>
