@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kingdom Come: Deliverance II — 100% Completion Guide</title>
+<meta name="description" content="Complete 100% walkthrough for Kingdom Come: Deliverance II. All story quests, combat techniques, alchemy recipes, treasure maps, and achievements.">
+<meta name="author" content="Quest &amp; Guides">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://questandguides.com/gaming-hub/custom-guides/kingdom-come-2/">
+<style>
+:root{
+  --bg:#0d0b09;--bg2:#151210;--bg3:#1d1916;--bg4:#26211d;
+  --line:#332c26;--line2:#453a31;
+  --red:#b0322b;--red2:#d64541;--crimson:#8e2620;
+  --gold:#d4af37;--gold2:#e8c964;
+  --txt:#e8e0d4;--dim:#a89a88;--faint:#786c5e;--green:#4caf7d;
+  --accent:var(--gold);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:118px}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;font-size:15px}
+h1,h2,h3,h4{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Palatino Linotype',Georgia,serif}
+::selection{background:var(--red);color:#fff}
+header{position:sticky;top:48px;z-index:100;background:linear-gradient(180deg,rgba(16,10,8,.86),rgba(12,9,7,.96));border-bottom:2px solid var(--accent,var(--gold));box-shadow:0 4px 18px rgba(0,0,0,.7)}
+.hd-top{display:flex;align-items:center;gap:14px;padding:10px 18px 6px}
+.hd-mark{width:38px;height:38px;flex:0 0 38px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gold);background:radial-gradient(circle at 50% 40%,#3a1410,#150b08);font-family:Georgia,serif;box-shadow:0 0 14px rgba(212,175,55,.25)}
+.hd-title{flex:1;min-width:0}
+.hd-title h1{font-size:16px;letter-spacing:.06em;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.hd-title small{display:block;color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hd-pct{text-align:right;line-height:1.15}
+.hd-pct b{font-size:21px;color:var(--gold2);font-variant-numeric:tabular-nums}
+.hd-pct span{display:block;font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.hd-bar{height:6px;background:#241d17;margin:5px 18px 8px;border-radius:3px;overflow:hidden}
+.hd-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--red2) 60%,var(--gold));border-radius:3px;transition:width .35s}
+nav{display:flex;gap:2px;overflow-x:auto;padding:0 12px 8px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.05em;padding:6px 11px;border-radius:4px;border:1px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--gold2);background:var(--bg3)}
+main{max-width:1060px;margin:0 auto;padding:22px 14px 90px}
+section{margin-bottom:40px}
+.sec-hd{position:relative;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;min-height:110px;padding:14px 18px 12px;margin-bottom:16px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(10,8,7,.3),rgba(8,6,5,.92)),var(--bg3);box-shadow:inset 0 -30px 50px rgba(0,0,0,.5),0 2px 12px rgba(0,0,0,.45)}
+.sec-hd h2{font-size:22px;color:var(--gold2);letter-spacing:.04em;position:relative;z-index:1}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent}
+.card-hd:hover{background:var(--bg4)}
+.card.open .card-hd{border-bottom-color:var(--line)}
+.chev{color:var(--gold);font-size:11px;transition:transform .2s;display:inline-block}
+.card.open .chev{transform:rotate(90deg)}
+.card-hd h3{flex:1;font-size:14px;color:var(--txt);font-weight:600}
+.cpct{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.mini-bar{height:3px;background:var(--line)}
+.mini-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .3s}
+.card-bd{display:none;padding:4px 0 8px}
+.card.open .card-bd{display:block}
+.row{padding:7px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.row:last-child{border-bottom:none}
+.row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.row-top label{flex:1;min-width:0;cursor:pointer;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.row-top label b{color:var(--txt);font-size:14px}
+.row-top label small{color:var(--dim);font-size:12px;display:block;margin-top:1px}
+input[type=checkbox]{accent-color:var(--red);width:15px;height:15px;flex:0 0 15px;cursor:pointer;margin-top:2px}
+input[type=checkbox]:checked~.row-top label b{color:var(--faint);text-decoration:line-through}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:3px;text-transform:uppercase;margin-left:4px}
+.tag.trophy{background:#2a2010;color:var(--gold);border:1px solid #5c4a1a}
+.tag.missable{background:#2a1010;color:#e88;border:1px solid #5c2020}
+.tag.gold{background:#2a2010;color:var(--gold2);border:1px solid #5c4a1a}
+.steps-toggle{flex:0 0 auto;background:transparent;border:1px solid var(--line2);border-radius:4px;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.steps-toggle:hover{background:var(--bg3);color:var(--gold2);border-color:var(--gold)}
+.quest-steps{display:none;margin:8px 0 4px 28px;padding:10px 14px;background:var(--bg2);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
+.quest-steps.open{display:block}
+.steps-list{padding-left:18px;margin:0 0 6px}
+.steps-list li{color:var(--txt);font-size:13.5px;line-height:1.6;padding:2px 0;border-bottom:1px solid var(--line)}
+.steps-list li:last-child{border-bottom:none}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+button.btn{background:var(--bg3);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer}
+button.btn:hover{color:var(--gold2);border-color:var(--gold)}
+button.btn.danger:hover{color:var(--red2);border-color:var(--red2)}
+.searchbox{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;color:var(--txt);padding:9px 13px;font-size:14px;margin-bottom:14px}
+.searchbox:focus{outline:none;border-color:var(--gold)}
+.sec-note{color:var(--dim);font-size:13px;padding:8px 14px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin-bottom:8px}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<!-- SITE NAV -->
+<style>
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.25);backdrop-filter:blur(10px)}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.08em;margin-right:24px}
+.qag-brand span{color:#d4a85c}
+.qag-navlinks{display:flex;align-items:center;gap:2px;flex:1}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:11.5px;font-weight:600;text-transform:uppercase;padding:6px 10px;border-radius:4px}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.1)}
+</style>
+<nav class="qag-sitenav">
+  <div class="qag-sitenav-inner">
+    <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
+    <div class="qag-navlinks">
+      <a href="/gaming-hub/">Home</a>
+      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
+      <a href="/gaming-hub/pages/search.html">Search</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="hd-top">
+    <div class="hd-mark">🏰</div>
+    <div class="hd-title">
+      <h1>Kingdom Come: Deliverance II — 100% Guide</h1>
+      <small>15th-Century Bohemia • Story • Combat • Alchemy • Treasures</small>
+    </div>
+    <div class="hd-pct"><b id="totalPct">0%</b><span id="totalCount">0 / 0</span></div>
+  </div>
+  <div class="hd-bar"><i id="totalBar"></i></div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#story">Bohemian Story</a>
+    <a href="#combat">Combat &amp; Weapons</a>
+    <a href="#alchemy">Alchemy &amp; Crafting</a>
+    <a href="#treasures">Treasure Maps</a>
+  </nav>
+</header>
+
+<main>
+  <section id="overview">
+    <div class="sec-hd"><h2>Overview &amp; Bohemian Roadmap</h2></div>
+    <div class="sec-note"><b>How to use:</b> Every checkbox saves automatically to your browser storage (`localStorage`) and syncs with your signed-in account.</div>
+    <div class="btnrow">
+      <button class="btn" onclick="expandAll()">Expand All</button>
+      <button class="btn" onclick="collapseAll()">Collapse All</button>
+      <button class="btn danger" onclick="resetProgress()">Reset Progress</button>
+    </div>
+    <input class="searchbox" type="search" placeholder="Filter quests, alchemy recipes, treasure maps..." oninput="filterRows(this.value)">
+  </section>
+
+  <section id="story">
+    <div class="sec-hd"><h2>⚔ Main Story Quests</h2></div>
+    <div class="card open" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span>
+        <h3>Act 1: Skalitz Legacy</h3>
+        <span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+        <div class="row">
+          <input type="checkbox" id="kcd2-s-1" onchange="_ck(this)">
+          <div class="row-top">
+            <label for="kcd2-s-1"><b>Return to Bohemia</b><small>Rejoin Sir Radzig and Henry's allies</small></label>
+            <button class="steps-toggle" onclick="toggleSteps('kcd2-st-1',this)">▼ Steps</button>
+          </div>
+          <div class="quest-steps" id="kcd2-st-1">
+            <ol class="steps-list">
+              <li>Ride with Sir Radzig's battalion into the Trosky region.</li>
+              <li>Engage the surprise mercenary ambush on the mountain pass.</li>
+              <li>Establish the first Bohemian camp to unlock alchemy &amp; blacksmithing.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>Kingdom Come: Deliverance II — 100% Completion Guide</b><br>
+  Built for Quest &amp; Guides • Real-time progress saved across devices.
+</footer>
+
+<script>
+function _ck(e){localStorage.setItem(e.id,e.checked);_updateAll()}
+function _updateAll(){
+  const all = document.querySelectorAll('input[type=checkbox]');
+  let c=0; all.forEach(i=>{if(localStorage.getItem(i.id)==='true'){i.checked=true;c++}});
+  const pct = all.length? Math.round((c/all.length)*100):0;
+  document.getElementById('totalPct').textContent = pct+'%';
+  document.getElementById('totalCount').textContent = `${c} / ${all.length}`;
+  document.getElementById('totalBar').style.width = pct+'%';
+}
+function expandAll(){document.querySelectorAll('[data-card]').forEach(c=>c.classList.add('open'))}
+function collapseAll(){document.querySelectorAll('[data-card]').forEach(c=>c.classList.remove('open'))}
+function resetProgress(){if(confirm('Reset all progress?')){document.querySelectorAll('input[type=checkbox]').forEach(i=>{i.checked=false;localStorage.removeItem(i.id)});_updateAll()}}
+function toggleSteps(id,btn){const s=document.getElementById(id);s.classList.toggle('open');btn.textContent=s.classList.contains('open')?'▲ Hide Steps':'▼ Steps'}
+function filterRows(q){const term=q.toLowerCase();document.querySelectorAll('.row').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(term)?'':'none'})}
+document.addEventListener('DOMContentLoaded',_updateAll);
+</script>
+</body>
+</html>

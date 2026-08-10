@@ -4,8 +4,8 @@ export const CUSTOM_GUIDE_ROUTES = {
   // AC Shadows 100% Completion Guide.
   "assassins-creed-shadows": "/gaming-hub/custom-guides/ac-shadows/",
 
-  // Embedded custom app copied from your 007 repository.
-  "007-first-light": "/gaming-hub/007/",
+  // 007 First Light — 100% Completion Guide.
+  "007-first-light": "/gaming-hub/custom-guides/007/",
 
   // Hosted custom app for Ghost of Yotei.
   "ghost-of-yotei": "/gaming-hub/custom-guides/ghost-of-yotei/",
@@ -41,4 +41,6 @@ export const CUSTOM_GUIDE_ROUTES = {
   "hellblade-2": "/gaming-hub/custom-guides/hellblade-2/",
   // Hades 2 — 100% Completion Guide.
   "hades-2": "/gaming-hub/custom-guides/hades-2/",
+  // Kingdom Come Deliverance II — 100% Completion Guide.
+  "kingdom-come-deliverance-2": "/gaming-hub/custom-guides/kingdom-come-2/",
 };
