@@ -1,32 +1,8 @@
 import { GAMES } from "./games-data.js";
-import { IMPORTED_GUIDES, QUEST_REPO_LINKS } from "./guide-imports.js";
+import { IMPORTED_GUIDES } from "./guide-imports.js";
 import { supabase } from "./supabase-client.js";
 import { getAccessState } from "./access.js";
 import { applyInSiteGate } from "./content-gate.js";
-
-let FULL_IMPORTED_SECTIONS = {};
-
-const titleNode = document.querySelector("#guide-title");
-const descriptionNode = document.querySelector("#guide-description");
-const metaNode = document.querySelector("#guide-meta");
-const accessNote = document.querySelector("#guide-access-note");
-const questListNode = document.querySelector("#quest-list");
-const questTitleNode = document.querySelector("#quest-title");
-const questSummaryNode = document.querySelector("#quest-summary");
-const questCustomShell = document.querySelector("#quest-custom-shell");
-const questCustomLink = document.querySelector("#quest-custom-link");
-const questTextShell = document.querySelector("#quest-text-shell");
-const questStepsNode = document.querySelector("#quest-steps");
-const questOutcomeNode = document.querySelector("#quest-outcome");
-const questMediaNode = document.querySelector("#quest-media");
-const questSaveNote = document.querySelector("#quest-save-note");
-const questProgressNote = document.querySelector("#quest-progress-note");
-const questPrevButton = document.querySelector("#quest-prev");
-const questNextButton = document.querySelector("#quest-next");
-const stepPrevButton = document.querySelector("#step-prev");
-const stepNextButton = document.querySelector("#step-next");
-const toggleCompleteButton = document.querySelector("#quest-toggle-complete");
-const toggleExpandButton = document.querySelector("#quest-toggle-expand");
 
 const params = new URLSearchParams(location.search);
 const gameId = params.get("game") || "";
@@ -34,492 +10,258 @@ const gameId = params.get("game") || "";
 const state = {
   game: null,
   quests: [],
-  selectedQuestIndex: 0,
-  progressByQuest: {},
   userId: null,
 };
 
-const slugify = (value) =>
-  String(value || "")
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-
-const escapeHtml = (value) =>
-  String(value ?? "")
+const escapeHtml = (val) =>
+  String(val ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 
-const defaultProgress = () => ({
-  completed: false,
-  currentStep: 0,
-  isExpanded: true,
-});
+const buildQuests = (game) => {
+  const imported = IMPORTED_GUIDES[game.id] || null;
+  const list = [];
 
-const getProgress = (questId) => {
-  if (!state.progressByQuest[questId]) {
-    state.progressByQuest[questId] = defaultProgress();
+  if (imported?.walkthrough?.length) {
+    imported.walkthrough.forEach((item, idx) => {
+      const parts = String(item).split(":");
+      const title = parts.length > 1 ? parts.shift().trim() : `Quest ${idx + 1}`;
+      const summary = parts.join(":").trim() || String(item);
+      list.push({
+        id: `${game.id}-q-${idx + 1}`,
+        title,
+        summary,
+        steps: summary ? [summary] : ["Complete quest objectives and advance main story."],
+      });
+    });
   }
-  return state.progressByQuest[questId];
+
+  if (!list.length && Array.isArray(game.guideSections)) {
+    game.guideSections.forEach((section, idx) => {
+      const parts = String(section).split(":");
+      const title = parts.length > 1 ? parts.shift().trim() : `Section ${idx + 1}`;
+      const summary = parts.join(":").trim() || String(section);
+      list.push({
+        id: `${game.id}-sec-${idx + 1}`,
+        title,
+        summary,
+        steps: [summary],
+      });
+    });
+  }
+
+  return list;
 };
 
-const parseWalkthroughItem = (item, index) => {
-  const value = String(item || "").trim();
-  if (!value) {
-    return {
-      id: `q-${index + 1}`,
-      title: `Quest ${index + 1}`,
-      summary: "",
-      steps: [],
-      outcome: "",
-      githubRepoUrl: null,
-    };
-  }
-
-  const parts = value.split(":");
-  if (parts.length > 1) {
-    const title = parts.shift().trim();
-    const summary = parts.join(":").trim();
-    return {
-      id: `q-${index + 1}-${slugify(title)}`,
-      title,
-      summary,
-      steps: [summary],
-      outcome: "",
-      githubRepoUrl: null,
-    };
-  }
-
-  return {
-    id: `q-${index + 1}-${slugify(value)}`,
-    title: `Quest ${index + 1}`,
-    summary: value,
-    steps: [value],
-    outcome: "",
-    githubRepoUrl: null,
-  };
-};
-
-const getQuestRepoUrl = (gameKey, questTitle) => {
-  const gameLinks = QUEST_REPO_LINKS[gameKey] || null;
-  if (!gameLinks) {
-    return null;
-  }
-  return gameLinks[questTitle] || gameLinks["*"] || null;
-};
-
-const buildQuestModel = (game) => {
-  const importedGuide = IMPORTED_GUIDES[game.id] || null;
-  const fullSections = FULL_IMPORTED_SECTIONS[game.id] || [];
-  const quests = [];
-
-  if (fullSections.length) {
-    for (const section of fullSections) {
-      if (Array.isArray(section.entries) && section.entries.length) {
-        for (const entry of section.entries) {
-          const title = entry.title || section.title || "Quest";
-          quests.push({
-            id: `q-${slugify(title)}-${quests.length + 1}`,
-            title,
-            summary: entry.summary || "",
-            steps: Array.isArray(entry.steps) ? entry.steps : [],
-            outcome: entry.outcome || "",
-            githubRepoUrl: getQuestRepoUrl(game.id, title),
-          });
-        }
-      } else if (Array.isArray(section.items) && section.items.length) {
-        const title = section.title || `Quest ${quests.length + 1}`;
-        quests.push({
-          id: `q-${slugify(title)}-${quests.length + 1}`,
-          title,
-          summary: `Detailed checklist for ${title}.`,
-          steps: section.items,
-          outcome: "",
-          githubRepoUrl: getQuestRepoUrl(game.id, title),
-        });
-      }
+const updateProgressMetrics = () => {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"][data-guide-ck]');
+  let count = 0;
+  checkboxes.forEach((ck) => {
+    if (localStorage.getItem(ck.id) === "true") {
+      ck.checked = true;
+      count++;
     }
-  }
+  });
 
-  if (!quests.length && importedGuide?.walkthrough?.length) {
-    importedGuide.walkthrough.forEach((item, index) => {
-      const quest = parseWalkthroughItem(item, index);
-      quest.githubRepoUrl = getQuestRepoUrl(game.id, quest.title);
-      quests.push(quest);
+  const total = checkboxes.length;
+  const pct = total ? Math.round((count / total) * 100) : 0;
+
+  const totalPctNode = document.getElementById("totalPct");
+  const totalCountNode = document.getElementById("totalCount");
+  const totalBarNode = document.getElementById("totalBar");
+  const overviewPctNode = document.getElementById("overview-pct");
+  const questsPctNode = document.getElementById("quests-pct");
+
+  if (totalPctNode) totalPctNode.textContent = `${pct}%`;
+  if (totalCountNode) totalCountNode.textContent = `${count} / ${total}`;
+  if (totalBarNode) totalBarNode.style.width = `${pct}%`;
+  if (overviewPctNode) overviewPctNode.textContent = `${pct}%`;
+  if (questsPctNode) questsPctNode.textContent = `${pct}%`;
+
+  // Per card percentage calculation
+  document.querySelectorAll("[data-card]").forEach((card) => {
+    const cardCks = card.querySelectorAll('input[type="checkbox"]');
+    let cardChecked = 0;
+    cardCks.forEach((c) => {
+      if (c.checked) cardChecked++;
     });
-  }
+    const cardTotal = cardCks.length;
+    const cardPct = cardTotal ? Math.round((cardChecked / cardTotal) * 100) : 0;
 
-  if (!quests.length && Array.isArray(game.guideSections)) {
-    game.guideSections.forEach((item, index) => {
-      const quest = parseWalkthroughItem(item, index);
-      quest.githubRepoUrl = getQuestRepoUrl(game.id, quest.title);
-      quests.push(quest);
-    });
-  }
+    const cpctNode = card.querySelector(".cpct");
+    const cbarNode = card.querySelector("[data-cbar]");
 
-  return {
-    quests,
-    sources: importedGuide?.githubDataSources || [],
-  };
+    if (cpctNode) {
+      cpctNode.textContent = `${cardChecked}/${cardTotal} (${cardPct}%)`;
+      if (cardPct === 100 && cardTotal > 0) cpctNode.classList.add("done");
+      else cpctNode.classList.remove("done");
+    }
+    if (cbarNode) {
+      cbarNode.style.width = `${cardPct}%`;
+      if (cardPct === 100) cbarNode.classList.add("full");
+      else cbarNode.classList.remove("full");
+    }
+  });
 };
 
-const renderNotFound = () => {
-  if (titleNode) {
-    titleNode.textContent = "Guide not found";
-  }
-  if (descriptionNode) {
-    descriptionNode.textContent = "This guide could not be loaded. Return to Games and try another title.";
-  }
-  if (metaNode) {
-    metaNode.innerHTML = "";
-  }
-  if (questListNode) {
-    questListNode.innerHTML = "";
-  }
-  if (questTextShell) {
-    questTextShell.classList.add("hidden");
-  }
-  if (questCustomShell) {
-    questCustomShell.classList.add("hidden");
+window._ck = async (ck) => {
+  localStorage.setItem(ck.id, ck.checked);
+  updateProgressMetrics();
+
+  if (supabase && state.userId && state.game) {
+    await supabase.from("quest_progress").upsert(
+      {
+        user_id: state.userId,
+        game_id: state.game.id,
+        quest_id: ck.id,
+        completed: ck.checked,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,game_id,quest_id" }
+    );
   }
 };
 
-const renderMeta = (game) => {
-  if (!metaNode) {
+window.toggleSteps = (id, btn) => {
+  const stepsEl = document.getElementById(id);
+  if (!stepsEl) return;
+  stepsEl.classList.toggle("open");
+  const isOpen = stepsEl.classList.contains("open");
+  btn.textContent = isOpen ? "▲ Hide Steps" : "▼ How to complete";
+};
+
+window.filterGuideRows = (term) => {
+  const q = String(term || "").toLowerCase().trim();
+  document.querySelectorAll(".row").forEach((row) => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(q) ? "" : "none";
+  });
+};
+
+const renderCards = () => {
+  const container = document.getElementById("dynamic-cards-container");
+  if (!container) return;
+
+  if (!state.quests.length) {
+    container.innerHTML = `<div class="sec-note">No detailed walkthrough steps found for this guide.</div>`;
     return;
   }
-  metaNode.innerHTML = `
-    <p><strong>Genre:</strong> ${escapeHtml(game.genre.join(", "))}</p>
-    <p><strong>Platform:</strong> ${escapeHtml(game.platform.join(", "))}</p>
-    <p><strong>Status:</strong> ${escapeHtml(game.releaseWindow)}</p>
-  `;
-};
 
-const renderQuestList = () => {
-  if (!questListNode) {
-    return;
-  }
-
-  questListNode.innerHTML = state.quests
+  container.innerHTML = state.quests
     .map((quest, index) => {
-      const progress = getProgress(quest.id);
-      const selected = index === state.selectedQuestIndex;
-      const completionBadge = progress.completed ? "Completed" : "In Progress";
-      const styleClass = progress.completed ? "quest-item-complete" : "quest-item-open";
+      const stepItems = quest.steps
+        .map((s) => `<li>${escapeHtml(s)}</li>`)
+        .join("");
+
       return `
-        <button class="quest-item ${styleClass}${selected ? " quest-item-selected" : ""}" data-quest-index="${index}" type="button">
-          <span>${escapeHtml(quest.title)}</span>
-          <span class="quest-item-badge">${completionBadge}</span>
-        </button>
+        <div class="card open" data-card>
+          <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');updateProgressMetrics()">
+            <span class="chev">▶</span>
+            <h3>${escapeHtml(quest.title)}</h3>
+            <span class="cpct">0/1 (0%)</span>
+          </div>
+          <div class="mini-bar"><i data-cbar></i></div>
+          <div class="card-bd">
+            <div class="row">
+              <input type="checkbox" id="${quest.id}" data-guide-ck onchange="_ck(this)">
+              <div class="row-top">
+                <label for="${quest.id}">
+                  <b>${escapeHtml(quest.title)}</b>
+                  <span class="tag trophy">Walkthrough</span>
+                  <small>${escapeHtml(quest.summary)}</small>
+                </label>
+                <button class="steps-toggle" onclick="toggleSteps('st-${quest.id}',this)">▼ How to complete</button>
+              </div>
+              <div class="quest-steps" id="st-${quest.id}">
+                <ol class="steps-list">${stepItems}</ol>
+                <div class="step-reward">🏆 Checklist Step Completed</div>
+              </div>
+            </div>
+          </div>
+        </div>
       `;
     })
     .join("");
 };
 
-const updateQuestNavigationButtons = () => {
-  if (questPrevButton) {
-    questPrevButton.disabled = state.selectedQuestIndex <= 0;
-  }
-  if (questNextButton) {
-    questNextButton.disabled = state.selectedQuestIndex >= state.quests.length - 1;
-  }
-};
+const setupControls = () => {
+  const expandBtn = document.getElementById("btnExpand");
+  const collapseBtn = document.getElementById("btnCollapse");
+  const resetBtn = document.getElementById("btnReset");
 
-const renderQuestDetail = () => {
-  const quest = state.quests[state.selectedQuestIndex];
-  if (!quest) {
-    return;
-  }
-
-  const progress = getProgress(quest.id);
-  const stepCount = quest.steps.length;
-  const currentStep = Math.min(progress.currentStep, Math.max(0, stepCount - 1));
-  progress.currentStep = currentStep;
-
-  if (questTitleNode) {
-    questTitleNode.textContent = quest.title;
-  }
-  if (questSummaryNode) {
-    questSummaryNode.textContent = quest.summary || "Detailed quest breakdown with full steps and context.";
-  }
-
-  if (quest.githubRepoUrl) {
-    if (questCustomShell) {
-      questCustomShell.classList.remove("hidden");
-    }
-    if (questCustomLink) {
-      questCustomLink.href = quest.githubRepoUrl;
-    }
-    if (questTextShell) {
-      questTextShell.classList.add("hidden");
-    }
-    if (questProgressNote) {
-      questProgressNote.textContent = "";
-    }
-    return;
-  }
-
-  if (questCustomShell) {
-    questCustomShell.classList.add("hidden");
-  }
-  if (questTextShell) {
-    questTextShell.classList.remove("hidden");
-  }
-
-  if (questStepsNode) {
-    if (!progress.isExpanded) {
-      questStepsNode.innerHTML = "";
-    } else {
-      questStepsNode.innerHTML = quest.steps
-        .map((step, index) => {
-          const isCurrent = index === currentStep;
-          return `<li class="${isCurrent ? "quest-step-current" : ""}">${escapeHtml(step)}</li>`;
-        })
-        .join("");
-    }
-  }
-
-  if (questOutcomeNode) {
-    questOutcomeNode.textContent = quest.outcome ? `Outcome: ${quest.outcome}` : "";
-  }
-
-  if (questMediaNode) {
-    const importedGuide = IMPORTED_GUIDES[state.game.id] || null;
-    const sources = importedGuide?.githubDataSources || [];
-    questMediaNode.innerHTML = sources.length
-      ? sources.map((source) => `<li><a href="${escapeHtml(source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source)}</a></li>`).join("")
-      : "<li>No external source links provided for this quest.</li>";
-  }
-
-  if (toggleCompleteButton) {
-    toggleCompleteButton.textContent = progress.completed ? "Mark Incomplete" : "Mark Complete";
-  }
-
-  if (toggleExpandButton) {
-    toggleExpandButton.textContent = progress.isExpanded ? "Collapse Sections" : "Expand Sections";
-  }
-
-  if (stepPrevButton) {
-    stepPrevButton.disabled = currentStep <= 0;
-  }
-  if (stepNextButton) {
-    stepNextButton.disabled = currentStep >= stepCount - 1;
-  }
-
-  if (questProgressNote) {
-    const total = Math.max(1, stepCount);
-    questProgressNote.textContent = `Step ${currentStep + 1} of ${total}${progress.completed ? " • Quest completed" : ""}`;
-  }
-};
-
-const saveQuestProgress = async (questId) => {
-  if (!supabase || !state.userId || !state.game) {
-    return;
-  }
-
-  const progress = getProgress(questId);
-  const { error } = await supabase.from("quest_progress").upsert(
-    {
-      user_id: state.userId,
-      game_id: state.game.id,
-      quest_id: questId,
-      completed: progress.completed,
-      current_step: progress.currentStep,
-      is_expanded: progress.isExpanded,
-      updated_at: new Date().toISOString(),
-    },
-    {
-      onConflict: "user_id,game_id,quest_id",
-    }
-  );
-
-  if (error && questSaveNote) {
-    questSaveNote.textContent = `Progress save failed: ${error.message}`;
-  }
-};
-
-const loadQuestProgress = async () => {
-  if (!supabase || !state.userId || !state.game) {
-    if (questSaveNote) {
-      questSaveNote.textContent = "Sign in to save quest progress to your account across devices.";
-    }
-    return;
-  }
-
-  const { data, error } = await supabase
-    .from("quest_progress")
-    .select("quest_id,completed,current_step,is_expanded")
-    .eq("user_id", state.userId)
-    .eq("game_id", state.game.id);
-
-  if (error) {
-    if (questSaveNote) {
-      questSaveNote.textContent = `Unable to load account progress: ${error.message}`;
-    }
-    return;
-  }
-
-  for (const row of data || []) {
-    state.progressByQuest[row.quest_id] = {
-      completed: Boolean(row.completed),
-      currentStep: Number.isFinite(row.current_step) ? Number(row.current_step) : 0,
-      isExpanded: row.is_expanded !== false,
-    };
-  }
-
-  if (questSaveNote) {
-    questSaveNote.textContent = "Quest progress is linked to your signed-in account.";
-  }
-};
-
-const persistAndRefresh = async (questId) => {
-  await saveQuestProgress(questId);
-  renderQuestList();
-  renderQuestDetail();
-};
-
-const wireEvents = () => {
-  if (questListNode) {
-    questListNode.addEventListener("click", (event) => {
-      const target = event.target.closest("[data-quest-index]");
-      if (!target) {
-        return;
-      }
-      const nextIndex = Number.parseInt(target.getAttribute("data-quest-index") || "0", 10);
-      if (!Number.isFinite(nextIndex)) {
-        return;
-      }
-      state.selectedQuestIndex = Math.max(0, Math.min(nextIndex, state.quests.length - 1));
-      updateQuestNavigationButtons();
-      renderQuestList();
-      renderQuestDetail();
+  if (expandBtn) {
+    expandBtn.addEventListener("click", () => {
+      document.querySelectorAll("[data-card]").forEach((c) => c.classList.add("open"));
     });
   }
-
-  if (questPrevButton) {
-    questPrevButton.addEventListener("click", () => {
-      if (state.selectedQuestIndex <= 0) {
-        return;
-      }
-      state.selectedQuestIndex -= 1;
-      updateQuestNavigationButtons();
-      renderQuestList();
-      renderQuestDetail();
+  if (collapseBtn) {
+    collapseBtn.addEventListener("click", () => {
+      document.querySelectorAll("[data-card]").forEach((c) => c.classList.remove("open"));
     });
   }
-
-  if (questNextButton) {
-    questNextButton.addEventListener("click", () => {
-      if (state.selectedQuestIndex >= state.quests.length - 1) {
-        return;
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (confirm("Reset all progress for this guide?")) {
+        document.querySelectorAll('input[type="checkbox"][data-guide-ck]').forEach((ck) => {
+          ck.checked = false;
+          localStorage.removeItem(ck.id);
+        });
+        updateProgressMetrics();
       }
-      state.selectedQuestIndex += 1;
-      updateQuestNavigationButtons();
-      renderQuestList();
-      renderQuestDetail();
-    });
-  }
-
-  if (stepPrevButton) {
-    stepPrevButton.addEventListener("click", async () => {
-      const quest = state.quests[state.selectedQuestIndex];
-      if (!quest || quest.githubRepoUrl) {
-        return;
-      }
-      const progress = getProgress(quest.id);
-      progress.currentStep = Math.max(0, progress.currentStep - 1);
-      await persistAndRefresh(quest.id);
-    });
-  }
-
-  if (stepNextButton) {
-    stepNextButton.addEventListener("click", async () => {
-      const quest = state.quests[state.selectedQuestIndex];
-      if (!quest || quest.githubRepoUrl) {
-        return;
-      }
-      const progress = getProgress(quest.id);
-      progress.currentStep = Math.min(Math.max(0, quest.steps.length - 1), progress.currentStep + 1);
-      await persistAndRefresh(quest.id);
-    });
-  }
-
-  if (toggleCompleteButton) {
-    toggleCompleteButton.addEventListener("click", async () => {
-      const quest = state.quests[state.selectedQuestIndex];
-      if (!quest || quest.githubRepoUrl) {
-        return;
-      }
-      const progress = getProgress(quest.id);
-      progress.completed = !progress.completed;
-      await persistAndRefresh(quest.id);
-    });
-  }
-
-  if (toggleExpandButton) {
-    toggleExpandButton.addEventListener("click", async () => {
-      const quest = state.quests[state.selectedQuestIndex];
-      if (!quest || quest.githubRepoUrl) {
-        return;
-      }
-      const progress = getProgress(quest.id);
-      progress.isExpanded = !progress.isExpanded;
-      await persistAndRefresh(quest.id);
     });
   }
 };
 
 const init = async () => {
-  const game = GAMES.find((item) => item.id === gameId);
+  const game = GAMES.find((g) => g.id === gameId);
   if (!game) {
-    renderNotFound();
+    document.getElementById("guide-main-title").textContent = "Guide Not Found";
     return;
   }
 
   state.game = game;
-  const questModel = buildQuestModel(game);
-  state.quests = questModel.quests;
+  state.quests = buildQuests(game);
 
-  if (!state.quests.length) {
-    renderNotFound();
-    return;
-  }
+  // Set header & title nodes
+  const titleNode = document.getElementById("guide-main-title");
+  const subtitleNode = document.getElementById("guide-main-subtitle");
+  const footerTitleNode = document.getElementById("footer-game-title");
 
-  if (titleNode) {
-    titleNode.textContent = game.title;
-  }
-  if (descriptionNode) {
-    descriptionNode.textContent = game.description;
-  }
-  if (accessNote) {
-    accessNote.textContent = "If a quest has a hosted custom dashboard, this page opens that dedicated experience instead of text fallback.";
-  }
+  if (titleNode) titleNode.textContent = game.title;
+  if (subtitleNode) subtitleNode.textContent = `${game.genre.join(" • ")} • ${game.releaseWindow}`;
+  if (footerTitleNode) footerTitleNode.textContent = `${game.title} — 100% Completion Guide`;
 
-    renderMeta(game);
-  wireEvents();
-  updateQuestNavigationButtons();
-
-  // Content gate: check access state, apply 50% lock for free users
+  // Apply content gate
   const accessState = await getAccessState();
   applyInSiteGate(state.quests, (visibleQuests) => {
     state.quests = visibleQuests;
-    renderQuestList();
-    renderQuestDetail();
+    renderCards();
+    setupControls();
+    updateProgressMetrics();
   }, accessState);
 
-  if (!supabase) {
-    return;
+  // Load account progress if signed in
+  if (supabase) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      state.userId = session.user.id;
+      const { data } = await supabase
+        .from("quest_progress")
+        .select("quest_id,completed")
+        .eq("user_id", state.userId)
+        .eq("game_id", state.game.id);
+
+      for (const row of data || []) {
+        if (row.completed) {
+          localStorage.setItem(row.quest_id, "true");
+        }
+      }
+      updateProgressMetrics();
+    }
   }
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  state.userId = session?.user?.id || null;
-  await loadQuestProgress();
-  renderQuestList();
-  renderQuestDetail();
 };
+
 init();
