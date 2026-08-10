@@ -6,6 +6,7 @@ const PAGE_ROOT = `${HUB_ROOT}/pages`;
 const navItems = [
   ["home", "Home", `${HUB_ROOT}/index.html`],
   ["games", "Games", `${PAGE_ROOT}/games.html`],
+  ["coming-soon", "Coming Soon", `${PAGE_ROOT}/coming-soon.html`],
   ["search", "Search", `${PAGE_ROOT}/search.html`],
   ["community", "Community", `${PAGE_ROOT}/community.html`],
   ["help", "Help", `${PAGE_ROOT}/help.html`],
