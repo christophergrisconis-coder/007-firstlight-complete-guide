@@ -1,89 +1,59 @@
-import { supabase } from "./supabase-client.js";
+/**
+ * access.js
+ * Quest & Guides — access state using QAG auth (qag_user in localStorage).
+ * Falls back to basic tier for guests.
+ * Admin/owner accounts always get pro tier and full access.
+ */
 
-const ACTIVE_STATUSES = new Set(["active", "trialing"]);
+const USER_KEY = 'qag_user';
 
-const daysBetween = (endIso) => {
-  if (!endIso) {
-    return 0;
+function getQagUser() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+  } catch {
+    return null;
   }
-  const diff = new Date(endIso).getTime() - Date.now();
-  return Math.max(0, Math.ceil(diff / 86400000));
-};
+}
 
 export const getAccessState = async () => {
-  if (!supabase) {
+  const user = getQagUser();
+
+  if (!user) {
     return {
-      tier: "basic",
+      tier: 'basic',
       isSignedIn: false,
-      source: "config-missing",
+      source: 'guest',
       trialDaysLeft: 0,
-      reason: "Configure Supabase to enable membership checks.",
+      reason: 'Sign in for full guide access.',
     };
   }
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session?.user) {
+  // Admin / owner accounts always get full pro access
+  if (user.role === 'admin' || user.tier === 'pro') {
     return {
-      tier: "basic",
-      isSignedIn: false,
-      source: "guest",
+      tier: 'pro',
+      isSignedIn: true,
+      source: user.role === 'admin' ? 'owner' : 'subscription',
       trialDaysLeft: 0,
-      reason: "Sign in for trial or Pro access.",
+      reason: user.role === 'admin' ? 'Owner — full access.' : 'Pro membership active.',
     };
   }
 
-  const userId = session.user.id;
-  const profileRes = await supabase
-    .from("profiles")
-    .select("trial_ends_at")
-    .eq("id", userId)
-    .single();
-
-  const subscriptionRes = await supabase
-    .from("subscriptions")
-    .select("status,current_period_end")
-    .eq("user_id", userId)
-    .maybeSingle();
-
-  const trialEndsAt = profileRes.data?.trial_ends_at || null;
-  const trialDaysLeft = daysBetween(trialEndsAt);
-  const trialActive = trialDaysLeft > 0;
-
-  const sub = subscriptionRes.data;
-  const subActive = Boolean(
-    sub &&
-      ACTIVE_STATUSES.has(String(sub.status || "").toLowerCase()) &&
-      (!sub.current_period_end || new Date(sub.current_period_end).getTime() > Date.now())
-  );
-
-  if (subActive) {
+  if (user.tier === 'trial') {
     return {
-      tier: "pro",
+      tier: 'trial',
       isSignedIn: true,
-      source: "subscription",
-      trialDaysLeft,
-      reason: "Pro membership active.",
-    };
-  }
-
-  if (trialActive) {
-    return {
-      tier: "trial",
-      isSignedIn: true,
-      source: "trial",
-      trialDaysLeft,
-      reason: `Free trial active: ${trialDaysLeft} day(s) left.`,
+      source: 'trial',
+      trialDaysLeft: 3,
+      reason: 'Free trial active.',
     };
   }
 
   return {
-    tier: "basic",
+    tier: 'basic',
     isSignedIn: true,
-    source: "expired-trial",
+    source: 'signed-in-free',
     trialDaysLeft: 0,
-    reason: "Trial ended. Upgrade to Pro for full guide access.",
+    reason: 'Subscribe to unlock full guide access.',
   };
 };

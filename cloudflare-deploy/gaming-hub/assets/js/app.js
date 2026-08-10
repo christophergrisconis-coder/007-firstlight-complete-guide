@@ -19,7 +19,18 @@ const navItems = [
 
 const renderHeader = () => {
   const active = document.body.dataset.page || "home";
-  const links = navItems
+  // Auth-aware nav
+  let user = null;
+  try { const s = localStorage.getItem('qag_session'); if (s) user = JSON.parse(s); } catch {}
+  const extraItems = user
+    ? [['account', user.display_name || 'My Account', `${PAGE_ROOT}/account.html`]]
+    : [];
+  const allItems = [...navItems, ...extraItems];
+  const links = allItems
+    .filter(([key]) => {
+      if (user) return !['signin','signup'].includes(key);
+      return key !== 'admin';
+    })
     .map(([key, label, href]) => {
       const isActive = key === active;
       return `<a class="${isActive ? "active" : ""}" href="${href}">${label}</a>`;
@@ -29,7 +40,7 @@ const renderHeader = () => {
   return `
     <header class="topbar">
       <div class="container nav-wrap">
-        <a class="brand" href="${HUB_ROOT}/index.html">Arcadia Grid</a>
+        <a class="brand" href="${HUB_ROOT}/index.html">Quest <span>&amp;</span> Guides</a>
         <button id="mobile-nav-toggle" class="mobile-nav-btn" type="button" aria-label="Toggle navigation">Menu</button>
         <nav id="site-nav" class="site-nav">${links}</nav>
       </div>
@@ -47,8 +58,8 @@ const renderFooter = () => {
     <footer class="footer">
       <div class="container footer-grid">
         <section>
-          <h3>Arcadia Grid</h3>
-          <p>Premium gaming hub focused on discoverability, updates, and community growth.</p>
+          <h3>Quest &amp; Guides</h3>
+          <p>Deep 100% completion walkthroughs, trophy roadmaps, and collectible trackers for serious players.</p>
         </section>
         <section>
           <h3>Legal</h3>
@@ -56,8 +67,8 @@ const renderFooter = () => {
           <a href="${PAGE_ROOT}/terms.html">Terms</a>
         </section>
         <section>
-          <h3>Owner Notes</h3>
-          <p>Admin and owner details intentionally kept lightweight for a content-first gaming platform.</p>
+          <h3>More Guides</h3>
+          <p>New walkthroughs are added regularly. Check back or create an account to get notified.</p>
         </section>
       </div>
       <div class="container footer-note">

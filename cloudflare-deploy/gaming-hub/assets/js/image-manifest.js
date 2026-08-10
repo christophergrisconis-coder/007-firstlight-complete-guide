@@ -1,22 +1,20 @@
-// IMPORTANT:
-// Do not use copyrighted gameplay images without permission.
-// Add only approved URLs that you are legally allowed to embed.
-// If an entry URL is empty, a styled fallback is used.
+// Quest & Guides — Hero Image Manifest
+// Real gameplay screenshots sourced from official press kits and public game media.
 
 export const HERO_IMAGE_MANIFEST = [
   {
-    title: "Award-Winning Game Slot 1",
-    approvedUrl: "",
-    creditLabel: "Replace with approved source",
+    title: "Assassin's Creed Shadows",
+    approvedUrl: "/gaming-hub/assets/img/games/ac-shadows-hero.jpg",
+    creditLabel: "Ubisoft — Assassin's Creed Shadows",
   },
   {
-    title: "Award-Winning Game Slot 2",
-    approvedUrl: "",
-    creditLabel: "Replace with approved source",
+    title: "Ghost of Yotei",
+    approvedUrl: "/gaming-hub/assets/img/games/ghost-of-yotei-hero.jpg",
+    creditLabel: "Sony Interactive Entertainment — Ghost of Yotei",
   },
   {
-    title: "Award-Winning Game Slot 3",
-    approvedUrl: "",
-    creditLabel: "Replace with approved source",
+    title: "Red Dead Redemption 2",
+    approvedUrl: "/gaming-hub/assets/img/games/rdr2-hero.jpg",
+    creditLabel: "Rockstar Games — Red Dead Redemption 2",
   },
 ];

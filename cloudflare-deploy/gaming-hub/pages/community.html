@@ -1,55 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Community | Arcadia Grid</title>
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
-  <body data-page="community">
-    <div id="site-header"></div>
-    <main class="container page-layout">
-      <header class="section-head community-head">
-        <p class="eyebrow">Community Thread Group</p>
-        <h1>Guide Talk Hub</h1>
-        <p>
-          Share insights, route ideas, and tips about guides. Direct ads, merch promotion, and competitor guide links are blocked.
-        </p>
-      </header>
-
-      <section class="panel community-rules">
-        <h2>Posting Rules</h2>
-        <ul>
-          <li>Keep posts related to game guides, strategies, and progress tips.</li>
-          <li>No advertising other guide websites, services, or merchandise.</li>
-          <li>No external links or promotional offers.</li>
-        </ul>
-      </section>
-
-      <section class="panel community-compose">
-        <h2>Start A Thread</h2>
-        <form id="community-form" class="stack-form">
-          <label>
-            Display name
-            <input id="community-name" type="text" maxlength="40" placeholder="Your name" required />
-          </label>
-          <label>
-            Message
-            <textarea id="community-message" rows="4" maxlength="500" placeholder="Share your guide thoughts..." required></textarea>
-          </label>
-          <button class="btn btn-accent" type="submit">Post Message</button>
-        </form>
-        <p id="community-status" class="form-note" aria-live="polite"></p>
-      </section>
-
-      <section class="panel">
-        <h2>Latest Threads</h2>
-        <div id="community-empty" class="empty-state hidden">No posts yet. Be the first to share a guide tip.</div>
-        <div id="community-list" class="community-list" aria-live="polite"></div>
-      </section>
-    </main>
-    <div id="site-footer"></div>
-    <script type="module" src="../app.js?v=20260717"></script>
-    <script type="module" src="../community.js"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — Quest & Guides</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+body{background:#0a0a0f;color:#e0e0e8;font-family:'Inter',sans-serif;margin:0}
+.page-header{background:linear-gradient(135deg,#0d0d15,#1a1a2e);border-bottom:1px solid rgba(185,145,75,.2);padding:1rem 2rem;display:flex;align-items:center;gap:1rem}
+.page-header a{color:#b9914b;text-decoration:none;font-family:'Cinzel',serif}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.3rem;color:#e8d5a3;margin:0;flex:1;text-align:center}
+.container{max-width:800px;margin:0 auto;padding:2rem 1rem}
+.guide-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{padding:.4rem .9rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#8a8a9a;font-size:.8rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.filter-btn.active,.filter-btn:hover{border-color:#b9914b;color:#b9914b;background:rgba(185,145,75,.08)}
+.compose-card{background:#12121a;border:1px solid rgba(185,145,75,.2);border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+.compose-card textarea{width:100%;min-height:80px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e0e0e8;font-size:.875rem;font-family:'Inter',sans-serif;padding:.75rem;box-sizing:border-box;resize:vertical}
+.compose-card textarea:focus{outline:none;border-color:#b9914b}
+.compose-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.75rem}
+.char-count{font-size:.75rem;color:#555}
+.btn-post{padding:.6rem 1.25rem;background:linear-gradient(135deg,#b9914b,#d4a85c);border:none;border-radius:8px;color:#0a0a0f;font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:opacity .2s}
+.btn-post:hover{opacity:.9}
+.btn-post:disabled{opacity:.5;cursor:not-allowed}
+.sign-in-prompt{text-align:center;padding:1rem;color:#8a8a9a;font-size:.875rem}
+.sign-in-prompt a{color:#b9914b;text-decoration:none}
+.post-list{display:flex;flex-direction:column;gap:1rem}
+.post-card{background:#12121a;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1.25rem;transition:border-color .2s}
+.post-card:hover{border-color:rgba(185,145,75,.2)}
+.post-card.pinned{border-color:rgba(185,145,75,.35);background:#14141e}
+.post-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.post-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#b9914b,#8b6914);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.9rem;color:#0a0a0f;font-weight:700;flex-shrink:0}
+.post-meta{flex:1}
+.post-author{font-weight:600;color:#e0e0e8;font-size:.875rem}
+.post-time{font-size:.75rem;color:#555;margin-top:.1rem}
+.post-guide-tag{font-size:.7rem;padding:.2rem .5rem;background:rgba(185,145,75,.1);border:1px solid rgba(185,145,75,.2);border-radius:4px;color:#b9914b}
+.pin-badge{font-size:.7rem;padding:.2rem .5rem;background:rgba(185,145,75,.15);border-radius:4px;color:#d4a85c;margin-left:.5rem}
+.post-content{color:#c8c8d8;font-size:.9rem;line-height:1.6;margin-bottom:.75rem;white-space:pre-wrap;word-break:break-word}
+.post-actions{display:flex;align-items:center;gap:1rem}
+.action-btn{background:none;border:none;color:#8a8a9a;font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:.35rem;padding:.3rem .5rem;border-radius:6px;transition:all .2s;font-family:'Inter',sans-serif}
+.action-btn:hover{color:#b9914b;background:rgba(185,145,75,.08)}
+.action-btn.liked{color:#b9914b}
+.reply-count{color:#555;font-size:.8rem;margin-left:auto}
+.replies-section{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06);display:none}
+.reply-card{display:flex;gap:.75rem;margin-bottom:.75rem}
+.reply-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#6a6a8a,#4a4a6a);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#e0e0e8;font-weight:700;flex-shrink:0}
+.reply-body{flex:1;background:rgba(255,255,255,.03);border-radius:8px;padding:.6rem .9rem}
+.reply-author{font-size:.8rem;font-weight:600;color:#c8c8d8;margin-bottom:.25rem}
+.reply-content{font-size:.85rem;color:#a8a8b8;line-height:1.5}
+.reply-compose{display:flex;gap:.5rem;margin-top:.75rem}
+.reply-compose input{flex:1;padding:.5rem .75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#e0e0e8;font-size:.85rem;font-family:'Inter',sans-serif}
+.reply-compose input:focus{outline:none;border-color:#b9914b}
+.reply-compose button{padding:.5rem 1rem;background:rgba(185,145,75,.15);border:1px solid rgba(185,145,75,.3);border-radius:8px;color:#b9914b;font-size:.8rem;cursor:pointer;font-family:'Inter',sans-serif}
+.loading{text-align:center;padding:2rem;color:#555}
+.empty{text-align:center;padding:3rem;color:#555;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <a href="/gaming-hub/">&#9876; Quest &amp; Guides</a>
+  <h1>Community</h1>
+</div>
+<div class="container">
+  <div class="guide-filter" id="guide-filter">
+    <button class="filter-btn active" data-guide="general" onclick="setGuide('general',this)">All</button>
+    <button class="filter-btn" data-guide="ac-shadows" onclick="setGuide('ac-shadows',this)">AC Shadows</button>
+    <button class="filter-btn" data-guide="ghost-of-yotei" onclick="setGuide('ghost-of-yotei',this)">Ghost of Yotei</button>
+    <button class="filter-btn" data-guide="rdr2" onclick="setGuide('rdr2',this)">RDR2</button>
+    <button class="filter-btn" data-guide="007" onclick="setGuide('007',this)">007 First Light</button>
+  </div>
+  <div class="compose-card" id="compose-area">
+    <div id="signed-in-compose" style="display:none">
+      <textarea id="post-content" placeholder="Share a tip, ask a question, or leave feedback…" maxlength="2000"></textarea>
+      <div class="compose-footer">
+        <span class="char-count" id="char-count">0 / 2000</span>
+        <button class="btn-post" id="btn-post" onclick="submitPost()">Post</button>
+      </div>
+    </div>
+    <div id="signed-out-compose" class="sign-in-prompt">
+      <a href="signin.html?next=/gaming-hub/pages/community.html">Sign in</a> to join the discussion.
+    </div>
+  </div>
+  <div class="post-list" id="post-list"><div class="loading">Loading posts…</div></div>
+  <div id="load-more-row" style="text-align:center;margin-top:1rem;display:none">
+    <button class="filter-btn" onclick="loadMore()">Load More</button>
+  </div>
+</div>
+<script src="../assets/js/qag-auth.js"></script>
+<script>
+const API='https://api.questandguides.com';
+let currentGuide='general',currentPage=1,totalPages=1;
+const user=QAGAuth.getUser();
+if(user){document.getElementById('signed-in-compose').style.display='block';document.getElementById('signed-out-compose').style.display='none'}
+document.getElementById('post-content')?.addEventListener('input',e=>{document.getElementById('char-count').textContent=`${e.target.value.length} / 2000`});
+function setGuide(g,btn){
+  currentGuide=g;currentPage=1;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  loadPosts();
+}
+function timeAgo(ts){
+  const s=Math.floor(Date.now()/1000)-ts;
+  if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+'m ago';
+  if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago';
+}
+function avatarLetter(name){return(name||'?')[0].toUpperCase()}
+async function loadPosts(append=false){
+  if(!append){document.getElementById('post-list').innerHTML='<div class="loading">Loading…</div>'}
+  const r=await fetch(`${API}/api/discussions?guide=${currentGuide}&page=${currentPage}`,{headers:user?{Authorization:'Bearer '+QAGAuth.getToken()}:{}});
+  const d=await r.json();
+  totalPages=d.pages||1;
+  const list=document.getElementById('post-list');
+  if(!append)list.innerHTML='';
+  if(!d.posts||d.posts.length===0){if(!append)list.innerHTML='<div class="empty">No posts yet. Be the first to start the discussion!</div>';return}
+  d.posts.forEach(p=>{
+    const div=document.createElement('div');
+    div.className='post-card'+(p.pinned?' pinned':'');
+    div.id='post-'+p.id;
+    div.innerHTML=`
+      <div class="post-header">
+        <div class="post-avatar">${avatarLetter(p.display_name)}</div>
+        <div class="post-meta">
+          <div class="post-author">${p.display_name||'Anonymous'}${p.user_role==='admin'?'<span class="pin-badge">Admin</span>':''}</div>
+          <div class="post-time">${timeAgo(p.created_at)}${p.guide_id&&p.guide_id!=='general'?` &bull; <span class="post-guide-tag">${p.guide_id}</span>`:''}</div>
+        </div>
+        ${p.pinned?'<span class="pin-badge">📌 Pinned</span>':''}
+      </div>
+      <div class="post-content">${p.content.replace(/</g,'&lt;')}</div>
+      <div class="post-actions">
+        <button class="action-btn${p.liked?'liked':''}" onclick="likePost(${p.id},this)">&#9825; <span class="like-count">${p.likes||0}</span></button>
+        <button class="action-btn" onclick="toggleReplies(${p.id},this)">&#128172; Reply${p.reply_count>0?` (${p.reply_count})`:''}</button>
+        ${(user&&(user.id===p.user_id||user.role==='admin'))?`<button class="action-btn" onclick="deletePost(${p.id})" style="margin-left:auto;color:#ff6b7a">Delete</button>`:''}
+      </div>
+      <div class="replies-section" id="replies-${p.id}">
+        <div class="replies-list" id="replies-list-${p.id}"></div>
+        ${user?`<div class="reply-compose"><input type="text" id="reply-input-${p.id}" placeholder="Write a reply…" maxlength="500"><button onclick="submitReply(${p.id})">Reply</button></div>`:'<p style="font-size:.8rem;color:#555;margin:.5rem 0 0">Sign in to reply.</p>'}
+      </div>`;
+    list.appendChild(div);
+  });
+  document.getElementById('load-more-row').style.display=currentPage<totalPages?'block':'none';
+}
+function loadMore(){currentPage++;loadPosts(true)}
+async function submitPost(){
+  const content=document.getElementById('post-content').value.trim();
+  if(!content)return;
+  const btn=document.getElementById('btn-post');btn.disabled=true;btn.textContent='Posting…';
+  const r=await fetch(`${API}/api/discussions`,{method:'POST',headers:{Authorization:'Bearer '+QAGAuth.getToken(),'Content-Type':'application/json'},body:JSON.stringify({content,guide_id:currentGuide})});
+  const d=await r.json();
+  if(d.success){document.getElementById('post-content').value='';document.getElementById('char-count').textContent='0 / 2000';currentPage=1;loadPosts()}
+  btn.disabled=false;btn.textContent='Post';
+}
+async function likePost(id,btn){
+  if(!user){window.location.href='signin.html';return}
+  const r=await fetch(`${API}/api/discussions/${id}/like`,{method:'POST',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  const d=await r.json();
+  if(d.success){btn.classList.toggle('liked',d.liked);btn.querySelector('.like-count').textContent=parseInt(btn.querySelector('.like-count').textContent)+(d.liked?1:-1)}
+}
+async function toggleReplies(id,btn){
+  const sec=document.getElementById('replies-'+id);
+  const open=sec.style.display==='block';
+  sec.style.display=open?'none':'block';
+  if(!open){
+    const r=await fetch(`${API}/api/discussions/${id}/replies`,{headers:user?{Authorization:'Bearer '+QAGAuth.getToken()}:{}});
+    const d=await r.json();
+    const list=document.getElementById('replies-list-'+id);
+    list.innerHTML=(d.replies||[]).map(rep=>`<div class="reply-card"><div class="reply-avatar">${avatarLetter(rep.display_name)}</div><div class="reply-body"><div class="reply-author">${rep.display_name||'Anonymous'} &bull; ${timeAgo(rep.created_at)}</div><div class="reply-content">${rep.content.replace(/</g,'&lt;')}</div></div></div>`).join('');
+    if(!d.replies||d.replies.length===0)list.innerHTML='<p style="font-size:.8rem;color:#555">No replies yet.</p>';
+  }
+}
+async function submitReply(parentId){
+  const input=document.getElementById('reply-input-'+parentId);
+  const content=input.value.trim();if(!content)return;
+  const r=await fetch(`${API}/api/discussions`,{method:'POST',headers:{Authorization:'Bearer '+QAGAuth.getToken(),'Content-Type':'application/json'},body:JSON.stringify({content,guide_id:currentGuide,parent_id:parentId})});
+  const d=await r.json();
+  if(d.success){input.value='';toggleReplies(parentId,null);setTimeout(()=>toggleReplies(parentId,null),100)}
+}
+async function deletePost(id){
+  if(!confirm('Delete this post?'))return;
+  await fetch(`${API}/api/discussions/${id}`,{method:'DELETE',headers:{Authorization:'Bearer '+QAGAuth.getToken()}});
+  document.getElementById('post-'+id)?.remove();
+}
+loadPosts();
+</script>
+</body>
 </html>

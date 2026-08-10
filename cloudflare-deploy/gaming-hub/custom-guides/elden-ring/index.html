@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Elden Ring — 100% Completion Guide | Quest &amp; Guides</title>
+<meta name="description" content="100% completion guide for Elden Ring. FromSoftware&#x27;s open-world masterpiece. Rise, Tarnished, and journey through the Lands Between to restore the Elden Ring and become Elden Lord. This gu...">
+<meta name="keywords" content="Elden Ring guide, Elden Ring 100%, Elden Ring walkthrough, Elden Ring collectibles, Elden Ring trophies">
+<meta name="author" content="Quest &amp; Guides">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://questandguides.com/gaming-hub/custom-guides/elden-ring/">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elden Ring — 100% Completion Guide">
+<meta property="og:description" content="100% completion guide for Elden Ring. FromSoftware&#x27;s open-world masterpiece. Rise, Tarnished, and journey through the Lands Between to restore the Elden Ring and become Elden Lord. This gu...">
+<meta property="og:url" content="https://questandguides.com/gaming-hub/custom-guides/elden-ring/">
+<meta property="og:site_name" content="Quest &amp; Guides">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Elden Ring — 100% Completion Guide">
+<meta name="twitter:description" content="100% completion guide for Elden Ring. FromSoftware&#x27;s open-world masterpiece. Rise, Tarnished, and journey through the Lands Between to restore the Elden Ring and become Elden Lord. This gu...">
+<meta name="twitter:site" content="@questandguides">
+<style>
+:root{
+  --bg:#0d0b09;--bg2:#151210;--bg3:#1d1916;--bg4:#26211d;
+  --line:#332c26;--line2:#453a31;
+  --red:#b0322b;--red2:#d64541;--crimson:#8e2620;
+  --gold:#d4af37;--gold2:#e8c964;
+  --txt:#e8e0d4;--dim:#a89a88;--faint:#786c5e;--green:#4caf7d;
+  --accent:var(--gold);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:118px}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;font-size:15px}
+h1,h2,h3,h4{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Palatino Linotype',Georgia,serif}
+::selection{background:var(--red);color:#fff}
+header{position:sticky;top:48px;z-index:100;background:linear-gradient(180deg,rgba(16,10,8,.86),rgba(12,9,7,.96));border-bottom:2px solid var(--accent,var(--gold));box-shadow:0 4px 18px rgba(0,0,0,.7)}
+.hd-top{display:flex;align-items:center;gap:14px;padding:10px 18px 6px}
+.hd-mark{width:38px;height:38px;flex:0 0 38px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);background:radial-gradient(circle at 50% 40%,#3a1410,#150b08);font-family:Georgia,serif;box-shadow:0 0 14px rgba(212,175,55,.25);text-align:center;overflow:hidden}
+.hd-title{flex:1;min-width:0}
+.hd-title h1{font-size:16px;letter-spacing:.06em;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.hd-title small{display:block;color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hd-pct{text-align:right;line-height:1.15}
+.hd-pct b{font-size:21px;color:var(--gold2);font-variant-numeric:tabular-nums}
+.hd-pct span{display:block;font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.hd-bar{height:6px;background:#241d17;margin:5px 18px 8px;border-radius:3px;overflow:hidden}
+.hd-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--red2) 60%,var(--gold));border-radius:3px;transition:width .35s}
+nav{display:flex;gap:2px;overflow-x:auto;padding:0 12px 8px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.05em;padding:6px 11px;border-radius:4px;border:1px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--gold2);background:var(--bg3)}
+main{max-width:1060px;margin:0 auto;padding:22px 14px 90px}
+section{margin-bottom:40px}
+.sec-hd{position:relative;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;min-height:110px;padding:14px 18px 12px;margin-bottom:16px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(10,8,7,.3),rgba(8,6,5,.92)),var(--bg3);box-shadow:inset 0 -30px 50px rgba(0,0,0,.5),0 2px 12px rgba(0,0,0,.45)}
+.sec-hd h2{font-size:22px;color:var(--gold2);letter-spacing:.04em;position:relative;z-index:1}
+.sec-hd p{color:var(--dim);font-size:13px;position:relative;z-index:1;max-width:700px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.card-hd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;background:var(--bg3);border-bottom:1px solid transparent}
+.card-hd:hover{background:var(--bg4)}
+.card.open .card-hd{border-bottom-color:var(--line)}
+.chev{color:var(--gold);font-size:11px;transition:transform .2s;display:inline-block}
+.card.open .chev{transform:rotate(90deg)}
+.card-hd h3{flex:1;font-size:14px;color:var(--txt);font-weight:600}
+.cpct{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.mini-bar{height:3px;background:var(--line)}
+.mini-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .3s}
+.card-bd{display:none;padding:4px 0 8px}
+.card.open .card-bd{display:block}
+.row{padding:7px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.row:last-child{border-bottom:none}
+.row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.row-top label{flex:1;min-width:0;cursor:pointer;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.row-top label b{color:var(--txt);font-size:14px}
+.row-top label small{color:var(--dim);font-size:12px;display:block;margin-top:1px}
+input[type=checkbox]{accent-color:var(--red);width:15px;height:15px;flex:0 0 15px;cursor:pointer;margin-top:2px}
+input[type=checkbox]:checked~.row-top label b{color:var(--faint);text-decoration:line-through}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:3px;text-transform:uppercase;margin-left:4px}
+.tag.trophy{background:#2a2010;color:var(--gold);border:1px solid #5c4a1a}
+.tag.missable{background:#2a1010;color:#e88;border:1px solid #5c2020}
+.tag.gold{background:#2a2010;color:var(--gold2);border:1px solid #5c4a1a}
+.tag.note{background:#1a1a2a;color:#88aaee;border:1px solid #2a3a5a}
+.steps-toggle{flex:0 0 auto;background:transparent;border:1px solid var(--line2);border-radius:4px;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 9px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.steps-toggle:hover{background:var(--bg3);color:var(--gold2);border-color:var(--gold)}
+.quest-steps{display:none;margin:8px 0 4px 28px;padding:10px 14px;background:var(--bg2);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
+.quest-steps.open{display:block}
+.steps-list{padding-left:18px;margin:0 0 6px}
+.steps-list li{color:var(--txt);font-size:13.5px;line-height:1.6;padding:2px 0;border-bottom:1px solid var(--line)}
+.steps-list li:last-child{border-bottom:none}
+.step-reward{margin-top:5px;padding:5px 10px;background:rgba(212,175,55,.10);border:1px solid var(--gold);border-radius:4px;color:var(--gold2);font-size:12.5px}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+button.btn{background:var(--bg3);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.05em;cursor:pointer}
+button.btn:hover{color:var(--gold2);border-color:var(--gold)}
+button.btn.danger:hover{color:var(--red2);border-color:var(--red2)}
+.searchbox{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;color:var(--txt);padding:9px 13px;font-size:14px;margin-bottom:14px}
+.searchbox:focus{outline:none;border-color:var(--gold)}
+.hidden{display:none!important}
+.sec-note{color:var(--dim);font-size:13px;padding:8px 14px;background:var(--bg3);border-left:3px solid var(--line2);border-radius:0 4px 4px 0;margin-bottom:8px}
+.diff-badge{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:6px;text-transform:uppercase;letter-spacing:.04em}
+.diff-easy{background:#0d2a1a;color:#4caf7d;border:1px solid #1a5c3a}
+.diff-medium{background:#2a2010;color:#d4af37;border:1px solid #5c4a1a}
+.diff-hard{background:#2a1010;color:#d64541;border:1px solid #5c2020}
+.diff-vhard{background:#3a0a0a;color:#ff6b6b;border:1px solid #7c1a1a}
+footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34px;border-top:1px solid var(--line)}
+.content-gate-wall{text-align:center;padding:2.5rem 1rem;background:linear-gradient(180deg,transparent,var(--bg));border-top:1px solid var(--line2);margin-top:2rem}
+.content-gate-wall h3{font-family:'Cinzel',Georgia,serif;color:var(--gold2);margin-bottom:.75rem;font-size:1.2rem}
+.content-gate-wall p{color:var(--dim);font-size:.9rem;margin-bottom:1.25rem;max-width:480px;margin-left:auto;margin-right:auto}
+.gate-btn{display:inline-block;background:var(--gold);color:#0a0a0f;padding:.65rem 1.75rem;border-radius:6px;font-family:'Cinzel',Georgia,serif;font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:.05em;margin:.3rem}
+.gate-btn.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+</style>
+</head>
+<body>
+<!-- SITE NAV START -->
+<style>
+.qag-sitenav{background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.18);position:sticky;top:0;z-index:200;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',Georgia,serif;font-size:15px;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.06em;margin-right:24px;white-space:nowrap}
+.qag-brand span{color:#d4a85c}
+.qag-brand:hover{color:#d4a85c}
+.qag-navlinks{display:flex;gap:0;flex:1}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:0 11px;line-height:48px;transition:color .15s,background .15s;white-space:nowrap}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.06)}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto}
+.qag-signin-btn{font-size:12px;color:#8a7a6a;text-decoration:none;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(185,145,75,.2);border-radius:4px;transition:all .15s}
+.qag-signin-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-signup-btn{font-size:12px;color:#0a0a0f;background:#b9914b;text-decoration:none;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:4px;transition:background .15s}
+.qag-signup-btn:hover{background:#d4a85c}
+.qag-nav-user{display:none;align-items:center;gap:10px}
+.qag-nav-username{font-size:12px;color:#b9914b;font-weight:600}
+.qag-signout-btn{font-size:11px;color:#8a7a6a;background:none;border:1px solid rgba(185,145,75,.2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.qag-signout-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-hamburger{display:none;background:none;border:none;color:#8a7a6a;font-size:20px;cursor:pointer;padding:4px 8px;margin-left:8px}
+.qag-mobile-menu{display:none;flex-direction:column;background:rgba(8,6,5,.98);border-top:1px solid rgba(185,145,75,.15);padding:12px 16px 16px}
+.qag-mobile-menu a,.qag-mobile-menu button{display:block;color:#8a7a6a;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;width:100%}
+.qag-mobile-menu a:hover,.qag-mobile-menu button:hover{color:#d4a85c}
+.qag-mobile-menu.open{display:flex}
+@media(max-width:768px){
+  .qag-navlinks{display:none}
+  .qag-nav-auth{display:none}
+  .qag-nav-user{display:none!important}
+  .qag-hamburger{display:block}
+}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+</style>
+<nav class="qag-sitenav" id="qag-sitenav">
+  <div class="qag-sitenav-inner">
+    <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
+    <div class="qag-navlinks">
+      <a href="/gaming-hub/">Home</a>
+      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/search.html">Search</a>
+      <a href="/gaming-hub/pages/community.html">Community</a>
+      <a href="/gaming-hub/pages/help.html">Help</a>
+      <a href="/gaming-hub/pages/contact.html">Contact</a>
+      <a href="/gaming-hub/pages/donations.html">Donate</a>
+      <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
+    </div>
+    <div class="qag-nav-auth" id="qag-nav-auth">
+      <a class="qag-signin-btn" href="/gaming-hub/pages/signin.html">Sign In</a>
+      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Sign Up</a>
+    </div>
+    <div class="qag-nav-user" id="qag-nav-user">
+      <span class="qag-nav-username" id="qag-nav-username"></span>
+      <button class="qag-signout-btn" id="qag-signout-btn">Sign Out</button>
+    </div>
+    <button class="qag-hamburger" id="qag-hamburger" aria-label="Menu">&#9776;</button>
+  </div>
+  <div class="qag-mobile-menu" id="qag-mobile-menu">
+    <a href="/gaming-hub/">Home</a>
+    <a href="/gaming-hub/pages/games.html">Games</a>
+    <a href="/gaming-hub/pages/search.html">Search</a>
+    <a href="/gaming-hub/pages/community.html">Community</a>
+    <a href="/gaming-hub/pages/help.html">Help</a>
+    <a href="/gaming-hub/pages/contact.html">Contact</a>
+    <a href="/gaming-hub/pages/donations.html">Donate</a>
+    <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
+    <div id="qag-mobile-auth">
+      <a href="/gaming-hub/pages/signin.html">Sign In</a>
+      <a href="/gaming-hub/pages/signup.html">Sign Up</a>
+    </div>
+    <div id="qag-mobile-user" style="display:none">
+      <span id="qag-mobile-username" style="color:#b9914b;font-size:13px;font-weight:600;display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)"></span>
+      <button id="qag-mobile-signout" style="display:block;color:#8a7a6a;background:none;border:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;cursor:pointer;text-align:left;width:100%">Sign Out</button>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var user=null;try{var s=localStorage.getItem('qag_user');if(s)user=JSON.parse(s);}catch(e){}
+  var authEl=document.getElementById('qag-nav-auth');
+  var userEl=document.getElementById('qag-nav-user');
+  var usernameEl=document.getElementById('qag-nav-username');
+  var mobileAuth=document.getElementById('qag-mobile-auth');
+  var mobileUser=document.getElementById('qag-mobile-user');
+  var mobileUsername=document.getElementById('qag-mobile-username');
+  if(user&&user.email){
+    if(authEl)authEl.style.display='none';
+    if(userEl){userEl.style.display='flex';}
+    if(usernameEl)usernameEl.textContent=user.display_name||user.email.split('@')[0];
+    if(mobileAuth)mobileAuth.style.display='none';
+    if(mobileUser)mobileUser.style.display='block';
+    if(mobileUsername)mobileUsername.textContent=user.display_name||user.email.split('@')[0];
+  }
+  function doSignOut(){localStorage.removeItem('qag_token');localStorage.removeItem('qag_user');localStorage.removeItem('qag_session');window.location.href='/gaming-hub/';}
+  var soBtn=document.getElementById('qag-signout-btn');
+  var soMob=document.getElementById('qag-mobile-signout');
+  if(soBtn)soBtn.addEventListener('click',doSignOut);
+  if(soMob)soMob.addEventListener('click',doSignOut);
+  var ham=document.getElementById('qag-hamburger');
+  var mob=document.getElementById('qag-mobile-menu');
+  if(ham&&mob)ham.addEventListener('click',function(){mob.classList.toggle('open');});
+})();
+</script>
+<!-- SITE NAV END -->
+<header>
+  <div class="hd-top">
+    <div class="hd-mark">ELD</div>
+    <div class="hd-title">
+      <h1>Elden Ring — 100% Guide</h1>
+      <small>Action RPG / Open World · FromSoftware · February 25, 2022</small>
+    </div>
+    <div class="hd-pct"><b id="totalPct">0%</b><span id="totalCount">0 / 0</span></div>
+  </div>
+  <div class="hd-bar"><i id="totalBar"></i></div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#main-quests">Main Quests</a>
+    <a href="#side-quests">Side Quests</a>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#unique-items">Unique Items &amp; Weapons</a>
+    <a href="#bosses">Boss Strategies</a>
+    <a href="#trophies">Trophies</a>
+    <a href="#tips">Pro Tips &amp; Secrets</a>
+  </nav>
+</header>
+<main>
+  <section id="overview">
+    <div class="sec-hd"><h2>Elden Ring — 100% Completion</h2><p>FromSoftware&#x27;s open-world masterpiece. Rise, Tarnished, and journey through the Lands Between to restore the Elden Ring and become Elden Lord. This guide covers the critical path, the most important questlines, every Golden Seed route, legendary armaments and how to bring down the hardest bosses in gaming.</p></div>
+    <div class="btnrow">
+      <span style="color:var(--dim);font-size:12px">⏱ 60-120 hrs · <span class="diff-badge diff-vhard">Very Hard</span> · ⭐ 9.6/10</span>
+    </div>
+  </section>
+<section id="main-quests">
+  <div class="sec-hd"><h2>⚔ Main Quests</h2><p></p></div>
+  <div class="btnrow">
+    <button class="btn" onclick="expandAll()">Expand All</button>
+    <button class="btn" onclick="collapseAll()">Collapse All</button>
+    <button class="btn danger" onclick="resetProgress()">Reset Progress</button>
+  </div>
+  <input class="searchbox" type="search" placeholder="Search missions, quests, items..." oninput="filterRows(this.value)">
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Defeat Margit, the Fell Omen<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Stormveil Castle approach, Limgrave · 🎁 12,000 Runes, Talisman Pouch</div>
+    <div class="row" data-search="defeat margit, the fell omen stormveil castle approach, limgrave the first true wall of the game. margit guards the gates of stormveil castle and punishes under-leveled tarnished.">
+      <input type="checkbox" id="elden-ring-ermq1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq1-0"><b>Defeat Margit, the Fell Omen</b>
+          <small>The first true wall of the game. Margit guards the gates of Stormveil Castle and punishes under-leveled Tarnished.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq1-0">
+        <ol class="steps-list">
+          <li>Level to at least 20-25 before attempting. Farm the Highroad Cave and clear Gatefront Ruins for the Whetstone Knife and map fragment.</li>
+          <li>Buy Margit&#x27;s Shackle from Patches (found in Murkwater Cave) — it pins Margit in place twice during phase one.</li>
+          <li>Summon Sorcerer Rogier at the fog gate for extra damage and aggro relief.</li>
+          <li>Stay behind him and punish his slow hammer slam. When he pulls out the golden hammer in phase 2, back off and only attack after his 3-hit combos.</li>
+          <li>Spirit Ash Jellyfish or Wolves keep him distracted — cast them BEFORE crossing the fog gate.</li>
+        </ol>
+        <div class="step-reward">🎁 12,000 Runes, Talisman Pouch</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Defeat Godrick the Grafted<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Stormveil Castle throne room · 🎁 Godrick&#x27;s Great Rune, Remembrance of the Grafted</div>
+    <div class="row" data-search="defeat godrick the grafted stormveil castle throne room first demigod and holder of a great rune. his second phase adds a dragon-head flamethrower arm.">
+      <input type="checkbox" id="elden-ring-ermq2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq2-1"><b>Defeat Godrick the Grafted</b>
+          <small>First demigod and holder of a Great Rune. His second phase adds a dragon-head flamethrower arm.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq2-1">
+        <ol class="steps-list">
+          <li>Take the side entrance past the Rampart Tower grace (talk to Gostoc to open the main gate or sneak the side path).</li>
+          <li>Summon Nepheli Loux just before the arena — she survives most of the fight.</li>
+          <li>Phase 1: dodge INTO his spin attacks and punish after the ground slam.</li>
+          <li>Phase 2 begins at 50% HP: he grafts a dragon head. Stay on his left leg, away from the flame arm. Roll through the fire sweep and get 2-3 hits.</li>
+          <li>Activate his Great Rune at the Divine Tower of Limgrave (across the bridge east of Stormveil) to actually use it.</li>
+        </ol>
+        <div class="step-reward">🎁 Godrick&#x27;s Great Rune, Remembrance of the Grafted</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Defeat Rennala, Queen of the Full Moon<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Raya Lucaria Academy, Liurnia · 🎁 Rennala&#x27;s Great Rune, Remembrance of the Full Moon Queen, Respec unlock</div>
+    <div class="row" data-search="defeat rennala, queen of the full moon raya lucaria academy, liurnia academy gatekeeper fight. phase 1 is a puzzle; phase 2 is a proper sorcery duel. beating her unlocks character respecs via larval tears.">
+      <input type="checkbox" id="elden-ring-ermq3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq3-2"><b>Defeat Rennala, Queen of the Full Moon</b>
+          <small>Academy gatekeeper fight. Phase 1 is a puzzle; phase 2 is a proper sorcery duel. Beating her unlocks character respecs via Larval Tears.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq3-2">
+        <ol class="steps-list">
+          <li>Get the Academy Glintstone Key from the sleeping dragon Smarag west of the academy (sneak, grab it behind him).</li>
+          <li>Phase 1: three students glow gold and chant — hit the glowing ones to drop Rennala&#x27;s barrier, then unload on her. Repeat 2-3 times.</li>
+          <li>Phase 2: she fights with full moon sorceries. Rush her immediately — she is slow to start casting.</li>
+          <li>Dodge the Rennala&#x27;s Full Moon spell by sprinting sideways, not rolling.</li>
+          <li>Her summons (dragon, giant) can be outrun; stay aggressive and she rarely completes them.</li>
+        </ol>
+        <div class="step-reward">🎁 Rennala&#x27;s Great Rune, Remembrance of the Full Moon Queen, Respec unlock</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Defeat Starscourge Radahn<span class="diff-badge diff-vhard">Very Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Redmane Castle, Caelid (Radahn Festival) · 🎁 Radahn&#x27;s Great Rune, Remembrance of the Starscourge, unlocks Nokron</div>
+    <div class="row" data-search="defeat starscourge radahn redmane castle, caelid (radahn festival) a war-scale spectacle fight with summonable npc allies across a massive beach arena. his death makes the stars fall and opens nokron, eternal city.">
+      <input type="checkbox" id="elden-ring-ermq4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq4-3"><b>Defeat Starscourge Radahn</b>
+          <small>A war-scale spectacle fight with summonable NPC allies across a massive beach arena. His death makes the stars fall and opens Nokron, Eternal City.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq4-3">
+        <ol class="steps-list">
+          <li>Trigger the Radahn Festival by reaching Altus Plateau OR progressing Ranni&#x27;s quest, then teleport via the Redmane Castle grace.</li>
+          <li>Use every gold summon sign repeatedly — they respawn after dying. Keep 3+ allies on him at all times.</li>
+          <li>Opening: hide behind debris to avoid his sniper arrows, or spur Torrent in a serpentine sprint toward him.</li>
+          <li>Fight on horseback. Hit-and-run his legs; resummon allies from the signs scattered around the arena.</li>
+          <li>At 50% HP he flies into space and crashes down as a meteor — sprint away or perpendicular on Torrent to dodge the impact, then resume hit-and-run.</li>
+        </ol>
+        <div class="step-reward">🎁 Radahn&#x27;s Great Rune, Remembrance of the Starscourge, unlocks Nokron</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Defeat Morgott, the Omen King<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Elden Throne, Leyndell Royal Capital · 🎁 Morgott&#x27;s Great Rune, Remembrance of the Omen King</div>
+    <div class="row" data-search="defeat morgott, the omen king elden throne, leyndell royal capital margit&#x27;s true form defends the erdtree itself. faster, deadlier, with cursed blood blades.">
+      <input type="checkbox" id="elden-ring-ermq5-4" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq5-4"><b>Defeat Morgott, the Omen King</b>
+          <small>Margit&#x27;s true form defends the Erdtree itself. Faster, deadlier, with cursed blood blades.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq5-4',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq5-4">
+        <ol class="steps-list">
+          <li>Reach Leyndell via the Grand Lift of Dectus (both Dectus Medallion halves: Fort Haight, Limgrave + Fort Faroth, Dragonbarrow) or through the Ruin-Strewn Precipice.</li>
+          <li>Summon Melina at the fog gate (her sign is on the stairs) plus your Spirit Ash — Mimic Tear excels here.</li>
+          <li>His holy dagger rain is dodged by sprinting toward him diagonally.</li>
+          <li>Phase 2: he ignites his sword — his &#x27;Cursed Blade&#x27; lunge has huge range, roll INTO it late.</li>
+          <li>Punish after his triple-slash into spear-throw combo; that&#x27;s your biggest window.</li>
+        </ol>
+        <div class="step-reward">🎁 Morgott&#x27;s Great Rune, Remembrance of the Omen King</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>The Forge of the Giants &amp; Crumbling Farum Azula<span class="diff-badge diff-vhard">Very Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Mountaintops of the Giants → Farum Azula · 🎁 Access to endgame, Remembrance of the Fire Giant &amp; Black Blade</div>
+    <div class="row" data-search="the forge of the giants &amp; crumbling farum azula mountaintops of the giants → farum azula burn the erdtree by defeating the fire giant, then survive the floating storm-city of farum azula and maliketh, the black blade.">
+      <input type="checkbox" id="elden-ring-ermq6-5" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq6-5"><b>The Forge of the Giants &amp; Crumbling Farum Azula</b>
+          <small>Burn the Erdtree by defeating the Fire Giant, then survive the floating storm-city of Farum Azula and Maliketh, the Black Blade.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq6-5',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq6-5">
+        <ol class="steps-list">
+          <li>Get the Rold Medallion from Melina after Morgott, then take the Grand Lift of Rold to the Mountaintops.</li>
+          <li>Fire Giant: fight on Torrent. Phase 1 target the left ankle brace. Phase 2 he tears off his own leg — stay behind his hands and avoid the rolling attack.</li>
+          <li>At the Forge, rest and choose to be burned — you awake in Crumbling Farum Azula.</li>
+          <li>In Farum Azula, don&#x27;t miss the Dragon Temple Altar grace; Maliketh&#x27;s fog awaits past the Godskin Duo (use Sleep pots — both Godskins are sleep-vulnerable!).</li>
+          <li>Maliketh phase 2 inflicts Destined Death (max HP reduction). Stay point-blank under him; most of his aerial arcs whiff at hugging distance. Blasphemous Blade or Mimic Tear trivializes it.</li>
+        </ol>
+        <div class="step-reward">🎁 Access to endgame, Remembrance of the Fire Giant &amp; Black Blade</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Become Elden Lord — Radagon &amp; the Elden Beast<span class="diff-badge diff-vhard">Extreme</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Fractured Marika, Leyndell, Ashen Capital · 🎁 Elden Remembrance, choice of endings</div>
+    <div class="row" data-search="become elden lord — radagon &amp; the elden beast fractured marika, leyndell, ashen capital the final duology. radagon of the golden order flows directly into the elden beast with no rest in between.">
+      <input type="checkbox" id="elden-ring-ermq7-6" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ermq7-6"><b>Become Elden Lord — Radagon &amp; the Elden Beast</b>
+          <small>The final duology. Radagon of the Golden Order flows directly into the Elden Beast with no rest in between.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ermq7-6',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ermq7-6">
+        <ol class="steps-list">
+          <li>Radagon is weak to physical and fire; he is HEAVILY resistant to holy. Swap off any holy weapons now.</li>
+          <li>Dodge his teleport slam by rolling the moment golden light flashes at your feet.</li>
+          <li>Save your Spirit Ash (Mimic Tear) for the start of Radagon so it carries into Elden Beast.</li>
+          <li>Elden Beast: sprint to it when it swims away — chase on foot along its glowing side. Patch 1.12+ lets you summon Torrent here: use him.</li>
+          <li>During Elden Stars (golden rain), run TOWARD the beast&#x27;s tail and keep circling. Punish after its triple ring attack. Choose your ending at Fractured Marika.</li>
+        </ol>
+        <div class="step-reward">🎁 Elden Remembrance, choice of endings</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="side-quests">
+  <div class="sec-hd"><h2>📜 Side Quests</h2><p></p></div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Ranni the Witch (Age of Stars ending)<span class="diff-badge diff-easy">Long / Complex</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Starts at Ranni&#x27;s Rise, Three Sisters, Liurnia · 🎁 Dark Moon Greatsword, Age of Stars ending</div>
+    <div class="row" data-search="ranni the witch (age of stars ending) starts at ranni&#x27;s rise, three sisters, liurnia the most important questline in the game — unlocks an entire ending, two legendary items, and the underground cities.">
+      <input type="checkbox" id="elden-ring-ersq1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ersq1-0"><b>Ranni the Witch (Age of Stars ending)</b>
+          <small>The most important questline in the game — unlocks an entire ending, two legendary items, and the underground cities.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ersq1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ersq1-0">
+        <ol class="steps-list">
+          <li>Meet Ranni at Ranni&#x27;s Rise (northwest Liurnia, behind Caria Manor). Pledge service to her.</li>
+          <li>Speak to Blaidd, Seluvis, and Iji in the tower, then defeat Radahn to open Nokron.</li>
+          <li>In Nokron, get the Fingerslayer Blade from the chest in the Night&#x27;s Sacred Ground and bring it to Ranni.</li>
+          <li>Use the Carian Inverted Statue she gives you in the Carian Study Hall, cross to the Divine Tower of Liurnia, and collect the Cursemark of Death.</li>
+          <li>Travel through Renna&#x27;s Rise portal → Ainsel River, find the miniature Ranni doll, talk to it at graces 3 times, kill the Baleful Shadow, and receive the Discarded Palace Key.</li>
+          <li>Unlock the chest in Rennala&#x27;s arena for the Dark Moon Ring. Descend Lake of Rot → beat Astel, Naturalborn of the Void → place the ring at the Moonlight Altar&#x27;s cathedral. Kiss the finger, get the Dark Moon Greatsword outside.</li>
+        </ol>
+        <div class="step-reward">🎁 Dark Moon Greatsword, Age of Stars ending</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Millicent&#x27;s Pilgrimage<span class="diff-badge diff-easy">Long</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Starts at Church of the Plague, Caelid · 🎁 Rotten Winged Sword Insignia OR Unalloyed Gold Needle (Malenia&#x27;s flower)</div>
+    <div class="row" data-search="millicent&#x27;s pilgrimage starts at church of the plague, caelid follow the scarlet rot-afflicted warrior across the map. her ending choice affects one of the best talismans in the game.">
+      <input type="checkbox" id="elden-ring-ersq2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ersq2-1"><b>Millicent&#x27;s Pilgrimage</b>
+          <small>Follow the scarlet rot-afflicted warrior across the map. Her ending choice affects one of the best talismans in the game.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ersq2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ersq2-1">
+        <ol class="steps-list">
+          <li>Talk to Gowry in Sellia. Retrieve the Unalloyed Gold Needle from Commander O&#x27;Neil (swamp of Aeonia, Caelid).</li>
+          <li>Give the needle to Gowry, rest, then speak to Millicent at the Church of the Plague and exhaust dialogue.</li>
+          <li>Meet her again at Erdtree-Gazing Hill (Altus), then atop the Shaded Castle after giving her the Valkyrie&#x27;s Prosthesis (found in the castle).</li>
+          <li>She appears at Windmill Village (Dominula) after you beat the Godskin Apostle there.</li>
+          <li>Final choice at the Haligtree, Elphael: invade her (Rotten Winged Sword Insignia — huge attack buff) or aid her against her sisters (get the needle to cure Malenia&#x27;s rot and unlock Miquella&#x27;s Needle in the DLC path).</li>
+        </ol>
+        <div class="step-reward">🎁 Rotten Winged Sword Insignia OR Unalloyed Gold Needle (Malenia&#x27;s flower)</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Fia, Deathbed Companion<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Roundtable Hold · 🎁 Fia&#x27;s Mist, Duelist ending (Age of Duskborn)</div>
+    <div class="row" data-search="fia, deathbed companion roundtable hold let the deathbed companion hold you (accepting a hidden -5% hp debuff) and follow her into deeproot depths.">
+      <input type="checkbox" id="elden-ring-ersq3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ersq3-2"><b>Fia, Deathbed Companion</b>
+          <small>Let the Deathbed Companion hold you (accepting a hidden -5% HP debuff) and follow her into Deeproot Depths.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ersq3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ersq3-2">
+        <ol class="steps-list">
+          <li>Talk to Fia in Roundtable Hold, let her hold you, receive Baldachin&#x27;s Blessing (using it removes the HP debuff).</li>
+          <li>After getting a Great Rune, she gives you the Weathered Dagger — give it to D, Hunter of the Dead.</li>
+          <li>After Radahn&#x27;s fall, D is found dead; take his twinned armor. Fia disappears to Deeproot Depths (reach via Nokron&#x27;s Siofra Aqueduct after beating Valiant Gargoyles).</li>
+          <li>In Deeproot Depths, defeat Fia&#x27;s champions at the deathbed. Give her the Cursemark of Death (from Ranni&#x27;s quest, Divine Tower of Liurnia).</li>
+          <li>Sleep, enter her dream, defeat Lichdragon Fortissax. Wake and collect the Mending Rune of the Death-Prince for the Duskborn ending.</li>
+        </ol>
+        <div class="step-reward">🎁 Fia&#x27;s Mist, Duelist ending (Age of Duskborn)</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Iron Fist Alexander<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 First met stuck in a hole, Stormhill · 🎁 Alexander&#x27;s Innards, Shard of Alexander (best skill-damage talisman)</div>
+    <div class="row" data-search="iron fist alexander first met stuck in a hole, stormhill the jolly warrior jar&#x27;s journey to become mighty. ends in a friendly duel in farum azula.">
+      <input type="checkbox" id="elden-ring-ersq4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ersq4-3"><b>Iron Fist Alexander</b>
+          <small>The jolly warrior jar&#x27;s journey to become mighty. Ends in a friendly duel in Farum Azula.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ersq4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ersq4-3">
+        <ol class="steps-list">
+          <li>Free him near Stormhill by hitting his back (charged heavy works). Exhaust dialogue.</li>
+          <li>Meet him at the Radahn Festival and summon him for the fight.</li>
+          <li>Find him stuck again near the Carian Study Hall lakeshore (Liurnia east bluff) — coat him with Oil Pot to free him (craft with the Nomadic Warrior&#x27;s Cookbook 17 from Seluvis&#x27;s Rise area).</li>
+          <li>He bathes in lava at Mt. Gelmir near Fort Laiedd — talk to him there.</li>
+          <li>Final duel: Dragon Temple, Crumbling Farum Azula. Defeat him honorably for the Shard of Alexander (+15% skill damage) and his innards for Jar-Bairn in Jarburg.</li>
+        </ol>
+        <div class="step-reward">🎁 Alexander&#x27;s Innards, Shard of Alexander (best skill-damage talisman)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="collectibles">
+  <div class="sec-hd"><h2>💎 Collectibles</h2><p></p></div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Golden Seeds (30 total, need ~26)<span class="diff-badge diff-medium">Easy-Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Golden saplings across all regions · 🎁 +1 Sacred Flask charge each tier</div>
+    <div class="row" data-search="golden seeds (30 total, need ~26) golden saplings across all regions glowing golden saplings mark each seed. maxing your flask charges is the single best survivability upgrade.">
+      <input type="checkbox" id="elden-ring-ercol1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ercol1-0"><b>Golden Seeds (30 total, need ~26)</b>
+          <small>Glowing golden saplings mark each seed. Maxing your flask charges is the single best survivability upgrade.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ercol1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ercol1-0">
+        <ol class="steps-list">
+          <li>Limgrave quick 3: Third Church of Marika (east), Stormhill road fork before Margit, Fort Haight west road.</li>
+          <li>Liurnia: outside the Academy&#x27;s south gate, Church of Vows garden, road north of Caria Manor.</li>
+          <li>Altus has the densest cluster: the Sealed Tunnel area, outer Leyndell wall sapling (2 seeds), Windmill Village road.</li>
+          <li>Boss-drop seeds: Ulcerated Tree Spirits in Mt. Gelmir&#x27;s Minor Erdtree cave and Leyndell sewers each drop one.</li>
+          <li>Endgame: Miquella&#x27;s Haligtree has a 3-seed sapling at the Prayer Room. You need 26 seeds for all 12 flask charges — you can miss a few.</li>
+        </ol>
+        <div class="step-reward">🎁 +1 Sacred Flask charge each tier</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Sacred Tears (12 total)<span class="diff-badge diff-easy">Easy</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Statues of Marika in ruined churches · 🎁 + Flask healing potency per tear</div>
+    <div class="row" data-search="sacred tears (12 total) statues of marika in ruined churches every ruined church with a marika statue holds one tear at its base. twelve churches, twelve tears, maximum healing.">
+      <input type="checkbox" id="elden-ring-ercol2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ercol2-1"><b>Sacred Tears (12 total)</b>
+          <small>Every ruined church with a Marika statue holds one tear at its base. Twelve churches, twelve tears, maximum healing.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ercol2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ercol2-1">
+        <ol class="steps-list">
+          <li>Limgrave: Third Church of Marika (northeast), Fourth Church (Weeping Peninsula west), Church of Pilgrimage (Peninsula north).</li>
+          <li>Liurnia: Church of Vows (east), Bellum Church (north road), Church of Inhibition (northeast, Frenzy Tower area).</li>
+          <li>Caelid: Church of the Plague (Millicent&#x27;s spot). Altus: Stormcaller Church, Second Church of Marika.</li>
+          <li>Mt. Gelmir: First Church of Marika (northwest lava field).</li>
+          <li>Mountaintops: Church of Repose (east), First Church of Marika (Consecrated Snowfield, portal from the Yelough Anix area).</li>
+        </ol>
+        <div class="step-reward">🎁 + Flask healing potency per tear</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Memory Stones (8 total)<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Rises (wizard towers) and key bosses · 🎁 +1 spell slot each</div>
+    <div class="row" data-search="memory stones (8 total) rises (wizard towers) and key bosses essential for casters — each stone adds one memory slot for sorceries/incantations.">
+      <input type="checkbox" id="elden-ring-ercol3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ercol3-2"><b>Memory Stones (8 total)</b>
+          <small>Essential for casters — each stone adds one memory slot for sorceries/incantations.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ercol3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ercol3-2">
+        <ol class="steps-list">
+          <li>Buy one outright from Twin Maiden Husks at Roundtable Hold (3,000 runes).</li>
+          <li>Oridys&#x27;s Rise (Weeping Peninsula) and Testu&#x27;s Rise (Liurnia): solve the &#x27;seek three wise beasts&#x27; turtle puzzles.</li>
+          <li>Converted Tower (Liurnia lake) puzzle: perform the &#x27;Erudition&#x27; gesture in front of the statue while wearing a Glintstone Crown. Chest at top.</li>
+          <li>Boss drops: Red Wolf of the Champion (Gelmir Hero&#x27;s Grave) and Demi-Human Queen Maggie (Hermit Village).</li>
+          <li>Lenne&#x27;s Rise and Chelona&#x27;s Rise (Ranni&#x27;s quest area) hold the last two — Chelona&#x27;s requires the Ranni questline turtle hunt around Moonlight Altar.</li>
+        </ol>
+        <div class="step-reward">🎁 +1 spell slot each</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Larval Tears (18 total)<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Disguised enemies &amp; merchants · 🎁 One full character respec each (at Rennala)</div>
+    <div class="row" data-search="larval tears (18 total) disguised enemies &amp; merchants respec currency. dropped by &#x27;silver ball&#x27; mimic enemies that disguise as normal mobs.">
+      <input type="checkbox" id="elden-ring-ercol4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ercol4-3"><b>Larval Tears (18 total)</b>
+          <small>Respec currency. Dropped by &#x27;silver ball&#x27; mimic enemies that disguise as normal mobs.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ercol4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ercol4-3">
+        <ol class="steps-list">
+          <li>Agheel Lake south (Limgrave): kill the lone Giant Lobster-looking runebear disguised as a wandering noble — it drops one.</li>
+          <li>Village of the Albinaurics (Liurnia): the docile wolf on the ledge is a mimic — one tear.</li>
+          <li>Buy from the Nomadic Merchant in Siofra River (2 in stock, 3,000 each) and Pidia in Caria Manor.</li>
+          <li>Caelid: the giant crow near the Caelem Ruins disguised soldier drops one.</li>
+          <li>Nokron, Eternal City has 3 in the mimic silver-tear pools near the Mimic Tear boss arena.</li>
+        </ol>
+        <div class="step-reward">🎁 One full character respec each (at Rennala)</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Legendary Talismans (8 total)<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Hidden catacombs, towers and quest rewards · 🎁 Trophy/Achievement + best-in-slot builds</div>
+    <div class="row" data-search="legendary talismans (8 total) hidden catacombs, towers and quest rewards the eight strongest talismans in the lands between, each behind a dungeon or quest.">
+      <input type="checkbox" id="elden-ring-ercol5-4" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ercol5-4"><b>Legendary Talismans (8 total)</b>
+          <small>The eight strongest talismans in the Lands Between, each behind a dungeon or quest.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ercol5-4',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ercol5-4">
+        <ol class="steps-list">
+          <li>Radagon Icon (faster casting): chest atop the Debate Parlor rafters, Raya Lucaria — jump from the moving lift.</li>
+          <li>Erdtree&#x27;s Favor +2 (HP/Stamina/Equip): Leyndell Ashen Capital, on the tree branch near the Forbidden Lands ladder.</li>
+          <li>Godfrey Icon (charged attack +15%): beat Godefroy the Grafted in the Golden Lineage Evergaol (Altus, needs Stonesword Key).</li>
+          <li>Marika&#x27;s Soreseal (+5 to 4 stats): Elphael, Brace of the Haligtree, in a room behind a Stonesword Key imp statue.</li>
+          <li>Old Lord&#x27;s Talisman (spell duration): Crumbling Farum Azula chest; Dragoncrest Greatshield +2 (physical -20%): Elphael balcony; Moon of Nokstella (+2 memory): Ainsel River chest under the throne; Ancestral Spirit&#x27;s Horn (FP on kill): trade Regal Ancestor Remembrance.</li>
+        </ol>
+        <div class="step-reward">🎁 Trophy/Achievement + best-in-slot builds</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="unique-items">
+  <div class="sec-hd"><h2>⚔ Unique Items &amp; Weapons</h2><p></p></div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mimic Tear Ashes (best Spirit Summon)<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Night&#x27;s Sacred Ground, Nokron · 🎁 Summons a clone of your full build</div>
+    <div class="row" data-search="mimic tear ashes (best spirit summon) night&#x27;s sacred ground, nokron a spirit that copies your exact loadout. universally considered the strongest summon in the game.">
+      <input type="checkbox" id="elden-ring-erui1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erui1-0"><b>Mimic Tear Ashes (best Spirit Summon)</b>
+          <small>A spirit that copies your exact loadout. Universally considered the strongest summon in the game.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erui1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erui1-0">
+        <ol class="steps-list">
+          <li>Defeat Radahn to open the path to Nokron (crater south of Fort Haight).</li>
+          <li>Drop through the crater&#x27;s floating ruins carefully — follow the graces to Nokron&#x27;s main street.</li>
+          <li>From the Ancestral Woods grace, ride the ledge path south past the spirit deer to Night&#x27;s Sacred Ground.</li>
+          <li>The ashes sit in a chest behind an imp statue door (1 Stonesword Key) beneath the gazebo.</li>
+          <li>Upgrade it with Ghost Glovewort at Roundtable Hold — at +10 it&#x27;s a second you. Equip your best gear BEFORE summoning; it copies your current equipment.</li>
+        </ol>
+        <div class="step-reward">🎁 Summons a clone of your full build</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Blasphemous Blade<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Trade Rykard&#x27;s Remembrance · 🎁 Faith greatsword that heals on every kill and with its skill</div>
+    <div class="row" data-search="blasphemous blade trade rykard&#x27;s remembrance taker&#x27;s flames skill hits like a truck, staggers bosses, and heals you. arguably the best faith weapon in the game.">
+      <input type="checkbox" id="elden-ring-erui2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erui2-1"><b>Blasphemous Blade</b>
+          <small>Taker&#x27;s Flames skill hits like a truck, staggers bosses, and heals you. Arguably the best faith weapon in the game.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erui2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erui2-1">
+        <ol class="steps-list">
+          <li>Reach Volcano Manor (Altus/Mt. Gelmir) — join the Manor and do the first two assassination contracts, or climb Mt. Gelmir manually.</li>
+          <li>Take the Manor drawing-room door that opens after contracts (or the hidden wall in the Prison Town Church) to reach the Temple of Eiglay.</li>
+          <li>Defeat the God-Devouring Serpent / Rykard, Lord of Blasphemy — use the provided Serpent-Hunter greatspear lying at the fog gate.</li>
+          <li>Take the Remembrance of the Blasphemous to Enia at Roundtable Hold.</li>
+          <li>Trade it for the Blasphemous Blade. Needs 22 STR / 15 DEX / 21 FAI. Upgrade with Somber stones.</li>
+        </ol>
+        <div class="step-reward">🎁 Faith greatsword that heals on every kill and with its skill</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Moonveil Katana<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Gael Tunnel, Caelid · 🎁 INT katana with a screen-clearing quickdraw skill</div>
+    <div class="row" data-search="moonveil katana gael tunnel, caelid the transient moonlight skill fires instant magic waves. the premier early-game int weapon.">
+      <input type="checkbox" id="elden-ring-erui3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erui3-2"><b>Moonveil Katana</b>
+          <small>The Transient Moonlight skill fires instant magic waves. The premier early-game INT weapon.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erui3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erui3-2">
+        <ol class="steps-list">
+          <li>Enter Gael Tunnel from the west Caelid cliff entrance (border of Limgrave/Caelid ravine).</li>
+          <li>Fight through the miners — they resist physical, so use magic or fire.</li>
+          <li>Boss: Magma Wyrm. Stay at its side, punish after the lava spew, and watch the tail sweep.</li>
+          <li>It drops the Moonveil directly. Requires 12 STR / 18 DEX / 23 INT.</li>
+          <li>Weapon skill: L2 then R1 (light) or R2 (heavy) — the heavy version does massive posture damage to bosses.</li>
+        </ol>
+        <div class="step-reward">🎁 INT katana with a screen-clearing quickdraw skill</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Bolt of Gransax<span class="diff-badge diff-medium">Medium</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Leyndell, Royal Capital · 🎁 Legendary lightning greatspear</div>
+    <div class="row" data-search="bolt of gransax leyndell, royal capital missable! once leyndell becomes the ashen capital (after fire giant), this weapon is gone forever.">
+      <input type="checkbox" id="elden-ring-erui4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erui4-3"><b>Bolt of Gransax</b>
+          <small>MISSABLE! Once Leyndell becomes the Ashen Capital (after Fire Giant), this weapon is gone forever.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erui4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erui4-3">
+        <ol class="steps-list">
+          <li>In Leyndell, from the Avenue Balcony grace, drop to the main avenue and head toward the giant dragon-spear monument.</li>
+          <li>Climb the wing of the massive fallen dragon statue (Gransax) from the West Capital Rampart side.</li>
+          <li>Walk carefully up the wing onto the spear itself.</li>
+          <li>The Bolt of Gransax sits at the spear&#x27;s hilt as a glowing pickup.</li>
+          <li>GRAB IT BEFORE BURNING THE ERDTREE. Requires 20 STR / 40 DEX. Its Ancient Lightning Spear skill melts dragon and Farum Azula enemies.</li>
+        </ol>
+        <div class="step-reward">🎁 Legendary lightning greatspear</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Rivers of Blood<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Church of Repose, Mountaintops of the Giants · 🎁 Bleed katana with the Corpse Piler skill</div>
+    <div class="row" data-search="rivers of blood church of repose, mountaintops of the giants the infamous bleed machine, dropped by the invader bloody finger okina — he invades as you approach the church.">
+      <input type="checkbox" id="elden-ring-erui5-4" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erui5-4"><b>Rivers of Blood</b>
+          <small>The infamous bleed machine, dropped by the invader Bloody Finger Okina — he invades as you approach the church.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erui5-4',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erui5-4">
+        <ol class="steps-list">
+          <li>Progress to the Mountaintops of the Giants via the Grand Lift of Rold.</li>
+          <li>Head east from the Zamor Ruins toward the Church of Repose across the snow bridge.</li>
+          <li>Bloody Finger Okina invades as you near the church — he uses the very katana he drops and can two-combo you.</li>
+          <li>Fight him near the church pillars to block his reach; he&#x27;s parryable and staggers to jump attacks.</li>
+          <li>Kill him for Rivers of Blood (12 STR / 18 DEX / 20 ARC). Corpse Piler (L2) stacks blood loss absurdly fast. Grab the Sacred Tear inside the church too.</li>
+        </ol>
+        <div class="step-reward">🎁 Bleed katana with the Corpse Piler skill</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="bosses">
+  <div class="sec-hd"><h2>📋 Boss Strategies</h2><p></p></div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Malenia, Blade of Miquella<span class="diff-badge diff-vhard">Extreme</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Elphael, Brace of the Haligtree · 🎁 Remembrance of the Rot Goddess (Hand of Malenia / Scarlet Aeonia)</div>
+    <div class="row" data-search="malenia, blade of miquella elphael, brace of the haligtree the hardest optional boss fromsoftware has ever made. she heals on every hit she lands — even blocked ones.">
+      <input type="checkbox" id="elden-ring-erb1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erb1-0"><b>Malenia, Blade of Miquella</b>
+          <small>The hardest optional boss FromSoftware has ever made. She heals on EVERY hit she lands — even blocked ones.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erb1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erb1-0">
+        <ol class="steps-list">
+          <li>Reach her via the Haligtree Secret Medallion halves (Village of the Albinaurics + Castle Sol) → Consecrated Snowfield → Ordina puzzle → Miquella&#x27;s Haligtree → all of Elphael.</li>
+          <li>Rule 1: never trade hits. Her lifesteal punishes greed. Use a +10 Mimic Tear but expect her to heal off it.</li>
+          <li>Waterfowl Dance (the flurry): at range, SPRINT away from the first flurry, dodge INTO the second, roll through the third. At point-blank, run behind her first wind-up. Practice this — it&#x27;s the whole fight.</li>
+          <li>Phase 2 (Goddess of Rot): she opens with Scarlet Aeonia — sprint backward immediately, the flower AoE inflicts instant rot. Keep Preserving Boluses hotbarred.</li>
+          <li>Frost + bleed weapons interrupt her heal rhythm. Prosthesis-Wearer Heirloom + jump attacks stagger her reliably. Her stance breaks fast — go for ripostes.</li>
+        </ol>
+        <div class="step-reward">🎁 Remembrance of the Rot Goddess (Hand of Malenia / Scarlet Aeonia)</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Mohg, Lord of Blood<span class="diff-badge diff-vhard">Very Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Mohgwyn Palace (underground) · 🎁 Remembrance of the Blood Lord, Mohg&#x27;s Great Rune</div>
+    <div class="row" data-search="mohg, lord of blood mohgwyn palace (underground) blood magic demigod with a phase-transition ritual that detonates three curse counters on your blood.">
+      <input type="checkbox" id="elden-ring-erb2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erb2-1"><b>Mohg, Lord of Blood</b>
+          <small>Blood magic demigod with a phase-transition ritual that detonates three curse counters on YOUR blood.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erb2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erb2-1">
+        <ol class="steps-list">
+          <li>Reach Mohgwyn via Varré&#x27;s quest reward, the Pureblood Knight&#x27;s Medal, or the Sending Gate in the Consecrated Snowfield.</li>
+          <li>Get the Purifying Crystal Tear by defeating Eleonora, Violet Bloody Finger at the Second Church of Marika (Altus, Yura&#x27;s quest). Mix it in your physick.</li>
+          <li>His &#x27;Nihil! Nihil! Nihil!&#x27; ritual at phase change deals 3 massive blood bursts — drinking the Purifying Crystal physick negates the entire ritual damage.</li>
+          <li>Phase 1: stay on his left, punish the trident slam. His bloodflame trails linger — reposition constantly.</li>
+          <li>Phase 2 he flies: use ranged or wait for his landing slam. Bleed does NOT work on him; frost and physical do.</li>
+        </ol>
+        <div class="step-reward">🎁 Remembrance of the Blood Lord, Mohg&#x27;s Great Rune</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Dragonlord Placidusax<span class="diff-badge diff-vhard">Very Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Hidden arena, Crumbling Farum Azula · 🎁 Remembrance of the Dragonlord</div>
+    <div class="row" data-search="dragonlord placidusax hidden arena, crumbling farum azula a two-headed storm dragon out of time. one of the most cinematic fights in the game, hidden behind a leap of faith.">
+      <input type="checkbox" id="elden-ring-erb3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erb3-2"><b>Dragonlord Placidusax</b>
+          <small>A two-headed storm dragon out of time. One of the most cinematic fights in the game, hidden behind a leap of faith.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erb3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erb3-2">
+        <ol class="steps-list">
+          <li>From the Beside the Great Bridge grace in Farum Azula, ride the lift down, exit to the ledge where dragons circle.</li>
+          <li>Find the missing-floor ledge south of the church ruin — &#x27;lie down&#x27; at the glowing spot on the protruding platform to warp to his era.</li>
+          <li>Stay under his chest between the two necks — most breath attacks miss there.</li>
+          <li>When he vanishes into lightning, SPRINT — he teleports behind you with a claw dive. Listen for the crack.</li>
+          <li>His golden lightning nova requires two well-timed rolls. Melt his feet; his posture breaks for a massive crown riposte.</li>
+        </ol>
+        <div class="step-reward">🎁 Remembrance of the Dragonlord</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Godskin Duo<span class="diff-badge diff-vhard">Very Hard (or trivial with sleep)</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Dragon Temple, Farum Azula · 🎁 Ash of War: Black Flame Tornado, Smithing-Stone Bell Bearing</div>
+    <div class="row" data-search="godskin duo dragon temple, farum azula the apostle and the noble share one health pool and respawn until it empties. universally hated — unless you know the secret.">
+      <input type="checkbox" id="elden-ring-erb4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-erb4-3"><b>Godskin Duo</b>
+          <small>The Apostle and the Noble share one health pool and respawn until it empties. Universally hated — unless you know the secret.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-erb4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-erb4-3">
+        <ol class="steps-list">
+          <li>Craft Sleep Pots with the Fevor&#x27;s Cookbook 2 (Academy of Raya Lucaria, hanging corpse); Trina&#x27;s Lily grows all over Liurnia.</li>
+          <li>Both Godskins are extremely sleep-vulnerable: 2 pots put one down. Sleep the Noble (fat one) first, burst the Apostle.</li>
+          <li>Use the pillars — the Noble&#x27;s rolling attack breaks on them, buying free windows.</li>
+          <li>Keep your Mimic Tear alive; it splits aggro perfectly here.</li>
+          <li>When one dies, a replacement spawns after ~30s. Re-sleep the survivor and finish the shared HP bar before getting sandwiched.</li>
+        </ol>
+        <div class="step-reward">🎁 Ash of War: Black Flame Tornado, Smithing-Stone Bell Bearing</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="tips">
+  <div class="sec-hd"><h2>💡 Pro Tips &amp; Secrets</h2><p></p></div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Rune farming: 40k/minute at Mohgwyn<span class="diff-badge diff-easy">Easy</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Mohgwyn Palace approach · 🎁 Fast levels</div>
+    <div class="row" data-search="rune farming: 40k/minute at mohgwyn mohgwyn palace approach the famous bird cliff and sleeping albinaurics farm.">
+      <input type="checkbox" id="elden-ring-ert1-0" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ert1-0"><b>Rune farming: 40k/minute at Mohgwyn</b>
+          <small>The famous bird cliff and sleeping albinaurics farm.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ert1-0',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ert1-0">
+        <ol class="steps-list">
+          <li>Unlock the Palace Approach Ledge-Road grace in Mohgwyn Palace.</li>
+          <li>From the grace, turn around and shoot the giant crow near the cliff edge with one arrow.</li>
+          <li>It charges, falls off the cliff, and awards ~11,000 runes (with Gold Scarab talisman: ~13,000). Reset at grace, repeat.</li>
+          <li>Alternatively AoE the sleeping albinauric field ahead for ~35-50k per 2-minute loop.</li>
+          <li>Equip Gold Scarab (Abandoned Cave, Caelid) and use Gold-Pickled Fowl Foot to stack +50% rune gain.</li>
+        </ol>
+        <div class="step-reward">🎁 Fast levels</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Get Torrent&#x27;s double-jump routes early<span class="diff-badge diff-easy">Easy</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Global · 🎁 Sequence breaks</div>
+    <div class="row" data-search="get torrent&#x27;s double-jump routes early global torrent trivializes exploration — several &#x27;late-game&#x27; areas are reachable at level 1.">
+      <input type="checkbox" id="elden-ring-ert2-1" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ert2-1"><b>Get Torrent&#x27;s double-jump routes early</b>
+          <small>Torrent trivializes exploration — several &#x27;late-game&#x27; areas are reachable at level 1.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ert2-1',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ert2-1">
+        <ol class="steps-list">
+          <li>You can ride to the Grand Lift of Dectus and beeline Altus at level 1 if you grab both medallion halves (Fort Haight + Fort Faroth).</li>
+          <li>Spiritspring jumps (wind pillars) often bypass entire dungeon gates — look for them near cliffs.</li>
+          <li>The Fourth Church of Marika (Weeping Peninsula) has a portal straight to Mohgwyn&#x27;s region entrance — great for early rune farming.</li>
+          <li>Dragon-Burnt Ruins cellar chest in Limgrave is a TRAP that teleports you to Sellia Crystal Tunnel in Caelid — but it&#x27;s a legitimate early route to grab Somber stones and the Moonveil area.</li>
+          <li>Never fight what you can outrun. Grab loot on horseback and go.</li>
+        </ol>
+        <div class="step-reward">🎁 Sequence breaks</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>Stock Stonesword Keys — never skip an imp statue<span class="diff-badge diff-easy">Easy</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Global · 🎁 Hidden dungeons &amp; best talismans</div>
+    <div class="row" data-search="stock stonesword keys — never skip an imp statue global imp statue fog walls hide many best-in-slot items (mimic tear, marika&#x27;s soreseal, green turtle talisman).">
+      <input type="checkbox" id="elden-ring-ert3-2" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ert3-2"><b>Stock Stonesword Keys — never skip an imp statue</b>
+          <small>Imp statue fog walls hide many best-in-slot items (Mimic Tear, Marika&#x27;s Soreseal, Green Turtle Talisman).</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ert3-2',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ert3-2">
+        <ol class="steps-list">
+          <li>Buy 3 early from the Twin Maiden Husks (Roundtable) and 1 from Kalé in the Church of Elleh.</li>
+          <li>Priority doors: Fringefolk Hero&#x27;s Grave (2 keys, tutorial area — Dragon Communion Seal + Erdtree&#x27;s Favor), Night&#x27;s Sacred Ground (Mimic Tear), Summonwater Ruins (Green Turtle).</li>
+          <li>The Roundtable Hold&#x27;s own imp door hides the Crepus&#x27;s Vial and Assassin items.</li>
+          <li>Keys are finite-ish per playthrough region but there are ~50 total for ~30 doors — you can afford most, just not blindly.</li>
+          <li>Check behind every waterfall and prayerful corpse pile — keys love hiding there.</li>
+        </ol>
+        <div class="step-reward">🎁 Hidden dungeons &amp; best talismans</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card>
+  <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+    <span class="chev">▶</span>
+    <h3>The Great-Jar&#x27;s secret &amp; colosseums<span class="diff-badge diff-hard">Hard</span></h3>
+    <span class="cpct" data-cpct></span>
+  </div>
+  <div class="mini-bar"><i data-cbar></i></div>
+  <div class="card-bd">
+    <div class="sec-note">📍 Caelid north / Limgrave · 🎁 Great-Jar&#x27;s Arsenal talisman (+19% equip load)</div>
+    <div class="row" data-search="the great-jar&#x27;s secret &amp; colosseums caelid north / limgrave beat three phantom champions at the great-jar for the best equip-load talisman.">
+      <input type="checkbox" id="elden-ring-ert4-3" onchange="_ck(this)">
+      <div class="row-top">
+        <label for="elden-ring-ert4-3"><b>The Great-Jar&#x27;s secret &amp; colosseums</b>
+          <small>Beat three phantom champions at the Great-Jar for the best equip-load talisman.</small>
+        </label>
+        <button class="steps-toggle" onclick="toggleSteps('qs-elden-ring-ert4-3',this)" aria-expanded="false">▼ How to complete</button>
+      </div>
+      <div class="quest-steps" id="qs-elden-ring-ert4-3">
+        <ol class="steps-list">
+          <li>Ride north through Caelid&#x27;s Dragonbarrow to the giant living jar at the ravine&#x27;s end (near Divine Tower of Caelid).</li>
+          <li>Three red summon signs appear before him — each summons a phantom based on real player builds.</li>
+          <li>Fight them ONE at a time; rest at the grace between duels to reset flasks (progress keeps).</li>
+          <li>Cheese: fight them at the ravine edge — phantoms happily walk off cliffs.</li>
+          <li>Reward talisman lets you wear heavy armor and still medium-roll — core for strength builds.</li>
+        </ol>
+        <div class="step-reward">🎁 Great-Jar&#x27;s Arsenal talisman (+19% equip load)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+  <section id="trophies">
+    <div class="sec-hd"><h2>🏆 Trophies (30)</h2><p>All 30 trophies for Elden Ring including the Platinum. Check off each trophy as you earn it.</p></div>
+    <div class="card" data-card>
+      <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
+        <span class="chev">▶</span><h3>All Trophies (30)</h3><span class="cpct" data-cpct></span>
+      </div>
+      <div class="mini-bar"><i data-cbar></i></div>
+      <div class="card-bd">
+<div class="row" data-search="elden ring platinum trophy platinum"><input type="checkbox" id="er-trophy-0" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-0"><b>Elden Ring Platinum</b> <span class="tag gold">Platinum</span><small>Unlock all other trophies.</small></label></div></div>
+<div class="row" data-search="elden lord trophy gold"><input type="checkbox" id="er-trophy-1" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-1"><b>Elden Lord</b> <span class="tag gold">Gold</span><small>Become Elden Lord — complete any ending.</small></label></div></div>
+<div class="row" data-search="age of the stars trophy gold"><input type="checkbox" id="er-trophy-2" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-2"><b>Age of the Stars</b> <span class="tag gold">Gold</span><small>Complete Ranni's questline and achieve the Age of Stars ending.</small></label></div></div>
+<div class="row" data-search="lord of frenzied flame trophy gold"><input type="checkbox" id="er-trophy-3" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-3"><b>Lord of Frenzied Flame</b> <span class="tag gold">Gold</span><small>Complete the Frenzied Flame ending.</small></label></div></div>
+<div class="row" data-search="legendary armaments trophy gold"><input type="checkbox" id="er-trophy-4" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-4"><b>Legendary Armaments</b> <span class="tag gold">Gold</span><small>Acquire all 9 legendary armaments.</small></label></div></div>
+<div class="row" data-search="legendary ashen remains trophy gold"><input type="checkbox" id="er-trophy-5" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-5"><b>Legendary Ashen Remains</b> <span class="tag gold">Gold</span><small>Acquire all 6 legendary Spirit Ashes.</small></label></div></div>
+<div class="row" data-search="legendary sorceries and incantations trophy gold"><input type="checkbox" id="er-trophy-6" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-6"><b>Legendary Sorceries and Incantations</b> <span class="tag gold">Gold</span><small>Acquire all 7 legendary sorceries and incantations.</small></label></div></div>
+<div class="row" data-search="legendary talismans trophy gold"><input type="checkbox" id="er-trophy-7" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-7"><b>Legendary Talismans</b> <span class="tag gold">Gold</span><small>Acquire all 8 legendary talismans.</small></label></div></div>
+<div class="row" data-search="shardbearer godrick trophy silver"><input type="checkbox" id="er-trophy-8" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-8"><b>Shardbearer Godrick</b> <span class="tag note">Silver</span><small>Defeat Godrick the Grafted.</small></label></div></div>
+<div class="row" data-search="shardbearer radahn trophy silver"><input type="checkbox" id="er-trophy-9" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-9"><b>Shardbearer Radahn</b> <span class="tag note">Silver</span><small>Defeat Starscourge Radahn.</small></label></div></div>
+<div class="row" data-search="shardbearer morgott trophy silver"><input type="checkbox" id="er-trophy-10" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-10"><b>Shardbearer Morgott</b> <span class="tag note">Silver</span><small>Defeat Morgott, the Omen King.</small></label></div></div>
+<div class="row" data-search="shardbearer rykard trophy silver"><input type="checkbox" id="er-trophy-11" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-11"><b>Shardbearer Rykard</b> <span class="tag note">Silver</span><small>Defeat Rykard, Lord of Blasphemy.</small></label></div></div>
+<div class="row" data-search="shardbearer malenia trophy silver"><input type="checkbox" id="er-trophy-12" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-12"><b>Shardbearer Malenia</b> <span class="tag note">Silver</span><small>Defeat Malenia, Blade of Miquella.</small></label></div></div>
+<div class="row" data-search="shardbearer mohg trophy silver"><input type="checkbox" id="er-trophy-13" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-13"><b>Shardbearer Mohg</b> <span class="tag note">Silver</span><small>Defeat Mohg, Lord of Blood.</small></label></div></div>
+<div class="row" data-search="dragonlord placidusax trophy silver"><input type="checkbox" id="er-trophy-14" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-14"><b>Dragonlord Placidusax</b> <span class="tag note">Silver</span><small>Defeat Dragonlord Placidusax.</small></label></div></div>
+<div class="row" data-search="lichdragon fortissax trophy silver"><input type="checkbox" id="er-trophy-15" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-15"><b>Lichdragon Fortissax</b> <span class="tag note">Silver</span><small>Defeat Lichdragon Fortissax.</small></label></div></div>
+<div class="row" data-search="god-slaying armament trophy silver"><input type="checkbox" id="er-trophy-16" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-16"><b>God-Slaying Armament</b> <span class="tag note">Silver</span><small>Upgrade any armament to its maximum level.</small></label></div></div>
+<div class="row" data-search="erdtree ablaze trophy bronze"><input type="checkbox" id="er-trophy-17" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-17"><b>Erdtree Ablaze</b> <span class="tag missable">Bronze</span><small>Set the Erdtree ablaze.</small></label></div></div>
+<div class="row" data-search="maliketh the black blade trophy bronze"><input type="checkbox" id="er-trophy-18" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-18"><b>Maliketh the Black Blade</b> <span class="tag missable">Bronze</span><small>Defeat Maliketh, the Black Blade.</small></label></div></div>
+<div class="row" data-search="godfrey the first lord trophy bronze"><input type="checkbox" id="er-trophy-19" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-19"><b>Godfrey the First Lord</b> <span class="tag missable">Bronze</span><small>Defeat Godfrey, First Elden Lord.</small></label></div></div>
+<div class="row" data-search="elden beast trophy bronze"><input type="checkbox" id="er-trophy-20" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-20"><b>Elden Beast</b> <span class="tag missable">Bronze</span><small>Defeat the Elden Beast.</small></label></div></div>
+<div class="row" data-search="rennala, queen of the full moon trophy bronze"><input type="checkbox" id="er-trophy-21" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-21"><b>Rennala, Queen of the Full Moon</b> <span class="tag missable">Bronze</span><small>Defeat Rennala, Queen of the Full Moon.</small></label></div></div>
+<div class="row" data-search="starscourge radahn trophy bronze"><input type="checkbox" id="er-trophy-22" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-22"><b>Starscourge Radahn</b> <span class="tag missable">Bronze</span><small>Defeat Starscourge Radahn.</small></label></div></div>
+<div class="row" data-search="valiant gargoyle trophy bronze"><input type="checkbox" id="er-trophy-23" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-23"><b>Valiant Gargoyle</b> <span class="tag missable">Bronze</span><small>Defeat the Valiant Gargoyle duo.</small></label></div></div>
+<div class="row" data-search="ancestor spirit trophy bronze"><input type="checkbox" id="er-trophy-24" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-24"><b>Ancestor Spirit</b> <span class="tag missable">Bronze</span><small>Defeat the Ancestor Spirit.</small></label></div></div>
+<div class="row" data-search="fire giant trophy bronze"><input type="checkbox" id="er-trophy-25" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-25"><b>Fire Giant</b> <span class="tag missable">Bronze</span><small>Defeat the Fire Giant.</small></label></div></div>
+<div class="row" data-search="astel, naturalborn of the void trophy bronze"><input type="checkbox" id="er-trophy-26" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-26"><b>Astel, Naturalborn of the Void</b> <span class="tag missable">Bronze</span><small>Defeat Astel, Naturalborn of the Void.</small></label></div></div>
+<div class="row" data-search="mimic tear trophy bronze"><input type="checkbox" id="er-trophy-27" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-27"><b>Mimic Tear</b> <span class="tag missable">Bronze</span><small>Defeat the Mimic Tear.</small></label></div></div>
+<div class="row" data-search="red wolf of radagon trophy bronze"><input type="checkbox" id="er-trophy-28" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-28"><b>Red Wolf of Radagon</b> <span class="tag missable">Bronze</span><small>Defeat the Red Wolf of Radagon.</small></label></div></div>
+<div class="row" data-search="margit, the fell omen trophy bronze"><input type="checkbox" id="er-trophy-29" onchange="_ck(this)"><div class="row-top"><label for="er-trophy-29"><b>Margit, the Fell Omen</b> <span class="tag missable">Bronze</span><small>Defeat Margit, the Fell Omen.</small></label></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><b>Quest &amp; Guides</b> — questandguides.com · Elden Ring 100% Completion Guide</footer>
+<script>
+window._GUIDE_LSKEY='elden-ring_progress_v1';
+const _LSKEY = window._GUIDE_LSKEY || 'guide_progress_v1';
+let _saved = {};
+try { _saved = JSON.parse(localStorage.getItem(_LSKEY)||'{}'); } catch(e){ _saved={}; }
+let _saveTimer=null;
+function _persist(){ clearTimeout(_saveTimer); _saveTimer=setTimeout(()=>{ try{ localStorage.setItem(_LSKEY,JSON.stringify(_saved)); }catch(e){} },150); }
+function _ck(cb){
+  if(cb.checked) _saved[cb.id]=1; else delete _saved[cb.id];
+  _persist();
+  _updateAll();
+}
+function toggleSteps(id,btn){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const open=el.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+  btn.textContent=open?'▲ Hide steps':'▼ How to complete';
+}
+function _updateAll(){
+  let total=0,done=0;
+  document.querySelectorAll('[data-card]').forEach(card=>{
+    const cbs=card.querySelectorAll('input[type=checkbox]');
+    const cd=Array.from(cbs).filter(c=>c.checked).length;
+    const ct=cbs.length;
+    total+=ct; done+=cd;
+    const pct=ct?Math.round(cd/ct*100):0;
+    const cpct=card.querySelector('[data-cpct]');
+    const cbar=card.querySelector('[data-cbar]');
+    if(cpct)cpct.textContent=`${cd}/${ct}`;
+    if(cbar)cbar.style.width=pct+'%';
+  });
+  const pct=total?Math.round(done/total*100):0;
+  const pb=document.getElementById('totalBar');
+  const pp=document.getElementById('totalPct');
+  const pc=document.getElementById('totalCount');
+  if(pb)pb.style.width=pct+'%';
+  if(pp)pp.textContent=pct+'%';
+  if(pc)pc.textContent=done+' / '+total;
+}
+function expandAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.add('open')); _updateAll(); }
+function collapseAll(){ document.querySelectorAll('[data-card]').forEach(c=>c.classList.remove('open')); _updateAll(); }
+function resetProgress(){
+  if(!confirm('Reset all progress? This cannot be undone.'))return;
+  _saved={};
+  localStorage.removeItem(_LSKEY);
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  _updateAll();
+}
+function filterRows(q){
+  const s=q.toLowerCase();
+  document.querySelectorAll('.row[data-search]').forEach(r=>{
+    r.classList.toggle('hidden',s&&!r.dataset.search.includes(s));
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  Object.keys(_saved).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.checked=true;
+  });
+  _updateAll();
+});
+// Content gate: hide second half for non-subscribers
+(function(){
+  const tier=(()=>{ try{ const u=JSON.parse(localStorage.getItem('qag_user')||'{}'); return u.tier||'basic'; }catch(e){ return 'basic'; } })();
+  if(tier==='pro'||tier==='trial')return;
+  window.addEventListener('DOMContentLoaded',()=>{
+    const all=Array.from(document.querySelectorAll('section'));
+    const half=Math.ceil(all.length/2);
+    let gated=0;
+    all.forEach((s,i)=>{ if(i>=half){ s.style.display='none'; gated++; } });
+    if(gated>0){
+      const wall=document.createElement('div');
+      wall.className='content-gate-wall';
+      wall.innerHTML=`<h3>⚔ You've reached the free preview</h3>
+        <p>Subscribe to unlock the full 100% guide — all quests, all steps, all collectibles.</p>
+        <a href="/gaming-hub/pages/subscribe.html" class="gate-btn">Unlock Full Guide — $1.99/mo</a>
+        <a href="/gaming-hub/pages/signin.html" class="gate-btn secondary">Sign In</a>`;
+      document.querySelector('main').appendChild(wall);
+    }
+  });
+})();
+</script>
+</body>
+</html>

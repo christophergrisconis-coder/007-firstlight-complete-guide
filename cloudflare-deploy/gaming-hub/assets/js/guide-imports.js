@@ -1,4 +1,48 @@
 export const IMPORTED_GUIDES = {
+  "assassins-creed-shadows": {
+    importStatus: "completed",
+    githubDataSources: [
+      "https://raw.githubusercontent.com/christophergrisconis-coder/ac-shadows-completion-guide/main/index.html",
+    ],
+    walkthrough: [
+      "Main Story (86 quests): all Prologue, Act 1\u20133, and Epilogue missions as Naoe and Yasuke.",
+      "Side Quests (79): all province quests with ally recruitment and trophy-required chains flagged.",
+      "Region Collectibles (687): viewpoints, kakurega, castles, temples, shrines, kofun, kuji-kiri, katas, and more.",
+      "Season Watch: 5 legendary sumi-e paintings \u2014 4 require specific seasons and times of day.",
+      "Hideout: 24-step build order with exact wood, iron, and silver costs for every structure.",
+      "Allies: all 6 League members with meet, recruit, and train steps.",
+      "Trophies: all 55 (Platinum + 54) with unlock conditions and the one near-missable flagged.",
+    ],
+    sections: [
+      {
+        title: "Story Completion",
+        items: [
+          "86 total quests across Prologue, Acts 1\u20133, and Epilogue",
+          "Quests tagged Naoe-only, Yasuke-only, or shared",
+          "One near-missable: Heads Will Roll decision in Act 2",
+          "Epilogue unlocks after all Act 3 quests are complete",
+        ],
+      },
+      {
+        title: "Region Collectibles",
+        items: [
+          "109 viewpoints, 92 kakurega, 38 castles, 36 temples",
+          "27 shrines, 22 kuji-kiri, 18 katas, 10 kofun",
+          "68 legendary chests, 69 jizo statues, 44 keys",
+          "All vendors, kamon crests, kano paintings, and valuable objects",
+        ],
+      },
+      {
+        title: "Trophy Roadmap",
+        items: [
+          "Platinum requires all 54 base trophies",
+          "Missable: complete Heads Will Roll before Act 2 ends",
+          "Hideout trophies require specific build order milestones",
+          "Mastery trophies require quest-locked skill unlocks",
+        ],
+      },
+    ],
+  },
   "ghost-of-yotei": {
     importStatus: "completed",
     githubDataSources: [
@@ -480,6 +524,9 @@ export const IMPORTED_GUIDES = {
 // If a quest has a non-null URL, the guide UI opens the hosted experience
 // instead of rendering text fallback details.
 export const QUEST_REPO_LINKS = {
+  "assassins-creed-shadows": {
+    "*": "/gaming-hub/custom-guides/ac-shadows/",
+  },
   "007-first-light": {
     "*": "/gaming-hub/custom-guides/007/index.html",
   },

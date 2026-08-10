@@ -1,6 +1,8 @@
 import { GAMES } from "./games-data.js";
 import { IMPORTED_GUIDES, QUEST_REPO_LINKS } from "./guide-imports.js";
 import { supabase } from "./supabase-client.js";
+import { getAccessState } from "./access.js";
+import { applyInSiteGate } from "./content-gate.js";
 
 let FULL_IMPORTED_SECTIONS = {};
 
@@ -497,16 +499,21 @@ const init = async () => {
     accessNote.textContent = "If a quest has a hosted custom dashboard, this page opens that dedicated experience instead of text fallback.";
   }
 
-  renderMeta(game);
+    renderMeta(game);
   wireEvents();
   updateQuestNavigationButtons();
-  renderQuestList();
-  renderQuestDetail();
+
+  // Content gate: check access state, apply 50% lock for free users
+  const accessState = await getAccessState();
+  applyInSiteGate(state.quests, (visibleQuests) => {
+    state.quests = visibleQuests;
+    renderQuestList();
+    renderQuestDetail();
+  }, accessState);
 
   if (!supabase) {
     return;
   }
-
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -515,5 +522,4 @@ const init = async () => {
   renderQuestList();
   renderQuestDetail();
 };
-
 init();

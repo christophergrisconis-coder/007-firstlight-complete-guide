@@ -3,50 +3,147 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscribe | Arcadia Grid</title>
-    <link rel="stylesheet" href="../styles.css" />
+    <title>Subscribe | Quest &amp; Guides</title>
+    <meta name="description" content="Unlock full 100% completion guides on Quest &amp; Guides. Start with a free 3-day trial, then $1.99/month." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body data-page="subscribe">
     <div id="site-header"></div>
     <main class="container page-layout">
+
       <header class="section-head">
-        <h1>Subscribe For Pro Guides</h1>
-        <p>Start with a free 3-day trial, then continue at $1.99/month for full guide access.</p>
+        <p class="eyebrow">Full Access</p>
+        <h1>Unlock Every Guide</h1>
+        <p>Free users get the first 50% of every guide. Subscribe to unlock the full walkthrough — every quest, collectible, trophy, and secret — across every game in the library.</p>
       </header>
 
+      <!-- Pricing -->
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
+
+        <section class="panel" style="border-color: rgba(201,168,76,0.4); position:relative; overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#c9a84c,transparent);"></div>
+          <p class="eyebrow" style="margin-bottom:12px;">Most Popular</p>
+          <h2 style="font-size:1.5rem; color:#c9a84c; margin-bottom:4px;">Pro Monthly</h2>
+          <p style="font-size:2.4rem; font-family:'Cinzel',serif; font-weight:900; color:#e8e0d0; margin:0 0 4px;">$1.99<span style="font-size:1rem; color:#9a9080;">/mo</span></p>
+          <p class="form-note" style="margin-bottom:20px;">Starts with a free 3-day trial. Cancel any time.</p>
+          <ul style="list-style:none; padding:0; margin:0 0 24px; display:grid; gap:8px; font-size:0.9rem; color:#c9a84c;">
+            <li>✓ 100% guide access — no locks</li>
+            <li>✓ Interactive checklists with cloud save</li>
+            <li>✓ Full trophy roadmaps &amp; missable flags</li>
+            <li>✓ All collectible trackers, per-region</li>
+            <li>✓ Early access to new guides</li>
+            <li>✓ Priority missing-info fixes</li>
+          </ul>
+          <a id="pro-checkout-link" class="btn btn-accent" href="https://buy.stripe.com/cNi8wH13feaz23t5Vcffy00" style="width:100%; justify-content:center;">
+            Start Free Trial — Then $1.99/mo
+          </a>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow" style="margin-bottom:12px;">Best Value</p>
+          <h2 style="font-size:1.5rem; margin-bottom:4px;">Pro Annual</h2>
+          <p style="font-size:2.4rem; font-family:'Cinzel',serif; font-weight:900; color:#e8e0d0; margin:0 0 4px;">$20<span style="font-size:1rem; color:#9a9080;">/yr</span></p>
+          <p class="form-note" style="margin-bottom:20px;">Save $3.88 vs monthly. All the same perks.</p>
+          <ul style="list-style:none; padding:0; margin:0 0 24px; display:grid; gap:8px; font-size:0.9rem; color:#9a9080;">
+            <li>✓ 100% guide access — no locks</li>
+            <li>✓ Interactive checklists with cloud save</li>
+            <li>✓ Full trophy roadmaps &amp; missable flags</li>
+            <li>✓ All collectible trackers, per-region</li>
+            <li>✓ Early access to new guides</li>
+            <li>✓ Priority missing-info fixes</li>
+          </ul>
+          <a id="pro-checkout-annual-link" class="btn btn-secondary" href="https://buy.stripe.com/3cIeV513f4zZ6jJ6Zgffy01" style="width:100%; justify-content:center;">
+            Go Pro Annual — $20/year
+          </a>
+        </section>
+
+      </div>
+
+      <!-- What's locked -->
       <section class="panel">
-        <h2>Pro Membership Perks</h2>
-        <ul>
-          <li>100% guide access with no 50% lock</li>
-          <li>Detailed build paths and advanced route notes</li>
-          <li>Early access to newly added walkthrough updates</li>
-          <li>Priority consideration for missing-info fixes</li>
-        </ul>
-        <div class="cta-row">
-          <a id="pro-checkout-link" class="btn btn-accent" href="https://buy.stripe.com/cNi8wH13feaz23t5Vcffy00">Start 3-Day Trial + Pro Monthly</a>
-          <a id="pro-checkout-annual-link" class="btn btn-secondary" href="https://buy.stripe.com/3cIeV513f4zZ6jJ6Zgffy01">Go Pro Annual ($20/year)</a>
+        <h2>What Free vs. Pro Unlocks</h2>
+        <p style="margin-bottom:20px;">Every guide is split at 50%. Here's what that means in practice for the current library:</p>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.875rem;">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+                <th style="text-align:left; padding:10px 12px; font-family:'Cinzel',serif; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:#c9a84c;">Guide Section</th>
+                <th style="text-align:center; padding:10px 12px; font-family:'Cinzel',serif; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:#9a9080;">Free</th>
+                <th style="text-align:center; padding:10px 12px; font-family:'Cinzel',serif; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:#c9a84c;">Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Main Story Quests (first half)</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Main Story Quests (second half)</td>
+                <td style="text-align:center; color:#c0392b;">✗</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Side Quests (first half)</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Side Quests (second half)</td>
+                <td style="text-align:center; color:#c0392b;">✗</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Region Collectibles (first half of regions)</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Region Collectibles (second half + all categories)</td>
+                <td style="text-align:center; color:#c0392b;">✗</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:10px 12px; color:#e8e0d0;">Trophy Roadmap</td>
+                <td style="text-align:center; color:#c0392b;">✗</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px; color:#e8e0d0;">Hideout, Allies, Skills, Season Watch</td>
+                <td style="text-align:center; color:#c0392b;">✗</td>
+                <td style="text-align:center; color:#4cca82;">✓</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <p class="form-note">Use a Stripe subscription checkout link in config for secure billing.</p>
       </section>
 
+      <!-- Newsletter -->
       <section class="panel">
-        <h2>Newsletter Updates</h2>
+        <h2>Guide Update Emails</h2>
+        <p style="margin-bottom:16px;">Get notified when new guides are added or updated. No spam — just guide drops.</p>
         <form id="subscribe-form" class="stack-form">
-          <label>Email <input type="email" id="subscriber-email" required /></label>
-          <label>
-            Consent
-            <select id="subscriber-consent">
-              <option value="true">I agree to receive update emails</option>
-              <option value="false">No consent</option>
+          <label class="form-group">
+            <span class="form-label">Email address</span>
+            <input class="form-input" type="email" id="subscriber-email" placeholder="you@email.com" required />
+          </label>
+          <label class="form-group">
+            <span class="form-label">Email consent</span>
+            <select class="form-select" id="subscriber-consent">
+              <option value="true">I agree to receive guide update emails</option>
+              <option value="false">No thanks</option>
             </select>
           </label>
-          <button type="submit" class="btn btn-accent">Subscribe</button>
+          <button type="submit" class="btn btn-secondary">Subscribe to Updates</button>
         </form>
-        <p id="subscribe-status" class="form-note" aria-live="polite"></p>
+        <p id="subscribe-status" class="form-note" aria-live="polite" style="margin-top:10px;"></p>
       </section>
+
     </main>
     <div id="site-footer"></div>
-    <script type="module" src="../app.js?v=20260717"></script>
-    <script type="module" src="../subscribe.js?v=20260717"></script>
+    <script type="module" src="../assets/js/app.js?v=20260725"></script>
+    <script type="module" src="../assets/js/subscribe.js?v=20260725"></script>
   </body>
 </html>
