@@ -118,6 +118,7 @@ footer b{color:var(--dim)}
   .quest-steps{margin-left:14px}
 }
 </style>
+<link rel="stylesheet" href="/gaming-hub/assets/css/guide-master.css">
 </head>
 <body>
 <!-- SITE NAV START -->
@@ -152,43 +153,68 @@ footer b{color:var(--dim)}
   .qag-nav-user{display:none!important}
   .qag-hamburger{display:block}
 }
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+</style>
+<style>
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',serif,system-ui;font-size:1rem;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.08em;white-space:nowrap;margin-right:24px;flex-shrink:0}
+.qag-brand span{color:#d4a85c}
+.qag-navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.qag-navlinks::-webkit-scrollbar{display:none}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.1)}
+.qag-navlinks a.active{color:#b9914b}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qag-nav-auth a{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .15s}
+.qag-signin-btn{color:#8a7a6a;border:1px solid rgba(185,145,75,.2)}
+.qag-signin-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-signup-btn{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0805;border:none}
+.qag-signup-btn:hover{opacity:.9}
+.qag-nav-user{display:none;align-items:center;gap:10px}
+.qag-nav-username{font-size:12px;color:#b9914b;font-weight:600}
+.qag-signout-btn{font-size:11px;color:#8a7a6a;background:none;border:1px solid rgba(185,145,75,.2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.qag-signout-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-hamburger{display:none;background:none;border:none;color:#8a7a6a;font-size:20px;cursor:pointer;padding:4px 8px;margin-left:8px}
+.qag-mobile-menu{display:none;flex-direction:column;background:rgba(8,6,5,.98);border-top:1px solid rgba(185,145,75,.15);padding:12px 16px 16px}
+.qag-mobile-menu a,.qag-mobile-menu button{display:block;color:#8a7a6a;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;width:100%}
+.qag-mobile-menu a:hover,.qag-mobile-menu button:hover{color:#d4a85c}
+.qag-mobile-menu.open{display:flex}
+@media(max-width:768px){
+  .qag-navlinks{display:none}
+  .qag-nav-auth{display:none}
+  .qag-nav-user{display:none!important}
+  .qag-hamburger{display:block}
+}
 </style>
 <nav class="qag-sitenav" id="qag-sitenav">
   <div class="qag-sitenav-inner">
     <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
     <div class="qag-navlinks">
       <a href="/gaming-hub/">Home</a>
-      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/games.html" class="active">Games</a>
+      <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
       <a href="/gaming-hub/pages/search.html">Search</a>
       <a href="/gaming-hub/pages/community.html">Community</a>
-      <a href="/gaming-hub/pages/help.html">Help</a>
-      <a href="/gaming-hub/pages/contact.html">Contact</a>
-      <a href="/gaming-hub/pages/donations.html">Donate</a>
-      <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     </div>
     <div class="qag-nav-auth" id="qag-nav-auth">
       <a class="qag-signin-btn" href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div class="qag-nav-user" id="qag-nav-user">
-      <span class="qag-nav-username" id="qag-nav-username"></span>
-      <button class="qag-signout-btn" id="qag-signout-btn">Sign Out</button>
+      <span class="qag-nav-username" id="qag-nav-username">Account</span>
+      <button class="qag-signout-btn" id="qag-signout-btn" type="button">Sign Out</button>
     </div>
-    <button class="qag-hamburger" id="qag-hamburger" aria-label="Menu">&#9776;</button>
+    <button class="qag-hamburger" id="qag-hamburger" type="button" aria-label="Toggle Menu">☰</button>
   </div>
   <div class="qag-mobile-menu" id="qag-mobile-menu">
     <a href="/gaming-hub/">Home</a>
     <a href="/gaming-hub/pages/games.html">Games</a>
+    <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
     <a href="/gaming-hub/pages/search.html">Search</a>
     <a href="/gaming-hub/pages/community.html">Community</a>
-    <a href="/gaming-hub/pages/help.html">Help</a>
-    <a href="/gaming-hub/pages/contact.html">Contact</a>
-    <a href="/gaming-hub/pages/donations.html">Donate</a>
-    <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     <div id="qag-mobile-auth">
       <a href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div id="qag-mobile-user" style="display:none">
       <span id="qag-mobile-username" style="color:#b9914b;font-size:13px;font-weight:600;display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)"></span>
@@ -198,7 +224,6 @@ footer b{color:var(--dim)}
 </nav>
 <script>
 (function(){
-  // Auth state
   var user=null;try{var s=localStorage.getItem('qag_user');if(s)user=JSON.parse(s);}catch(e){}
   var authEl=document.getElementById('qag-nav-auth');
   var userEl=document.getElementById('qag-nav-user');
@@ -214,13 +239,11 @@ footer b{color:var(--dim)}
     if(mobileUser)mobileUser.style.display='block';
     if(mobileUsername)mobileUsername.textContent=user.display_name||user.email.split('@')[0];
   }
-  // Sign out
   function doSignOut(){localStorage.removeItem('qag_token');localStorage.removeItem('qag_user');localStorage.removeItem('qag_session');window.location.href='/gaming-hub/';}
   var soBtn=document.getElementById('qag-signout-btn');
   var soMob=document.getElementById('qag-mobile-signout');
   if(soBtn)soBtn.addEventListener('click',doSignOut);
   if(soMob)soMob.addEventListener('click',doSignOut);
-  // Hamburger
   var ham=document.getElementById('qag-hamburger');
   var mob=document.getElementById('qag-mobile-menu');
   if(ham&&mob)ham.addEventListener('click',function(){mob.classList.toggle('open');});
@@ -230,7 +253,7 @@ footer b{color:var(--dim)}
 
 <header>
   <div class="hd-top">
-    <div class="hd-mark">幽</div>
+    <div class="hd-mark">霊</div>
     <div class="hd-title">
       <h1>Ghost of Yōtei — 100% Guide</h1>
       <small>All Tales · Myths · Collectibles · Trophies</small>
@@ -252,7 +275,7 @@ footer b{color:var(--dim)}
 </header>
 <main>
   <section id="overview">
-    <div class="sec-hd"><h2>Ghost of Yōtei — 100% Completion</h2><p>Complete all 27 Main Tales, 58 Side Tales across 6 regions, 6 Mythic Tales, and all trophies. Set in Ezo (Hokkaido) in 1603.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">Ghost of Yōtei — 100% Completion</h2><span class="spct"><b class="secPct">0%</b></span><p>Complete all 27 Main Tales, 58 Side Tales across 6 regions, 6 Mythic Tales, and all trophies. Set in Ezo (Hokkaido) in 1603.</p></div>
     <div class="btnrow">
       <button class="btn" onclick="expandAll()">Expand All</button>
       <button class="btn" onclick="collapseAll()">Collapse All</button>
@@ -262,7 +285,7 @@ footer b{color:var(--dim)}
     <div class="sec-note">Progress saves automatically to your browser and persists between sessions. Click ▼ How to complete on any quest to see step-by-step instructions.</div>
   </section>
   <section id="main">
-    <div class="sec-hd"><h2>⚔ Main Tales</h2><p>All 27 story missions across Prologue, Chapter I, II, and III. Complete all to finish Atsu's story.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">⚔ Main Tales</h2><span class="spct"><b class="secPct">0%</b></span><p>All 27 story missions across Prologue, Chapter I, II, and III. Complete all to finish Atsu's story.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -406,7 +429,7 @@ footer b{color:var(--dim)}
 </div>
   </section>
   <section id="side">
-    <div class="sec-hd"><h2>📜 Side Tales</h2><p>All 58 Side Tales across 6 regions of Ezo. Many reward charms, weapons, and armor.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">📜 Side Tales</h2><span class="spct"><b class="secPct">0%</b></span><p>All 58 Side Tales across 6 regions of Ezo. Many reward charms, weapons, and armor.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -690,7 +713,7 @@ footer b{color:var(--dim)}
 </div>
   </section>
   <section id="mythic">
-    <div class="sec-hd"><h2>🎵 Mythic Tales</h2><p>All 6 Mythic Tales — legendary quests told by musicians. Each rewards a unique weapon or armor.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">🎵 Mythic Tales</h2><span class="spct"><b class="secPct">0%</b></span><p>All 6 Mythic Tales — legendary quests told by musicians. Each rewards a unique weapon or armor.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -766,7 +789,7 @@ footer b{color:var(--dim)}
 </div>
   </section>
   <section id="weapons">
-    <div class="sec-hd"><h2>⚔ Weapons &amp; Items</h2><p>All weapons, tools, and key items in Ghost of Yōtei. Weapons are unlocked through the main story, side tales, and crafting. Check off each weapon as you acquire it.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">⚔ Weapons &amp; Items</h2><span class="spct"><b class="secPct">0%</b></span><p>All weapons, tools, and key items in Ghost of Yōtei. Weapons are unlocked through the main story, side tales, and crafting. Check off each weapon as you acquire it.</p></div>
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
         <span class="chev">▶</span><h3>Katana &amp; Dual Katana</h3><span class="cpct" data-cpct></span>
@@ -820,7 +843,7 @@ footer b{color:var(--dim)}
     </div>
   </section>
   <section id="trophies">
-    <div class="sec-hd"><h2>🏆 Trophies</h2><p>All 54 trophies for Ghost of Yōtei — 1 Platinum, 2 Gold, 7 Silver, 44 Bronze. Complete all for the Platinum.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">🏆 Trophies</h2><span class="spct"><b class="secPct">0%</b></span><p>All 54 trophies for Ghost of Yōtei — 1 Platinum, 2 Gold, 7 Silver, 44 Bronze. Complete all for the Platinum.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -913,7 +936,7 @@ footer b{color:var(--dim)}
   </section>
 
   <section id="bounties">
-    <div class="sec-hd"><h2>🎯 Bounties</h2><p>All 31 bounty targets across 6 regions. Pick up bounty cards at inn boards. Complete all for the <b>Master Bounty Hunter</b> Gold Trophy. Capstone bounties unlock after clearing all 4 standard targets in each region.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">🎯 Bounties</h2><span class="spct"><b class="secPct">0%</b></span><p>All 31 bounty targets across 6 regions. Pick up bounty cards at inn boards. Complete all for the <b>Master Bounty Hunter</b> Gold Trophy. Capstone bounties unlock after clearing all 4 standard targets in each region.</p></div>
 
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
@@ -996,7 +1019,7 @@ footer b{color:var(--dim)}
   </section>
 
   <section id="collectibles">
-    <div class="sec-hd"><h2>🗺 Collectibles by Region</h2><p>All collectible types across Ezo. Use the Shamisen to reveal nearby collectibles on the minimap. None are missable — all remain available after the story ends.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">🗺 Collectibles by Region</h2><span class="spct"><b class="secPct">0%</b></span><p>All collectible types across Ezo. Use the Shamisen to reveal nearby collectibles on the minimap. None are missable — all remain available after the story ends.</p></div>
 
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
@@ -1043,7 +1066,7 @@ footer b{color:var(--dim)}
   </section>
 
   <section id="legendary-armor">
-    <div class="sec-hd"><h2>🛡 Legendary Armor Sets</h2><p>All 8 legendary armor sets in Ghost of Yōtei. Collect all for the <b>For All Occasions</b> Silver Trophy. Each set has unique perks and can be upgraded at a merchant.</p></div>
+    <div class="sec-hd"><h2 data-kanji="霊">🛡 Legendary Armor Sets</h2><span class="spct"><b class="secPct">0%</b></span><p>All 8 legendary armor sets in Ghost of Yōtei. Collect all for the <b>For All Occasions</b> Silver Trophy. Each set has unique perks and can be upgraded at a merchant.</p></div>
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
         <span class="chev">▶</span><h3>All Legendary Armor Sets <em style="color:var(--faint);font-style:normal;font-size:12px;font-weight:400">· 8</em></h3><span class="cpct" data-cpct></span>

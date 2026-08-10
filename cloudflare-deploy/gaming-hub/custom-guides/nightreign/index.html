@@ -94,6 +94,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 .gate-btn{display:inline-block;background:var(--gold);color:#0a0a0f;padding:.65rem 1.75rem;border-radius:6px;font-family:'Cinzel',Georgia,serif;font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:.05em;margin:.3rem}
 .gate-btn.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}
 </style>
+<link rel="stylesheet" href="/gaming-hub/assets/css/guide-master.css">
 </head>
 <body>
 <!-- SITE NAV START -->
@@ -128,43 +129,68 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
   .qag-nav-user{display:none!important}
   .qag-hamburger{display:block}
 }
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+</style>
+<style>
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',serif,system-ui;font-size:1rem;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.08em;white-space:nowrap;margin-right:24px;flex-shrink:0}
+.qag-brand span{color:#d4a85c}
+.qag-navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.qag-navlinks::-webkit-scrollbar{display:none}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.1)}
+.qag-navlinks a.active{color:#b9914b}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qag-nav-auth a{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .15s}
+.qag-signin-btn{color:#8a7a6a;border:1px solid rgba(185,145,75,.2)}
+.qag-signin-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-signup-btn{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0805;border:none}
+.qag-signup-btn:hover{opacity:.9}
+.qag-nav-user{display:none;align-items:center;gap:10px}
+.qag-nav-username{font-size:12px;color:#b9914b;font-weight:600}
+.qag-signout-btn{font-size:11px;color:#8a7a6a;background:none;border:1px solid rgba(185,145,75,.2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.qag-signout-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-hamburger{display:none;background:none;border:none;color:#8a7a6a;font-size:20px;cursor:pointer;padding:4px 8px;margin-left:8px}
+.qag-mobile-menu{display:none;flex-direction:column;background:rgba(8,6,5,.98);border-top:1px solid rgba(185,145,75,.15);padding:12px 16px 16px}
+.qag-mobile-menu a,.qag-mobile-menu button{display:block;color:#8a7a6a;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;width:100%}
+.qag-mobile-menu a:hover,.qag-mobile-menu button:hover{color:#d4a85c}
+.qag-mobile-menu.open{display:flex}
+@media(max-width:768px){
+  .qag-navlinks{display:none}
+  .qag-nav-auth{display:none}
+  .qag-nav-user{display:none!important}
+  .qag-hamburger{display:block}
+}
 </style>
 <nav class="qag-sitenav" id="qag-sitenav">
   <div class="qag-sitenav-inner">
     <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
     <div class="qag-navlinks">
       <a href="/gaming-hub/">Home</a>
-      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/games.html" class="active">Games</a>
+      <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
       <a href="/gaming-hub/pages/search.html">Search</a>
       <a href="/gaming-hub/pages/community.html">Community</a>
-      <a href="/gaming-hub/pages/help.html">Help</a>
-      <a href="/gaming-hub/pages/contact.html">Contact</a>
-      <a href="/gaming-hub/pages/donations.html">Donate</a>
-      <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     </div>
     <div class="qag-nav-auth" id="qag-nav-auth">
       <a class="qag-signin-btn" href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div class="qag-nav-user" id="qag-nav-user">
-      <span class="qag-nav-username" id="qag-nav-username"></span>
-      <button class="qag-signout-btn" id="qag-signout-btn">Sign Out</button>
+      <span class="qag-nav-username" id="qag-nav-username">Account</span>
+      <button class="qag-signout-btn" id="qag-signout-btn" type="button">Sign Out</button>
     </div>
-    <button class="qag-hamburger" id="qag-hamburger" aria-label="Menu">&#9776;</button>
+    <button class="qag-hamburger" id="qag-hamburger" type="button" aria-label="Toggle Menu">☰</button>
   </div>
   <div class="qag-mobile-menu" id="qag-mobile-menu">
     <a href="/gaming-hub/">Home</a>
     <a href="/gaming-hub/pages/games.html">Games</a>
+    <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
     <a href="/gaming-hub/pages/search.html">Search</a>
     <a href="/gaming-hub/pages/community.html">Community</a>
-    <a href="/gaming-hub/pages/help.html">Help</a>
-    <a href="/gaming-hub/pages/contact.html">Contact</a>
-    <a href="/gaming-hub/pages/donations.html">Donate</a>
-    <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     <div id="qag-mobile-auth">
       <a href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div id="qag-mobile-user" style="display:none">
       <span id="qag-mobile-username" style="color:#b9914b;font-size:13px;font-weight:600;display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)"></span>
@@ -174,7 +200,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </nav>
 <script>
 (function(){
-  // Auth state
   var user=null;try{var s=localStorage.getItem('qag_user');if(s)user=JSON.parse(s);}catch(e){}
   var authEl=document.getElementById('qag-nav-auth');
   var userEl=document.getElementById('qag-nav-user');
@@ -190,13 +215,11 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
     if(mobileUser)mobileUser.style.display='block';
     if(mobileUsername)mobileUsername.textContent=user.display_name||user.email.split('@')[0];
   }
-  // Sign out
   function doSignOut(){localStorage.removeItem('qag_token');localStorage.removeItem('qag_user');localStorage.removeItem('qag_session');window.location.href='/gaming-hub/';}
   var soBtn=document.getElementById('qag-signout-btn');
   var soMob=document.getElementById('qag-mobile-signout');
   if(soBtn)soBtn.addEventListener('click',doSignOut);
   if(soMob)soMob.addEventListener('click',doSignOut);
-  // Hamburger
   var ham=document.getElementById('qag-hamburger');
   var mob=document.getElementById('qag-mobile-menu');
   if(ham&&mob)ham.addEventListener('click',function(){mob.classList.toggle('open');});
@@ -206,7 +229,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 
 <header>
   <div class="hd-top">
-    <div class="hd-mark">NR</div>
+    <div class="hd-mark">🔥</div>
     <div class="hd-title">
       <h1>Elden Ring Nightreign — 100% Guide</h1>
       <small>9 Nightfarers · 8 Nightlords · 3 Everdark Sovereigns · 12 Relics · 20 Trophies</small>
@@ -225,7 +248,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </header>
 <main>
   <section id="overview">
-    <div class="sec-hd"><h2>Elden Ring Nightreign — 100% Completion</h2><p>All 9 Nightfarers with optimal builds, all 8 Nightlords with phase-by-phase strategies, 3 Everdark Sovereigns, all 12 Relics, and all 20 trophies. Nightreign is a co-op roguelite — each expedition is a 3-day cycle ending in a Nightlord fight.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">Elden Ring Nightreign — 100% Completion</h2><span class="spct"><b class="secPct">0%</b></span><p>All 9 Nightfarers with optimal builds, all 8 Nightlords with phase-by-phase strategies, 3 Everdark Sovereigns, all 12 Relics, and all 20 trophies. Nightreign is a co-op roguelite — each expedition is a 3-day cycle ending in a Nightlord fight.</p></div>
     <div class="btnrow">
       <button class="btn" onclick="expandAll()">Expand All</button>
       <button class="btn" onclick="collapseAll()">Collapse All</button>
@@ -235,7 +258,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
     <div class="sec-note">⚠️ Expedition Structure: Day 1 and Day 2 are open-world exploration and preparation. Day 3 is the Nightlord boss fight. Dying during exploration respawns you at the Roundtable Hold. Dying during the Nightlord fight ends the expedition.</div>
   </section>
   <section id="nightfarers">
-    <div class="sec-hd"><h2>⚔ Nightfarers (9)</h2><p>All 9 playable characters with unlock conditions, passive abilities, skills, and optimal builds. Check off each Nightfarer as you unlock them.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">⚔ Nightfarers (9)</h2><span class="spct"><b class="secPct">0%</b></span><p>All 9 playable characters with unlock conditions, passive abilities, skills, and optimal builds. Check off each Nightfarer as you unlock them.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span><h3>Wylder <span class="tag note">The Drifter</span></h3>
@@ -401,7 +424,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
   </section>
   <section id="nightlords">
-    <div class="sec-hd"><h2>👁 Nightlords (8)</h2><p>All 8 Nightlord bosses with phase-by-phase strategies, weaknesses, and recommended Nightfarers. Check off each Nightlord as you defeat them.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">👁 Nightlords (8)</h2><span class="spct"><b class="secPct">0%</b></span><p>All 8 Nightlord bosses with phase-by-phase strategies, weaknesses, and recommended Nightfarers. Check off each Nightlord as you defeat them.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span><h3>Gnoster, Wisdom of Gravity <span class="tag missable">Gravity</span></h3>
@@ -549,7 +572,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
   </section>
   <section id="everdark">
-    <div class="sec-hd"><h2>🌑 Everdark Sovereigns (3)</h2><p>Enhanced versions of Nightlords unlocked after defeating the base version 3 times. Significantly harder with new attacks.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">🌑 Everdark Sovereigns (3)</h2><span class="spct"><b class="secPct">0%</b></span><p>Enhanced versions of Nightlords unlocked after defeating the base version 3 times. Significantly harder with new attacks.</p></div>
     <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span><h3>Gnoster Prime <span class="tag missable">Gravity (Enhanced)</span></h3>
@@ -607,7 +630,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
   </section>
   <section id="relics">
-    <div class="sec-hd"><h2>💎 Relics (12)</h2><p>All 12 Relics dropped by Everdark enemies. Each Relic is a powerful talisman-equivalent that persists across expeditions.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">💎 Relics (12)</h2><span class="spct"><b class="secPct">0%</b></span><p>All 12 Relics dropped by Everdark enemies. Each Relic is a powerful talisman-equivalent that persists across expeditions.</p></div>
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
         <span class="chev">▶</span><h3>All Relics (12)</h3><span class="cpct" data-cpct></span>
@@ -677,7 +700,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
     </div>
   </section>
   <section id="trophies">
-    <div class="sec-hd"><h2>🏆 Trophies (20)</h2><p>All 20 trophies including the Nightreign Platinum. Check off each trophy as you earn it.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🔥">🏆 Trophies (20)</h2><span class="spct"><b class="secPct">0%</b></span><p>All 20 trophies including the Nightreign Platinum. Check off each trophy as you earn it.</p></div>
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
         <span class="chev">▶</span><h3>All Trophies (20)</h3><span class="cpct" data-cpct></span>

@@ -107,23 +107,26 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 .gate-btn{display:inline-block;background:var(--gold);color:#0a0a0f;padding:.65rem 1.75rem;border-radius:6px;font-family:'Cinzel',Georgia,serif;font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:.05em;margin:.3rem}
 .gate-btn.secondary{background:transparent;color:var(--gold);border:1px solid var(--gold)}
 </style>
+<link rel="stylesheet" href="/gaming-hub/assets/css/guide-master.css">
 </head>
 <body>
 <!-- SITE NAV START -->
 <style>
-.qag-sitenav{background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.18);position:sticky;top:0;z-index:200;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 16px;height:48px}
-.qag-brand{font-family:'Cinzel',Georgia,serif;font-size:15px;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.06em;margin-right:24px;white-space:nowrap}
+.qag-brand{font-family:'Cinzel',serif,system-ui;font-size:1rem;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.08em;white-space:nowrap;margin-right:24px;flex-shrink:0}
 .qag-brand span{color:#d4a85c}
-.qag-brand:hover{color:#d4a85c}
-.qag-navlinks{display:flex;gap:0;flex:1}
-.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:0 11px;line-height:48px;transition:color .15s,background .15s;white-space:nowrap}
-.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.06)}
-.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto}
-.qag-signin-btn{font-size:12px;color:#8a7a6a;text-decoration:none;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(185,145,75,.2);border-radius:4px;transition:all .15s}
+.qag-navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.qag-navlinks::-webkit-scrollbar{display:none}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.1)}
+.qag-navlinks a.active{color:#b9914b}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qag-nav-auth a{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .15s}
+.qag-signin-btn{color:#8a7a6a;border:1px solid rgba(185,145,75,.2)}
 .qag-signin-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
-.qag-signup-btn{font-size:12px;color:#0a0a0f;background:#b9914b;text-decoration:none;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:4px;transition:background .15s}
-.qag-signup-btn:hover{background:#d4a85c}
+.qag-signup-btn{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0805;border:none}
+.qag-signup-btn:hover{opacity:.9}
 .qag-nav-user{display:none;align-items:center;gap:10px}
 .qag-nav-username{font-size:12px;color:#b9914b;font-weight:600}
 .qag-signout-btn{font-size:11px;color:#8a7a6a;background:none;border:1px solid rgba(185,145,75,.2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
@@ -139,43 +142,68 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
   .qag-nav-user{display:none!important}
   .qag-hamburger{display:block}
 }
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+</style>
+<style>
+.qag-sitenav{position:sticky;top:0;z-index:9999;background:rgba(8,6,5,.97);border-bottom:1px solid rgba(185,145,75,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.qag-sitenav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 16px;height:48px}
+.qag-brand{font-family:'Cinzel',serif,system-ui;font-size:1rem;font-weight:700;color:#b9914b;text-decoration:none;letter-spacing:.08em;white-space:nowrap;margin-right:24px;flex-shrink:0}
+.qag-brand span{color:#d4a85c}
+.qag-navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.qag-navlinks::-webkit-scrollbar{display:none}
+.qag-navlinks a{color:#8a7a6a;text-decoration:none;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s}
+.qag-navlinks a:hover{color:#d4a85c;background:rgba(185,145,75,.1)}
+.qag-navlinks a.active{color:#b9914b}
+.qag-nav-auth{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.qag-nav-auth a{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .15s}
+.qag-signin-btn{color:#8a7a6a;border:1px solid rgba(185,145,75,.2)}
+.qag-signin-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-signup-btn{background:linear-gradient(135deg,#b9914b,#d4a85c);color:#0a0805;border:none}
+.qag-signup-btn:hover{opacity:.9}
+.qag-nav-user{display:none;align-items:center;gap:10px}
+.qag-nav-username{font-size:12px;color:#b9914b;font-weight:600}
+.qag-signout-btn{font-size:11px;color:#8a7a6a;background:none;border:1px solid rgba(185,145,75,.2);border-radius:4px;padding:4px 10px;cursor:pointer;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .15s}
+.qag-signout-btn:hover{color:#d4a85c;border-color:rgba(185,145,75,.5)}
+.qag-hamburger{display:none;background:none;border:none;color:#8a7a6a;font-size:20px;cursor:pointer;padding:4px 8px;margin-left:8px}
+.qag-mobile-menu{display:none;flex-direction:column;background:rgba(8,6,5,.98);border-top:1px solid rgba(185,145,75,.15);padding:12px 16px 16px}
+.qag-mobile-menu a,.qag-mobile-menu button{display:block;color:#8a7a6a;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;width:100%}
+.qag-mobile-menu a:hover,.qag-mobile-menu button:hover{color:#d4a85c}
+.qag-mobile-menu.open{display:flex}
+@media(max-width:768px){
+  .qag-navlinks{display:none}
+  .qag-nav-auth{display:none}
+  .qag-nav-user{display:none!important}
+  .qag-hamburger{display:block}
+}
 </style>
 <nav class="qag-sitenav" id="qag-sitenav">
   <div class="qag-sitenav-inner">
     <a class="qag-brand" href="/gaming-hub/">Quest <span>&amp;</span> Guides</a>
     <div class="qag-navlinks">
       <a href="/gaming-hub/">Home</a>
-      <a href="/gaming-hub/pages/games.html">Games</a>
+      <a href="/gaming-hub/pages/games.html" class="active">Games</a>
+      <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
       <a href="/gaming-hub/pages/search.html">Search</a>
       <a href="/gaming-hub/pages/community.html">Community</a>
-      <a href="/gaming-hub/pages/help.html">Help</a>
-      <a href="/gaming-hub/pages/contact.html">Contact</a>
-      <a href="/gaming-hub/pages/donations.html">Donate</a>
-      <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     </div>
     <div class="qag-nav-auth" id="qag-nav-auth">
       <a class="qag-signin-btn" href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a class="qag-signup-btn" href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div class="qag-nav-user" id="qag-nav-user">
-      <span class="qag-nav-username" id="qag-nav-username"></span>
-      <button class="qag-signout-btn" id="qag-signout-btn">Sign Out</button>
+      <span class="qag-nav-username" id="qag-nav-username">Account</span>
+      <button class="qag-signout-btn" id="qag-signout-btn" type="button">Sign Out</button>
     </div>
-    <button class="qag-hamburger" id="qag-hamburger" aria-label="Menu">&#9776;</button>
+    <button class="qag-hamburger" id="qag-hamburger" type="button" aria-label="Toggle Menu">☰</button>
   </div>
   <div class="qag-mobile-menu" id="qag-mobile-menu">
     <a href="/gaming-hub/">Home</a>
     <a href="/gaming-hub/pages/games.html">Games</a>
+    <a href="/gaming-hub/pages/coming-soon.html">Coming Soon</a>
     <a href="/gaming-hub/pages/search.html">Search</a>
     <a href="/gaming-hub/pages/community.html">Community</a>
-    <a href="/gaming-hub/pages/help.html">Help</a>
-    <a href="/gaming-hub/pages/contact.html">Contact</a>
-    <a href="/gaming-hub/pages/donations.html">Donate</a>
-    <a href="/gaming-hub/pages/subscribe.html">Subscribe</a>
     <div id="qag-mobile-auth">
       <a href="/gaming-hub/pages/signin.html">Sign In</a>
-      <a href="/gaming-hub/pages/signup.html">Sign Up</a>
+      <a href="/gaming-hub/pages/signup.html">Join Free</a>
     </div>
     <div id="qag-mobile-user" style="display:none">
       <span id="qag-mobile-username" style="color:#b9914b;font-size:13px;font-weight:600;display:block;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)"></span>
@@ -213,7 +241,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 <!-- SITE NAV END -->
 <header>
   <div class="hd-top">
-    <div class="hd-mark">AST</div>
+    <div class="hd-mark">🤖</div>
     <div class="hd-title">
       <h1>Astro Bot — 100% Guide</h1>
       <small>3D Platformer · Team Asobi · September 6, 2024</small>
@@ -234,13 +262,13 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </header>
 <main>
   <section id="overview">
-    <div class="sec-hd"><h2>Astro Bot — 100% Completion</h2><p>The Game of the Year 2024 winner and the PS5&#x27;s purest joy machine. Astro&#x27;s mothership — the PS5 itself — is torn apart by a galactic villain, scattering 300 bots across six galaxies. Rescue them all, ride the Dual Speeder, and collect three decades of PlayStation history. This guide covers every galaxy, the hidden exits, VIP bot locations, and the Master Challenge that will test your soul.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🤖">Astro Bot — 100% Completion</h2><span class="spct"><b class="secPct">0%</b></span><p>The Game of the Year 2024 winner and the PS5&#x27;s purest joy machine. Astro&#x27;s mothership — the PS5 itself — is torn apart by a galactic villain, scattering 300 bots across six galaxies. Rescue them all, ride the Dual Speeder, and collect three decades of PlayStation history. This guide covers every galaxy, the hidden exits, VIP bot locations, and the Master Challenge that will test your soul.</p></div>
     <div class="btnrow">
       <span style="color:var(--dim);font-size:12px">⏱ 12-25 hrs · <span class="diff-badge diff-easy">Easy (with brutal optional challenges)</span> · ⭐ 9.4/10</span>
     </div>
   </section>
 <section id="main-quests">
-  <div class="sec-hd"><h2>⚔ Galaxy Progression</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">⚔ Galaxy Progression</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
   <div class="btnrow">
     <button class="btn" onclick="expandAll()">Expand All</button>
     <button class="btn" onclick="collapseAll()">Collapse All</button>
@@ -369,7 +397,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
 <section id="side-quests">
-  <div class="sec-hd"><h2>📜 Side Content &amp; Post-Game</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">📜 Side Content &amp; Post-Game</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
 <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -492,7 +520,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
 <section id="collectibles">
-  <div class="sec-hd"><h2>💎 Collectibles</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">💎 Collectibles</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
 <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -615,7 +643,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
 <section id="unique-items">
-  <div class="sec-hd"><h2>⚔ Gadgets &amp; Power-ups</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">⚔ Gadgets &amp; Power-ups</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
 <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -738,7 +766,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
 <section id="bosses">
-  <div class="sec-hd"><h2>📋 Boss Fights</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">📋 Boss Fights</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
 <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -861,7 +889,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
 <section id="tips">
-  <div class="sec-hd"><h2>💡 Pro Tips &amp; Secrets</h2><p></p></div>
+  <div class="sec-hd"><h2 data-kanji="🤖">💡 Pro Tips &amp; Secrets</h2><span class="spct"><b class="secPct">0%</b></span><p></p></div>
 <div class="card" data-card>
   <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
     <span class="chev">▶</span>
@@ -984,7 +1012,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:28px 12px 34p
 </div>
 </section>
   <section id="trophies">
-    <div class="sec-hd"><h2>🏆 Trophies (25)</h2><p>All 25 trophies for Astro Bot including the Platinum. Check off each trophy as you earn it.</p></div>
+    <div class="sec-hd"><h2 data-kanji="🤖">🏆 Trophies (25)</h2><span class="spct"><b class="secPct">0%</b></span><p>All 25 trophies for Astro Bot including the Platinum. Check off each trophy as you earn it.</p></div>
     <div class="card" data-card>
       <div class="card-hd" onclick="this.closest('[data-card]').classList.toggle('open');_updateAll()">
         <span class="chev">▶</span><h3>All Trophies (25)</h3><span class="cpct" data-cpct></span>
