@@ -1,0 +1,6 @@
+.git
+.git/**
+cloudflare-deploy.zip
+cloudflare-deploy/**
+node_modules
+node_modules/**
